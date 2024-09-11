@@ -35,4 +35,4 @@ otpSchema.pre('save', async (next) => {
     await sendMail(this.email,this.otp)
 })
 
-module.exports = mongoose.Schema('OTP', otpSchema)
+module.exports = mongoose.Schema('Otp', otpSchema)
