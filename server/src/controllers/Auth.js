@@ -1,9 +1,10 @@
+require('dotenv').config()
 const User = require('../models/User.Model')
 const Otp = require('../models/Otp.model')
 const otpGenerator = require('otp-generator')
 const bcrypt = require('bcrypt')
 const Profile = require('../models/Profile.Model')
-
+const jwt=require('jsonwebtoken')
 //--------------------------- create otp --------------------------
 
 exports.createOtp = async (req, res) => {
@@ -68,7 +69,7 @@ exports.signUp = async (req, res) => {
         const { firstName, mobileNumber, lastName, email, password, confirmPassword, accountType, otp } = req.body
 
 
-        if (firstName || lastName || email || password || otp, mobileNumber) {
+        if (!firstName || !lastName || !email || !password || !otp, !mobileNumber) {
             return res.status(400).json({
                 success: false,
                 message: 'All fields are required'
@@ -130,7 +131,7 @@ exports.signUp = async (req, res) => {
         console.log(err)
         res.status(500).json({
             success: false,
-            message: 'error in signup controller'
+            message: 'error While Signup'
         })
     }
 
@@ -139,5 +140,60 @@ exports.signUp = async (req, res) => {
 // --------------------------login Controller---------------------
 
 exports.login = async (req, res) => {
-    
+    try {
+        const { email, password } = req.body
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: 'Please fill the all field'
+            })
+        }
+
+        const existUser=await User.findOne({email})
+        if(!existUser){
+            return res.status(400).json({
+                success:false,
+                message:'User not found'
+            })
+        }
+
+        if(await bcrypt.compare(password,existUser.password)){
+            const payload={
+                email:existUser.email,
+                id:existUser._id,
+                accountType:existUser.accountType
+            }
+            const token =jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:'2h'})
+
+            existUser.toObject()
+            existUser.token=token
+            existUser.password=null
+            const option={
+                expires:new Date(Date.now()+3*24*60*60*1000),
+                httpOnly:true
+            }
+
+            res.cookie('token',token,option).status(200).json({
+                success:true,
+                token,
+                existUser,
+                message:'Logged in successfully'
+            })
+        }
+        else{
+            return res.status(401).json({
+                success:false,
+                message:'Password incorrect'
+            })
+        }
+
+
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json({
+            success:false,
+            message:'Some thing went wrong'
+        })
+    }
 }
