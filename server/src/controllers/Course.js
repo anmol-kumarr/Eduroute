@@ -1,13 +1,13 @@
 const Course = require('../models/course.Model')
-const Tag = require('../models/Tags.model')
+const Categories = require('../models/Categories.model')
 const User = require('../models/User.Model')
 const { ImageUpload } = require('../utils/Cloudinary')
 
 exports.createCrouse = async (req, res) => {
     try {
-        const { courseName, courseDescription, whatYouWillLearn, price, tag } = req.body
+        const { courseName, courseDescription, whatYouWillLearn, price, tag,categories } = req.body
         const thumbnail = req.files.thumbnailImage
-        if (!courseName, !courseDescription, !whatYouWillLearn, !price, !tag) {
+        if (!courseName, !courseDescription, !whatYouWillLearn, !price, !tag,!categories) {
             return res.status(401).json({
                 success: false,
                 message: 'All fields are required'
@@ -25,8 +25,8 @@ exports.createCrouse = async (req, res) => {
             })
         }
         // check tag 
-        const tagDetails = await Tag.findById(tag)
-        if (!tagDetails) {
+        const categoriesDetails = await Categories.findById(categories)
+        if (!categoriesDetails) {
             return res.status(400).json({
                 success: false,
                 message: 'Tag details not found'
@@ -42,8 +42,9 @@ exports.createCrouse = async (req, res) => {
             courseDescription,
             intructor: instructorDetails._id,
             price,
+            tag,
             whatYouWillLearn,
-            tag: tagDetails._id,
+            categories: categoriesDetails._id,
             thumbnail: thumbnailUpload.secure_url
         })
 
@@ -80,7 +81,8 @@ exports.getAllCourses = async (req, res) => {
             price: true,
             instructor: true,
             ratingAndReviews: true,
-            studentEnrolled: true
+            studentEnrolled: true,
+            // categories:true
         }).populate('instructor')
 
         return res.status(200).json({
