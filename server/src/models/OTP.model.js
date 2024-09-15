@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const sendVerification = require('../utils/MailSender')
-
+const otpTemplate=require('../mail/EmailVerification')
 
 const otpSchema = new mongoose.Schema({
     email: {
@@ -15,24 +15,35 @@ const otpSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now(),
-        expires: 2 * 60
+        expires: 5*60
     }
 
 })
 
 
-const sendMail = async (email, otp) => {
+// const sendMail = async (email, otp) => {
+//     try {
+//         let response = sendVerification(email, "Verification mail send by Eduroute", otp)
+//         console.log(response)
+//     }
+//     catch (err) {
+//         console.log('error in sending mail in schema file', err)
+//     }
+// }
+
+// otpSchema.pre('save', async (next) => {
+//     await sendMail(this.email,this.otp)
+//     next()
+// })
+otpSchema.pre('save', async function (next) {
     try {
-        let response = sendVerification(email, "Verification mail send by Eduroute", otp)
-        console.log(response)
+        const template=otpTemplate(this.otp)
+        await sendVerification(this.email, "Eduroute:SignUp Email ID verification", template);
+        next(); // Proceed to save the document
+    } catch (err) {
+        console.error('Error sending verification mail:', err);
+        next(err); // Pass the error to the next middleware or save process
     }
-    catch (err) {
-        console.log('error in sending mail in schema file', err)
-    }
-}
+});
 
-otpSchema.pre('save', async (next) => {
-    await sendMail(this.email,this.otp)
-})
-
-module.exports = mongoose.Schema('Otp', otpSchema)
+module.exports = mongoose.model('Otp', otpSchema)

@@ -47,6 +47,9 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    imageProfilePublicId:{
+        type:String
+    },
     courceProgress:[
         {
             type:mongoose.Schema.Types.ObjectId,
