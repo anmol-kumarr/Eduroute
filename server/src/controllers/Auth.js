@@ -18,22 +18,22 @@ exports.createOtp = async (req, res) => {
             }))
         }
         // otp generator 
-        let otp = otpGenerator.generate(6, {
+        let otp =otpGenerator.generate(6, {
             lowerCaseAlphabets: false,
             upperCaseAlphabets: false,
             specialChars: false
         })
 
-        const findOtp = await Otp.findOne({ otp })
+        // const findOtp = await Otp.findOne({ otp })
         // check if genertaed otp is present in db or not if yes then it may create conflict
-        while (findOtp) {
-            otp = otpGenerator.generate(6, {
-                lowerCaseAlphabets: false,
-                upperCaseAlphabets: false,
-                specialChars: false
-            })
-            findOtp = await Otp.findOne({ otp })
-        }
+        // while (findOtp) {
+        //     otp = otpGenerator.generate(6, {
+        //         lowerCaseAlphabets: false,
+        //         upperCaseAlphabets: false,
+        //         specialChars: false
+        //     })
+        //     findOtp = await Otp.findOne({ otp })
+        // }
         // when findotp is false means otp is not in db and otp is unique and while loop breaked 
         const payload = { email, otp }
 
@@ -45,8 +45,6 @@ exports.createOtp = async (req, res) => {
             success: true,
             message: 'Otp generated'
         })
-
-
 
     }
     catch (err) {
@@ -92,12 +90,16 @@ exports.signUp = async (req, res) => {
         // find latest otp
         const existOtp = await Otp.find({ email }).sort({ createdAt: -1 }).limit(1)
 
+        console.log(existOtp)
+
         if (existOtp.length === 0) {
+            
             return res.status(400).json({
                 success: false,
                 message: 'Otp not found'
             })
-        } else if (otp !== existOtp) {
+            
+        } else if (otp !== existOtp[0].otp) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid otp"
@@ -149,25 +151,25 @@ exports.login = async (req, res) => {
             })
         }
 
-        const existUser=await User.findOne({email})
-        if(!existUser){
+        const user=await User.findOne({email})
+        if(!user){
             return res.status(400).json({
                 success:false,
                 message:'User not found'
             })
         }
 
-        if(await bcrypt.compare(password,existUser.password)){
+        if(await bcrypt.compare(password,user.password)){
             const payload={
-                email:existUser.email,
-                id:existUser._id,
-                accountType:existUser.accountType
+                email:user.email,
+                id:user._id,
+                accountType:user.accountType
             }
             const token =jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:'2h'})
 
-            existUser.toObject()
-            existUser.token=token
-            existUser.password=null
+            user.toObject()
+            user.token=token
+            user.password=null
             const option={
                 expires:new Date(Date.now()+3*24*60*60*1000),
                 httpOnly:true
@@ -176,7 +178,7 @@ exports.login = async (req, res) => {
             res.cookie('token',token,option).status(200).json({
                 success:true,
                 token,
-                existUser,
+                user,
                 message:'Logged in successfully'
             })
         }

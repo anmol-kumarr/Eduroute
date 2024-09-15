@@ -5,7 +5,7 @@ const User=require('../models/User.Model')
 
 exports.auth=async (req,res,next)=>{
     try{    
-        const token=req.cookies.token || req.body.token || req.header('Authorisation').replace('Bearer ','')
+        const token=req.cookies.token || req.body.token || req.header('Authorization').replace('Bearer ','')
 
         if(!token){
             return res.status(401).json({

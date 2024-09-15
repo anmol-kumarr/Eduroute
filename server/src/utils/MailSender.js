@@ -15,7 +15,7 @@ const sendVerification = async (email,title,body) => {
         })
 
         let response=await transporter.sendMail({
-            from:'',
+            from:'eduroute001@gmail.com',
             to:`${email}`,
             subject:`${title}`,
             html:`${body}`
