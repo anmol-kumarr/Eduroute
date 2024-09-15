@@ -15,6 +15,6 @@ const profileSchema=new mongoose.Schema({
         type:Number,
         trim:true
     }
-})
+},{timestamps:true})
 
 module.exports=mongoose.model('Profile',profileSchema)

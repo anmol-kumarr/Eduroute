@@ -10,6 +10,6 @@ const sectionSchema = new mongoose.Schema({
             ref: 'SubSection'
         }
     ]
-})
+},{timestamps:true})
 
 module.exports=mongoose.model('Section',sectionSchema)

@@ -15,5 +15,5 @@ const categoriesSchema = new mongoose.Schema({
         ref: "Course"
     }]
 
-})
+},{timestamps:true})
 module.exports = mongoose.model('Categories', categoriesSchema)
