@@ -52,8 +52,44 @@ exports.showCategories = async (req, res) => {
 
 exports.categoriesPageDetails = async (req, res) => {
     try {
+        const{categoriesId}=req.body
 
-        
+        // get course for specific id
+        const selectCategories=await Categories.findById(categoriesId).populate('Course').exec()
+
+        if(!selectCategories){
+            return res.status(404).json({
+                success:false,
+                message:'Cannot find course'
+            })
+        }
+        // get course for different categories
+
+        const differentCategories=await Categories.findById({_id:{$ne:categoriesId}}).populate('Course').exec()
+
+        const topSelling=await Categories.aggregate([
+            {
+                $addfields:{
+                    totalEnrolled:{$size:studentEnrolled}
+                }
+            },{
+                $sort:{
+                    totalEnrolled:-1
+                }
+            },{
+                $limit:10
+            }
+        ])
+        return res.status(200).json({
+            success:true,
+            message:'Data fecthed successfully',
+            data:{
+                selectCategories:selectCategories,
+                differentCategories:differentCategories,
+                topSelling:topSelling
+            }
+        })
+
     } catch (err) {
         console.log(err)
         return res.status(500).json({
