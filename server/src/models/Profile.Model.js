@@ -9,7 +9,7 @@ const profileSchema=new mongoose.Schema({
     },
     about:{
         type:String,
-        trim:true
+        
     },
     mobile:{
         type:Number,

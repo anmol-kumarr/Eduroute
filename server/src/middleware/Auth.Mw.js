@@ -5,12 +5,12 @@ const User=require('../models/User.Model')
 
 exports.auth=async (req,res,next)=>{
     try{    
-        const token=req.cookies.token || req.body.token || req.header('Authorization').replace('Bearer ','')
+        const token=req.cookies.token || req.body.token || req.header('Authorization')?.replace('Bearer ','')
 
         if(!token){
             return res.status(401).json({
                 success:false,
-                message:'token is missing'
+                message:'access denied token is missing'
             })
         }
 
@@ -18,6 +18,7 @@ exports.auth=async (req,res,next)=>{
             const decode=jwt.verify(token,process.env.JWT_SECRET)
             console.log(decode)
             req.user=decode
+            next()
 
         }catch(err){
             res.status(401).json({
@@ -25,7 +26,6 @@ exports.auth=async (req,res,next)=>{
                 message:'Invalid token'
             })
         }
-        next()
     }
     catch(err){
         console.log('error in auth middleware',err)
