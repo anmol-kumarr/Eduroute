@@ -1,12 +1,12 @@
 const Profile = require('../models/Profile.Model')
 const User = require('../models/User.Model')
-const {ImageUpload} = require('../utils/Cloudinary')
+const { ImageUpload } = require('../utils/Cloudinary')
 const cloudinary = require('cloudinary')
 
 
 exports.User = async (req, res) => {
     try {
-        const { dateOfBirth = '', gender = '', about = '', contactNumber = '', } = req.body
+        const { dateOfBirth = '', gender = '', about = null, contactNumber = '', } = req.body
         const id = req.user.id
         const userDetails = await User.findById(id)
         const profileId = userDetails.addtionalDetails
@@ -36,7 +36,10 @@ exports.User = async (req, res) => {
 exports.getAllUserDetails = async (req, res) => {
     try {
         const id = req.user.id
-        const userDetails = await User.findById(id).populate('Profile').populate('Course').populate('CourseProgress')
+        const userDetails = await User.findById(id).populate({
+            path: 'addtionalDetails'
+        })
+
 
         if (!userDetails) {
             return res.status(404).json({
@@ -52,6 +55,7 @@ exports.getAllUserDetails = async (req, res) => {
         })
 
     } catch (err) {
+        console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while fetching User'
@@ -60,7 +64,7 @@ exports.getAllUserDetails = async (req, res) => {
 }
 
 
-exports.updateProfile = async (req, res) => {
+exports.updateProfilePicture = async (req, res) => {
     try {
         const userId = req.user.id
         const profilePicture = req.files.profilePicture
@@ -72,7 +76,7 @@ exports.updateProfile = async (req, res) => {
             })
         }
         if (user.imageProfilePublicId) {
-            const cloudinaryDestroyer =await cloudinary.uploader.destroy(user.imageProfilePublicId, function (error, result) {
+            const cloudinaryDestroyer = await cloudinary.uploader.destroy(user.imageProfilePublicId, function (error, result) {
                 if (error) {
                     console.error('Error:', error);
                 } else {
@@ -81,16 +85,16 @@ exports.updateProfile = async (req, res) => {
             })
         }
 
-        const uploadImage=await ImageUpload(profilePicture,'profile',)
+        const uploadImage = await ImageUpload(profilePicture, 'profile',)
         console.log(uploadImage)
-        const updateResponse=await User.findByIdAndUpdate(userId,{
-            image:uploadImage.secure_url,imageProfilePublicId:uploadImage.public_id
-        },{new:true})
+        const updateResponse = await User.findByIdAndUpdate(userId, {
+            image: uploadImage.secure_url, imageProfilePublicId: uploadImage.public_id
+        }, { new: true })
 
         return res.status(200).json({
-            success:false,
-            message:'Profile picture updated successfully',
-            user:updateResponse
+            success: false,
+            message: 'Profile picture updated successfully',
+            user: updateResponse
         })
 
 
@@ -99,6 +103,39 @@ exports.updateProfile = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while uploading profile picture'
+        })
+    }
+}
+
+
+exports.updateAdditionalDetails = async (req, res) => {
+    try {
+        const userId = req.user.id
+        const { gender, dateOfBirth, about, mobile } = req.body
+        console.log(gender, dateOfBirth, about, mobile)
+
+        const user = await User.findById(userId)
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: 'Cannot find user'
+            })
+        }
+
+        const updateDetails = await Profile.findByIdAndUpdate(user.addtionalDetails, { gender, dateOfBirth, about, mobile }, { new: true })
+
+        console.log(updateDetails)
+        return res.status(200).json({
+            success: false,
+            message: 'User details updated successfully',
+            updateDetails
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            success: false,
+            message: 'Server error while updating profile details'
         })
     }
 }
