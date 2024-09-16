@@ -85,14 +85,14 @@ exports.updateProfilePicture = async (req, res) => {
             })
         }
 
-        const uploadImage = await ImageUpload(profilePicture, 'profile',)
+        const uploadImage = await ImageUpload(profilePicture, 'eduroute/profile',)
         console.log(uploadImage)
         const updateResponse = await User.findByIdAndUpdate(userId, {
             image: uploadImage.secure_url, imageProfilePublicId: uploadImage.public_id
         }, { new: true })
 
         return res.status(200).json({
-            success: false,
+            success: true,
             message: 'Profile picture updated successfully',
             user: updateResponse
         })

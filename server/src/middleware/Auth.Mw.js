@@ -55,7 +55,7 @@ exports.isStudent=async(req,res,next)=>{
     }
 }
 
-exports.isInstructor=async(req,res)=>{
+exports.isInstructor=async(req,res,next)=>{
     try{
         const role=req.user.accountType
         if(role!=='Instructor'){
@@ -64,6 +64,7 @@ exports.isInstructor=async(req,res)=>{
                 message:'This is protected route for Instructor'
             })
         }
+        next()
 
     }catch(err){
         console.log('error in isInstructor middleware',err)
@@ -73,7 +74,7 @@ exports.isInstructor=async(req,res)=>{
         })
     }
 }
-exports.isAdmin=async(req,res)=>{
+exports.isAdmin=async(req,res,next)=>{
     try{
         const role=req.user.accountType
         if(role!=='Admin'){
@@ -82,6 +83,7 @@ exports.isAdmin=async(req,res)=>{
                 message:'This is protected route for Admin'
             })
         }
+        next()
 
     }catch(err){
         console.log('error in isAdmin middleware',err)

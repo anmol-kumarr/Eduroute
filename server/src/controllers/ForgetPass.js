@@ -17,8 +17,8 @@ exports.forgetPassword = async (req, res) => {
         const token = crypto.randomUUID()
         const updateToken = await User.findOneAndUpdate({ email: email }, { token: token, expiresIn: Date.now() + 3 * 60 * 1000 }, { new: true })
         console.log(updateToken)
-        const forgetPasswordUrl = `http://localhost:3000/update-password/${token}`;
-
+        const forgetPasswordUrl = ` http://localhost:3000/update-password/${token}`;
+    
         await mailSender(email, "password reset link", `Password reset link${forgetPasswordUrl}`)
         return res.status(200).json({
             success: true,
@@ -57,13 +57,13 @@ exports.resetPassword = async (req, res) => {
             })
         }
 
-        const hashedPassword = bcrypt.hash(password)
+        const hashedPassword =await bcrypt.hash(password,10)
 
-        const updatePassword = await User.findByIdAndUpdate({ token }, { password: hashedPassword }, { new: true })
+        const updatePassword = await User.findByIdAndUpdate({_id:userDetails._id }, { password: hashedPassword }, { new: true })
 
         return res.status(200).json({
             success: true,
-            message: 'Passwrd rest successfully'
+            message: 'Password rest successfully'
         })
 
 
