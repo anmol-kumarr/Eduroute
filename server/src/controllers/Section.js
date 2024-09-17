@@ -1,4 +1,5 @@
 const Section = require('../models/Section.Model')
+const SubSectionModel = require('../models/SubSection.Model')
 const Course = require('../models/course.Model')
 
 
@@ -13,7 +14,7 @@ exports.createSection = async (req, res) => {
         }
 
         const sectionCreate = await Section.create({ sectionName })
-        const updateCourse = await Course.findByIdAndUpdate({ courseId }, { $push: { courseContent: sectionCreate._id } }, { new: true }).populate('Section').populate('Section.SubSection')
+        const updateCourse = await Course.findByIdAndUpdate(courseId , { $push: { courseContent: sectionCreate._id } }, { new: true }).populate('courseContent')
 
         return res.status(200).json({
             success: true,
@@ -33,15 +34,15 @@ exports.createSection = async (req, res) => {
 
 exports.updateSection = async (req, res) => {
     try {
-        const { sectionName, courseId } = req.body
-        if (!sectionName, courseId) {
+        const { sectionName, sectionId } = req.body
+        if (!sectionName|| !sectionId) {
             return res.status(400).json({
                 success: false,
                 message: 'Fields are required'
             })
         }
 
-        const updatedSection = await Section.findByIdAndUpdate({ courseId }, { sectionName }, { new: true })
+        const updatedSection = await Section.findByIdAndUpdate( sectionId , { sectionName }, { new: true })
 
         return res.status(200).json({
             success: true,
@@ -60,8 +61,13 @@ exports.updateSection = async (req, res) => {
 
 exports.deleteSection = async (req, res) => {
     try {
-        const { secitonID } = req.params
-        await Section.findByIdAndDelete(secitonID)
+        // console.log('req.params-',req.params)
+        const  {sectionId } = req.query
+        // console.log('sectionId',id)
+        const sectionData=await Section.findById(sectionId)
+        const subsectionIds=sectionData.subSection
+        await SubSectionModel.deleteMany({_id:{$in:subsectionIds}})
+        await Section.findByIdAndDelete(sectionId)
         // Todo:do we need to delete from course
         return res.status(200).json({
             success: true,

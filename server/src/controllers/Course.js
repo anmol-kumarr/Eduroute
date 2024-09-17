@@ -1,9 +1,10 @@
+require('dotenv').config()
 const Course = require('../models/course.Model')
 const Categories = require('../models/Categories.model')
 const User = require('../models/User.Model')
 const { ImageUpload } = require('../utils/Cloudinary')
 
-exports.createCrouse = async (req, res) => {
+exports.createCourse = async (req, res) => {
     try {
         const { courseName, courseDescription, whatYouWillLearn, price, tag,categories } = req.body
         const thumbnail = req.files.thumbnailImage
@@ -35,7 +36,8 @@ exports.createCrouse = async (req, res) => {
 
         // upload thumbnail
 
-        const thumbnailUpload = ImageUpload(thumbnail, process.env.FOLDER_NAME)
+        const thumbnailUpload =await ImageUpload(thumbnail,'eduroute/thumbnail')
+        console.log(thumbnailUpload)
         // create entry for course
         const newCourse = await Course.create({
             courseName,
@@ -104,7 +106,7 @@ exports.getCourseDetails=async(req,res)=>{
     try{
         const {courseId}=req.body
         const courseDetails=await Course.findById({_id:courseId}).populate({
-            path:'instructor',
+            path:'intructor',
             populate:{
                 path:'addtionalDetails'
             }
@@ -113,7 +115,9 @@ exports.getCourseDetails=async(req,res)=>{
             populate:{
                 path:'subSection'
             }
-        }).populate('ratingAndReviews').populate('categories').exec()
+        })
+        // .populate('ratingAndReviews')
+        .populate('categories').exec()
 
         if(!courseDetails){
             return res.status(400).json({
