@@ -5,8 +5,9 @@ const Course = require('../models/course.Model')
 
 exports.deleteUser = async (req, res) => {
     try {
-        const id = req.body.User
+        const id = req.user.id
         const findUser = await User.findById(id)
+        console.log(findUser)
         if (!findUser) {
             return res.status(404).json({
                 success: false,
@@ -14,8 +15,9 @@ exports.deleteUser = async (req, res) => {
             })
         }
 
-        const findProfile = await Profile.findByIdAndDelete({ _id: findUser.addtionalDetails })
-        await User.findByIdAndDelete({ _id: findUser._id })
+        const findProfile = await Profile.findByIdAndDelete(findUser.addtionalDetails)
+        console.log(findProfile)
+        await User.findByIdAndDelete(findUser._id)
 
         // todo delete student from enrolled course 
         return res.status(200).json({
@@ -23,6 +25,7 @@ exports.deleteUser = async (req, res) => {
             message: 'User deleted successfully'
         })
     } catch (err) {
+        console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while deleting Account'

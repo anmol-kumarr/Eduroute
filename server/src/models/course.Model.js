@@ -13,7 +13,7 @@ const courseSchema = new mongoose.Schema({
     },
     intructor: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        ref: "User",
         required: true
     },
     whatYouWillLearn: {
