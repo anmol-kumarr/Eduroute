@@ -32,6 +32,7 @@ const Header = () => {
                 <img className="w-full h-full" src='https://www.citypng.com/public/uploads/preview/hd-man-user-illustration-icon-transparent-png-701751694974843ybexneueic.png?v=2024091418' alt="" />
                 </div>
             </div>
+            
         </header>
     )
 }

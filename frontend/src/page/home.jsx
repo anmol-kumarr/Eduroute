@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
 import Header from "../components/header"
 import { IoArrowForward } from "react-icons/io5";
+import HomeBtn from "../components/home/btn";
 
 
 const Home = () => {
     return (
-        <div className="w-[100vw] bg-richblack-900">
+        <div className="w-[100vw] bg-richblack-900 p-1">
             <div>
 
                 <Header></Header>
@@ -31,6 +32,11 @@ const Home = () => {
                     <p className="text-center text-richblack-200 max-w-[70%]">
                     With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors. 
                     </p>
+
+                    <div className="flex gap-4">
+                        <HomeBtn active={true} content={'Learn More'} render={'/learnMore'}></HomeBtn>
+                        <HomeBtn  active={false} content={'Book a demo'} render={'/demo'}></HomeBtn>
+                    </div>
 
                 </div>
 
