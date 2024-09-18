@@ -8,7 +8,7 @@ const CodeBlock = ({
 
 
     return (
-        <div className={`flex ${position} items-center justify-around  mx-5`}>
+        <div className={`flex ${position} items-center justify-between`}>
             <div className="w-2/5  flex flex-col gap-4 ">
 
                 <h2 className="text-richblack-5 font-bold text-2xl">{heading}</h2>

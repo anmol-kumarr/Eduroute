@@ -5,6 +5,8 @@ import HomeBtn from "../components/home/btn";
 import Banner from '../assets/Images/banner.mp4'
 import HighlightedText from "../components/home/highlighted";
 import CodeBlock from "../components/home/codeBlock";
+import GirlImage from '../assets/Images/TimelineImage.png'
+import TimeLine from "../components/home/timeline";
 
 const Home = () => {
     return (
@@ -42,9 +44,9 @@ const Home = () => {
 
 
 
-                    <div className="w-3/4 relative mx-auto my-10 shadow-[20px_20px_0px_#ffff] bg-gradient-to-t from-blue-300">
+                    <div className="w-4/5 overflow-y-hidden relative mx-auto my-10 shadow-[20px_20px_0px_#ffff] bg-gradient-to-t from-blue-300">
                         <video className="w-full " autoPlay muted loop src={Banner}></video>
-                        <div className="absolute -top-80  left-[50%]  bg-white shadow-[-20px_-20px_20px_#0F7A9D]"></div>
+                        <div className="absolute -top-80  left-[50%]  bg-white shadow-[-15px_-15px_15px_#0F7A9D]"></div>
                     </div>
 
 
@@ -52,7 +54,7 @@ const Home = () => {
 
                 {/* section two */}
 
-                <div>
+                <div className="w-4/5 mx-auto">
                     <CodeBlock bg={'yellow'} position={''} btnOne={{ content: <>Try it Yourself <IoArrowForward /></>, active: true, render: '/course' }}
                         btnTwo={{ content: <>learn more</>, active: false, render: '/learnmore' }}
 
@@ -69,6 +71,88 @@ const Home = () => {
                         heading={<>Start <HighlightedText content={'coding in seconds'}></HighlightedText></>}
 
                         subHeading={`Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson.`} ></CodeBlock>
+
+                </div>
+
+                {/* seciton three */}
+
+                <div>
+
+                </div>
+
+
+            </div>
+            {/* section four */}
+            <div className="bg-pure-greys-5">
+
+                <div className="home_bg h-72 w-full bg-white">
+                    <div className="w-11/12 h-full mx-auto flex gap-7 items-center justify-center">
+                        <HomeBtn active={true} render={'/signup'} content={<>Explore Full Catalog <IoArrowForward /> </>}></HomeBtn>
+                        <HomeBtn active={false} render={'/learnmore'} content={'learn more'}></HomeBtn>
+
+                    </div>
+
+
+                </div>
+
+                <div className="w-11/12 mx-auto">
+
+                    <div className="font-inter flex justify-around my-16">
+                        <div className="w-2/5 text-3xl font-semibold ">
+                            Get the skills you need for a <HighlightedText content={'job that is in demand.'}></HighlightedText>
+                        </div>
+                        <div className="w-2/5  text-[#2C333F] font-inter flex flex-col gap-5">
+                            The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+
+                            <HomeBtn active={true} content={"Learn more"} render={'/learnmore'}></HomeBtn>
+                        </div>
+
+                    </div>
+
+
+                    <div className="flex justify-around items-center my-10">
+                        <div className="w-2/5">
+
+                            <TimeLine></TimeLine>
+
+                        </div>
+
+                        <div className="w-2/5 relative">
+
+                            <img className="w-full" src={GirlImage} alt="" />
+                            <div className="px-3 py-4 absolute top-[90%] left-[10%] right-[50%] bg-caribbeangreen-700 w-4/5 flex justify-between">
+                                <div className="uppercase flex items-center gap-3 ">
+                                    <p className="text-white font-inter text-3xl">10</p>
+                                    <p className="text-xs text-caribbeangreen-300 font-inter flex flex-col">
+                                        <span className="">YEARS</span>
+                                        <span>EXPERIENCES</span>
+
+                                    </p>
+                                </div>
+
+                                <div className="bg-caribbeangreen-400 w-[1px]"></div>
+                                <div className="uppercase flex items-center gap-3 ">
+                                    <p className="text-white font-inter text-3xl">250</p>
+                                    <p className=" text-xs text-caribbeangreen-300 font-inter flex flex-col">
+                                        <span>types</span>
+                                        <span>of courses</span>
+
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="w-full my-20" >
+                        <div className="w-4/6 mx-auto text-center">
+                            <h2 className=" font-inter font-semibold text-2xl text-richblack-900">Your swiss knife for <HighlightedText content={'learning any language'}></HighlightedText></h2>
+                            <p className="font-inter text-[#2C333F] text-base my-3">
+                                Using spin making learning multiple languages easy. with 20+ languages realistic voice-over, progress tracking, custom schedule and more.
+                            </p>
+                        </div>
+                    </div>
 
                 </div>
             </div>

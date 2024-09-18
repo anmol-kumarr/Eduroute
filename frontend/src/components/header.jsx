@@ -9,7 +9,7 @@ const Header = () => {
                 eduroutes
             </div>
 
-            <div className='text-richblack-50  font-inter text-base flex gap-4'>
+            <div className='text-richblack-50  font-inter text-base flex gap-8'>
                 <NavLink to='/home' className={({ isActive }) => `${isActive}&& text-yellow-25`}>
                     Home
                 </NavLink>
