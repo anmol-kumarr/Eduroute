@@ -7,6 +7,8 @@ import HighlightedText from "../components/home/highlighted";
 import CodeBlock from "../components/home/codeBlock";
 import GirlImage from '../assets/Images/TimelineImage.png'
 import TimeLine from "../components/home/timeline";
+import LearningLanguageSection from "../components/home/learningLanguageSection";
+import InstructorSection from "../components/home/instructorsection";
 
 const Home = () => {
     return (
@@ -83,7 +85,7 @@ const Home = () => {
 
             </div>
             {/* section four */}
-            <div className="bg-pure-greys-5">
+            <div className="bg-pure-greys-5 ">
 
                 <div className="home_bg h-72 w-full bg-white">
                     <div className="w-11/12 h-full mx-auto flex gap-7 items-center justify-center">
@@ -145,17 +147,22 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="w-full my-20" >
-                        <div className="w-4/6 mx-auto text-center">
-                            <h2 className=" font-inter font-semibold text-2xl text-richblack-900">Your swiss knife for <HighlightedText content={'learning any language'}></HighlightedText></h2>
-                            <p className="font-inter text-[#2C333F] text-base my-3">
-                                Using spin making learning multiple languages easy. with 20+ languages realistic voice-over, progress tracking, custom schedule and more.
-                            </p>
-                        </div>
-                    </div>
+                    <LearningLanguageSection></LearningLanguageSection>
+
+
+
+
 
                 </div>
             </div>
+
+
+
+            <div className=" w-11/12 mx-auto">
+
+                <InstructorSection />
+            </div>
+
         </div>
     )
 }
