@@ -4,7 +4,7 @@ import HomePageExplore from '../../data/homepageExplore'
 import { MdPeopleAlt } from "react-icons/md";
 import { LuNetwork } from "react-icons/lu";
 const ExploreMore = () => {
-    console.log(typeof(HomePageExplore))
+    // console.log(typeof(HomePageExplore))
     const tabName = [
         'Free',
         'New to coding',
