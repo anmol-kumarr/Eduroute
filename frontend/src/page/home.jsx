@@ -15,7 +15,7 @@ import ExploreMore from "../components/home/exploreMore";
 const Home = () => {
     return (
         <div className="w-[100vw] bg-richblack-900 p-1">
-            <Header></Header>
+            {/* <Header></Header> */}
 
 
             <div className="w-11/12 mx-auto  ">
@@ -167,10 +167,7 @@ const Home = () => {
                 <InstructorSection />
             </div>
 
-            <div className="bg-richblack-700 w-full">
-
-                <Footer></Footer>
-            </div>
+          
 
         </div>
     )
