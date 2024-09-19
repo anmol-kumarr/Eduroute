@@ -5,31 +5,32 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { apiConnector } from '../services/apiconnector';
 import { categoriesApi } from '../services/api';
-import axios from 'axios';
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+
 
 const Header = () => {
     const user = useSelector(state => state.auth.token)
-    const [catelogData,setCatelogData]=useState([])
+    const [catelogData, setCatelogData] = useState([])
 
 
-    const getCatelog=async()=>{
-        try{
-            const response=await apiConnector('GET',categoriesApi.getAllCategories)
-            console.log(response)
-            setCatelogData(response)
+    const getCatelog = async () => {
+        try {
+            const response = await apiConnector('GET', categoriesApi.getAllCategories)
+            // console.log(response.data.data)
+            setCatelogData(response.data.data)
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
     }
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
         getCatelog()
-    },[])
+    }, [])
 
- 
+
     // console.log(user)
     return (
         <header className='w-full  bg-richblack-900 border-b-[1.3px] border-richblack-700 '>
@@ -45,9 +46,27 @@ const Header = () => {
                         Home
                     </NavLink>
 
-                    <NavLink to='/catelog' className={({ isActive }) => `${isActive ? 'text-yellow-25' : ''}`}>
+                    {/* <NavLink to='/catelog' className={({ isActive }) => `${isActive ? 'text-yellow-25' : ''}`}>
                         Catelog
-                    </NavLink>
+                    </NavLink> */}
+                    <div className='relative flex items-center gap-1 cursor-pointer group'>
+                        <p>Catelog</p>
+                        <MdOutlineKeyboardArrowDown />
+
+                        <div className='p-3 w-[200%] gap-2 absolute top-[155%] -right-1/2 rounded-md opacity-0 transition-all duration-200 group-hover:visible invisible group-hover:opacity-100  bg-richblack-25 flex flex-col'>
+                        {
+                            catelogData&&catelogData.length>0 && catelogData.map((item)=>(
+                                <Link to={`/catelog${item.name}`} key={item.id} className='text-sm text-richblack-800 font-inter '>{
+                                    item.name.length>20 ? <>{item.name.slice(0,20)}...</>:item.name
+                                }</Link>
+                            ))
+                        }
+                    
+
+                        </div>
+
+
+                    </div>
                     <NavLink to='/aboutUs' className={({ isActive }) => `${isActive ? 'text-yellow-25' : ''}`}>About us</NavLink>
                     <NavLink to='/contactUs' className={({ isActive }) => `${isActive ? 'text-yellow-25' : ''}`}>Contact us</NavLink>
                 </div>
