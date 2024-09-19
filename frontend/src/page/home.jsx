@@ -9,6 +9,7 @@ import GirlImage from '../assets/Images/TimelineImage.png'
 import TimeLine from "../components/home/timeline";
 import LearningLanguageSection from "../components/home/learningLanguageSection";
 import InstructorSection from "../components/home/instructorsection";
+import Footer from "../components/footer";
 
 const Home = () => {
     return (
@@ -161,6 +162,11 @@ const Home = () => {
             <div className=" w-11/12 mx-auto">
 
                 <InstructorSection />
+            </div>
+
+            <div className="bg-richblack-700 w-full">
+
+                <Footer></Footer>
             </div>
 
         </div>
