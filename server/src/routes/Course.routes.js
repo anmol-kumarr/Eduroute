@@ -29,7 +29,7 @@ routes.delete('/delete/subSection',[auth,isInstructor],deleteSubSection)
 
 
 
-routes.get('/get/AllCategories',[auth,isAdmin],showCategories)
+routes.get('/get/AllCategories',showCategories)
 
 
 module.exports = routes
