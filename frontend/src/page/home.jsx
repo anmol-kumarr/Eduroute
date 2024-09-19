@@ -10,12 +10,15 @@ import TimeLine from "../components/home/timeline";
 import LearningLanguageSection from "../components/home/learningLanguageSection";
 import InstructorSection from "../components/home/instructorsection";
 import Footer from "../components/footer";
+import ExploreMore from "../components/home/exploreMore";
 
 const Home = () => {
     return (
         <div className="w-[100vw] bg-richblack-900 p-1">
             <Header></Header>
-            <div className="w-11/12 mx-auto ">
+
+
+            <div className="w-11/12 mx-auto  ">
 
 
 
@@ -57,7 +60,7 @@ const Home = () => {
 
                 {/* section two */}
 
-                <div className="w-4/5 mx-auto">
+                <div className="w-4/5 mx-auto mb-28">
                     <CodeBlock bg={'yellow'} position={''} btnOne={{ content: <>Try it Yourself <IoArrowForward /></>, active: true, render: '/course' }}
                         btnTwo={{ content: <>learn more</>, active: false, render: '/learnmore' }}
 
@@ -79,17 +82,17 @@ const Home = () => {
 
                 {/* seciton three */}
 
-                <div>
-
+                <div className="w-full mb-16">
+                    <ExploreMore></ExploreMore>
                 </div>
 
 
             </div>
-            {/* section four */}
+            {/* time line section */}
             <div className="bg-pure-greys-5 ">
 
-                <div className="home_bg h-72 w-full bg-white">
-                    <div className="w-11/12 h-full mx-auto flex gap-7 items-center justify-center">
+                <div className="home_bg h-72 w-full pt-20 bg-white">
+                    <div className="w-11/12 h-full mx-auto flex gap-7  items-center justify-center">
                         <HomeBtn active={true} render={'/signup'} content={<>Explore Full Catalog <IoArrowForward /> </>}></HomeBtn>
                         <HomeBtn active={false} render={'/learnmore'} content={'learn more'}></HomeBtn>
 
@@ -158,7 +161,7 @@ const Home = () => {
             </div>
 
 
-
+            {/* instructor section */}
             <div className=" w-11/12 mx-auto">
 
                 <InstructorSection />
