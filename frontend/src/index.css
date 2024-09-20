@@ -3,9 +3,14 @@
 @tailwind utilities;
 
 
-.home_bg{
-    background:url('../src/assets/Images/bghome.svg');
+.home_bg {
+    background: url('../src/assets/Images/bghome.svg');
     /* background-repeat: no-repeat; */
     /* background-size:cover; */
-    
+
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, and Edge */
 }

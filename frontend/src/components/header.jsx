@@ -52,11 +52,11 @@ const Header = () => {
                     <div className='relative flex items-center gap-1 cursor-pointer group'>
                         <p>Catelog</p>
                         <MdOutlineKeyboardArrowDown />
-
                         <div className='p-3 w-[200%] gap-2 absolute top-[155%] -right-1/2 rounded-md opacity-0 transition-all duration-200 group-hover:visible invisible group-hover:opacity-100  bg-richblack-25 flex flex-col'>
                         {
                             catelogData&&catelogData.length>0 && catelogData.map((item)=>(
-                                <Link to={`/catelog${item.name}`} key={item.id} className='text-sm text-richblack-800 font-inter '>{
+                            
+                                <Link key={item._id} to={`/catelog${item.name}`} className='text-sm text-richblack-800 font-inter '>{
                                     item.name.length>20 ? <>{item.name.slice(0,20)}...</>:item.name
                                 }</Link>
                             ))
@@ -94,13 +94,13 @@ const Header = () => {
                         </>
                         :
                         <>
-                            <Link to='/login'>
+                            <Link to={`/auth/${'login'}`}>
 
                                 <button className='rounded-md text-sm font-inter text-richblack-200 bg-richblack-700 px-3 py-1'>
                                     Login
                                 </button>
                             </Link>
-                            <Link to='/signup'>
+                            <Link to={`/auth/${'signup'}`}>
 
                                 <button className='rounded-md text-sm font-inter text-richblack-200 bg-richblack-700 px-3 py-1'>
                                     Sign Up
