@@ -1,6 +1,6 @@
 const LargeBtn=({content,behaviour})=>{
     return(
-        <button  className="bg-yellow-100  py-2 w-40 rounded-md font-inter  px-5 " onClick={()=>behaviour()}>
+        <button  className="bg-yellow-100  py-2 w-full rounded-md font-inter  px-5 " onClick={()=>behaviour()}>
             {content}
         </button>
     )
