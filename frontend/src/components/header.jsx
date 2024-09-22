@@ -41,7 +41,7 @@ const Header = () => {
                     </div>
                 </Link>
 
-                <div className='text-richblack-50  font-inter text-base flex gap-8'>
+                <div className='hidden 850px:flex text-richblack-50  font-inter text-base  gap-8'>
                     <NavLink to='/' className={({ isActive }) => `${isActive ? 'text-yellow-25' : ''}`}>
                         Home
                     </NavLink>

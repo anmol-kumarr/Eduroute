@@ -35,11 +35,11 @@ const Home = () => {
                         </button>
                     </Link>
 
-                    <div className="font-inter font-semibold  text-richblack-5">
+                    <div className="font-inter font-semibold text-center text-richblack-5">
                         <h1 className="text-2xl">Empower Your Future with <HighlightedText content={'Coding Skills'}></HighlightedText></h1>
                     </div>
 
-                    <p className="text-center text-richblack-200 max-w-[70%]">
+                    <p className="text-center text-richblack-200 520px:w-[70%]">
                         With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.
                     </p>
 
@@ -50,7 +50,7 @@ const Home = () => {
 
 
 
-                    <div className="w-4/5 overflow-y-hidden relative mx-auto my-10 shadow-[20px_20px_0px_#ffff] bg-gradient-to-t from-blue-300">
+                    <div className="520px:w-4/5 w-[95%] shadow-[10px_10px_0px_#ffff]  overflow-y-hidden relative mx-auto my-10 520px:shadow-[20px_20px_0px_#ffff] bg-gradient-to-t from-blue-300">
                         <video className="w-full " autoPlay muted loop src={Banner}></video>
                         <div className="absolute -top-80  left-[50%]  bg-white shadow-[-15px_-15px_15px_#0F7A9D]"></div>
                     </div>
