@@ -5,17 +5,66 @@ import Header from "./components/header";
 import Auth from "./page/auth";
 import ResetPassword from "./page/resetPassword";
 import VerifyEmail from "./page/verifyEmail";
+import OpenRoute from "./utils/openroute";
+import Login from "./components/login";
+import SignUp from "./components/signup";
 
 function App() {
   const location = useLocation().pathname
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden max-h-full bg-richblack-900">
       <Header></Header>
+
+
+
+
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path='/auth/:authValue' element={<Auth></Auth>} />
-        <Route path='/auth/resetPassword' element={<ResetPassword></ResetPassword>}/>
-        <Route path='/auth/verifyEmail' element={<VerifyEmail></VerifyEmail>}/>
+
+
+        <Route 
+        path="/auth/forget-password"
+        element={
+          <OpenRoute>
+            <ResetPassword></ResetPassword>
+          </OpenRoute>
+        }/>
+
+        <Route 
+        path="/auth/login"
+        element={
+          <OpenRoute>
+            <Login></Login>
+          </OpenRoute>
+        }/>
+        <Route 
+        path="/auth/:signup"
+        element={
+          <OpenRoute>
+            <SignUp></SignUp>
+          </OpenRoute>
+        }/>
+
+        {/* <Route 
+        path="/auth/"
+        element={
+          <OpenRoute>
+            <SignUp></SignUp>
+          </OpenRoute>
+        }/> */}
+
+
+
+
+
+
+
+
+
+
+
+
       </Routes>
       <div className="bg-richblack-700 w-full">
         {

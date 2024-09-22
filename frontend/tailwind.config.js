@@ -132,6 +132,10 @@ module.exports = {
         maxContent: "1260px",
         maxContentTab: "650px"
       },
+      screens: {
+        '850px': '850px',
+        '520px':'520px' // Add your custom breakpoint
+      },
     },
   },
   plugins: [
