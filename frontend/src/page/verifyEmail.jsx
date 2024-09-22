@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { apiConnector } from '../services/apiconnector';
+import LargeBtn from '../components/largeBtn';
 
 const VerifyEmail = () => {
     const [code, setCode] = useState(['', '', '', '', '', '']);
@@ -17,9 +19,18 @@ const VerifyEmail = () => {
         }
     };
 
-    const handleVerify = (e) => {
-        e.preventDefault();
-        // Handle verification logic here
+    const handleVerify = async (e) => {
+        // e.preventDefault();
+        const url = `${process.env.REACT_APP_BASE_URL}auth/signup`
+        const data = [...code]
+        try {
+
+            const response = await apiConnector("POST", url, data)
+            console.log(response)
+            // Handle verification logic here
+        } catch (err) {
+            console.log(err)
+        }
     };
 
     return (
@@ -47,17 +58,14 @@ const VerifyEmail = () => {
                         ))}
                     </div>
 
-                    <button
-                        type="submit"
-                        className="w-full py-3 bg-yellow-100 text-black font-bold rounded-md hover:bg-yellow-100 transition-all duration-200"
-                    >
-                        Verify email
-                    </button>
                 </form>
+                <div className='text-richblack-800 font-medium font-inter'>
+                    <LargeBtn behaviour={handleVerify} content={'Verify email'}></LargeBtn>
+                </div>
 
-                <div className="mt-8 text-center">
+                <div className="mt-4 text-center">
                     <Link to='/auth/login'>
-                    ← Back to login
+                        ← Back to login
                     </Link>
 
                 </div>
