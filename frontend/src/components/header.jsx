@@ -68,7 +68,7 @@ const Header = () => {
 
                     </div>
                     <NavLink to='/aboutUs' className={({ isActive }) => `${isActive ? 'text-yellow-25' : ''}`}>About us</NavLink>
-                    <NavLink to='/contactUs' className={({ isActive }) => `${isActive ? 'text-yellow-25' : ''}`}>Contact us</NavLink>
+                    <NavLink to='/contact' className={({ isActive }) => `${isActive ? 'text-yellow-25' : ''}`}>Contact us</NavLink>
                 </div>
 
                 <div className='flex text-richblack-50 items-center gap-3'>

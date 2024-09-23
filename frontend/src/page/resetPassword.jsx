@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import getPasswordToken from "../services/operation/passwordtoken";
+import {getPasswordToken} from "../services/operation/setPasswordfn";
+import Spinner from "../components/spinner";
 const ResetPassword = () => {
     const { loading } = useSelector(state => state.auth)
     const [emailSent, setEmailSent] = useState(false)
@@ -35,7 +36,7 @@ const ResetPassword = () => {
         <div className="min-h-screen flex items-center justify-center bg-richblack-900">
 
 
-            {loading === true ? <div>Loading...</div> :
+            {loading === true ? <div><Spinner></Spinner></div> :
 
                 <div className="w-full max-w-md  p-8 rounded-lg shadow-lg">
                     <h2 className="text-2xl font-semibold text-white mb-4">{!emailSent ? 'Reset your password' : 'Check your email'}</h2>
