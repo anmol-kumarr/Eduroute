@@ -8,6 +8,8 @@ import VerifyEmail from "./page/verifyEmail";
 import OpenRoute from "./utils/openroute";
 import Login from "./components/login";
 import SignUp from "./components/signup";
+import ContactPage from "./page/contact";
+import PasswordResetForm from "./page/setpassword";
 
 function App() {
   const location = useLocation().pathname
@@ -21,38 +23,40 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path='/auth/:authValue' element={<Auth></Auth>} />
+        <Route path='/contact' element={<ContactPage></ContactPage>} />
 
 
-        <Route 
-        path="/auth/forget-password"
-        element={
-          <OpenRoute>
-            <ResetPassword></ResetPassword>
-          </OpenRoute>
-        }/>
 
-        <Route 
-        path="/auth/login"
-        element={
-          <OpenRoute>
-            <Login></Login>
-          </OpenRoute>
-        }/>
-        <Route 
-        path="/auth/:signup"
-        element={
-          <OpenRoute>
-            <SignUp></SignUp>
-          </OpenRoute>
-        }/>
+        <Route
+          path="/auth/forget-password"
+          element={
+            <OpenRoute>
+              <ResetPassword></ResetPassword>
+            </OpenRoute>
+          } />
 
-        {/* <Route 
-        path="/auth/"
-        element={
-          <OpenRoute>
-            <SignUp></SignUp>
-          </OpenRoute>
-        }/> */}
+        <Route
+          path="/auth/login"
+          element={
+            <OpenRoute>
+              <Login></Login>
+            </OpenRoute>
+          } />
+        <Route
+          path="/auth/:signup"
+          element={
+            <OpenRoute>
+              <SignUp></SignUp>
+            </OpenRoute>
+          } />
+
+        <Route
+          path="/update-password/:id"
+          element={
+            <OpenRoute>
+              <PasswordResetForm></PasswordResetForm>
+            </OpenRoute>
+          } />
 
 
 
@@ -69,7 +73,7 @@ function App() {
       <div className="bg-richblack-700 w-full">
         {
 
-          location.includes('/auth') ? "":< Footer ></Footer>
+          location.includes('/auth') ? "" : < Footer ></Footer>
         }
       </div>
     </div >
