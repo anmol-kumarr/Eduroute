@@ -6,3 +6,7 @@ export const profileApi={
     getUserDetails:baseUrl+'',
     
 }
+
+export const user={
+    sendOtp:baseUrl+'auth/sendotp'
+}

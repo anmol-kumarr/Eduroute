@@ -7,3 +7,7 @@ export const categoriesApi={
 export const passwordApi={
     resetPasswordApi:BASE_URL+'profile/password/reset'
 }
+
+export const mailApi={
+    emailVerification:BASE_URL+'user/sendotp'
+}

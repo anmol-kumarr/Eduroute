@@ -57,6 +57,13 @@ function App() {
               <PasswordResetForm></PasswordResetForm>
             </OpenRoute>
           } />
+        <Route
+          path="/verify-email"
+          element={
+            <OpenRoute>
+              <VerifyEmail></VerifyEmail>
+            </OpenRoute>
+          } />
 
 
 
