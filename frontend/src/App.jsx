@@ -24,6 +24,7 @@ function App() {
         <Route path="/" element={<Home></Home>} />
         <Route path='/auth/:authValue' element={<Auth></Auth>} />
         <Route path='/contact' element={<ContactPage></ContactPage>} />
+        
 
 
 
