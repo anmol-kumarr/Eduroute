@@ -2,7 +2,7 @@
 import { setLoading } from "../../redux/slice/authSlice"
 import { profileApi } from "../../utils/api"
 import { apiConnector } from "../apiconnector"
-import { passwordApi } from "../api"
+import { mailApi, passwordApi } from "../api"
 import { ToastBar,toast } from "react-hot-toast"
 
 export const getPasswordToken = (email, setEmailSent, messageSetter) => {
@@ -49,3 +49,4 @@ export const setResetPassword = (password, confirmPassword, token) => {
         dispatch(setLoading(false))
     }
 }
+

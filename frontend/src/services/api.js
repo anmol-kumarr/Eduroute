@@ -9,5 +9,5 @@ export const passwordApi={
 }
 
 export const mailApi={
-    emailVerification:BASE_URL+'user/sendotp'
+    emailVerification:BASE_URL+'auth/sendotp'
 }
