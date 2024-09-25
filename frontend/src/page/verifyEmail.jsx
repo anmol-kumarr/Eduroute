@@ -5,7 +5,7 @@ import OtpInput from 'react-otp-input';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../components/spinner';
 import { IoTimerOutline } from "react-icons/io5";
-import { otpSender } from '../services/operation/createUser';
+import { otpSender, signUp } from '../services/operation/createUser';
 
 const VerifyEmail = () => {
     const [otp, setOtp] = useState(null);
@@ -18,10 +18,10 @@ const VerifyEmail = () => {
     useEffect(() => {
         // if(!signUpData) navigate('/auth/signup')
     }, [])
-    const handleVerify = async (e) => {
-        const { firstName, lastName, confirmPassword, password, mobile } = signUpData
-        e.preventDefault();
-        dispatch((otp, firstName, lastName, password, confirmPassword, mobile))
+    const handleVerify = () => {
+        const { firstName, lastName, confirmPassword, password, mobileNumber, email, accountType } = signUpData
+        // e.preventDefault();
+        dispatch(signUp(otp, firstName, lastName, password, confirmPassword, mobileNumber, email, accountType))
     };
     // useEffect(() => {
     //     console.log(code.join())
@@ -55,7 +55,7 @@ const VerifyEmail = () => {
                                         <input
                                             placeholder='*'
                                             {...props}
-                                            className='h-full w-full text-3xl  text-center   bg-richblack-700  text-richblack-100  rounded-md'
+                                            className='h-full w-full   text-center   bg-richblack-700  text-richblack-100  rounded-md'
                                         />
                                     </div>
                                 )}

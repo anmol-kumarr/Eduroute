@@ -11,3 +11,7 @@ export const passwordApi={
 export const mailApi={
     emailVerification:BASE_URL+'auth/sendotp'
 }
+
+export const authApi={
+    signup:BASE_URL+'auth/signup'
+}

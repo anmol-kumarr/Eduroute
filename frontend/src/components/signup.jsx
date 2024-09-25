@@ -25,7 +25,7 @@ const SignUp = () => {
         firstName: '',
         lastName: '',
         email: '',
-        mobile: '',
+        mobileNumber: '',
         password: '',
         confirmPassword: ''
     })
@@ -51,7 +51,7 @@ const SignUp = () => {
 
         let mob = /^[0-9]{10}$/
 
-        if (signUpData.mobile.length !== 10 || !mob.test(signUpData.mobile)) {
+        if (signUpData.mobileNumber.length !== 10 || !mob.test(signUpData.mobileNumber)) {
             console.log('mobile');
             return setWarning('Please enter a valid 10-digit mobile number');
         }
@@ -155,7 +155,7 @@ const SignUp = () => {
                         <div className="w-full">
 
                             <label htmlFor="mobile">Mobile number<span className="text-pink-300">*</span></label><br />
-                            <input pattern="[0-9]{10}" value={signUpData.mobile} onChange={(e) => setSignUpData({ ...signUpData, mobile: e.target.value })} className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2" id="mobile" type="text" placeholder="Enter your mobile number" />
+                            <input pattern="[0-9]{10}" value={signUpData.mobileNumber} onChange={(e) => setSignUpData({ ...signUpData, mobileNumber: e.target.value })} className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2" id="mobile" type="text" placeholder="Enter your mobile number" />
 
 
                         </div>
