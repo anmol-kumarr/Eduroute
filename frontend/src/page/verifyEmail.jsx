@@ -49,13 +49,13 @@ const VerifyEmail = () => {
                                 onChange={setOtp}
                                 numInputs={6}
                                 // style={{ width: '3.5rem !important' }}
-                                renderSeparator={<span className="mx-2">-</span>}  // Adjust spacing and color of separator
+                                renderSeparator={<span className="mx-2"> </span>}  // Adjust spacing and color of separator
                                 renderInput={(props) => (
-                                    <div className='h-10 w-10 bg-richblack-700'>
+                                    <div className='h-11 rounded-md w-11 flex justify-center items-center bg-richblack-700'>
                                         <input
                                             placeholder='*'
                                             {...props}
-                                            className='h-full w-full   text-center   bg-richblack-700  text-richblack-100  rounded-md'
+                                            className='h-full  outline-none focus:outline-yellow-100 min-w-full text-xl p-1  border-none  text-center   bg-richblack-700  text-richblack-100  rounded-md'
                                         />
                                     </div>
                                 )}

@@ -27,6 +27,7 @@ export const otpSender = (email, navigate) => {
 
         } catch (err) {
             console.log("err in email verification", err)
+            toast.error(err?.response?.data?.message)
         }
         dispatch(setLoading(false))
     }
