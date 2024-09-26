@@ -17,9 +17,9 @@ const Login = () => {
         password: ''
     })
 
-    useEffect(() => {
-        console.log(loginValue)
-    }, [loginValue])
+    // useEffect(() => {
+    //     console.log(loginValue)
+    // }, [loginValue])
 
     const [warning, setWarning] = useState({ email: null, password: null })
     const validateValue = () => {

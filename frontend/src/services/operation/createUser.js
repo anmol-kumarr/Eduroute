@@ -27,7 +27,8 @@ export const otpSender = (email, navigate) => {
 
         } catch (err) {
             console.log("err in email verification", err)
-            toast.error(err?.response?.data?.message)
+            err?.response?.data?.message && toast.error(err?.response?.data?.message)
+
         }
         dispatch(setLoading(false))
     }
@@ -47,8 +48,8 @@ export const signUp = (otp, firstName, lastName, password, confirmPassword, mobi
         console.log('url', url)
         try {
             const response = await apiConnector("POST", url, {
-                otp, firstName,email, lastName, password, confirmPassword, mobileNumber,accountType
-                
+                otp, firstName, email, lastName, password, confirmPassword, mobileNumber, accountType
+
             })
             console.log(email)
 

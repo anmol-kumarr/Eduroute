@@ -72,7 +72,7 @@ const VerifyEmail = () => {
                         <Link to='/auth/login'>
                             ← Back to login
                         </Link>
-                        <div onClick={() => otpSender(signUpData.email)} className='flex items-center gap-1 cursor-pointer text-caribbeangreen-300'>
+                        <div onClick={() => dispatch(otpSender(signUpData.email,navigate))} className='flex items-center gap-1 cursor-pointer text-caribbeangreen-300'>
                             <IoTimerOutline className='mt-1' /> resend it
                         </div>
 
