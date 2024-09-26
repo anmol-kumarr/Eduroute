@@ -1,16 +1,21 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { apiConnector } from '../services/apiconnector';
 import { categoriesApi } from '../services/api';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-
+import { TbLogout2 } from "react-icons/tb";
+import { logout } from '../services/operation/loginuser';
 
 const Header = () => {
     const user = useSelector(state => state.auth.token)
+    const image=useSelector(state=>state.user?.user?.image)
     const [catelogData, setCatelogData] = useState([])
+    // const[dropdown,setDropdown]=useState(false)
+
+
 
 
     const getCatelog = async () => {
@@ -29,6 +34,8 @@ const Header = () => {
     useEffect(() => {
         getCatelog()
     }, [])
+    const dispatch=useDispatch()
+    const navigate=useNavigate()
 
 
     // console.log(user)
@@ -53,15 +60,15 @@ const Header = () => {
                         <p>Catelog</p>
                         <MdOutlineKeyboardArrowDown />
                         <div className='p-3 w-[200%] gap-2 absolute top-[155%] -right-1/2 rounded-md opacity-0 transition-all duration-200 group-hover:visible invisible group-hover:opacity-100  bg-richblack-25 flex flex-col'>
-                        {
-                            catelogData&&catelogData.length>0 && catelogData.map((item)=>(
-                            
-                                <Link key={item._id} to={`/catelog${item.name}`} className='text-sm text-richblack-800 font-inter '>{
-                                    item.name.length>20 ? <>{item.name.slice(0,20)}...</>:item.name
-                                }</Link>
-                            ))
-                        }
-                    
+                            {
+                                catelogData && catelogData.length > 0 && catelogData.map((item) => (
+
+                                    <Link key={item._id} to={`/catelog${item.name}`} className='text-sm text-richblack-800 font-inter '>{
+                                        item.name.length > 20 ? <>{item.name.slice(0, 20)}...</> : item.name
+                                    }</Link>
+                                ))
+                            }
+
 
                         </div>
 
@@ -88,8 +95,17 @@ const Header = () => {
                                     </div>
                                 </>
                             }
-                            <div className='w-7 h-7 rounded-full overflow-hidden'>
-                                <img className="w-full h-full" src='https://www.citypng.com/public/uploads/preview/hd-man-user-illustration-icon-transparent-png-701751694974843ybexneueic.png?v=2024091418' alt="" />
+                            <div className='group relative cursor-pointer '>
+                                <div className='h-7 w-7 rounded-full overflow-hidden'>
+
+                                    <img className="w-full h-full" src={image} alt="" />
+                                </div>
+                                <div className={`group-hover:block !important text-base absolute top-8 rounded -right-7 hidden bg-richblack-700 `}>
+
+
+                                    <p className='py-1 px-2'><Link to={`/user/${'dashboard'}`} className='flex items-center gap-1'> Dashboard</Link></p>
+                                    <p onClick={()=>dispatch(logout(navigate))} className='py-1 px-2  flex items-center gap-1'> <TbLogout2 className='mt-1' /> Logout</p>
+                                </div>
                             </div>
                         </>
                         :

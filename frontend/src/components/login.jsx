@@ -4,6 +4,8 @@ import HighlightedText from "./home/highlighted"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 import { PiWarningCircleLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../services/operation/loginuser";
 
 const Login = () => {
     const [accountType, setAccountType] = useState('Student')
@@ -27,7 +29,7 @@ const Login = () => {
         );
         if (!isEmailValid) return setWarning({ ...warning, email: 'invalid email' })
 
-        if (loginValue.password < 8) {
+        if (loginValue.password.length < 7) {
             return setWarning({ email: null, password: 'password must contain more than 8 character' })
         }
         else {
@@ -37,20 +39,29 @@ const Login = () => {
         }
 
     }
-
+    const dispatch = useDispatch()
 
 
     const loginHandler = () => {
-        const response=validateValue()
-        console.log(response)
-        if(response) navigate('/')
-        
+        const response = validateValue()
+        // console.log(response)
+        // console.log(warning)
+        if (response === true) {
+            dispatch(login(loginValue.email,loginValue.password))
+            // console.log(response)
+
+
+        }
+        // if (response) navigate('/')
+
     }
 
     return (
-        <div className="w-[36%] mx-auto my-20 bg-richblack-800 p-5 rounded-md flex flex-col items-center justify-center">
+        <div className="w-[36%]  mx-auto my-20 bg-richblack-800 p-5 rounded-md flex flex-col items-center justify-center">
+
+
             <div className="text-center">
-                <h1 className="text-richblack-25 my-3 text-2xl font-inter font-bold">
+                <h1 className="text-richblack-25 my-2 text-2xl font-inter font-bold">
                     Welcome Back
                 </h1>
                 <p className="text-normal text-sm my-3 text-richblack-25">Build skills for today, tomorrow, and beyond. <HighlightedText content={'Education to future-proof your career.'}></HighlightedText></p>
@@ -107,10 +118,11 @@ const Login = () => {
             </div>
 
 
-            <div className="w-1/2 my-6">
+            <div className="w-1/2 my-5">
                 <LargeBtn behaviour={loginHandler} content={'Login'}></LargeBtn>
             </div>
         </div>
+
     )
 }
 export default Login

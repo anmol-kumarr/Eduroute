@@ -13,5 +13,6 @@ export const mailApi={
 }
 
 export const authApi={
-    signup:BASE_URL+'auth/signup'
+    signup:BASE_URL+'auth/signup',
+    login:BASE_URL+'auth/login'
 }

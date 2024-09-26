@@ -174,7 +174,7 @@ exports.login = async (req, res) => {
             })
         }
 
-        const user = await User.findOne({ email })
+        const user = await User.findOne({ email }).populate('addtionalDetails')
         if (!user) {
             return res.status(400).json({
                 success: false,

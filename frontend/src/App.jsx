@@ -10,6 +10,8 @@ import Login from "./components/login";
 import SignUp from "./components/signup";
 import ContactPage from "./page/contact";
 import PasswordResetForm from "./page/setpassword";
+import Dashboard from "./page/user";
+import User from "./page/user";
 
 function App() {
   const location = useLocation().pathname
@@ -24,7 +26,7 @@ function App() {
         <Route path="/" element={<Home></Home>} />
         <Route path='/auth/:authValue' element={<Auth></Auth>} />
         <Route path='/contact' element={<ContactPage></ContactPage>} />
-        
+
 
 
 
@@ -63,6 +65,13 @@ function App() {
           element={
             <OpenRoute>
               <VerifyEmail></VerifyEmail>
+            </OpenRoute>
+          } />
+        <Route
+          path="/user/:section"
+          element={
+            <OpenRoute>
+              <User></User>
             </OpenRoute>
           } />
 

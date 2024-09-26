@@ -59,7 +59,7 @@ export const signUp = (otp, firstName, lastName, password, confirmPassword, mobi
 
             console.log(response)
             toast.success('User regiestered successfully')
-            // navigate('/verify-email')
+            navigate('/auth/login')
 
 
 
