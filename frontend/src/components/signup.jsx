@@ -81,9 +81,7 @@ const SignUp = () => {
 
     // navigate('/')
     // console.log('form')
-    // const {
-    //     firstName, lastName, email, mobile, password, confirmPassword,accountType
-    // } = signUpData
+
     // const data = { ...signUpData, accountType }
     
     

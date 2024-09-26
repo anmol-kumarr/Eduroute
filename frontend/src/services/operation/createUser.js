@@ -36,7 +36,7 @@ export const otpSender = (email, navigate) => {
 
 
 
-export const signUp = (otp, email,firstName, lastName, password, confirmPassword, mobileNumber,accountType) => {
+export const signUp = (otp, firstName, lastName, password, confirmPassword, mobileNumber, email, accountType) => {
     // const navigate=useNavigate()
     // const {email}=useSelector(state=>state.auth.signUpData)
 
@@ -49,11 +49,13 @@ export const signUp = (otp, email,firstName, lastName, password, confirmPassword
                 otp, firstName,email, lastName, password, confirmPassword, mobileNumber,accountType
                 
             })
+            console.log(email)
 
             if (!response.data.success) {
 
                 throw new Error(response.data.message)
             }
+
             console.log(response)
             toast.success('User regiestered successfully')
             // navigate('/verify-email')

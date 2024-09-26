@@ -16,7 +16,7 @@ const VerifyEmail = () => {
 
     const { loading, signUpData } = useSelector(state => state.auth)
     useEffect(() => {
-        // if(!signUpData) navigate('/auth/signup')
+        if(!signUpData) navigate('/auth/signup')
     }, [])
     const handleVerify = () => {
         const { firstName, lastName, confirmPassword, password, mobileNumber, email, accountType } = signUpData

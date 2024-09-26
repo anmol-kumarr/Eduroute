@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 const sendVerification = require('../utils/MailSender')
-const otpTemplate=require('../mail/EmailVerification')
+const otpTemplate = require('../mail/EmailVerification')
 
 const otpSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        trim: true
+        // trim: true
     },
     otp: {
         type: String,
@@ -14,9 +14,8 @@ const otpSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now(),
-        expires: 5*60*1000,
-        required:true
+        default: Date.now, 
+        expires: 300 
     }
 
 })
@@ -38,7 +37,7 @@ const otpSchema = new mongoose.Schema({
 // })
 otpSchema.pre('save', async function (next) {
     try {
-        const template=otpTemplate(this.otp)
+        const template = otpTemplate(this.otp)
         await sendVerification(this.email, "Eduroute:SignUp Email ID verification", template);
         next(); // Proceed to save the document
     } catch (err) {
