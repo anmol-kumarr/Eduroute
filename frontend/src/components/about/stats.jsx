@@ -14,8 +14,8 @@ const Stats = () => {
         <div className="w-11/12 mx-auto">
             <div className="text-white flex justify-around py-10 ">
                 {
-                    data.map((item)=>(
-                        <div className="text-center ">
+                    data.map((item,index)=>(
+                        <div key={index} className="text-center ">
                             <h2 className="text-2xl font-semibold">{item.count}</h2>
                             <p className="text-richblack-200">{item.label}</p>
                         </div>
