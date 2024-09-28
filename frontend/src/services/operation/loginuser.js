@@ -24,7 +24,7 @@ export const login = (email, password) => {
             // localStorage.setItem()
 
 
-            navigate(`/user/${'dashboard'}`)
+            navigate(`/dashboard/${'my-profile'}`)
 
         }
         catch (err) {

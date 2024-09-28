@@ -6,13 +6,15 @@ import Auth from "./page/auth";
 import ResetPassword from "./page/resetPassword";
 import VerifyEmail from "./page/verifyEmail";
 import OpenRoute from "./utils/openroute";
-import Login from "./components/login";
-import SignUp from "./components/signup";
+// import Login from "./components/login";
+// import SignUp from "./components/signup";
 import ContactPage from "./page/contact";
 import PasswordResetForm from "./page/setpassword";
-import Dashboard from "./page/user";
-import User from "./page/user";
+import Dashboard from "./page/dashboard"
+// import User from "./page/user";
 import About from "./page/about";
+import MyProfile from "./components/dashboard/myprofile";
+import EnrolledCourses from "./components/dashboard/enrolledcourses";
 
 function App() {
   const location = useLocation().pathname
@@ -26,9 +28,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path='/aboutUs' element={<About></About>} />
-        <Route path='/auth/:authValue' element={<Auth></Auth>} />
-        <Route path='/contact' element={<ContactPage></ContactPage>} />
+        <Route path='/auth/:authValue' element={<OpenRoute>
 
+          <Auth></Auth>
+        </OpenRoute>} />
+        <Route path='/contact' element={<ContactPage></ContactPage>} />
+        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+          <Route path='my-profile' element={<MyProfile></MyProfile>}></Route>
+          <Route path='enrolled-courses' element={<EnrolledCourses></EnrolledCourses>}></Route>
+          {/* <Route path='my-profile' element={<MyProfile></MyProfile>}></Route> */}
+        </Route>
 
 
         <Route
@@ -39,7 +48,7 @@ function App() {
             </OpenRoute>
           } />
 
-        <Route
+        {/* <Route
           path="/auth/login"
           element={
             <OpenRoute>
@@ -47,12 +56,12 @@ function App() {
             </OpenRoute>
           } />
         <Route
-          path="/auth/:signup"
+          path="/auth/signup"
           element={
             <OpenRoute>
               <SignUp></SignUp>
             </OpenRoute>
-          } />
+          } /> */}
 
         <Route
           path="/update-password/:id"
@@ -68,13 +77,13 @@ function App() {
               <VerifyEmail></VerifyEmail>
             </OpenRoute>
           } />
-        <Route
-          path="/user/:section"
+        {/* <Route
+          path="/dashboard/:section"
           element={
             <OpenRoute>
               <User></User>
             </OpenRoute>
-          } />
+          } /> */}
 
 
 

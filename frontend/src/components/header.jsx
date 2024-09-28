@@ -103,7 +103,7 @@ const Header = () => {
                                 <div className={`group-hover:block !important text-base absolute top-8 rounded -right-7 hidden bg-richblack-700 `}>
 
 
-                                    <p className='py-1 px-2'><Link to={`/user/${'dashboard'}`} className='flex items-center gap-1'> Dashboard</Link></p>
+                                    <p className='py-1 px-2'><Link to={`/dashboard/${'my-profile'}`} className='flex items-center gap-1'> Dashboard</Link></p>
                                     <p onClick={()=>dispatch(logout(navigate))} className='py-1 px-2  flex items-center gap-1'> <TbLogout2 className='mt-1' /> Logout</p>
                                 </div>
                             </div>

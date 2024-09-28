@@ -8,11 +8,11 @@ function OpenRoute({ children }) {
     if (token === null) {
         return children
     }
-    if (token !== null && location.pathname === '/user/dashboard') {
+    if (token !== null && location.pathname === '/dashboard/my-profile') {
         return children
     }
     else {
-        return <Navigate to={`/user/${'dashboard'}`} />
+        return <Navigate to={`/dashboard/${'my-profile'}`} />
     }
 }
 
