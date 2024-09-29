@@ -15,12 +15,16 @@ import Dashboard from "./page/dashboard"
 import About from "./page/about";
 import MyProfile from "./components/dashboard/myprofile";
 import EnrolledCourses from "./components/dashboard/enrolledcourses";
+import DashBoardRoute from "./utils/dashboardRoute";
 
 function App() {
   const location = useLocation().pathname
   return (
     <div className="overflow-x-hidden max-h-full bg-richblack-900">
-      <Header></Header>
+      <DashBoardRoute>
+
+        <Header></Header>
+      </DashBoardRoute>
 
 
 
@@ -36,6 +40,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard></Dashboard>}>
           <Route path='my-profile' element={<MyProfile></MyProfile>}></Route>
           <Route path='enrolled-courses' element={<EnrolledCourses></EnrolledCourses>}></Route>
+          <Route path='setting' element={<EnrolledCourses></EnrolledCourses>}></Route>
           {/* <Route path='my-profile' element={<MyProfile></MyProfile>}></Route> */}
         </Route>
 

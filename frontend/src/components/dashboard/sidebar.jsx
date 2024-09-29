@@ -12,8 +12,8 @@ const SideBar = () => {
     const navigate=useNavigate()
     const [modal,setModal]=useState('')
     return (
-        <div className="text-richblack-100 h-">
-            <div className="flex flex-col p-5">
+        <div className="text-richblack-100 h-[calc(100vh-3rem)] w-52  bg-richblack-800">
+            <div className="flex flex-col py-10">
                 {
                     sidebarLinks.map((data, index) => {
                         if (data.type && user.accountType !== data.type) return null
@@ -22,9 +22,9 @@ const SideBar = () => {
                     })
                 }
             </div>
-            <hr></hr>
+            <hr className="text-richblack-700 w-[80%]"></hr>
             <div>
-                <SideBarLinks path={'/setting'} iconName={''} name={'setting'} ></SideBarLinks>
+                <SideBarLinks path={'/dashboard/setting'} iconName={''} name={'setting'} ></SideBarLinks>
                 <button onClick={
                     ()=>setModal({
                         textOne:"Are you sure",

@@ -9,11 +9,12 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import { logout } from '../services/operation/loginuser';
 
-const Header = () => {
+const Header = ({bg}) => {
     const user = useSelector(state => state.auth.token)
     const image=useSelector(state=>state.user?.user?.image)
     const [catelogData, setCatelogData] = useState([])
     // const[dropdown,setDropdown]=useState(false)
+
 
 
 
@@ -40,7 +41,7 @@ const Header = () => {
 
     // console.log(user)
     return (
-        <header className='w-full  bg-richblack-900 border-b-[1.3px] border-richblack-700 '>
+        <header className={`w-full   border-b-[1.3px] border-richblack-700 ${bg && bg } `}>
             <div className='w-11/12 py-2 mx-auto flex justify-between items-center'>
                 <Link to='/'>
                     <div className="text-2xl font-bold font-edu-sa text-white">
