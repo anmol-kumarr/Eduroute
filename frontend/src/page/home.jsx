@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import Header from "../components/header"
 import { IoArrowForward } from "react-icons/io5";
 import HomeBtn from "../components/home/btn";
 import Banner from '../assets/Images/banner.mp4'
@@ -9,7 +8,6 @@ import GirlImage from '../assets/Images/TimelineImage.png'
 import TimeLine from "../components/home/timeline";
 import LearningLanguageSection from "../components/home/learningLanguageSection";
 import InstructorSection from "../components/home/instructorsection";
-import Footer from "../components/footer";
 import ExploreMore from "../components/home/exploreMore";
 
 const Home = () => {

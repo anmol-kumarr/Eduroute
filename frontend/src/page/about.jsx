@@ -9,7 +9,7 @@ import foundingStory from '../assets/Images/FoundingStory.png'
 import Stats from "../components/about/stats";
 import LearningGrid from "../components/about/learningGrid";
 import ContactForm from "../components/about/contactForm";
-// import ColoredText from "../components/about/colorText";
+
 
 const About = () => {
     return (

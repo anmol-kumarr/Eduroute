@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import LargeBtn from "../components/largeBtn";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";

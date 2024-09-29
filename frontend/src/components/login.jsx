@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import {  useState } from "react"
 import LargeBtn from "./largeBtn"
 import HighlightedText from "./home/highlighted"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"

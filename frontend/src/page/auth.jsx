@@ -1,9 +1,4 @@
-import { useEffect, useRef, useState } from "react"
-import { useLocation, useParams } from "react-router-dom"
-import HighlightedText from "../components/home/highlighted"
-import LargeBtn from "../components/largeBtn"
-import countryCode from '../data/countrycode.json'
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
+import {  useParams } from "react-router-dom"
 import SignUp from "../components/signup"
 import Login from "../components/login"
 const Auth = () => {
