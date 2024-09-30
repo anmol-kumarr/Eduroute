@@ -16,3 +16,7 @@ export const authApi={
     signup:BASE_URL+'auth/signup',
     login:BASE_URL+'auth/login'
 }
+
+export const updateProfileApi={
+    updateImage:BASE_URL+'profile/Picture/update'
+}

@@ -67,7 +67,9 @@ exports.getAllUserDetails = async (req, res) => {
 exports.updateProfilePicture = async (req, res) => {
     try {
         const userId = req.user.id
+        console.log(req.files)
         const profilePicture = req.files.profilePicture
+        console.log(profilePicture)
         const user = await User.findById(userId)
         if (!user) {
             return res.status(400).json({
@@ -89,7 +91,7 @@ exports.updateProfilePicture = async (req, res) => {
         console.log(uploadImage)
         const updateResponse = await User.findByIdAndUpdate(userId, {
             image: uploadImage.secure_url, imageProfilePublicId: uploadImage.public_id
-        }, { new: true })
+        }, { new: true }).populate('addtionalDetails').exec()
 
         return res.status(200).json({
             success: true,
