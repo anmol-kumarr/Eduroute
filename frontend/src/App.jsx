@@ -16,6 +16,10 @@ import About from "./page/about";
 import MyProfile from "./components/dashboard/myprofile";
 import EnrolledCourses from "./components/dashboard/enrolledcourses";
 import DashBoardRoute from "./utils/dashboardRoute";
+import PageNotFound from "./page/pageNotfound";
+import CloseRoute from "./utils/closeruote";
+import Cart from "./components/dashboard/cart";
+
 
 function App() {
   const location = useLocation().pathname
@@ -37,12 +41,19 @@ function App() {
           <Auth></Auth>
         </OpenRoute>} />
         <Route path='/contact' element={<ContactPage></ContactPage>} />
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
-          <Route path='my-profile' element={<MyProfile></MyProfile>}></Route>
-          <Route path='enrolled-courses' element={<EnrolledCourses></EnrolledCourses>}></Route>
-          <Route path='setting' element={<EnrolledCourses></EnrolledCourses>}></Route>
-          {/* <Route path='my-profile' element={<MyProfile></MyProfile>}></Route> */}
+
+
+
+        <Route  element={<CloseRoute>
+          <Dashboard></Dashboard>
+        </CloseRoute>}>
+
+          <Route path='/dashboard/my-profile' element={<MyProfile></MyProfile>}></Route>
+          <Route path='/dashboard/enrolled-courses' element={<EnrolledCourses></EnrolledCourses>}></Route>
+          <Route path='/dashboard/setting' element={<EnrolledCourses></EnrolledCourses>}></Route>
+          <Route path='/dashboard/cart' element={<Cart></Cart>}></Route>
         </Route>
+
 
 
         <Route
@@ -57,16 +68,16 @@ function App() {
           path="/auth/login"
           element={
             <OpenRoute>
-              <Login></Login>
+            <Login></Login>
             </OpenRoute>
-          } />
-        <Route
-          path="/auth/signup"
-          element={
-            <OpenRoute>
+            } />
+            <Route
+            path="/auth/signup"
+            element={
+              <OpenRoute>
               <SignUp></SignUp>
-            </OpenRoute>
-          } /> */}
+              </OpenRoute>
+              } /> */}
 
         <Route
           path="/update-password/:id"
@@ -86,9 +97,9 @@ function App() {
           path="/dashboard/:section"
           element={
             <OpenRoute>
-              <User></User>
+            <User></User>
             </OpenRoute>
-          } /> */}
+            } /> */}
 
 
 
@@ -101,6 +112,7 @@ function App() {
 
 
 
+        <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
       <div className="bg-richblack-700 w-full">
         {

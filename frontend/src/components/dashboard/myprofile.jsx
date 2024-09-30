@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 const MyProfile = () => {
     const user = useSelector(state => state.user.user)
-    console.log(user)
+    // console.log(user)
     const navigate=useNavigate()
     return (
         <div className="flex flex-col w-3/4 mx-auto my-5 ">

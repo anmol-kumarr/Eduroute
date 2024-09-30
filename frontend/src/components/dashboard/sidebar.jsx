@@ -4,6 +4,7 @@ import SideBarLinks from "./sidebarlinks"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { logout } from "../../services/operation/loginuser"
+import { LuLogOut } from "react-icons/lu";
 import Modal from "../modal"
 const SideBar = () => {
     const { loading: authLoading } = useSelector(state => state.auth)
@@ -25,7 +26,7 @@ const SideBar = () => {
             <hr className="text-richblack-700 w-[80%]"></hr>
             <div>
                 <SideBarLinks path={'/dashboard/setting'} iconName={''} name={'setting'} ></SideBarLinks>
-                <button onClick={
+                <button className="flex gap-1 items-center px-2" onClick={
                     ()=>setModal({
                         textOne:"Are you sure",
                         textTwo:'You will be logged out of your account',
@@ -34,7 +35,7 @@ const SideBar = () => {
                         btnOneHandler:()=>dispatch(logout(navigate)),
                         btnTwoHandler:()=>setModal(null)
                     })
-                }></button>
+                }><LuLogOut></LuLogOut> Logout </button>
             </div>
             <div>
                 {
