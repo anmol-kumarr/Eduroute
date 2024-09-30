@@ -19,6 +19,7 @@ import DashBoardRoute from "./utils/dashboardRoute";
 import PageNotFound from "./page/pageNotfound";
 import CloseRoute from "./utils/closeruote";
 import Cart from "./components/dashboard/cart";
+import Setting from "./components/dashboard/setting";
 
 
 function App() {
@@ -30,17 +31,14 @@ function App() {
         <Header></Header>
       </DashBoardRoute>
 
-
-
-
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path='/aboutUs' element={<About></About>} />
-        <Route path='/auth/:authValue' element={<OpenRoute>
+        <Route path='/contact' element={<ContactPage></ContactPage>} />
 
+        <Route path='/auth/:authValue' element={<OpenRoute>
           <Auth></Auth>
         </OpenRoute>} />
-        <Route path='/contact' element={<ContactPage></ContactPage>} />
 
 
 
@@ -50,7 +48,7 @@ function App() {
 
           <Route path='/dashboard/my-profile' element={<MyProfile></MyProfile>}></Route>
           <Route path='/dashboard/enrolled-courses' element={<EnrolledCourses></EnrolledCourses>}></Route>
-          <Route path='/dashboard/setting' element={<EnrolledCourses></EnrolledCourses>}></Route>
+          <Route path='/dashboard/setting' element={<Setting></Setting>}></Route>
           <Route path='/dashboard/cart' element={<Cart></Cart>}></Route>
         </Route>
 
@@ -64,20 +62,7 @@ function App() {
             </OpenRoute>
           } />
 
-        {/* <Route
-          path="/auth/login"
-          element={
-            <OpenRoute>
-            <Login></Login>
-            </OpenRoute>
-            } />
-            <Route
-            path="/auth/signup"
-            element={
-              <OpenRoute>
-              <SignUp></SignUp>
-              </OpenRoute>
-              } /> */}
+      
 
         <Route
           path="/update-password/:id"
@@ -93,21 +78,7 @@ function App() {
               <VerifyEmail></VerifyEmail>
             </OpenRoute>
           } />
-        {/* <Route
-          path="/dashboard/:section"
-          element={
-            <OpenRoute>
-            <User></User>
-            </OpenRoute>
-            } /> */}
-
-
-
-
-
-
-
-
+      
 
 
 

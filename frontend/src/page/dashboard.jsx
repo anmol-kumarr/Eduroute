@@ -22,8 +22,8 @@ const Dashboard = () => {
             <div className='flex'>
 
                 <SideBar></SideBar>
-                <div>
-                    <div className='w-[calc(100vw-13rem)]'>
+                <div className=''>
+                    <div className='w-[calc(100vw-13rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar'>
                         <Outlet />
                     </div>
                 </div>

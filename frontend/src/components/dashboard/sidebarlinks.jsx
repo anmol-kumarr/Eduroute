@@ -12,9 +12,9 @@ const SideBarLinks = ({icon,name,path}) => {
 
     return (
         <div className={` ${location===path? 'bg-yellow-100 bg-opacity-50 text-yellow-5 border-l-2 border-yellow-100 ':''}`} >
-            <NavLink to={path} className={`active`}>
+            <NavLink to={path} >
                 <div className='flex gap-2 my-1 py-1 px-3  text-base items-center'>
-                    {icon&& <Icon></Icon>}
+                    {icon&& <Icon className='-mb-1'></Icon>}
                     <span>{name}</span>
                 </div>
             </NavLink>
