@@ -195,7 +195,11 @@ exports.login = async (req, res) => {
             user.password = null
             const option = {
                 expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-                httpOnly: true
+                // httpOnly: true,
+                // httpOnly: true,
+                // secure: process.env.NODE_ENV === 'production', // Secure only on HTTPS
+                sameSite: 'Lax',
+                secure:false
             }
 
             res.cookie('token', token, option).status(200).json({
