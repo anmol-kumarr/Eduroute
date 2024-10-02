@@ -20,10 +20,14 @@ import PageNotFound from "./page/pageNotfound";
 import CloseRoute from "./utils/closeruote";
 import Cart from "./components/dashboard/cart";
 import Setting from "./components/dashboard/setting";
+import { useSelector } from "react-redux";
+import AddCourse from "./components/dashboard/instructor/course/addCourse";
+
 
 
 function App() {
   const location = useLocation().pathname
+  const userType = useSelector(state => state.user.user.accountType)
   return (
     <div className="overflow-x-hidden max-h-full bg-richblack-900">
       <DashBoardRoute>
@@ -50,6 +54,11 @@ function App() {
           <Route path='/dashboard/enrolled-courses' element={<EnrolledCourses></EnrolledCourses>}></Route>
           <Route path='/dashboard/setting' element={<Setting></Setting>}></Route>
           <Route path='/dashboard/cart' element={<Cart></Cart>}></Route>
+
+          if(userType==='Instructor'){
+            <Route path="/dashboard/add-course" element={<AddCourse></AddCourse>} />
+          }
+
         </Route>
 
 

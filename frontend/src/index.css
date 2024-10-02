@@ -10,6 +10,7 @@
 
 }
 
+
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
     /* Chrome, Safari, and Edge */
@@ -113,3 +114,4 @@
         transform: scale(1.0);
     }
 }
+

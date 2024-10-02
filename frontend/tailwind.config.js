@@ -10,6 +10,7 @@ module.exports = {
     backgroundImage: {
       'gradient-text': 'linear-gradient(to right, #1FA2FF, #12D8FA,#A6FFCB)',
       'gradient-text-two': 'linear-gradient(to right, #FF512F, #F09819)',
+    
     },
     colors: {
       white: "#fff",

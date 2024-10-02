@@ -1,31 +1,11 @@
 import { IoIosArrowBack } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LuUpload } from "react-icons/lu";
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { profileImage } from "../../services/operation/updateDetails";
-import { techProfessions } from "../../data/professionData";
-import { FaRegEye, FaRegEyeSlash, FaTrashAlt } from "react-icons/fa";
-import DashBoardBtn from "./dashboardbtn";
 import ProfilePicture from "./setting/profilepicture";
 import Personal from "./setting/perosnal";
 import Password from "./setting/password";
 import DeleteAccount from "./setting/deleteAcc";
 const Setting = () => {
     const navigate = useNavigate()
-
-
-
-
-
-
-
-    // useEffect(() => {
-    //     console.log(file)
-    // }, [file])
-
-
 
 
     return (

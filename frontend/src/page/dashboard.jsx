@@ -29,7 +29,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className='bg-richblack-800 border-t-[1px] border-richblack-700'>
+            <div className='bg-richblack-800 border-t-[1px] shadow-[0px_-1px_4px_#fff] border-richblack-700'>
                 <Footer></Footer>
             </div>
         </div>
