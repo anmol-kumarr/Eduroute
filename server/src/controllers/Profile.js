@@ -49,7 +49,7 @@ exports.getAllUserDetails = async (req, res) => {
         }
 
         return res.status(200).json({
-            success: false,
+            success: true,
             message: 'User details fetched successfully',
             data: userDetails
         })
@@ -113,8 +113,8 @@ exports.updateProfilePicture = async (req, res) => {
 exports.updateAdditionalDetails = async (req, res) => {
     try {
         const userId = req.user.id
-        const { gender, dateOfBirth, about, mobile } = req.body
-        console.log(gender, dateOfBirth, about, mobile)
+        const {firstName,lastName, gender, dateOfBirth, about, mobile,profession } = req.body
+        console.log('firstname:',firstName,'lastname:',lastName,gender, dateOfBirth, about, mobile)
 
         const user = await User.findById(userId)
         if (!user) {
@@ -123,14 +123,16 @@ exports.updateAdditionalDetails = async (req, res) => {
                 message: 'Cannot find user'
             })
         }
-
-        const updateDetails = await Profile.findByIdAndUpdate(user.addtionalDetails, { gender, dateOfBirth, about, mobile }, { new: true })
+        const updateDetails = await Profile.findByIdAndUpdate(user.addtionalDetails, { gender, dateOfBirth, about, mobile,profession }, { new: true })
+        
+        const updateName=await User.findByIdAndUpdate(userId,{firstName,lastName},{new:true}).populate('addtionalDetails').exec()
+        
 
         console.log(updateDetails)
         return res.status(200).json({
-            success: false,
+            success: true,
             message: 'User details updated successfully',
-            updateDetails
+            updateName
         })
 
     } catch (err) {

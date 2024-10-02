@@ -1,9 +1,9 @@
 
 
-const ModalBtn = ({text,onClick,disabled,children}) => {
+const ModalBtn = ({text,onClick,disabled,children,className}) => {
     
     return (
-        <button disabled={disabled} onClick={onClick}>
+        <button className={className} disabled={disabled} onClick={onClick}>
             {
                 children ? (
                     <>

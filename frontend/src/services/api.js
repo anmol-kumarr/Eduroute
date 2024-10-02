@@ -18,5 +18,6 @@ export const authApi={
 }
 
 export const updateProfileApi={
-    updateImage:BASE_URL+'profile/Picture/update'
+    updateImage:BASE_URL+'profile/Picture/update',
+    updateUserDetails:BASE_URL+'profile/update/details',
 }

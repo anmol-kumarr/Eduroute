@@ -14,6 +14,9 @@ const profileSchema=new mongoose.Schema({
     mobile:{
         type:Number,
         trim:true
+    },
+    profession:{
+        type:String
     }
 },{timestamps:true})
 

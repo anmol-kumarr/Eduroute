@@ -42,7 +42,7 @@ function App() {
 
 
 
-        <Route  element={<CloseRoute>
+        <Route element={<CloseRoute>
           <Dashboard></Dashboard>
         </CloseRoute>}>
 
@@ -62,7 +62,7 @@ function App() {
             </OpenRoute>
           } />
 
-      
+
 
         <Route
           path="/update-password/:id"
@@ -78,19 +78,22 @@ function App() {
               <VerifyEmail></VerifyEmail>
             </OpenRoute>
           } />
-      
+
 
 
 
 
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
-      <div className="bg-richblack-700 w-full">
-        {
+      <DashBoardRoute>
 
-          location.includes('/auth') ? "" : < Footer ></Footer>
-        }
-      </div>
+        <div className="bg-richblack-700 w-full">
+          {
+
+            location.includes('/auth') ? "" : < Footer ></Footer>
+          }
+        </div>
+      </DashBoardRoute>
     </div >
   );
 }

@@ -3,6 +3,7 @@ import Spinner from '../components/spinner'
 import SideBar from '../components/dashboard/sidebar'
 import { Outlet } from 'react-router-dom'
 import Header from '../components/header'
+import Footer from '../components/footer'
 const Dashboard = () => {
     const { loading: profileLoading } = useSelector(state => state.user)
     const { loading: authLoading } = useSelector(state => state.auth)
@@ -27,6 +28,9 @@ const Dashboard = () => {
                         <Outlet />
                     </div>
                 </div>
+            </div>
+            <div className='bg-richblack-800 border-t-[1px] border-richblack-700'>
+                <Footer></Footer>
             </div>
         </div>
     )
