@@ -8,40 +8,34 @@ import { categoriesApi } from '../services/api';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import { logout } from '../services/operation/loginuser';
+import { fetchCourseCategories } from '../services/operation/course';
 
-const Header = ({bg}) => {
+const Header = ({ bg }) => {
     const user = useSelector(state => state.auth.token)
-    const image=useSelector(state=>state.user?.user?.image)
-    const [catelogData, setCatelogData] = useState([])
+    const image = useSelector(state => state.user?.user?.image)
+    const catelogData=useSelector(state=>state.course?.courseCategories)
+    // const [catelogData, setCatelogData] = useState([])
     // const[dropdown,setDropdown]=useState(false)
 
 
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
-    const getCatelog = async () => {
-        try {
-            const response = await apiConnector('GET', categoriesApi.getAllCategories)
-            // console.log(response.data.data)
-            setCatelogData(response.data.data)
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
+
 
 
 
     useEffect(() => {
-        getCatelog()
+        dispatch(fetchCourseCategories())
+        // setCatelogData(response)
     }, [])
-    const dispatch=useDispatch()
-    const navigate=useNavigate()
 
 
     // console.log(user)
     return (
-        <header className={`w-full   border-b-[1.3px] border-richblack-700 ${bg && bg } `}>
+        <header className={`w-full   border-b-[1.3px] border-richblack-700 ${bg && bg} `}>
             <div className='w-11/12 py-2 mx-auto flex justify-between items-center'>
                 <Link to='/'>
                     <div className="text-2xl font-bold font-edu-sa text-white">
@@ -97,7 +91,7 @@ const Header = ({bg}) => {
                                 </>
                             }
                             <div className='group relative cursor-pointer '>
-                                <div className='h-7 w-7 rounded-full overflow-hidden'>
+                                <div onClick={() => navigate('/dashboard/my-profile')} className='h-7 w-7 rounded-full overflow-hidden'>
 
                                     <img className="w-full h-full" src={image} alt="" />
                                 </div>
@@ -105,7 +99,7 @@ const Header = ({bg}) => {
 
 
                                     <p className='py-1 px-2'><Link to={`/dashboard/${'my-profile'}`} className='flex items-center gap-1'> Dashboard</Link></p>
-                                    <p onClick={()=>dispatch(logout(navigate))} className='py-1 px-2  flex items-center gap-1'> <TbLogout2 className='mt-1' /> Logout</p>
+                                    <p onClick={() => dispatch(logout(navigate))} className='py-1 px-2  flex items-center gap-1'> <TbLogout2 className='mt-1' /> Logout</p>
                                 </div>
                             </div>
                         </>
