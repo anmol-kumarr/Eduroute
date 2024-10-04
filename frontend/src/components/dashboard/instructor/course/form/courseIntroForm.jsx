@@ -6,6 +6,7 @@ import Requirement from "./requirement";
 import { changeState } from "../../../../../redux/slice/courseSlice";
 import FormBtn from "../formBtn";
 import { IoIosArrowForward } from "react-icons/io";
+import CourseThumbnail from "./courseThumbnail";
 
 const CourseIntroForm = () => {
     const dispatch = useDispatch()
@@ -101,7 +102,7 @@ const CourseIntroForm = () => {
                     }
                 </div>
 
-
+                <CourseThumbnail></CourseThumbnail>
 
                 <div>
 
