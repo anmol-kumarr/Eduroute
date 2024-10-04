@@ -35,7 +35,7 @@ const AddCourse = () => {
 
                 </div>
             </div>
-            <div className="w-[40%] bg-richblack-800 p-5 rounded-md border border-richblack-600">
+            <div className="w-[40%] bg-richblack-800 max-h-max p-5 rounded-md border border-richblack-600">
                 <h2 className="text-xl font-semibold text-richblack-200 my-2">⚡ Course Upload Tips</h2>
                 <ul className="list-disc text-richblack-25 px-5 ">
                     <li>
