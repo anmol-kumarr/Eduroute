@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux'
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
@@ -7,6 +7,7 @@ import { changeState } from "../../../../../redux/slice/courseSlice";
 import FormBtn from "../formBtn";
 import { IoIosArrowForward } from "react-icons/io";
 import CourseThumbnail from "./courseThumbnail";
+import Tags from "./tags";
 
 const CourseIntroForm = () => {
     const dispatch = useDispatch()
@@ -14,17 +15,22 @@ const CourseIntroForm = () => {
     const courseCategories = useSelector(state => state.course.courseCategories)
     const editCourse = useSelector(state => state.course.editCourse)
 
-    if (editCourse) {
-        setValue("courseTitle", editCourse.courseTitle)
-        setValue("description", editCourse.description)
-        setValue("price", editCourse.price)
-        setValue("category", editCourse.category)
-        setValue("benefits", editCourse.benefits)
-        setValue("requirements", editCourse.requirements)
-    }
+    useEffect(() => {
 
-    const onSubmit = (e) => {
-        e.preventDefault()
+        if (editCourse) {
+            setValue("courseTitle", editCourse.courseTitle)
+            setValue("description", editCourse.description)
+            setValue("price", editCourse.price)
+            setValue("category", editCourse.category)
+            setValue("benefits", editCourse.benefits)
+            setValue("requirements", editCourse.requirements)
+        }
+    },[editCourse,setValue])
+
+    const onSubmit = (data) => {
+        
+        console.log(data)
+        
     }
 
     const isFormUpdate = () => {
@@ -47,7 +53,7 @@ const CourseIntroForm = () => {
 
     return (
         <div className="bg-richblack-800 px-3 py-3  rounded-md">
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2" action="">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2" >
 
                 <div className="">
                     <label htmlFor="courseTitle">Course title <span className="text-pink-500 text-lg">*</span> </label>
@@ -102,8 +108,8 @@ const CourseIntroForm = () => {
                     }
                 </div>
 
+                <Tags register={register} errors={errors} handleSubmit={handleSubmit} setValue={setValue} getValue={getValue} ></Tags>
                 <CourseThumbnail></CourseThumbnail>
-
                 <div>
 
 

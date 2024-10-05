@@ -24,6 +24,10 @@ const Requirement = ({register,errors,handleSubmit,setValue,getValue}) => {
         editList.splice(index, 1)
         console.log(editList)
         setRequirementList(editList)
+        // const updatedList=editList.filter((list,i)=>i!==index)
+        
+        // console.log(editList)
+        // setRequirementList(updatedList)
     }
     return (
         <div>
@@ -42,7 +46,7 @@ const Requirement = ({register,errors,handleSubmit,setValue,getValue}) => {
                             <li className="list-disc" key={index}>
                                 <div className="text-richblack-100">
                                     {list}
-                                    <span onClick={(index) => removeList(index)} className=" rounded-md mx-2 cursor-pointer text-[#ff0000] text-sm font-bold">remove</span>
+                                    <span onClick={() => removeList(index)} className=" rounded-md mx-2 cursor-pointer text-[#ff0000] text-sm font-bold">remove</span>
                                 </div>
                             </li>
                         ))
