@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { IoMdCloudUpload } from "react-icons/io";
-const CourseThumbnail = () => {
+const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue }) => {
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const fileHandler = (e) => {
@@ -22,6 +22,10 @@ const CourseThumbnail = () => {
         setFile(null)
         setPreview(null)
     }
+
+    useEffect(()=>{
+        setValue('thumbnail',file)
+    },[file,setValue])
     return (
         <div className="w-full">
             <div className="flex justify-between items-center">

@@ -1,8 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { MdOutlineClear } from "react-icons/md";
 const Tags = ({ register, errors, handleSubmit, setValue, getValue }) => {
     const [tag, setTag] = useState('')
     const [tagList, setTagList] = useState([])
+
+    useEffect(()=>{
+        setValue('tags',tagList)
+    },[tagList,setValue])
 
     const tagSubmit = (e) => {
         e.preventDefault()

@@ -4,12 +4,16 @@ const Requirement = ({register,errors,handleSubmit,setValue,getValue}) => {
     const [requirement, setRequirement] = useState('')
     const [requirementList, setRequirementList] = useState([])
 
+    // useEffect(()=>{
+    //     register('requirements',{
+    //         required:true,
+    //         validtae:(value)=>value.length>0
+    //     })
+    // },[requirementList])
+
     useEffect(()=>{
-        register('requirements',{
-            required:true,
-            validtae:(value)=>value.length>0
-        })
-    },[requirementList])
+        setValue('requirementList',requirementList)
+    },[requirementList,setValue])
 
     const addList = (e) => {
         e.preventDefault()
@@ -21,13 +25,13 @@ const Requirement = ({register,errors,handleSubmit,setValue,getValue}) => {
     const removeList = (index) => {
         // e.preventDefault()
         const editList = [...requirementList]
-        editList.splice(index, 1)
-        console.log(editList)
-        setRequirementList(editList)
-        // const updatedList=editList.filter((list,i)=>i!==index)
-        
+        // editList.splice(index, 1)
         // console.log(editList)
-        // setRequirementList(updatedList)
+        // setRequirementList(editList)
+        const updatedList=editList.filter((list,i)=>i!==index)
+        
+        console.log(editList)
+        setRequirementList(updatedList)
     }
     return (
         <div>
