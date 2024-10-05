@@ -13,9 +13,9 @@ const SideBar = () => {
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const [modal,setModal]=useState(null)
-    useEffect(()=>{
-        console.log(modal)
-    },[modal])
+    // useEffect(()=>{
+    //     // console.log(modal)
+    // },[modal])
     return (
         <div className="text-richblack-100 h-[calc(100vh-3rem)] w-52  bg-richblack-800">
             <div className="flex flex-col py-10">

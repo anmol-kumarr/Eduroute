@@ -27,7 +27,7 @@ import AddCourse from "./components/dashboard/instructor/course/addCourse";
 
 function App() {
   const location = useLocation().pathname
-  const userType = useSelector(state => state.user.user.accountType)
+  // const userType = useSelector(state => state.user.user.accountType)
   return (
     <div className="overflow-x-hidden max-h-full bg-richblack-900">
       <DashBoardRoute>

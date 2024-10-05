@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react"
 
-const Requirement = ({register,errors,handleSubmit,setValue,getValue}) => {
+const Requirement = ({ register, errors, handleSubmit, setValue, getValue }) => {
     const [requirement, setRequirement] = useState('')
     const [requirementList, setRequirementList] = useState([])
 
     // useEffect(()=>{
     //     register('requirements',{
     //         required:true,
-    //         validtae:(value)=>value.length>0
+    //         validate:(value)=>value.length>0
     //     })
     // },[requirementList])
 
-    useEffect(()=>{
-        setValue('requirementList',requirementList)
-    },[requirementList,setValue])
+    useEffect(() => {
+        if (requirementList.length > 0) {
+
+            setValue('requirement', requirementList)
+        }
+        register('requirement', {
+            required: 'This field is required',  // Custom error message
+            validate: (value) => value.length > 0 || 'Requirements must not be empty',
+        });
+    }, [requirementList,setValue,register]);
+
+
 
     const addList = (e) => {
         e.preventDefault()
-        if (requirement && requirementList.length<10) {
+        if (requirement && requirementList.length < 10) {
             setRequirementList([...requirementList, requirement])
             setRequirement('')
         }
@@ -28,8 +37,8 @@ const Requirement = ({register,errors,handleSubmit,setValue,getValue}) => {
         // editList.splice(index, 1)
         // console.log(editList)
         // setRequirementList(editList)
-        const updatedList=editList.filter((list,i)=>i!==index)
-        
+        const updatedList = editList.filter((list, i) => i !== index)
+
         console.log(editList)
         setRequirementList(updatedList)
     }
@@ -58,11 +67,11 @@ const Requirement = ({register,errors,handleSubmit,setValue,getValue}) => {
                 </ul>
             </div>
             {
-                errors.requirement&&(
+                errors.requirement && (
                     <span>
                         Please enter requirement for course
                     </span>
-                ) 
+                )
             }
         </div>
     )

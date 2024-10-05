@@ -14,8 +14,33 @@ const CourseIntroForm = () => {
     const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm()
     const courseCategories = useSelector(state => state.course.courseCategories)
     const editCourse = useSelector(state => state.course.editCourse)
+
+
+
     const onSubmit = (data) => {
         console.log(data)
+
+        const formData = new FormData()
+        // console.log(data.courseTitle)
+        formData.append('courseName', data.courseTitle)
+
+        formData.append('courseDescription', data.description)
+
+        formData.append('whatYouWillLearn', data.benefits)
+
+        formData.append('price', data.price)
+        formData.append('categories', data.category)
+
+        formData.append('thumbnailImage', data.thumbnail)
+
+        formData.append('instruction', JSON.stringify(data.requirement))
+
+        formData.append('status', 'draft')
+
+        // console.log(formData)
+        for (let pair of formData.entries()) {
+            console.log(`${pair[0]}: ${pair[1]}`);
+        }
     }
 
     return (
@@ -107,13 +132,13 @@ const CourseIntroForm = () => {
                         Submit
                     </button> */}
 
-                    <FormBtn type={'submit'} active={true} text={!editCourse ? <>Next <IoIosArrowForward className="-mb-0.5" /></> : 'Save changes'}></FormBtn>
+                    {/* <FormBtn type={'submit'} active={true} text={!editCourse ? <>Next <IoIosArrowForward className="-mb-0.5" /></> : 'Save changes'}></FormBtn> */}
                 </div>
 
 
 
 
-                {/* <button type="submit">Submit</button> */}
+                <button type="submit">Submit</button>
             </form>
         </div>
     )
