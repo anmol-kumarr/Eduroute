@@ -1,7 +1,7 @@
 const CourseBuilder=()=>{
     return (
-        <div>
-
+        <div className="text-richblack-50">
+            builder
         </div>
     )
 }

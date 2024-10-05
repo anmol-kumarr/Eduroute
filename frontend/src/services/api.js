@@ -21,3 +21,8 @@ export const updateProfileApi={
     updateImage:BASE_URL+'profile/Picture/update',
     updateUserDetails:BASE_URL+'profile/update/details',
 }
+
+
+export const createCourseApi={
+    createIntro:BASE_URL+'course/create'
+}

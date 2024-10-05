@@ -8,6 +8,7 @@ import FormBtn from "../formBtn";
 import { IoIosArrowForward } from "react-icons/io";
 import CourseThumbnail from "./courseThumbnail";
 import Tags from "./tags";
+import { createCourse } from "../../../../../services/operation/course";
 
 const CourseIntroForm = () => {
     const dispatch = useDispatch()
@@ -38,9 +39,11 @@ const CourseIntroForm = () => {
         formData.append('status', 'draft')
 
         // console.log(formData)
-        for (let pair of formData.entries()) {
-            console.log(`${pair[0]}: ${pair[1]}`);
-        }
+        // for (let pair of formData.entries()) {
+        //     console.log(`${pair[0]}: ${pair[1]}`);
+        // }
+
+        dispatch(createCourse(formData))
     }
 
     return (
@@ -132,13 +135,13 @@ const CourseIntroForm = () => {
                         Submit
                     </button> */}
 
-                    {/* <FormBtn type={'submit'} active={true} text={!editCourse ? <>Next <IoIosArrowForward className="-mb-0.5" /></> : 'Save changes'}></FormBtn> */}
+                    <FormBtn type={'submit'} active={true} text={!editCourse ? <>Next <IoIosArrowForward className="-mb-0.5" /></> : 'Save changes'}></FormBtn>
                 </div>
 
 
 
 
-                <button type="submit">Submit</button>
+                {/* <button type="submit">Submit</button> */}
             </form>
         </div>
     )
