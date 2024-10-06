@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { IoMdCloudUpload } from "react-icons/io";
+import { useSelector } from "react-redux";
 const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue }) => {
+    const editCourse=useSelector(state=>state.course.editCourse)
     const [file, setFile] = useState(null)
+
+
     const [preview, setPreview] = useState(null)
+
+    useEffect(()=>{
+        // console.log('hello')
+    },[])
+
     const fileHandler = (e) => {
         const file = e.target.files[0]
         const supportedFileTypes = ['image/avif', 'image/jpeg', 'image/png', 'image/jpg'];
@@ -18,27 +27,27 @@ const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue })
 
         e.target.value = ''
     }
-    const clearImage=()=>{
+    const clearImage = () => {
         setFile(null)
         setPreview(null)
     }
 
-    useEffect(()=>{
-        setValue('thumbnail',file)
-    },[file,setValue])
+    useEffect(() => {
+        setValue('thumbnail', file)
+    }, [file, setValue])
     return (
         <div className="w-full">
             <div className="flex justify-between items-center">
 
                 <label htmlFor="thumbnail">Course Thumbnail</label>
 
-                {
+                {/* {
                     preview && (
-                        <div onClick={clearImage}  className="text-[#ff0000] font-semibold cursor-pointer">
+                        <div onClick={clearImage} className="text-[#ff0000] font-semibold cursor-pointer">
                             Remove
                         </div>
                     )
-                }
+                } */}
             </div>
 
             {/* <br /> */}
@@ -46,7 +55,16 @@ const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue })
 
             {
                 preview ? (
-                    <img className="w-full h-48" src={preview} alt="" />
+                    <div className="w-full flex flex-col p-3 rounded-md bg-richblack-700 ">
+                        <div className="w-full rounded-md overflow-hidden">
+
+                            <img className="w-full  h-48  " src={preview} alt="" />
+                        </div>
+
+                        <div onClick={clearImage} className="text-center my-2 cursor-pointer font-semibold text-richblack-500">
+                            Cancel
+                        </div>
+                    </div>
                 ) :
 
                     (

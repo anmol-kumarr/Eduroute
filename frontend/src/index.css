@@ -10,6 +10,12 @@
 
 }
 
+input:-webkit-autofill {
+    background-color:#2c333f !important;
+    /* Change this to your desired color */
+    /* color: #fff !important; */
+    /* Ensures text is visible on a dark background */
+}
 
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
@@ -114,4 +120,3 @@
         transform: scale(1.0);
     }
 }
-

@@ -15,6 +15,7 @@ const CourseIntroForm = () => {
     const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm()
     const courseCategories = useSelector(state => state.course.courseCategories)
     const editCourse = useSelector(state => state.course.editCourse)
+    const course=useSelector(state=>state.course.course)
 
 
 
@@ -35,8 +36,9 @@ const CourseIntroForm = () => {
         formData.append('thumbnailImage', data.thumbnail)
 
         formData.append('instruction', JSON.stringify(data.requirement))
+        formData.append('tag', JSON.stringify(data.tags))
 
-        formData.append('status', 'draft')
+        formData.append('status', 'Draft')
 
         // console.log(formData)
         // for (let pair of formData.entries()) {
@@ -45,6 +47,19 @@ const CourseIntroForm = () => {
 
         dispatch(createCourse(formData))
     }
+
+    useEffect(() => {
+        if (editCourse) {
+            setValue('courseTitle',course.courseName)
+            setValue('description',course.courseDescription)
+            setValue('benefits',course.whatYouWillLearn)
+            setValue('price',course.price)
+            setValue('categories',course.category)
+            setValue('thumbnail',course.thumbnailImage)
+            // setValue('requirement',JSON.parse(course.instruction[0]))
+            // setValue('tags',JSON.parse(course.tag[0]))
+        }
+    },[])
 
     return (
         <div className="bg-richblack-800 px-3 py-3  rounded-md">
@@ -72,7 +87,7 @@ const CourseIntroForm = () => {
                     <div className="flex gap-1 items-center w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 text-sm  px-2">
                         <RiMoneyRupeeCircleFill className="text-lg text-richblack-200 -mb-1" />
 
-                        <input className="text-base bg-transparent my-2 outline-none border-none w-full h-full" placeholder="course price" type="text" id="price" {...register("price", { required: true, valueAsNumber: true })} />
+                        <input className="text-base bg-richblack-700 my-2 outline-none border-none w-full h-full" placeholder="course price" type="text" id="price" {...register("price", { required: true, valueAsNumber: true })} />
                     </div>
                     {errors.price && (
                         <span>Course price is required</span>

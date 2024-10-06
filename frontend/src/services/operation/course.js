@@ -2,7 +2,7 @@ import { useState } from "react"
 import { categoriesApi, createCourseApi } from "../api"
 import { apiConnector } from "../apiconnector"
 import { useDispatch } from "react-redux"
-import { changeState, setCourseCategories } from "../../redux/slice/courseSlice"
+import { changeState, setCourse, setCourseCategories } from "../../redux/slice/courseSlice"
 import toast from "react-hot-toast"
 
 export const fetchCourseCategories = () => {
@@ -30,6 +30,7 @@ export const createCourse = (formData) => {
             console.log(response)
             toast.success("course created")
             // toast.dismiss()
+            dispatch(setCourse(response.data.data))
             dispatch(changeState(2))
         } catch (err) {
             console.log(err)

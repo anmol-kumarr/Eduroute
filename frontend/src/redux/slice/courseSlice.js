@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState={
-    step:1,
+    step:2,
     course:null,
     courseCategories:null,
     editCourse:null

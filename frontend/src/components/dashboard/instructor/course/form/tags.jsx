@@ -34,9 +34,9 @@ const Tags = ({ register, errors, handleSubmit, setValue, getValue }) => {
                 {
                     tagList.length > 0 && (
                         tagList.map((list, index) => (
-                            <div className="flex px-3 gap-[2px] py-1 rounded-md font-semibold items-center bg-yellow-100 text-richblack-900" key={index}>
+                            <div className="flex px-3 gap-[2px] py-1 rounded-md font-semibold items-center bg-yellow-300 text-richblack-50" key={index}>
                                 {list}
-                                <span onClick={() => removeTag(index)} className="cursor-pointer -mb-[2px] text-[#ff0000]">
+                                <span onClick={() => removeTag(index)} className="cursor-pointer -mb-[2px] text-richblack-50">
                                     <MdOutlineClear className="font-bold" />
                                 </span>
                             </div>

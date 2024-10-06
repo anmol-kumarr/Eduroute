@@ -6,9 +6,9 @@ const { ImageUpload } = require('../utils/Cloudinary')
 
 exports.createCourse = async (req, res) => {
     try {
-        const { courseName, courseDescription, whatYouWillLearn, price, tag,categories } = req.body
+        const { courseName, courseDescription, whatYouWillLearn, price, tag,categories,status,instruction } = req.body
         const thumbnail = req.files.thumbnailImage
-        if (!courseName, !courseDescription, !whatYouWillLearn, !price, !tag,!categories) {
+        if (!courseName, !courseDescription, !whatYouWillLearn, !price, !tag,!categories,!status,!instruction) {
             return res.status(401).json({
                 success: false,
                 message: 'All fields are required'
@@ -45,7 +45,9 @@ exports.createCourse = async (req, res) => {
             intructor: instructorDetails._id,
             price,
             tag,
+            instruction,
             whatYouWillLearn,
+            status,
             categories: categoriesDetails._id,
             thumbnail: thumbnailUpload.secure_url
         })
