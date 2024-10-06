@@ -41,3 +41,25 @@ export const createCourse = (formData) => {
 
     }
 }
+
+
+export const createSection=(data)=>{
+    toast.loading('loading')
+    const api=createCourseApi.createSection
+    return async(dispatch)=>{
+        try{
+
+            const response=await apiConnector('POST',api,data)
+            console.log(response)
+            dispatch(setCourse(response.data.data))
+            toast.dismiss()
+            toast.success('Section created')
+        }catch(err)
+        {
+            toast.dismiss()
+            console.log(err)
+            toast.error('Cannot create section')
+        }
+
+    }
+}

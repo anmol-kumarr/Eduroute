@@ -24,5 +24,6 @@ export const updateProfileApi={
 
 
 export const createCourseApi={
-    createIntro:BASE_URL+'course/create'
+    createIntro:BASE_URL+'course/create',
+    createSection:BASE_URL+'course/create/section'
 }
