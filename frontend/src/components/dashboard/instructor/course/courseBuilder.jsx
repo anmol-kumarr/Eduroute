@@ -9,7 +9,7 @@ import CourseContent from "./courseContent";
 const CourseBuilder = () => {
     const { register, handleSubmit, setValue, getValue, formState: { errors } } = useForm()
     const [editSection, setEditSection] = useState(null)
-    const course = useSelector(state => state.course.course)
+    const course = useSelector(state => state?.course?.MyCourse)
 
     // const editCourse = useSelector()
     const dispatch = useDispatch()
@@ -47,7 +47,7 @@ const CourseBuilder = () => {
         dispatch(sectionEdit(values))
     }
     const deleteSectionHandler=(sectionId)=>{
-        dispatch(deleteSection(sectionId))
+        dispatch(deleteSection(course._id,sectionId))
     }
 
 

@@ -86,17 +86,17 @@ export const sectionEdit = (data) => {
     }
 }
 
-export const deleteSection = (sectionId) => {
+export const deleteSection = (courseId,sectionId) => {
     console.log(sectionId)
     return async (dispatch) => {
         toast.loading('loading')
         const api = editCourse.deleteSection
         try {
-            // const response = await apiConnector('DELETE', api, { sectionId })
-            // console.log(response)
+            const response = await apiConnector('DELETE', api, { courseId,sectionId })
+            console.log(response)
             toast.dismiss()
             toast.success('Section deleted')
-            // dispatch(setCourse(response.data.data))
+            dispatch(setCourse(response.data.data))
 
         } catch (err) {
             console.log(err)

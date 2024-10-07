@@ -62,7 +62,7 @@ exports.updateSection = async (req, res) => {
 exports.deleteSection = async (req, res) => {
     try {
         // console.log('req.params-',req.params)
-        const { sectionId } = req.body
+        const {courseId,sectionId } = req.body
         // console.log('sectionId',id)
         const sectionData = await Section.findById(sectionId)
         const subsectionIds = sectionData?.subSection
@@ -70,10 +70,17 @@ exports.deleteSection = async (req, res) => {
         subsectionIds && await SubSectionModel.deleteMany({ _id: { $in: subsectionIds } })
 
         await Section.findByIdAndDelete(sectionId)
+        const response=await Course.findByIdAndUpdate(courseId,{$pull:{ courseContent: sectionId }}).populate({
+            path:'courseContent',
+            populate:{
+                path:'subSection'
+            }
+        })
         // Todo:do we need to delete from course
         return res.status(200).json({
             success: true,
-            message: 'Section deleted successfully'
+            message: 'Section deleted successfully',
+            data:response
         })
     } catch (err) {
         console.log(err)

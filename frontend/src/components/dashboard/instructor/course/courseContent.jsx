@@ -4,10 +4,12 @@ import { RxDropdownMenu } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
+
+
 const CourseContent = ({editSectionHandler,deleteSectionHandler}) => {
     // const dropDown = useRef([])
-    const course = useSelector(state => state.course.course)
-    console.log(course)
+    const course = useSelector(state => state?.course?.MyCourse)
+    // console.log(course)
     const [openSection, setOpenSection] = useState({})
     const handleOpener=(id)=>{  
         setOpenSection((prev)=>({

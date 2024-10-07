@@ -15,7 +15,7 @@ const CourseIntroForm = () => {
     const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm()
     const courseCategories = useSelector(state => state.course.courseCategories)
     const editCourse = useSelector(state => state.course.editCourse)
-    const course=useSelector(state=>state.course.course)
+    const course=useSelector(state=>state?.course?.MyCourse)
 
 
 
