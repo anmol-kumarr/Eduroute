@@ -4,6 +4,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { changeState, setEditCourse } from "../../../../redux/slice/courseSlice";
 import { createSection } from "../../../../services/operation/course";
+import CourseContent from "./courseContent";
 const CourseBuilder = () => {
     const { register, handleSubmit, setValue, getValue, formState: { errors } } = useForm()
     const [editSection, setEditSection] = useState(null)
@@ -26,7 +27,7 @@ const CourseBuilder = () => {
     const submit = (data) => {
         const values = {
             courseId: course._id,
-            sectionName:data.section
+            sectionName: data.section
         }
         console.log(data)
         if (editSection) {
@@ -82,7 +83,7 @@ const CourseBuilder = () => {
 
 
             <div>
-
+                <CourseContent></CourseContent>
             </div>
 
         </div>

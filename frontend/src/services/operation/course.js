@@ -28,16 +28,18 @@ export const createCourse = (formData) => {
         try {
             const response = await apiConnector('POST', api, formData)
             console.log(response)
+            toast.dismiss()
             toast.success("course created")
             // toast.dismiss()
             dispatch(setCourse(response.data.data))
             dispatch(changeState(2))
         } catch (err) {
             console.log(err)
+            toast.dismiss()
             toast.error('Error while creating course')
         }
 
-        toast.remove()
+        // toast.remove()
 
     }
 }

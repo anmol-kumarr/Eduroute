@@ -24,7 +24,9 @@ exports.auth=async (req,res,next)=>{
             next()
 
         }catch(err){
+            console.log(err)
             res.status(401).json({
+                
                 success:false,
                 message:'Invalid token'
             })
