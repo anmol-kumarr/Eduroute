@@ -41,6 +41,8 @@ app.use('/api/v1/course',courseRoutes)
 app.listen(port,()=>{
     console.log('app is running on port',process.env.PORT)
 })
+
+
 app.get('/api/v1/hello',(req,res)=>{
     res.send(`App is running successfully on port ${port}`)
     res.status(200).json({

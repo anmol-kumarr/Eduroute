@@ -4,9 +4,10 @@ import { RxDropdownMenu } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
-const CourseContent = () => {
+const CourseContent = ({editSectionHandler,deleteSectionHandler}) => {
     // const dropDown = useRef([])
     const course = useSelector(state => state.course.course)
+    console.log(course)
     const [openSection, setOpenSection] = useState({})
     const handleOpener=(id)=>{  
         setOpenSection((prev)=>({
@@ -22,19 +23,19 @@ const CourseContent = () => {
             <div className="bg-richblack-700 p-2 rounded-md">{
                 course?.courseContent?.map((section) => (
 
-                    < details key={section._id} open={openSection[section._id] || false}  onClick={()=>handleOpener(section._id)}>
+                    < details className="border-b border-richblack-600" key={section._id} open={openSection[section._id] || false}  onClick={()=>handleOpener(section._id)}>
                         <summary className="flex justify-between">
                             <div className="flex gap-1  items-center">
                                 <RxDropdownMenu></RxDropdownMenu>
                                 {section.sectionName}
                             </div>
-                            <div className="flex px-2">
+                            <div className="flex  gap-1 px-2 items-center">
                                 <div className=" flex gap-1 text-lg">
 
-                                    <button type="button">
+                                    <button type="button" >
                                         <MdEdit></MdEdit>
                                     </button>
-                                    <button className="border-r-[1.5px] border-richblack-600">
+                                    <button onClick={()=>deleteSectionHandler((section._id))} className="border-r-[1.5px] pr-2 border-richblack-600">
                                         <MdDelete></MdDelete>
                                     </button>
 

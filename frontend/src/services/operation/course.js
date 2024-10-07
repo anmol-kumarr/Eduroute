@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { categoriesApi, createCourseApi } from "../api"
+import { categoriesApi, createCourseApi, editCourse } from "../api"
 import { apiConnector } from "../apiconnector"
 import { useDispatch } from "react-redux"
 import { changeState, setCourse, setCourseCategories } from "../../redux/slice/courseSlice"
@@ -45,23 +45,64 @@ export const createCourse = (formData) => {
 }
 
 
-export const createSection=(data)=>{
+export const createSection = (data) => {
     toast.loading('loading')
-    const api=createCourseApi.createSection
-    return async(dispatch)=>{
-        try{
+    const api = createCourseApi.createSection
+    return async (dispatch) => {
+        try {
 
-            const response=await apiConnector('POST',api,data)
+            const response = await apiConnector('POST', api, data)
             console.log(response)
             dispatch(setCourse(response.data.data))
             toast.dismiss()
             toast.success('Section created')
-        }catch(err)
-        {
+        } catch (err) {
             toast.dismiss()
             console.log(err)
             toast.error('Cannot create section')
         }
 
+    }
+}
+
+
+
+export const sectionEdit = (data) => {
+    return async (dispatch) => {
+        toast.loading('loading')
+        try {
+            const api = editCourse.editSection
+            const response = await apiConnector('PUT', api, data)
+            toast.remove()
+            toast.success('Section edited successfully')
+            dispatch(setCourse(response.data.data))
+
+
+        } catch (err) {
+            console.log(err)
+            toast.dismiss()
+            toast.error('Cannot edit section')
+        }
+    }
+}
+
+export const deleteSection = (sectionId) => {
+    console.log(sectionId)
+    return async (dispatch) => {
+        toast.loading('loading')
+        const api = editCourse.deleteSection
+        try {
+            // const response = await apiConnector('DELETE', api, { sectionId })
+            // console.log(response)
+            toast.dismiss()
+            toast.success('Section deleted')
+            // dispatch(setCourse(response.data.data))
+
+        } catch (err) {
+            console.log(err)
+            toast.dismiss()
+            toast.error('Cannot delete section')
+
+        }
     }
 }

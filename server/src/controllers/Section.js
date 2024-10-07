@@ -14,7 +14,7 @@ exports.createSection = async (req, res) => {
         }
 
         const sectionCreate = await Section.create({ sectionName })
-        const updateCourse = await Course.findByIdAndUpdate(courseId , { $push: { courseContent: sectionCreate._id } }, { new: true }).populate('courseContent')
+        const updateCourse = await Course.findByIdAndUpdate(courseId, { $push: { courseContent: sectionCreate._id } }, { new: true }).populate('courseContent')
 
         return res.status(200).json({
             success: true,
@@ -35,14 +35,14 @@ exports.createSection = async (req, res) => {
 exports.updateSection = async (req, res) => {
     try {
         const { sectionName, sectionId } = req.body
-        if (!sectionName|| !sectionId) {
+        if (!sectionName || !sectionId) {
             return res.status(400).json({
                 success: false,
                 message: 'Fields are required'
             })
         }
 
-        const updatedSection = await Section.findByIdAndUpdate( sectionId , { sectionName }, { new: true })
+        const updatedSection = await Section.findByIdAndUpdate(sectionId, { sectionName }, { new: true })
 
         return res.status(200).json({
             success: true,
@@ -62,11 +62,13 @@ exports.updateSection = async (req, res) => {
 exports.deleteSection = async (req, res) => {
     try {
         // console.log('req.params-',req.params)
-        const  {sectionId } = req.query
+        const { sectionId } = req.body
         // console.log('sectionId',id)
-        const sectionData=await Section.findById(sectionId)
-        const subsectionIds=sectionData.subSection
-        await SubSectionModel.deleteMany({_id:{$in:subsectionIds}})
+        const sectionData = await Section.findById(sectionId)
+        const subsectionIds = sectionData?.subSection
+
+        subsectionIds && await SubSectionModel.deleteMany({ _id: { $in: subsectionIds } })
+
         await Section.findByIdAndDelete(sectionId)
         // Todo:do we need to delete from course
         return res.status(200).json({
