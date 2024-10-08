@@ -1,6 +1,6 @@
 import ModalBtn from "./modalbtn"
 
-const Modal = ({ textOne, textTwo, btnOneText, btnTwoText, btnOneHandler, btnTwoHandler, }) => {
+const Modal = ({ textOne, textTwo, btnOneText, btnTwoText, btnOneHandler, btnTwoHandler }) => {
     console.log(textOne)
 
     return (

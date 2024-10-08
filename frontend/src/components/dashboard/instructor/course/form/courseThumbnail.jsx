@@ -3,15 +3,15 @@ import toast from "react-hot-toast"
 import { IoMdCloudUpload } from "react-icons/io";
 import { useSelector } from "react-redux";
 const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue }) => {
-    const editCourse=useSelector(state=>state.course.editCourse)
+    const editCourse = useSelector(state => state.course.editCourse)
     const [file, setFile] = useState(null)
 
 
     const [preview, setPreview] = useState(null)
 
-    useEffect(()=>{
+    useEffect(() => {
         // console.log('hello')
-    },[])
+    }, [])
 
     const fileHandler = (e) => {
         const file = e.target.files[0]
@@ -41,16 +41,9 @@ const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue })
 
                 <label htmlFor="thumbnail">Course Thumbnail</label>
 
-                {/* {
-                    preview && (
-                        <div onClick={clearImage} className="text-[#ff0000] font-semibold cursor-pointer">
-                            Remove
-                        </div>
-                    )
-                } */}
+
             </div>
 
-            {/* <br /> */}
 
 
             {
@@ -85,14 +78,7 @@ const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue })
                     )
 
             }
-            {/* <div className="w-full">
-                {
-                    preview && (
-
-                       
-                    )
-                }
-            </div> */}
+        
         </div>
     )
 }
