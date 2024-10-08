@@ -1,6 +1,7 @@
 const Section = require('../models/Section.Model')
 const SubSectionModel = require('../models/SubSection.Model')
 const Course = require('../models/course.Model')
+const { User } = require('./Profile')
 
 
 exports.createSection = async (req, res) => {
@@ -34,7 +35,7 @@ exports.createSection = async (req, res) => {
 
 exports.updateSection = async (req, res) => {
     try {
-        const { sectionName, sectionId } = req.body
+        const { sectionName, sectionId,courseId } = req.body
         if (!sectionName || !sectionId) {
             return res.status(400).json({
                 success: false,
@@ -43,10 +44,17 @@ exports.updateSection = async (req, res) => {
         }
 
         const updatedSection = await Section.findByIdAndUpdate(sectionId, { sectionName }, { new: true })
+        const response=await  Course.findById(courseId).populate({
+            path:'courseContent',
+            populate:{
+                path:'subSection'
+            }
+        })
 
         return res.status(200).json({
             success: true,
-            message: 'section updated successfully'
+            message: 'section updated successfully',
+            data:response
         })
 
     } catch (err) {

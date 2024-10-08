@@ -7,9 +7,10 @@ import { createSection, deleteSection, sectionEdit } from "../../../../services/
 import CourseContent from "./courseContent";
 
 const CourseBuilder = () => {
-    const { register, handleSubmit, setValue, getValue, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm()
     const [editSection, setEditSection] = useState(null)
     const course = useSelector(state => state?.course?.MyCourse)
+    const[editSectionId,setEditSectionId]=useState(null)
 
     // const editCourse = useSelector()
     const dispatch = useDispatch()
@@ -26,29 +27,46 @@ const CourseBuilder = () => {
         dispatch(changeState(1))
     }
     const submit = (data) => {
-        const values = {
-            courseId: course?._id,
-            sectionName: data.section
-        }
-        console.log(data)
         if (editSection) {
-            return
-        }
-        else {
-            dispatch(createSection(values))
-        }
+            const value={
+                sectionName:data.section,
+                sectionId:editSectionId,
+                courseId:course._id
+            }
 
-    }
-    const editSectionHandler=(sectionName,sectionId)=>{
-        const values={
-            sectionName:sectionName,
-            sectionId:sectionId
+            dispatch(sectionEdit(value,setEditSection,setValue))
+            setEditCourse(false)
+        } else {
+
+            const values = {
+                courseId: course?._id,
+                sectionName: data.section
+            }
+            console.log(data)
+            if (editSection) {
+                return
+            }
+            else {
+                dispatch(createSection(values))
+            }
+
         }
-        dispatch(sectionEdit(values))
     }
-    const deleteSectionHandler=(sectionId)=>{
-        dispatch(deleteSection(course._id,sectionId))
+    const editSectionHandler = (sectionName, sectionId) => {
+        console.log('hello')
+        setEditSection(true)
+        setValue('section',sectionName)
+        setEditSectionId(sectionId)
+        
+        // const secitonName = getValues('section')
+        // const values = {
+        //     sectionName: secitonName,
+        //     sectionId: sectionId
+        // }
+        // dispatch(sectionEdit(values))
+        // setEditCourse(false)
     }
+   
 
 
     return (
@@ -94,7 +112,10 @@ const CourseBuilder = () => {
 
 
             <div>
-                <CourseContent deleteSectionHandler={deleteSectionHandler} editSectionHandler={editSectionHandler}></CourseContent>
+                {
+
+                    <CourseContent  editSectionHandler={editSectionHandler}></CourseContent>
+                }
             </div>
 
         </div>

@@ -67,14 +67,22 @@ export const createSection = (data) => {
 
 
 
-export const sectionEdit = (data) => {
+export const sectionEdit = (data,setEditSection,setValue) => {
     return async (dispatch) => {
         toast.loading('loading')
         try {
             const api = editCourse.editSection
             const response = await apiConnector('PUT', api, data)
+            console.log(response)
             toast.remove()
+            
             toast.success('Section edited successfully')
+            setEditSection(null)
+            setValue('section','')
+            // const value={
+            //     ...course,
+
+            // }
             dispatch(setCourse(response.data.data))
 
 
