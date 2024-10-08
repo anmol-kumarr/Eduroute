@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UploadVideo from "./uploadVideo";
+import { createSubSection } from "../../../../services/operation/course";
 const SubSectionModal = ({
     id,
     type,
@@ -13,67 +14,105 @@ const SubSectionModal = ({
     view = false,
     edit = false
 }) => {
-    const { register, handleSubmit, setvalue, getValues, formState: { errors } } = useForm()
-    const loading = useSelector(state => state.user.loading)
-    const submitHandler = () => {
+    const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm()
+    const loading = useSelector(state => state.course.loading)
+    const course=useSelector(state=>state.course.MyCourse)
+
+
+const dispatch=useDispatch()
+
+    const submitHandler = (data) => {
+        if(edit){
+
+        }
+        else{
+            console.log(data)
+            const formData=new FormData()
+            formData.append('video',data.videoLecture)
+            formData.append('title',data.lectureTitle)
+            formData.append('description',data.description)
+            formData.append('sectionId',id)
+            formData.append('courseId',course?._id)
+            formData.append('timeDuration',data.timeDuration)
+
+
+            dispatch(createSubSection(formData))
+
+
+        }
 
     }
     return (
-        <div>
-            <div>
-                <div className="flex bg-richblack-800 text-richblack-25 p-2 justify-between items-center ">
-                    <p>{type} lecture</p>
-                    <button onClick={!loading &&(()=> setSubSectionModal(false))} type="button"><RxCross2></RxCross2></button>
-                </div>
-                <div>
-                    <form onSubmit={handleSubmit(submitHandler)}>
+        <div className="absolute top-0 -bottom-[100%] right-0 left-0 bg-richblack-900 bg-opacity-80">
 
-                        <UploadVideo
-                            name={'lectureVideo'}
-                            label={'Lecture Video'}
-                            register={register}
-                            setValue={setvalue}
-                            getValues={getValues}
-                            errors={errors}
-                            video={true}
-                            viewData={view ? video : null}
-                            editData={edit ? video : null}
-                        ></UploadVideo>
+            <div className="w-1/2 rounded-md my-[10%] mx-auto bg-richblack-800  py-3 px-4">
+                <div className="flex flex-col gap-2">
+                    <div className="flex bg-richblack-800 rounded-md text-richblack-25 p-2 justify-between items-center ">
+                        <p>{type} lecture</p>
+                        <button onClick={!loading && (() => setSubSectionModal(false))} type="button"><RxCross2></RxCross2></button>
+                    </div>
+                    <hr className="text-richblack-600" />
+                    <div>
+                        <form onSubmit={handleSubmit(submitHandler)}>
 
-                        <div>
+                            <UploadVideo
+                                name={'lectureVideo'}
+                                label={'Lecture Video'}
+                                register={register}
+                                setValue={setValue}
+                                getValues={getValues}
+                                errors={errors}
+                                video={true}
+                                viewData={view ? video : null}
+                                editData={edit ? video : null}
+                            ></UploadVideo>
 
-
-                            <label htmlFor="lectureTitle">Lecture title</label><br />
-                            <input type="text" id="lectureTitle" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 text-sm py-2 px-2" placeholder="Enter lecture title" {...register('lectureTitle', { required: true })} />
-                            {
-                                errors.lectureTitle && <span>Please lecture title</span>
-                            }
+                            <div className="my-2">
 
 
-                        </div>
-
-                        <div>
-                            <label htmlFor="lectureDescription">Lecture description</label><br />
-                            <input type="text" id="lectureDescription" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 text-sm py-2 px-2" placeholder="Enter lecture title" {...register('lectureDescription', { required: true })} />
-                            {
-                                errors.lectureTitle && <span>Please lecture title</span>
-                            }
+                                <label htmlFor="lectureTitle">Lecture title</label><br />
+                                <input type="text" id="lectureTitle" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 text-sm py-2 px-2" placeholder="Enter lecture title" {...register('lectureTitle', { required: true })} />
+                                {
+                                    errors.lectureTitle && <span>Please lecture title</span>
+                                }
 
 
-                        </div>
+                            </div>
+                            <div className="my-2">
 
-                        <div>
-                            {
-                                view ? '' : (
-                                    <button>
-                                        {
-                                            edit ? 'Save changes' : 'Create lecture'
-                                        }
-                                    </button>
-                                )
-                            }
-                        </div>
-                    </form>
+
+                                <label htmlFor="timeDuration">Lecture duration</label><br />
+                                <input type="text" id="timeDuration" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 text-sm py-2 px-2" placeholder="Enter time duration " {...register('timeDuration', { required: true,valueAsNumber: true, })} />
+                                {
+                                    errors.timeDuration && <span>Please enter valid lecture duration</span>
+                                }
+
+
+                            </div>
+
+                            <div>
+                                <label htmlFor="lectureDescription">Lecture description</label><br />
+                                <input type="text" id="lectureDescription" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 text-sm py-2 px-2" placeholder="Enter lecture title" {...register('lectureDescription', { required: true })} />
+                                {
+                                    errors.lectureTitle && <span>Please lecture title</span>
+                                }
+
+
+                            </div>
+
+                            <div className="flex justify-center my-3 ">
+                                {
+                                    view ? '' : (
+                                        <button type="submit" className="bg-yellow-100 text-black text-semibold px-3 py-1 rounded-md">
+                                            {
+                                                edit ? 'Save changes' : 'Create lecture'
+                                            }
+                                        </button>
+                                    )
+                                }
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

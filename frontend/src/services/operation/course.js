@@ -2,8 +2,9 @@ import { useState } from "react"
 import { categoriesApi, createCourseApi, editCourse } from "../api"
 import { apiConnector } from "../apiconnector"
 import { useDispatch } from "react-redux"
-import { changeState, setCourse, setCourseCategories } from "../../redux/slice/courseSlice"
+import { changeState, setCourse, setCourseCategories, setLoading } from "../../redux/slice/courseSlice"
 import toast from "react-hot-toast"
+
 
 export const fetchCourseCategories = () => {
     // const dispatch=useDispatch()
@@ -111,6 +112,27 @@ export const deleteSection = (courseId,sectionId) => {
             toast.dismiss()
             toast.error('Cannot delete section')
 
+        }
+    }
+}
+
+
+export const createSubSection=(formData)=>{
+    return async(dispatch)=>{
+        dispatch(setLoading(true))
+        toast.loading('loading')
+        const api=editCourse.addSubSection
+        try{
+            const response=await apiConnector('POST',api,formData)
+            console.log(response)
+            dispatch(setCourse(response?.data?.data))
+            toast.dismiss()
+            toast.success("lecture added")
+            dispatch(setLoading(false))
+        }catch(err){
+            console.log(err)
+            toast.remove()
+            toast.error("cannot add lecture")
         }
     }
 }

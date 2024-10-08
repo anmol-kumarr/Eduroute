@@ -1,16 +1,17 @@
 const { mongoose } = require('mongoose')
 const SubSection = require('../models/SubSection.Model')
 const Section = require('../models/Section.Model')
+const  Course=require(('../models/course.Model'))
 const {ImageUpload} = require('../utils/Cloudinary')
 
 exports.createSubSection = async (req, res) => {
     try {
-        const { sectionId, title, timeDuration, description } = req.body
+        const { sectionId,courseId, title, timeDuration, description } = req.body
 
         const video  = req?.files?.video
 
         console.log('data of sub section creation',sectionId,title,timeDuration,description,video)
-        if (!sectionId, !title, !timeDuration, !description, !video) {
+        if (!sectionId,courseId, !title, !timeDuration, !description, !video) {
 
             return res.status(400).json({
                 success: false,
@@ -28,6 +29,12 @@ exports.createSubSection = async (req, res) => {
         console.log('seciton id-',sectionId)
     
         const updateSection = await Section.findByIdAndUpdate(sectionId,{ $push:{subSection:subSection._id } }, { new: true }).populate('subSection')
+        const response=await Course.findById(courseId).populate({
+            path:'courseContent',
+            populate:{
+                path:'subSection'
+            }
+        })
 
         console.log(updateSection)
 
@@ -38,7 +45,7 @@ exports.createSubSection = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: 'Sub section added successfully',
-            data: updateSection,
+            data:response
             
         })
 

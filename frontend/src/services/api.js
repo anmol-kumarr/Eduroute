@@ -30,5 +30,6 @@ export const createCourseApi={
 
 export const editCourse={
     editSection:BASE_URL+'course/update/section',
-    deleteSection:BASE_URL+'course/delete'
+    deleteSection:BASE_URL+'course/delete',
+    addSubSection:BASE_URL+'course/create/subSection'
 }

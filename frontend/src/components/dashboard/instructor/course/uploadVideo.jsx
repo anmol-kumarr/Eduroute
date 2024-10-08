@@ -6,7 +6,7 @@ const UploadVideo = ({
     register,
     errors,
     handleSubmit,
-    setValues,
+    setValue,
     getValues,
     name,
     label,
@@ -33,9 +33,11 @@ const UploadVideo = ({
         if (!supportedFileTypes.includes(file.type)) {
             return toast.error('File type not supported');
         }
-        // if (file.size > 1024 * 1024 * 2) {
-        //     return toast.error('image size should be less than 2mb')
-        // }
+        
+        setValue('videoLecture',file)
+        // // if (file.size > 1024 * 1024 * 2) {
+        // //     return toast.error('image size should be less than 2mb')
+        // // }
         setFile(file)
         setPreview(URL.createObjectURL(file))
 
@@ -44,6 +46,7 @@ const UploadVideo = ({
     const clearImage = () => {
         setFile(null)
         setPreview(null)
+        // setValue('videoLecture','')
     }
 
     // useEffect(() => {
