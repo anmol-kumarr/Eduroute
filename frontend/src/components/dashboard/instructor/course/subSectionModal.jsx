@@ -3,6 +3,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import UploadVideo from "./uploadVideo";
 import { createSubSection } from "../../../../services/operation/course";
+import { useEffect } from "react";
 const SubSectionModal = ({
     id,
     type,
@@ -11,10 +12,11 @@ const SubSectionModal = ({
     video,
     title,
     description,
+    timeDuration,
     view = false,
     edit = false
 }) => {
-    const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue,watch, getValues, formState: { errors } } = useForm()
     const loading = useSelector(state => state.course.loading)
     const course=useSelector(state=>state.course.MyCourse)
 
@@ -42,6 +44,27 @@ const dispatch=useDispatch()
         }
 
     }
+    useEffect(()=>{
+        // console.log(type)
+        // console.log(video)
+        // console.log(title)
+        // console.log(description)
+        // console.log(timeDuration)
+        // console.log(view)
+    
+        // if(edit||view){
+        //     setValue('lectureTitle',title)
+        //     setValue('timeDuration',timeDuration)
+        //     setValue('lectureDescription',description)
+        //     setValue('videoLecture',video)
+        // }
+    },[])
+
+
+    const lectureTitleValue = watch('lectureTitle');
+    console.log('title:',lectureTitleValue)
+
+
     return (
         <div className="absolute top-0 -bottom-[100%] right-0 left-0 bg-richblack-900 bg-opacity-80">
 

@@ -16,8 +16,8 @@ const CourseContent = ({ editSectionHandler}) => {
     const [confirmationModal, setConfirmationModal] = useState(null)
     const [openSection, setOpenSection] = useState(false)
     const [createSubSection, setCreateSubSection] = useState(null)
-    const [editSubSection, setEditSubSection] = useState('')
-    const [viewSubSection, setViewSubSection] = useState('')
+    const [editSubSection, setEditSubSection] = useState(null)
+    const [viewSubSection, setViewSubSection] = useState(null)
     const [subSectionModal, setSubSectionModal] = useState(false)
 
 
@@ -56,6 +56,27 @@ const CourseContent = ({ editSectionHandler}) => {
         })
     }
 
+    const viewSubSectionHandler=(sectionId,subSectionId)=>{
+        console.log(sectionId,subSectionId)
+        const data=course?.courseContent?.filter((section)=>section._id===sectionId)
+        const subSectionValue=data[0]?.subSection.filter((subSection)=>subSection._id===subSectionId)[0]
+        console.log(subSectionValue)
+        console.log(subSectionValue.videoUrl)
+        console.log(subSectionValue.title)
+
+        setViewSubSection({
+            type:'Edit',
+            view:true,
+            setSubSectionModal,
+            video:subSectionValue?.videoUrl,
+            title:subSectionValue?.title,
+            timeDuration:subSectionValue?.timeDuration,
+            description:subSectionValue?.description
+        })
+        setSubSectionModal(true)
+        
+    }
+
 
     return (
         <>
@@ -63,8 +84,8 @@ const CourseContent = ({ editSectionHandler}) => {
                 <div className="bg-richblack-700 p-2 mt-4 rounded-md">{
                     course?.courseContent?.map((section, index) => (
 
-                        < details className="border-b border-richblack-600" key={section._id} open={index === 0 ? true : openSection[section._id] ? true : false} onClick={() => handleOpener(section._id)}>
-                            <summary className="flex justify-between">
+                        < details className="" key={section._id} open={index === 0 ? true : openSection[section._id] ? true : false} onClick={() => handleOpener(section._id)}>
+                            <summary className="flex justify-between border-b border-richblack-600 pb-2">
                                 <div className="flex gap-1  items-center">
                                     <RxDropdownMenu></RxDropdownMenu>
                                     {section.sectionName}
@@ -115,17 +136,17 @@ const CourseContent = ({ editSectionHandler}) => {
                             </summary>
 
 
-                            <div className="p-3">
+                            <div className="px-3">
                                 {
                                     section?.subSection && section?.subSection?.map((subSection) => (
-                                        <div key={subSection._id} className="p-2">
+                                        <div onClick={()=>viewSubSectionHandler(section._id,subSection._id)} key={subSection._id} className="mb-5 border-b border-richblack-600 p-2 flex justify-between">
 
 
-                                            <div>
-                                                <RxDropdownMenu></RxDropdownMenu>
+                                            <div className="flex items-center gap-1">
+                                                <RxDropdownMenu className="-mb-[2px]"></RxDropdownMenu>
                                                 {subSection.title}
                                             </div>
-                                            <div>
+                                            <div className="flex gap-1">
                                                 <button onClick={() => setEditSubSection(subSection._id)} type="button">
                                                     <MdEdit></MdEdit>
                                                 </button>
@@ -161,7 +182,7 @@ const CourseContent = ({ editSectionHandler}) => {
                                     {...createSubSection}
                                 ></SubSectionModal>) :
                                 editSubSection ? <SubSectionModal subSectionModalData={editSubSection}></SubSectionModal> :
-                                    viewSubSection && <SubSectionModal subSectionModalData={viewSubSection}></SubSectionModal>
+                                    viewSubSection && <SubSectionModal {...viewSubSection}></SubSectionModal>
 
                         )
                     }
