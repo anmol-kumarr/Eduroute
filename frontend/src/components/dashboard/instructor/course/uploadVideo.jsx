@@ -25,6 +25,11 @@ const UploadVideo = ({
     // useEffect(() => {
     //     // console.log('hello')
     // }, [])
+    useEffect(()=>{
+        if(viewData || editData){
+                setPreview(video)
+        }
+    },[])
 
     const fileHandler = (e) => {
         const file = e.target.files[0]

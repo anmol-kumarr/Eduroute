@@ -32,7 +32,7 @@ const dispatch=useDispatch()
             const formData=new FormData()
             formData.append('video',data.videoLecture)
             formData.append('title',data.lectureTitle)
-            formData.append('description',data.description)
+            formData.append('description',data.lectureDescription)
             formData.append('sectionId',id)
             formData.append('courseId',course?._id)
             formData.append('timeDuration',data.timeDuration)
@@ -45,24 +45,26 @@ const dispatch=useDispatch()
 
     }
     useEffect(()=>{
-        // console.log(type)
-        // console.log(video)
-        // console.log(title)
-        // console.log(description)
-        // console.log(timeDuration)
-        // console.log(view)
+        console.log('type',type)
+        console.log(video)
+        console.log(title)
+        console.log(description)
+        console.log(timeDuration)
+        console.log(view)
+        console.log('end')
+        console.log(setSubSectionModal)
     
-        // if(edit||view){
-        //     setValue('lectureTitle',title)
-        //     setValue('timeDuration',timeDuration)
-        //     setValue('lectureDescription',description)
-        //     setValue('videoLecture',video)
-        // }
+        if(edit||view){
+            setValue('lectureTitle',title)
+            setValue('timeDuration',timeDuration)
+            setValue('lectureDescription',description)
+            setValue('videoLecture',video)
+        }
     },[])
 
 
     const lectureTitleValue = watch('lectureTitle');
-    console.log('title:',lectureTitleValue)
+    // console.log('title:',lectureTitleValue)
 
 
     return (
@@ -85,7 +87,7 @@ const dispatch=useDispatch()
                                 setValue={setValue}
                                 getValues={getValues}
                                 errors={errors}
-                                video={true}
+                                video={video?video:null}
                                 viewData={view ? video : null}
                                 editData={edit ? video : null}
                             ></UploadVideo>
