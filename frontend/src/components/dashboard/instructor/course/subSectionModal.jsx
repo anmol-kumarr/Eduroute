@@ -9,6 +9,9 @@ const SubSectionModal = ({
     type,
     create = false,
     setSubSectionModal,
+    setEditSubSection,
+    setCreateSubSection,
+    setViewSubSection,
     video,
     title,
     description,
@@ -16,26 +19,26 @@ const SubSectionModal = ({
     view = false,
     edit = false
 }) => {
-    const { register, handleSubmit, setValue,watch, getValues, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, watch, getValues, formState: { errors } } = useForm()
     const loading = useSelector(state => state.course.loading)
-    const course=useSelector(state=>state.course.MyCourse)
+    const course = useSelector(state => state.course.MyCourse)
 
 
-const dispatch=useDispatch()
+    const dispatch = useDispatch()
 
     const submitHandler = (data) => {
-        if(edit){
+        if (edit) {
 
         }
-        else{
+        else {
             console.log(data)
-            const formData=new FormData()
-            formData.append('video',data.videoLecture)
-            formData.append('title',data.lectureTitle)
-            formData.append('description',data.lectureDescription)
-            formData.append('sectionId',id)
-            formData.append('courseId',course?._id)
-            formData.append('timeDuration',data.timeDuration)
+            const formData = new FormData()
+            formData.append('video', data.videoLecture)
+            formData.append('title', data.lectureTitle)
+            formData.append('description', data.lectureDescription)
+            formData.append('sectionId', id)
+            formData.append('courseId', course?._id)
+            formData.append('timeDuration', data.timeDuration)
 
 
             dispatch(createSubSection(formData))
@@ -44,28 +47,35 @@ const dispatch=useDispatch()
         }
 
     }
-    useEffect(()=>{
-        console.log('type',type)
-        console.log(video)
-        console.log(title)
-        console.log(description)
-        console.log(timeDuration)
-        console.log(view)
-        console.log('end')
-        console.log(setSubSectionModal)
-    
-        if(edit||view){
-            setValue('lectureTitle',title)
-            setValue('timeDuration',timeDuration)
-            setValue('lectureDescription',description)
-            setValue('videoLecture',video)
+    useEffect(() => {
+        // console.log('type', type)
+        // console.log(video)
+        // console.log(title)
+        // console.log(description)
+        // console.log(timeDuration)
+        // console.log(view)
+        // console.log('end')
+        // console.log(setSubSectionModal)
+
+        if (edit || view) {
+            setValue('lectureTitle', title)
+            setValue('timeDuration', timeDuration)
+            setValue('lectureDescription', description)
+            setValue('videoLecture', video)
         }
-    },[])
+    }, [])
 
 
     const lectureTitleValue = watch('lectureTitle');
     // console.log('title:',lectureTitleValue)
 
+
+    const modalHandler = () => {
+        setViewSubSection(null)
+        setEditSubSection(null)
+        setCreateSubSection(null)
+        setSubSectionModal(false)
+    }
 
     return (
         <div className="absolute top-0 -bottom-[100%] right-0 left-0 bg-richblack-900 bg-opacity-80">
@@ -74,7 +84,7 @@ const dispatch=useDispatch()
                 <div className="flex flex-col gap-2">
                     <div className="flex bg-richblack-800 rounded-md text-richblack-25 p-2 justify-between items-center ">
                         <p>{type} lecture</p>
-                        <button onClick={!loading && (() => setSubSectionModal(false))} type="button"><RxCross2></RxCross2></button>
+                        <button onClick={!loading && (modalHandler)} type="button"><RxCross2></RxCross2></button>
                     </div>
                     <hr className="text-richblack-600" />
                     <div>
@@ -87,7 +97,7 @@ const dispatch=useDispatch()
                                 setValue={setValue}
                                 getValues={getValues}
                                 errors={errors}
-                                video={video?video:null}
+                                video={video ? video : null}
                                 viewData={view ? video : null}
                                 editData={edit ? video : null}
                             ></UploadVideo>
@@ -107,7 +117,7 @@ const dispatch=useDispatch()
 
 
                                 <label htmlFor="timeDuration">Lecture duration</label><br />
-                                <input type="text" id="timeDuration" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 text-sm py-2 px-2" placeholder="Enter time duration " {...register('timeDuration', { required: true,valueAsNumber: true, })} />
+                                <input type="text" id="timeDuration" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 text-sm py-2 px-2" placeholder="Enter time duration " {...register('timeDuration', { required: true, valueAsNumber: true, })} />
                                 {
                                     errors.timeDuration && <span>Please enter valid lecture duration</span>
                                 }
