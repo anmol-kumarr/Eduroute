@@ -119,12 +119,25 @@ const CourseContent = ({ editSectionHandler }) => {
     //     console.log(viewSubSection)
     // },[viewSubSection])
 
-    const nextHandler=()=>{
-        if(course?.courseContent?.length>0 && course?.courseContent?.subSection?.length>0)
-        {
+    const nextHandler = () => {
+        // console.log(course?.courseContent.length)
+        // console.log(course?.courseContent[0]?.subSection)
+        if (course?.courseContent?.length > 0) {
+            for (let i = 0; i < course?.courseContent?.length; i++) {
+
+                if (!course?.courseContent[i]?.subSection?.length > 0) {
+
+                    return toast.error('Please add course content')
+                    // console.log(course?.courseContent[i].subSection?.length)
+                }
+                // else{
+                // }
+            }
+
             dispatch(changeState(3))
         }
-        else{
+    
+        else {
             toast.error('Please add course content')
         }
     }
@@ -199,7 +212,7 @@ const CourseContent = ({ editSectionHandler }) => {
                                                 <RxDropdownMenu className="-mb-[2px]"></RxDropdownMenu>
                                                 {subSection.title}
                                             </div>
-                                            <div onClick={(e)=>e.stopPropagation()} className="flex gap-1">
+                                            <div onClick={(e) => e.stopPropagation()} className="flex gap-1">
                                                 <button onClick={() => editSubSectionHandler(subSection._id, section._id)} type="button">
                                                     <MdEdit></MdEdit>
                                                 </button>
@@ -246,7 +259,7 @@ const CourseContent = ({ editSectionHandler }) => {
                     }
 
                     <div className="my-5 flex justify-center">
-                        <button type="button" onClick={()=>nextHandler()} className="bg-yellow-100 flex items-center gap-1 text-black font-semibold rounded-md px-3 py-1">Next <IoArrowForward className="-mb-[2px]"></IoArrowForward></button>
+                        <button type="button" onClick={() => nextHandler()} className="bg-yellow-100 flex items-center gap-1 text-black font-semibold rounded-md px-3 py-1">Next <IoArrowForward className="-mb-[2px]"></IoArrowForward></button>
                     </div>
                 </div >
             }
