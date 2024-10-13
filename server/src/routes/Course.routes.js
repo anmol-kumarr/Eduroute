@@ -1,7 +1,7 @@
 const express = require('express')
 const { route } = require('./Profile.routes')
 const { isInstructor, auth, isAdmin } = require('../middleware/Auth.Mw')
-const { createCourse, getCourseDetails, updateCourse } = require('../controllers/Course')
+const { createCourse, getCourseDetails, updateCourse, getInstructorCourse } = require('../controllers/Course')
 const { createCategories, showCategories } = require('../controllers/Categories')
 const { createSection, updateSection, deleteSection } = require('../controllers/Section')
 const { createSubSection, updateSubsection, deleteSubSection } = require('../controllers/SubSection')
@@ -13,6 +13,7 @@ routes.post('/create/category',[auth,isAdmin],createCategories)
 routes.post('/create', [auth, isInstructor],createCourse)
 routes.get('/details/',[auth,isInstructor],getCourseDetails)
 routes.put('/update',[auth,isInstructor],updateCourse)
+routes.get('/instructor/my-course',[auth,isInstructor],getInstructorCourse)
 // -----------------------------------------------------------------
 
 
