@@ -75,6 +75,50 @@ exports.createCourse = async (req, res) => {
     }
 }
 
+exports.updateCourse=async(req,res)=>{
+    try{
+        const{status,courseId}=req.body
+        console.log('body',req.body)
+        if(!status|| !courseId){
+            return res.status(400).json({
+                success:false,
+                message:'Data is missing'
+            })
+        }
+
+        const response=await Course.findByIdAndUpdate(courseId,{status}).populate({
+            path:'intructor',
+            populate:{
+                path:'addtionalDetails'
+            }
+        }).populate({
+            path:'courseContent',
+            populate:{
+                path:'subSection'
+            }
+        })
+        .populate('categories').exec()
+
+
+        return res.status(200).json({
+            success:true,
+            message:'Course published',
+            data:response
+        })
+
+        
+
+
+
+    }catch(err){
+        console.log(err)
+        return res.status(500).json({
+            success:false,
+            message:'Internal server error'
+        })
+    }
+}
+
 
 
 exports.getAllCourses = async (req, res) => {
@@ -142,3 +186,5 @@ exports.getCourseDetails=async(req,res)=>{
         })
     }
 }
+
+
