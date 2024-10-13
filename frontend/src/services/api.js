@@ -34,3 +34,7 @@ export const editCourse={
     deleteSection:BASE_URL+'course/delete',
     addSubSection:BASE_URL+'course/create/subSection'
 }
+
+export const instructor={
+    getInstructorCourse:BASE_URL+'instructor/my-course',
+}
