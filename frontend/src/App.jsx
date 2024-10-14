@@ -22,6 +22,7 @@ import Cart from "./components/dashboard/cart";
 import Setting from "./components/dashboard/setting";
 import { useSelector } from "react-redux";
 import AddCourse from "./components/dashboard/instructor/course/addCourse";
+import MyCourse from "./components/dashboard/instructor/mycourse/myCourse";
 
 
 
@@ -55,8 +56,10 @@ function App() {
           <Route path='/dashboard/setting' element={<Setting></Setting>}></Route>
           <Route path='/dashboard/cart' element={<Cart></Cart>}></Route>
 
-          if(userType==='Instructor'){
+          if(userType==='Instructor'){<>
             <Route path="/dashboard/add-course" element={<AddCourse></AddCourse>} />
+            <Route path="/dashboard/my-courses" element={<MyCourse></MyCourse>} />
+          </>
           }
 
         </Route>

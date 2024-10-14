@@ -67,6 +67,25 @@ export const createSection = (data) => {
 }
 
 
+export const uploadCourseStatus=(formData,courseId,navigate)=>{
+    return async(dispatch)=>{
+        toast.loading('loading')
+        const api=editCourse.publishCourse
+        try{
+            const response=await apiConnector('PUT',api,{status:formData,courseId})
+            console.log(response)
+            dispatch(setCourse(response?.data?.data))
+            navigate('/dashboard/my-courses')
+            toast.dismiss()
+            toast.success('course uploaded')
+        }catch(err){
+            console.log(err)
+            toast.dismiss()
+            toast.error('Error while saving course')
+        }
+    }
+}
+
 
 export const sectionEdit = (data,setEditSection,setValue) => {
     return async (dispatch) => {

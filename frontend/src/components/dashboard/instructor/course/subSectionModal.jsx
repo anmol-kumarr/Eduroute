@@ -84,7 +84,7 @@ const SubSectionModal = ({
                 <div className="flex flex-col gap-2">
                     <div className="flex bg-richblack-800 rounded-md text-richblack-25 p-2 justify-between items-center ">
                         <p>{type} lecture</p>
-                        <button onClick={!loading && (modalHandler)} type="button"><RxCross2></RxCross2></button>
+                        <button onClick={!loading ? (modalHandler):undefined} type="button"><RxCross2></RxCross2></button>
                     </div>
                     <hr className="text-richblack-600" />
                     <div>
