@@ -35,6 +35,6 @@ export const editCourse={
     addSubSection:BASE_URL+'course/create/subSection'
 }
 
-export const instructor={
-    getInstructorCourse:BASE_URL+'instructor/my-course',
+export const instructorApi={
+    getInstructorCourse:BASE_URL+'course/instructor/my-course',
 }

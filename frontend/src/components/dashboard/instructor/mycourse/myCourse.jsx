@@ -1,8 +1,16 @@
 import { useEffect } from "react";
 import { HiOutlinePlus } from "react-icons/hi";
+import { instructorApi } from "../../../../services/api";
+import {apiConnector} from '../../../../services/apiconnector.js'
 const MyCourse = () => {
     useEffect(() => {
-        
+        const api = instructorApi.getInstructorCourse
+        console.log(api)
+
+        return async () => {
+            const response=await apiConnector('GET',api)
+            console.log(response)
+        }
     }, [])
     return (
         <div className="w-full">
