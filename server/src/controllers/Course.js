@@ -3,7 +3,7 @@ const Course = require('../models/course.Model')
 const Categories = require('../models/Categories.model')
 const User = require('../models/User.Model')
 const { ImageUpload } = require('../utils/Cloudinary')
-
+const Section = require('../models/Section.Model')
 exports.createCourse = async (req, res) => {
     try {
         const { courseName, courseDescription, whatYouWillLearn, price, tag, categories, status, instruction } = req.body
@@ -223,6 +223,43 @@ exports.getInstructorCourse = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: 'Something went wrong'
+        })
+    }
+}
+
+
+exports.deleteCourse = async (req, res) => {
+    try {
+        const { id } = req.body
+        const course = await Course.findById(id)
+        const section = course?.courseContent
+
+        const response = section.map((section) => {
+            return async () => {
+
+                const sectionResponse = await Section.findById(section)
+                const subSectionIds = sectionResponse && sectionResponse?.subSection
+
+                await Section.deleteMany({ id: { $in: subSectionIds } })
+
+                await Section.findByIdAndDelete(section)
+
+
+            }
+        })
+
+        return res.status(200).json({
+            success:false,
+            message:'Course deleted successfully'
+        })
+
+
+
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({
+            success: false,
+            message: 'Error while deleting course'
         })
     }
 }
