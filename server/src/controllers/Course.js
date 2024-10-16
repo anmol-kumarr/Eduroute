@@ -4,6 +4,8 @@ const Categories = require('../models/Categories.model')
 const User = require('../models/User.Model')
 const { ImageUpload } = require('../utils/Cloudinary')
 const Section = require('../models/Section.Model')
+
+const SubSection =require('../models/SubSection.Model')
 exports.createCourse = async (req, res) => {
     try {
         const { courseName, courseDescription, whatYouWillLearn, price, tag, categories, status, instruction } = req.body
@@ -231,26 +233,52 @@ exports.getInstructorCourse = async (req, res) => {
 exports.deleteCourse = async (req, res) => {
     try {
         const { id } = req.body
+        const instructorId = req.user.id
         const course = await Course.findById(id)
         const section = course?.courseContent
+        if (section && section.length > 0) {
+            for (const sectionId of section) {
 
-        const response = section.map((section) => {
-            return async () => {
+            
 
-                const sectionResponse = await Section.findById(section)
-                const subSectionIds = sectionResponse && sectionResponse?.subSection
+                const sectionResponse = await Section.findById(sectionId)
+                if (sectionResponse) {
 
-                await Section.deleteMany({ id: { $in: subSectionIds } })
-
-                await Section.findByIdAndDelete(section)
+                    console.log('section response:', sectionResponse)
+                    const subSectionIds = sectionResponse?.subSection
 
 
+                    if (subSectionIds && subSectionIds.length > 0) {
+
+                        console.log('section ids:', subSectionIds)
+                        await SubSection.deleteMany({ id: { $in: subSectionIds } })
+
+                    }
+                    
+                    await Section.findByIdAndDelete(sectionId)
+                }
+
+            
             }
-        })
 
+        }
+
+        const delCourse = await Course.findByIdAndDelete(id)
+        const courseResponse = await Course.find({ intructor: instructorId }).populate({
+            path: 'courseContent',
+            populate: {
+                path: 'subSection'
+            }
+        }).populate({
+            path: 'categories'
+        }).populate({
+            path: 'studentEnrolled'
+        }).exec()
+        console.log(response)
         return res.status(200).json({
-            success:false,
-            message:'Course deleted successfully'
+            success: false,
+            message: 'Course deleted successfully',
+            data: courseResponse
         })
 
 
@@ -259,7 +287,8 @@ exports.deleteCourse = async (req, res) => {
         console.log(err)
         return res.status(500).json({
             success: false,
-            message: 'Error while deleting course'
+            message: 'Error while deleting course',
+            data: courseResponse
         })
     }
 }
