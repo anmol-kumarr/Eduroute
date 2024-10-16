@@ -191,7 +191,7 @@ exports.getCourseDetails = async (req, res) => {
 exports.getInstructorCourse = async (req, res) => {
     try {
         const instructorId = req.user.id
-        const response = Course.find({ intructor: instructorId }).populate({
+        const response = await Course.find({ intructor: instructorId }).populate({
             path: 'courseContent',
             populate: {
                 path: 'subSection'
@@ -200,9 +200,8 @@ exports.getInstructorCourse = async (req, res) => {
             path: 'categories'
         }).populate({
             path: 'studentEnrolled'
-        }).populate({
-            path: 'ratingAndReviews'
         }).exec()
+        console.log(response)
 
         if (!response) {
             return res.status(404).json({
