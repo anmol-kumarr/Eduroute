@@ -4,6 +4,7 @@ import { apiConnector } from "../apiconnector"
 import { useDispatch } from "react-redux"
 import { changeState, setCourse, setCourseCategories, setLoading } from "../../redux/slice/courseSlice"
 import toast from "react-hot-toast"
+import { setMyCourse } from "../../redux/slice/instructorSlice"
 
 
 export const fetchCourseCategories = () => {
@@ -45,6 +46,24 @@ export const createCourse = (formData) => {
     }
 }
 
+export const deleteCourse=(id,setCourse)=>{
+    return async(dispatch)=>{
+        const api=editCourse.deleteCourse
+        dispatch(setLoading(true))
+        try{
+            const response=await apiConnector('DELETE',api,{id})
+            dispatch(setMyCourse(response?.data?.data))
+            console.log(response)
+            toast.success("Course deleted")
+            setCourse(response?.data?.data)
+
+        }catch(err){
+            console.log(err)
+            toast.error('Cannot be deleted')
+        }
+        dispatch(setLoading(false))
+    }
+}
 
 export const createSection = (data) => {
     toast.loading('loading')
