@@ -1,7 +1,7 @@
 import ModalBtn from "./modalbtn"
 
 const Modal = ({ textOne, textTwo, btnOneText, btnTwoText, btnOneHandler, btnTwoHandler }) => {
-    console.log(textOne)
+    // console.log(textOne)
 
     return (
         <div className="bg-richblack-500 duration-500 bg-opacity-70 absolute top-0 bottom-0 left-0 right-0">
