@@ -6,12 +6,9 @@ import Auth from "./page/auth";
 import ResetPassword from "./page/resetPassword";
 import VerifyEmail from "./page/verifyEmail";
 import OpenRoute from "./utils/openroute";
-// import Login from "./components/login";
-// import SignUp from "./components/signup";
 import ContactPage from "./page/contact";
 import PasswordResetForm from "./page/setpassword";
 import Dashboard from "./page/dashboard"
-// import User from "./page/user";
 import About from "./page/about";
 import MyProfile from "./components/dashboard/myprofile";
 import EnrolledCourses from "./components/dashboard/enrolledcourses";
@@ -20,15 +17,15 @@ import PageNotFound from "./page/pageNotfound";
 import CloseRoute from "./utils/closeruote";
 import Cart from "./components/dashboard/cart";
 import Setting from "./components/dashboard/setting";
-import { useSelector } from "react-redux";
 import AddCourse from "./components/dashboard/instructor/course/addCourse";
 import MyCourse from "./components/dashboard/instructor/mycourse/myCourse";
+import EditMyCourse from "./components/dashboard/instructor/mycourse/editMyCourse";
 
 
 
 function App() {
   const location = useLocation().pathname
-  // const userType = useSelector(state => state.user.user.accountType)
+
   return (
     <div className="overflow-x-hidden max-h-full bg-richblack-900">
       <DashBoardRoute>
@@ -59,6 +56,7 @@ function App() {
           if(userType==='Instructor'){<>
             <Route path="/dashboard/add-course" element={<AddCourse></AddCourse>} />
             <Route path="/dashboard/my-courses" element={<MyCourse></MyCourse>} />
+            <Route path="/dashboard/edit-course/:courseId" element={<EditMyCourse></EditMyCourse>} />
           </>
           }
 

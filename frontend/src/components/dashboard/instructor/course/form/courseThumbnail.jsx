@@ -10,7 +10,11 @@ const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue })
     const [preview, setPreview] = useState(null)
 
     useEffect(() => {
-        // console.log('hello')
+        const thumbnail=getValue('thumbnail')
+        // console.log(thumbnail)
+        if(thumbnail){
+            setPreview(thumbnail)
+        }
     }, [])
 
     const fileHandler = (e) => {

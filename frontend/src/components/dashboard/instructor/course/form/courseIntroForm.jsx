@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux'
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import Requirement from "./requirement";
-import { changeState } from "../../../../../redux/slice/courseSlice";
+import { changeState, setCourse, setEditCourse } from "../../../../../redux/slice/courseSlice";
 import FormBtn from "../formBtn";
 import { IoIosArrowForward } from "react-icons/io";
 import CourseThumbnail from "./courseThumbnail";
+import{useNavigate} from 'react-router-dom'
 import Tags from "./tags";
 import { createCourse } from "../../../../../services/operation/course";
 
@@ -15,8 +16,8 @@ const CourseIntroForm = () => {
     const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm()
     const courseCategories = useSelector(state => state.course.courseCategories)
     const editCourse = useSelector(state => state.course.editCourse)
-    const course=useSelector(state=>state?.course?.MyCourse)
-
+    const course = useSelector(state => state?.course?.MyCourse)
+    const navigate=useNavigate()
 
 
     const onSubmit = (data) => {
@@ -50,17 +51,23 @@ const CourseIntroForm = () => {
 
     useEffect(() => {
         if (editCourse) {
-            setValue('courseTitle',course.courseName)
-            setValue('description',course.courseDescription)
-            setValue('benefits',course.whatYouWillLearn)
-            setValue('price',course.price)
-            setValue('categories',course.category)
-            setValue('thumbnail',course.thumbnailImage)
-            // setValue('requirement',JSON.parse(course.instruction[0]))
-            // setValue('tags',JSON.parse(course.tag[0]))
+            setValue('courseTitle', course.courseName)
+            setValue('description', course.courseDescription)
+            setValue('benefits', course.whatYouWillLearn)
+            setValue('price', course.price)
+            setValue('category', course.categories._id)
+            // console.log('id:',course.categories._id)
+            setValue('thumbnail', course.thumbnail)
+            setValue('requirement', JSON.parse(course.instruction))
+            setValue('tags', JSON.parse(course.tag))
+            // console.log('tags:',course.tag[0])
         }
-    },[])
-
+    }, [])
+    const cancelHandler = () => {
+        dispatch(setCourse(null))
+        dispatch(setEditCourse(false))
+        navigate(-1)
+    }
     return (
         <div className="bg-richblack-800 px-3 py-3  rounded-md">
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2" >
@@ -138,19 +145,22 @@ const CourseIntroForm = () => {
 
 
 
-                <div className="flex justify-end mr-5">
+                <div className="flex justify-between my-5 mr-5">
+                    <button onClick={cancelHandler} type="button" className="px-2 py-1 text-richblack-200">Cancel</button>
+                    <div className="flex ">
 
-                    {
-                        editCourse && (
-                            <button type="button" onClick={() => dispatch(changeState(2))}>Continue without saving</button>
-                        )
-                    }
+                        {
+                            editCourse && (
+                                <button className="mx-4 px-2 py-1 rounded-md border border-richblack-400" type="button" onClick={() => dispatch(changeState(2))}>Continue without saving</button>
+                            )
+                        }
 
-                    {/* <button type="submit">
+                        {/* <button type="submit">
                         Submit
-                    </button> */}
+                        </button> */}
 
-                    <FormBtn type={'submit'} active={true} text={!editCourse ? <>Next <IoIosArrowForward className="-mb-0.5" /></> : 'Save changes'}></FormBtn>
+                        <FormBtn type={'submit'} active={true} text={!editCourse ? <>Next <IoIosArrowForward className="-mb-0.5" /></> : 'Save changes'}></FormBtn>
+                    </div>
                 </div>
 
 

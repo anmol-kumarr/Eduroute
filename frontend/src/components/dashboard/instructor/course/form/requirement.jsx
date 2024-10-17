@@ -4,6 +4,10 @@ const Requirement = ({ register, errors, handleSubmit, setValue, getValue }) => 
     const [requirement, setRequirement] = useState('')
     const [requirementList, setRequirementList] = useState([])
 
+    useEffect(()=>{
+        const requirement=getValue('requirement')
+        setRequirementList(requirement)
+    },[])
     // useEffect(()=>{
     //     register('requirements',{
     //         required:true,

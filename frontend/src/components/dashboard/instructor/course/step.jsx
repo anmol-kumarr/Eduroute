@@ -10,7 +10,7 @@ const Step = () => {
     const step = useSelector(state => state.course.step);
 
     return (
-        <div className="flex items-center ml-5 my-5">
+        <div className="flex items-cente justify-center ml-5 my-5">
             {steps.map((item) => (
                 <div key={item.id} className="text-start text-sm">
                     <div className="flex items-center ">

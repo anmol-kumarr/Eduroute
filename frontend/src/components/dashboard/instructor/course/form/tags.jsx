@@ -4,9 +4,17 @@ const Tags = ({ register, errors, handleSubmit, setValue, getValue }) => {
     const [tag, setTag] = useState('')
     const [tagList, setTagList] = useState([])
 
-    useEffect(()=>{
-        setValue('tags',tagList)
-    },[tagList,setValue])
+
+    useEffect(() => {
+        const tag = getValue('tags')
+        if (tag) {
+            console.log('tag:',tag)
+            setTagList(tag)
+        }
+    }, [])
+    useEffect(() => {
+        setValue('tags', tagList)
+    }, [tagList, setValue])
 
     const tagSubmit = (e) => {
         e.preventDefault()

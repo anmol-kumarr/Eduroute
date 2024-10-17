@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import CourseIntro from "./courseIntro"
 import CourseBuilder from "./courseBuilder"
 import CoursePublish from "./coursePublish"
+import RenderSteps from "./renderSteps"
 
 const AddCourse = () => {
     const navigate = useNavigate()
@@ -20,18 +21,7 @@ const AddCourse = () => {
 
                 <div className="w-full ">
 
-                    <Step></Step>
-
-                    {
-                        step === 1 && <CourseIntro></CourseIntro>
-                    }
-                    {
-                        step === 2 && <CourseBuilder></CourseBuilder>
-                    }
-                    {
-                        step === 3 && <CoursePublish></CoursePublish>
-                    }
-
+                    <RenderSteps step={step}></RenderSteps>
 
                 </div>
             </div>
