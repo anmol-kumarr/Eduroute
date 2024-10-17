@@ -14,7 +14,7 @@ exports.createCategories = async (req, res) => {
         }
 
         const categoriesDetails = await Categories.create({name:categories, description })
-        console.log("categories details",categoriesDetails)
+        // console.log("categories details",categoriesDetails)
         return res.status(200).json({
             success: true,
             message: 'Categories created successfully'
@@ -32,7 +32,7 @@ exports.createCategories = async (req, res) => {
 exports.showCategories = async (req, res) => {
     try {
         const allCategories = await Categories.find({}, { name: true, description: true })
-        console.log(allCategories)
+        // console.log(allCategories)
 
         return res.status(200).json({
             success: true,

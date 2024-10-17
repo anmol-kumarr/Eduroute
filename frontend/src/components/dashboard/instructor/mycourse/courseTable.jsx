@@ -8,22 +8,27 @@ import Modal from '../../../modal';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteCourse } from '../../../../services/operation/course';
-const CourseTable = ({ course, setCourse }) => {
+import { useNavigate } from 'react-router-dom';
+const CourseTable = ({ course, setCourse,getMyCourse }) => {
     const [modal, setModal] = useState(null)
     const dispatch = useDispatch()
+    const navigate=useNavigate()
 
 
-console.log(course)
+    // console.log(course)
     const deleteCourseHandler = (id) => {
         // console.log('hello')
-        dispatch(deleteCourse(id,setCourse))
+        dispatch(deleteCourse(id))
+        getMyCourse()
+        // setCourse(course => course.filter((course) => course._id !== id))
 
     }
+    // console.log(course)
     return (
         <div>
             <div className='w-11/12 mx-auto'>
                 {
-                    course.length===0 ? (
+                    course.length === 0 ? (
 
                         <div className='h-[calc(100vh-15rem)] text-2xl font-medium text-richblack-500 flex justify-center items-center'>
                             No course found
@@ -92,7 +97,7 @@ console.log(course)
                                                 }
                                             </Td>
                                             <Td className='text-center'>
-                                                <button className='mx-3 text-xl'>
+                                                <button onClick={()=>navigate(`/dashboard/edit-course/${course._id}`)} className='mx-3 text-xl'>
                                                     <MdEdit></MdEdit>
                                                 </button>
                                                 <button onClick={() => setModal({

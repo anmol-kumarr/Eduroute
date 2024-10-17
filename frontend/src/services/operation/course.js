@@ -55,7 +55,7 @@ export const deleteCourse=(id,setCourse)=>{
             dispatch(setMyCourse(response?.data?.data))
             console.log(response)
             toast.success("Course deleted")
-            setCourse(response?.data?.data)
+            // setCourse(response?.data?.data)
 
         }catch(err){
             console.log(err)

@@ -152,7 +152,8 @@ exports.getAllCourses = async (req, res) => {
 
 exports.getCourseDetails = async (req, res) => {
     try {
-        const { courseId } = req.body
+        const { courseId } = req.params
+        console.log(courseId)
         const courseDetails = await Course.findById({ _id: courseId }).populate({
             path: 'intructor',
             populate: {
@@ -182,7 +183,7 @@ exports.getCourseDetails = async (req, res) => {
 
     } catch (err) {
         console.log(err)
-        res.status(200).json({
+        res.status(500).json({
             success: false,
             message: 'Something went wrong fetching course details'
         })
@@ -203,7 +204,7 @@ exports.getInstructorCourse = async (req, res) => {
         }).populate({
             path: 'studentEnrolled'
         }).exec()
-        console.log(response)
+        // console.log(response)
 
         if (!response) {
             return res.status(404).json({
@@ -251,7 +252,7 @@ exports.deleteCourse = async (req, res) => {
                     if (subSectionIds && subSectionIds.length > 0) {
 
                         console.log('section ids:', subSectionIds)
-                        await SubSection.deleteMany({ id: { $in: subSectionIds } })
+                        await SubSection.deleteMany({ _id: { $in: subSectionIds } })
 
                     }
                     
@@ -274,9 +275,11 @@ exports.deleteCourse = async (req, res) => {
         }).populate({
             path: 'studentEnrolled'
         }).exec()
-        console.log(response)
+        // console.log(response)
+
+
         return res.status(200).json({
-            success: false,
+            success: true,
             message: 'Course deleted successfully',
             data: courseResponse
         })
@@ -288,7 +291,7 @@ exports.deleteCourse = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: 'Error while deleting course',
-            data: courseResponse
+            data:err.message
         })
     }
 }

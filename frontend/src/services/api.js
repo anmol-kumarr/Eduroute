@@ -37,5 +37,10 @@ export const editCourse={
 }
 
 export const instructorApi={
+
     getInstructorCourse:BASE_URL+'course/instructor/my-course',
+}
+
+export const courseDetailsApi={
+    getCourseDetails:BASE_URL+'course/details'
 }

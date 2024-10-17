@@ -54,7 +54,7 @@ const MyCourse = () => {
 
                         </div >
                         <div>
-                            <CourseTable course={myCourseData} setCourse={setMyCourse}></CourseTable>
+                            <CourseTable getMyCourse={getMyCourse} course={myCourseData} setCourse={setMyCourse}></CourseTable>
                         </div>
                     </div>
                 )

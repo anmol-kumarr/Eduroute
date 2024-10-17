@@ -11,7 +11,7 @@ const routes = express.Router()
 routes.post('/create/category',[auth,isAdmin],createCategories)
 
 routes.post('/create', [auth, isInstructor],createCourse)
-routes.get('/details/',[auth,isInstructor],getCourseDetails)
+routes.get('/details/:courseId',[auth,isInstructor],getCourseDetails)
 routes.put('/update',[auth,isInstructor],updateCourse)
 routes.get('/instructor/my-course',[auth,isInstructor],getInstructorCourse)
 routes.delete('/delete/course',[auth,isInstructor],deleteCourse)
