@@ -42,5 +42,7 @@ export const instructorApi={
 }
 
 export const courseDetailsApi={
-    getCourseDetails:BASE_URL+'course/details'
+    getCourseDetails:BASE_URL+'course/details',
+    getCategoriesCourse:BASE_URL+'course/category'
+    
 }

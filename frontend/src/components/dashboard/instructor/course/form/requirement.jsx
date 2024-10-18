@@ -4,10 +4,11 @@ const Requirement = ({ register, errors, handleSubmit, setValue, getValue }) => 
     const [requirement, setRequirement] = useState('')
     const [requirementList, setRequirementList] = useState([])
 
-    useEffect(()=>{
-        const requirement=getValue('requirement')
-        setRequirementList(requirement)
-    },[])
+    useEffect(() => {
+        const requirement = getValue('requirement')
+        if (requirement) setRequirementList(requirement)
+        
+    }, [])
     // useEffect(()=>{
     //     register('requirements',{
     //         required:true,
@@ -24,7 +25,7 @@ const Requirement = ({ register, errors, handleSubmit, setValue, getValue }) => 
             required: 'This field is required',  // Custom error message
             validate: (value) => value.length > 0 || 'Requirements must not be empty',
         });
-    }, [requirementList,setValue,register]);
+    }, [requirementList, setValue, register]);
 
 
 

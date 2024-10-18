@@ -20,6 +20,7 @@ import Setting from "./components/dashboard/setting";
 import AddCourse from "./components/dashboard/instructor/course/addCourse";
 import MyCourse from "./components/dashboard/instructor/mycourse/myCourse";
 import EditMyCourse from "./components/dashboard/instructor/mycourse/editMyCourse";
+import Catelog from "./page/categlog";
 
 
 
@@ -28,15 +29,20 @@ function App() {
 
   return (
     <div className="overflow-x-hidden max-h-full bg-richblack-900">
-      <DashBoardRoute>
 
-        <Header></Header>
-      </DashBoardRoute>
+      <>
+        {
+          location.includes('/catelog') ? '' : <DashBoardRoute>
+            <Header></Header>
+          </DashBoardRoute>
+        }
+      </>
 
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path='/aboutUs' element={<About></About>} />
         <Route path='/contact' element={<ContactPage></ContactPage>} />
+        <Route path="/catelog/:catelogName/:catelogId" element={<Catelog></Catelog>}></Route>
 
         <Route path='/auth/:authValue' element={<OpenRoute>
           <Auth></Auth>
