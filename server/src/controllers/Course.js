@@ -164,10 +164,10 @@ exports.getCourseDetails = async (req, res) => {
             populate: {
                 path: 'subSection'
             }
-        })
-            // .populate('ratingAndReviews')
-            .populate('categories').exec()
-
+        }).populate('categories')
+        // .populate('ratingAndReviews').
+        exec()
+        console.log(courseDetails)
         if (!courseDetails) {
             return res.status(400).json({
                 success: false,
@@ -292,6 +292,45 @@ exports.deleteCourse = async (req, res) => {
             success: false,
             message: 'Error while deleting course',
             data:err.message
+        })
+    }
+}
+
+
+exports.getCategoryCourse=async(req,res)=>{
+    const {id}=req.params
+    try{
+        const courseResponse=await Course.find({categories:id}).populate({
+            path: 'intructor',
+            populate: {
+                path: 'addtionalDetails'
+            }
+        }).populate({
+            path: 'courseContent',
+            populate: {
+                path: 'subSection'
+            }
+        })
+        // .populate('ratingAndReviews')
+        .populate('categories').exec()
+        console.log(courseResponse)
+        if(courseResponse.length===0){
+            return res.status(404).json({
+                success:true,
+                message:'Course not found releated to this categories'
+            })
+        }else{
+            return res.status(200).json({
+                success:true,
+                message:'Course fechted successfully',
+                data:courseResponse
+            })
+        }
+    }catch(err){
+        console.log(err)
+        return res.status(500).json({
+            success:false,
+            message:'internal server error'
         })
     }
 }
