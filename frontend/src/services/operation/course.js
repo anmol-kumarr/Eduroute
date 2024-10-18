@@ -97,6 +97,7 @@ export const uploadCourseStatus=(formData,courseId,navigate)=>{
             navigate('/dashboard/my-courses')
             toast.dismiss()
             toast.success('course uploaded')
+            dispatch(changeState(1))
         }catch(err){
             console.log(err)
             toast.dismiss()

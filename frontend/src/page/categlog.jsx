@@ -4,6 +4,8 @@ import { apiConnector } from "../services/apiconnector"
 import { Link, useParams } from "react-router-dom"
 import Header from "../components/header"
 import { useSelector } from "react-redux"
+import Slider from "../components/course/slider"
+import CourseCard from "../components/course/courseCard"
 
 const Catelog = () => {
     const { catelogId, catelogName } = useParams()
@@ -12,6 +14,7 @@ const Catelog = () => {
     const categories = useSelector(state => state.course.courseCategories)
     const [description, setDescription] = useState('')
     const[showCourse,setShowCourse]=useState('popular')
+    const [courseData,setCourseData]=useState([])
 
     useEffect(() => {
         // console.log(categories)
@@ -24,7 +27,8 @@ const Catelog = () => {
             setLoading(true)
             try {
                 const response = await apiConnector('GET', api)
-                // console.log(response)
+                console.log(response)
+                setCourseData(response?.data?.data)
 
             } catch (err) {
                 console.log(err)
@@ -89,6 +93,21 @@ const Catelog = () => {
 
 
                         <p  onClick={()=>setShowCourse('trending')} className={`pb-1 px-3 ${showCourse==='trending'?'text-yellow-100 border-b-[1.5px]  border-yellow-100 -mb-[1.3px]':''}`}>Trending</p>
+                    </div>
+                </div>
+
+                <div className="w-full">
+                    <Slider course={courseData}></Slider>
+                </div>
+
+                <div className="w-11/12  mx-auto ">
+                    <h2 className="text-2xl inline border-b-[1.5px] pb-1 border-richblack-600">Frequently brought together</h2>
+                    <div className=" flex flex-wrap gap-5 my-5 justify-center">
+                        {
+                            courseData?.map((course)=>(
+                                <CourseCard width={'w-80'} height={'h-52'} course={course} key={course._id}></CourseCard>
+                            ))
+                        }
                     </div>
                 </div>
             </div>

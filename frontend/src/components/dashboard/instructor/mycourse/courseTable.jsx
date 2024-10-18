@@ -9,10 +9,10 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteCourse } from '../../../../services/operation/course';
 import { useNavigate } from 'react-router-dom';
-const CourseTable = ({ course, setCourse,getMyCourse }) => {
+const CourseTable = ({ course, setCourse, getMyCourse }) => {
     const [modal, setModal] = useState(null)
     const dispatch = useDispatch()
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
 
     // console.log(course)
@@ -57,9 +57,12 @@ const CourseTable = ({ course, setCourse,getMyCourse }) => {
                                 {
 
                                     course?.map((course) => (
-                                        <Tr key={course._id} >
+                                        <Tr className='py-5' key={course._id}>
                                             <Td className='flex'>
-                                                <img height={30} width={200} src={course?.thumbnail} alt="" />
+                                                <div className='h-32 w-52'>
+
+                                                    <img className='w-full h-full' src={course?.thumbnail} alt="" />
+                                                </div>
                                                 <div className='mx-7 flex flex-col justify-center'>
                                                     <p className='font-semibold text-2xl'>{course?.courseName}</p>
                                                     <p className=''>{course?.courseDescription}</p>
@@ -67,7 +70,7 @@ const CourseTable = ({ course, setCourse,getMyCourse }) => {
                                                     <p className='flex my-1'>
                                                         {
                                                             course?.status === "Draft" ? (
-                                                                <span className=' bg-[#f84c4ccf] bg-opacity-50 px-2 py-[3px] rounded-md flex gap-1 items-center'>
+                                                                <span className=' bg-[#f84c4ccf]  px-2 py-[3px] rounded-md flex gap-1 items-center'>
                                                                     <IoMdTime className='-mb-[2px]'></IoMdTime>
                                                                     {
 
@@ -75,8 +78,8 @@ const CourseTable = ({ course, setCourse,getMyCourse }) => {
                                                                     }
                                                                 </span>
                                                             ) : (
-                                                                <span>
-                                                                    <IoMdCheckmarkCircleOutline></IoMdCheckmarkCircleOutline>
+                                                                <span className='bg-yellow-100 bg-opacity-100 px-2 py-[3px] rounded-md flex gap-1 items-center'>
+                                                                    <IoMdCheckmarkCircleOutline className='-mb-[2px]'></IoMdCheckmarkCircleOutline>
                                                                     {
                                                                         course?.status
                                                                     }
@@ -97,7 +100,7 @@ const CourseTable = ({ course, setCourse,getMyCourse }) => {
                                                 }
                                             </Td>
                                             <Td className='text-center'>
-                                                <button onClick={()=>navigate(`/dashboard/edit-course/${course._id}`)} className='mx-3 text-xl'>
+                                                <button onClick={() => navigate(`/dashboard/edit-course/${course._id}`)} className='mx-3 text-xl'>
                                                     <MdEdit></MdEdit>
                                                 </button>
                                                 <button onClick={() => setModal({

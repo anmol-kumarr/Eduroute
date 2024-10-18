@@ -1,8 +1,10 @@
 import { GoStarFill ,GoStar} from "react-icons/go";
-const CourseCard=({course})=>{
+import { useNavigate } from "react-router-dom";
+const CourseCard=({course,width,height})=>{
+    const navigate=useNavigate()
     return (
-        <div className="min-w-80">
-            <div className="w-full h-40 rounded-md overflow-hidden">
+        <div onClick={()=>navigate(`/course/${course._id}`)} className={`${width?width:'min-w-80'}`}>
+            <div className={`w-full  rounded-md overflow-hidden ${height?height:'h-40'}`}>
                 <img className="w-full h-full" src={course?.thumbnail} alt="" />
             </div>
             <div className="flex flex-col py-1 px-2">

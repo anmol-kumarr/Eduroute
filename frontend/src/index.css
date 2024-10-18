@@ -16,7 +16,12 @@ input:-webkit-autofill {
     /* color: #fff !important; */
     /* Ensures text is visible on a dark background */
 }
-
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
 summary {
     list-style-type: none;
     /* Removes the default arrow icon */

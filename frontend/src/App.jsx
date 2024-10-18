@@ -21,6 +21,7 @@ import AddCourse from "./components/dashboard/instructor/course/addCourse";
 import MyCourse from "./components/dashboard/instructor/mycourse/myCourse";
 import EditMyCourse from "./components/dashboard/instructor/mycourse/editMyCourse";
 import Catelog from "./page/categlog";
+import CourseDescription from "./page/courseDescription";
 
 
 
@@ -43,6 +44,7 @@ function App() {
         <Route path='/aboutUs' element={<About></About>} />
         <Route path='/contact' element={<ContactPage></ContactPage>} />
         <Route path="/catelog/:catelogName/:catelogId" element={<Catelog></Catelog>}></Route>
+        <Route path="/course/:courseId" element={<CourseDescription></CourseDescription>}></Route>
 
         <Route path='/auth/:authValue' element={<OpenRoute>
           <Auth></Auth>
