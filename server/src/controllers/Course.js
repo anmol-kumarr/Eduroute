@@ -166,7 +166,7 @@ exports.getCourseDetails = async (req, res) => {
             }
         }).populate('categories')
         // .populate('ratingAndReviews').
-        exec()
+        .exec()
         console.log(courseDetails)
         if (!courseDetails) {
             return res.status(400).json({

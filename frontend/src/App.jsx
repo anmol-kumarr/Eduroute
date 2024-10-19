@@ -27,17 +27,20 @@ import CourseDescription from "./page/courseDescription";
 
 function App() {
   const location = useLocation().pathname
+  console.log(location.split('/').includes('course'))
 
   return (
     <div className="overflow-x-hidden max-h-full bg-richblack-900">
 
       <>
         {
-          location.includes('/catelog') ? '' : <DashBoardRoute>
+          location.includes('/catelog') ||  location.includes('/course') ? '' : <DashBoardRoute>
             <Header></Header>
           </DashBoardRoute>
         }
       </>
+      
+  
 
       <Routes>
         <Route path="/" element={<Home></Home>} />
