@@ -9,7 +9,13 @@
     /* background-size:cover; */
 
 }
-
+.Collapsible{
+    background-color: #2c333f;
+    /* display: flex; */
+    /* align-items: center; */
+    border: 1px solid #4f555f;
+    
+}
 input:-webkit-autofill {
     background-color: #2c333f !important;
     /* Change this to your desired color */

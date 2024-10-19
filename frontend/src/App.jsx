@@ -27,7 +27,7 @@ import CourseDescription from "./page/courseDescription";
 
 function App() {
   const location = useLocation().pathname
-  console.log(location.split('/').includes('course'))
+  // console.log(location.split('/').includes('course'))
 
   return (
     <div className="overflow-x-hidden max-h-full bg-richblack-900">

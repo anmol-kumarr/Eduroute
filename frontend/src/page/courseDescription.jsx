@@ -24,7 +24,7 @@ const CourseDescription = () => {
             const api = `${courseDetailsApi.getCourseDetails}/${courseId}`
             try {
                 const response = await apiConnector('GET', api)
-                console.log(response?.data?.data)
+                // console.log(response?.data?.data)
                 setCourseDescription(response?.data?.data)
 
             } catch (err) {
@@ -82,8 +82,8 @@ const CourseDescription = () => {
                         </p>
                     </div>
                 </div>
-                <div className="w-[40%] -mb-48 z-10 flex justify-center" >
-                    <div className="w-80 bg-richblack-700 rounded-md overflow-hidden my-5">
+                <div className="w-[40%]  z-10 flex justify-center" >
+                    <div className="w-80 -mb-80 mt-14 bg-richblack-700 rounded-md overflow-hidden my-5">
                         <div className="w-full h-60">
 
                             <img className="w-full h-full" src={courseDescription?.thumbnail} alt="" />
@@ -93,12 +93,12 @@ const CourseDescription = () => {
                             <h2 className="text-richblack-50 font-semibold p-1 text-2xl">Rs: {courseDescription?.price}/-</h2>
 
 
-                            <LargeBtn active={true} content={'Buy now'}></LargeBtn>
+                            <LargeBtn content={'Buy now'}></LargeBtn>
 
 
-                            <LargeBtn active={false} content={'Add to cart'}></LargeBtn>
+                            <LargeBtn active={true} content={'Add to cart'}></LargeBtn>
                             <p className="text-center text-richblack-200">30 Days money back gurantee</p>
-                            <p className="text-caribbeangreen-200 font-semibold">This Course Include
+                            <div className="text-caribbeangreen-200 font-semibold">This Course Include
                                 <ul className="font-normal px-2">
                                     <li className="flex items-center gap-1">
                                         <IoMdTime></IoMdTime>
@@ -117,7 +117,7 @@ const CourseDescription = () => {
                                         Certificate of completion
                                     </li>
                                 </ul>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,6 +133,20 @@ const CourseDescription = () => {
             </div>
             <div className="w-3/5 mx-10">
                 <CourseContent course={courseDescription}></CourseContent>
+            </div>
+
+            <div className="mx-10 text-richblack-50 my-5 p-3">
+                <h2 className="font-inter text-xl my-3">
+                    Author
+                </h2>
+                <div className="flex gap-2 items-center text-lg text-richblack-50 ">
+
+                    <div className="w-12 h-12 rounded-full overflow-hidden">
+                        <img className="w-full h-full" src={courseDescription?.intructor?.image} alt="" />
+                    </div>
+                    <p className="text-richblack-100">{courseDescription?.intructor?.firstName} {courseDescription?.intructor?.lastName}</p>
+                </div>
+                <p className="w-3/5 my-2 text-richblack-300">{courseDescription?.intructor?.addtionalDetails?.about}</p>
             </div>
 
         </div>
