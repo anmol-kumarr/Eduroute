@@ -13,6 +13,7 @@ const courseRoutes=require('./src/routes/Course.routes')
 const profileRoutes=require('./src/routes/Profile.routes')
 
 
+
 const app=express()
 const port=process.env.PORT || 3000
 
@@ -35,7 +36,7 @@ app.use(fileupload({
 app.use('/api/v1/auth',userRoutes)
 app.use('/api/v1/profile',profileRoutes)
 app.use('/api/v1/course',courseRoutes)
-// app.use('/api/v1/payment',paymentRoutes)
+app.use('/api/v1/payment',paymentRoutes)
 
 
 app.listen(port,()=>{
