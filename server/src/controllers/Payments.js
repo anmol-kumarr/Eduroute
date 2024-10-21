@@ -4,6 +4,7 @@ const User = require('../models/User.Model')
 const mailSender = require('../utils/MailSender')
 const courseEnrollmentEmail = require('../mail/CourseEntrollment')
 const mongoose = require('mongoose')
+const { paymentSuccessEmail } = require('../mail/PaymentSuccessfull')
 
 
 
@@ -135,9 +136,47 @@ const enrollStudent = async (courses, userId, res) => {
             })
         }
         }
-
 }
 
+
+exports.sendPaymentEmail=async(req,res)=>{
+    try{
+
+        const userId=req.user.id
+        const {orderId,paymentId,amount}=req.body
+
+        if(!orderId||!paymentId||!amount){
+            return res.status(203).json({
+                success:false,
+                message:'field are empty'
+            })
+        }
+        const findUser=await User.findById(userId)
+        if(findUser.length===0){
+            return res.status(404).json({
+                success:false,
+                message:'User not found'
+            })
+        }
+
+
+        const mailTemplate=paymentSuccessEmail(findUser.firstName,amount/100,orderId,paymentId)
+        const mailResponse=await mailSender(findUser.email,'Payment successfully mail',mailTemplate)
+        if(mailResponse){
+            return res.status(200).json({
+                success:true,
+                message:'Payment verification mail send successfully'
+            })
+        }
+
+    }catch(err){
+        console.log(err)
+        return res.status(500).json({
+            success:false,
+            message:'Error while sending mail'
+        })
+    }
+}
 
 
 
