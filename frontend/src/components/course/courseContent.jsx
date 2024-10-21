@@ -2,7 +2,7 @@ import { PiDotOutlineFill } from "react-icons/pi"
 import Collapsible from 'react-collapsible';
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp, MdOutlineTv } from "react-icons/md";
 const CourseContent = ({ course }) => {
-    console.log(course)
+    // console.log(course)
 
 
 

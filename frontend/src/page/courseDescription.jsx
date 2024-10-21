@@ -11,6 +11,9 @@ import { FaArrowPointer } from "react-icons/fa6"
 import { MdDevices } from "react-icons/md"
 import { PiCertificateFill } from "react-icons/pi";
 import CourseContent from "../components/course/courseContent"
+import { useDispatch, useSelector } from "react-redux"
+import { addToCart } from "../redux/slice/cartSlice"
+import { cartHandler } from "../services/operation/cart"
 
 
 const CourseDescription = () => {
@@ -18,6 +21,7 @@ const CourseDescription = () => {
     const [loading, setLoading] = useState(false)
     const [courseDescription, setCourseDescription] = useState({})
     const [date, setDate] = useState('')
+    const cartData = useSelector(state => state.cart.cart)
     useEffect(() => {
         const fetchCourseDescription = async () => {
             setLoading(true)
@@ -47,6 +51,16 @@ const CourseDescription = () => {
         });
         setDate(date)
     }, [])
+
+    const dispatch = useDispatch()
+
+
+    const handleAddToCart = () => {
+
+        cartHandler(dispatch, courseId)
+    }
+    // useEffect(() => {
+    // }, [cartData])
     return (
         <div className="">
             <div className="bg-richblack-800">
@@ -83,12 +97,12 @@ const CourseDescription = () => {
                     </div>
                 </div>
                 <div className="w-[40%]  z-10 flex justify-center" >
-                    <div className="w-80 -mb-80 mt-14 bg-richblack-700 rounded-md overflow-hidden my-5">
+                    <div className="w-80 -mb-80 mt-10 bg-richblack-700 rounded-md overflow-hidden my-5">
                         <div className="w-full h-60">
 
                             <img className="w-full h-full" src={courseDescription?.thumbnail} alt="" />
                         </div>
-                        <div className="px-3 py-2 flex flex-col max-h- gap-2">
+                        <div className="px-3 py-2 flex flex-col max-h- gap-3">
 
                             <h2 className="text-richblack-50 font-semibold p-1 text-2xl">Rs: {courseDescription?.price}/-</h2>
 
@@ -96,7 +110,7 @@ const CourseDescription = () => {
                             <LargeBtn content={'Buy now'}></LargeBtn>
 
 
-                            <LargeBtn active={true} content={'Add to cart'}></LargeBtn>
+                            <LargeBtn behaviour={handleAddToCart} active={true} content={'Add to cart'}></LargeBtn>
                             <p className="text-center text-richblack-200">30 Days money back gurantee</p>
                             <div className="text-caribbeangreen-200 font-semibold">This Course Include
                                 <ul className="font-normal px-2">

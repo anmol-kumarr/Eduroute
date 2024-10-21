@@ -98,7 +98,7 @@ return (
 
                                 <img className="w-full h-full" src={image} alt="" />
                             </div>
-                            <div className={`group-hover:block !important text-base absolute top-8 rounded -right-7 hidden bg-richblack-700 `}>
+                            <div className={`group-hover:block z-20 !important text-base absolute top-8 rounded -right-7 hidden bg-richblack-700 `}>
 
 
                                 <p className='py-1 px-2'><Link to={`/dashboard/${'my-profile'}`} className='flex items-center gap-1'> Dashboard</Link></p>

@@ -62,7 +62,7 @@ function App() {
           <Route path='/dashboard/my-profile' element={<MyProfile></MyProfile>}></Route>
           <Route path='/dashboard/enrolled-courses' element={<EnrolledCourses></EnrolledCourses>}></Route>
           <Route path='/dashboard/setting' element={<Setting></Setting>}></Route>
-          <Route path='/dashboard/cart' element={<Cart></Cart>}></Route>
+          <Route path='/dashboard/wishlist' element={<Cart></Cart>}></Route>
 
           if(userType==='Instructor'){<>
             <Route path="/dashboard/add-course" element={<AddCourse></AddCourse>} />
