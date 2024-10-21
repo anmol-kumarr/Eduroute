@@ -56,5 +56,6 @@ export const paymentApi={
 
 export const cartApi={
     addToCart:BASE_URL+'cart/add-to-cart',
-    removeFromCart:BASE_URL+'cart/remove-from-cart'
+    removeFromCart:BASE_URL+'cart/remove-from-cart',
+    getCartData:BASE_URL+'get/cart-data'
 }
