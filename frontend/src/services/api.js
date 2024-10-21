@@ -46,3 +46,15 @@ export const courseDetailsApi={
     getCategoriesCourse:BASE_URL+'course/category'
     
 }
+
+
+export const paymentApi={
+    paymentCapture:BASE_URL+'payement/capture',
+    paymentVerify:BASE_URL+'payment/verify',
+    mailSendApi:BASE_URL+'payment/mail'
+}
+
+export const cartApi={
+    addToCart:BASE_URL+'cart/add-to-cart',
+    removeFromCart:BASE_URL+'cart/remove-from-cart'
+}

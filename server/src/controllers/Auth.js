@@ -64,7 +64,7 @@ exports.signUp = async (req, res) => {
 
     try {
 
-        const { firstName, mobileNumber, lastName, email, password, confirmPassword, accountType, otp, } = req.body
+        const { firstName, mobileNumber, lastName, email, password, confirmPassword, accountType, otp,cart } = req.body
 
 
         // console.log('email', email,
@@ -144,6 +144,7 @@ exports.signUp = async (req, res) => {
             accountType,
             addtionalDetails: profileDetails._id,
             image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
+            cart
         })
 
         res.status(200).json({
