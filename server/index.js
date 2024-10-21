@@ -11,6 +11,7 @@ const userRoutes=require('./src/routes/User.routes')
 const paymentRoutes=require('./src/routes/Payement.routes')
 const courseRoutes=require('./src/routes/Course.routes')
 const profileRoutes=require('./src/routes/Profile.routes')
+const cartRoutes=require('./src/routes/cart.routes')
 
 
 
@@ -37,6 +38,7 @@ app.use('/api/v1/auth',userRoutes)
 app.use('/api/v1/profile',profileRoutes)
 app.use('/api/v1/course',courseRoutes)
 app.use('/api/v1/payment',paymentRoutes)
+app.use('/api/v1/cart',cartRoutes)
 
 
 app.listen(port,()=>{
