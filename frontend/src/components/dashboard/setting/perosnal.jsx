@@ -3,11 +3,13 @@ import DashBoardBtn from "../dashboardbtn"
 import { techProfessions } from "../../../data/professionData";
 import { useDispatch } from "react-redux";
 import { updateUserDetails } from "../../../services/operation/updateDetails";
+import { useNavigate } from "react-router-dom";
 
 const Personal = () => {
     // const [selectedGender, setSelectedGender] = useState('male');
     const dispatch=useDispatch()
      // Set the initial state to 'male'
+    const navigate=useNavigate()
     const [details, setDetails] = useState({
         name: '',
         profession: 'Software Engineer',
@@ -29,7 +31,7 @@ const Personal = () => {
 
 
     const submitDetails = () => {
-        dispatch(updateUserDetails({...details}))
+        dispatch(updateUserDetails(navigate,{...details}))
     }
 
     return (

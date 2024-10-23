@@ -37,7 +37,7 @@ export const profileImage = (image) => {
 
 }
 
-export const updateUserDetails = ({ name, profession, dateOfBirth, gender, mobileNumber, about }) => {
+export const updateUserDetails = (navigate,{ name, profession, dateOfBirth, gender, mobileNumber, about }) => {
     return async (dispatch) => {
         const api=updateProfileApi.updateUserDetails
 
@@ -61,6 +61,8 @@ export const updateUserDetails = ({ name, profession, dateOfBirth, gender, mobil
             localStorage.setItem('user',JSON.stringify(response.data.updateName))
             dispatch(setUser(response.data.updateName))
             toast.success('Details updated')
+            navigate('/dashboard/my-profile')
+
         } catch (err) {
             toast.remove()
             console.log(err)
