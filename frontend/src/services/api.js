@@ -49,7 +49,7 @@ export const courseDetailsApi={
 
 
 export const paymentApi={
-    paymentCapture:BASE_URL+'payement/capture',
+    paymentCapture:BASE_URL+'payment/capture',
     paymentVerify:BASE_URL+'payment/verify',
     mailSendApi:BASE_URL+'payment/mail'
 }

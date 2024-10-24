@@ -62,7 +62,6 @@ export const updateUserDetails = (navigate,{ name, profession, dateOfBirth, gend
             dispatch(setUser(response.data.updateName))
             toast.success('Details updated')
             navigate('/dashboard/my-profile')
-
         } catch (err) {
             toast.remove()
             console.log(err)

@@ -165,7 +165,7 @@ const Home = () => {
                 <InstructorSection />
             </div>
 
-          
+
 
         </div>
     )

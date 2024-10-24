@@ -24,14 +24,14 @@ exports.capturPayment = async (req, res) => {
     for (const course_id of courseId) {
         let course
         try {
-            course = await Course.findById(courseId)
+            course = await Course.findById(course_id)
             if (!course) {
                 return res.status(400).json({
                     success: false,
                     message: 'Cannot find course'
                 })
             }
-            const uid = new mongoose.Schema.ObjectId(userId)
+            const uid = new mongoose.Types.ObjectId(userId)
             if (course.studentEnrolled.includes(uid)) {
                 return res.status(400).json({
                     success: false,
@@ -48,23 +48,24 @@ exports.capturPayment = async (req, res) => {
         }
     }
     const options = {
-        amount: totalAmount,
+        amount: totalAmount * 100,
         currency: "INR",
-        receipt: Math.random(Date.now().toString())
+        receipt: Math.random(Date.now()).toString(),
+        // courseId
     }
 
     try {
         const paymentResponse = await instance.orders.create(options)
         res.json({
             success: true,
-            message: paymentResponse
+            data: paymentResponse
         })
     }
     catch (err) {
         console.log(err)
         res.status(500).json({
             success: false,
-            message: 'could not intiate order'
+            message: 'could not initiate order'
         })
     }
 
@@ -128,52 +129,52 @@ const enrollStudent = async (courses, userId, res) => {
             const userEnroll = await User.findByIdAndUpdate({ userId }, { $push: { courses: courseId } }, { new: true })
             const template = courseEnrollmentEmail(enrolledCourse?.courseName, userEnroll?.firstName)
             const emailResponse = await mailSender(userEnroll.email, 'Confirmation mail from Eduroute', template)
-        }catch(err){
+        } catch (err) {
             console.log(err)
             return res.status(500).json({
-                success:false,
-                message:'internal server error'
+                success: false,
+                message: 'internal server error'
             })
         }
-        }
+    }
 }
 
 
-exports.sendPaymentEmail=async(req,res)=>{
-    try{
+exports.sendPaymentEmail = async (req, res) => {
+    try {
 
-        const userId=req.user.id
-        const {orderId,paymentId,amount}=req.body
+        const userId = req.user.id
+        const { orderId, paymentId, amount } = req.body
 
-        if(!orderId||!paymentId||!amount){
+        if (!orderId || !paymentId || !amount) {
             return res.status(203).json({
-                success:false,
-                message:'field are empty'
+                success: false,
+                message: 'field are empty'
             })
         }
-        const findUser=await User.findById(userId)
-        if(findUser.length===0){
+        const findUser = await User.findById(userId)
+        if (findUser.length === 0) {
             return res.status(404).json({
-                success:false,
-                message:'User not found'
+                success: false,
+                message: 'User not found'
             })
         }
 
 
-        const mailTemplate=paymentSuccessEmail(findUser.firstName,amount/100,orderId,paymentId)
-        const mailResponse=await mailSender(findUser.email,'Payment successfully mail',mailTemplate)
-        if(mailResponse){
+        const mailTemplate = paymentSuccessEmail(findUser.firstName, amount / 100, orderId, paymentId)
+        const mailResponse = await mailSender(findUser.email, 'Payment successfully mail', mailTemplate)
+        if (mailResponse) {
             return res.status(200).json({
-                success:true,
-                message:'Payment verification mail send successfully'
+                success: true,
+                message: 'Payment verification mail send successfully'
             })
         }
 
-    }catch(err){
+    } catch (err) {
         console.log(err)
         return res.status(500).json({
-            success:false,
-            message:'Error while sending mail'
+            success: false,
+            message: 'Error while sending mail'
         })
     }
 }

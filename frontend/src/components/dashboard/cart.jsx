@@ -10,12 +10,14 @@ import { GoStar, GoStarFill } from "react-icons/go"
 import { FaTrashAlt } from "react-icons/fa"
 import { PiDotOutlineFill } from 'react-icons/pi'
 import LargeBtn from "../largeBtn"
+import { buyCourse } from "../../services/operation/payment"
 
 const Cart = () => {
     const navigate = useNavigate()
     const cartData = useSelector(state => state.cart.cart)
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
+    const user = useSelector(state => state.user.user)
     useEffect(() => {
         const fetchCartData = async () => {
             setLoading(true)
@@ -43,6 +45,14 @@ const Cart = () => {
     // }, [cartData])
 
     const buyNowHandler = () => {
+        const Ids = cartData?.map((course) => course._id)
+        // console.log(Ids)
+        buyCourse(
+            Ids,
+            user,
+            dispatch,
+            navigate
+        )
 
     }
     return (
@@ -77,8 +87,8 @@ const Cart = () => {
 
                                         {
                                             cartData && cartData.map((item, index) => (
-                                                <>
-                                                    <div className={`flex gap-7 h-36 my-4 rounded-md overflow-hidden w-10/12 `} key={item._id}>
+                                                <div key={item?._id}>
+                                                    <div className={`flex gap-7 h-36 my-4 rounded-md overflow-hidden w-10/12 `} >
                                                         <div className="w-48 h-full overflow-hidden">
                                                             <img className="w-full h-full " src={item.thumbnail} alt="" />
                                                         </div>
@@ -120,7 +130,7 @@ const Cart = () => {
 
                                                         cartData?.length > index && <hr className="w-11/12 text-richblack-600" />
                                                     }
-                                                </>
+                                                </div>
                                             ))
                                         }
 
