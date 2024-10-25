@@ -16,30 +16,34 @@ const Catelog = () => {
     const [showCourse, setShowCourse] = useState('popular')
     const [courseData, setCourseData] = useState([])
 
+    const fetchCategoryCourse = async () => {
+        const api = `${courseDetailsApi.getCategoriesCourse}/${catelogId}`
+        setLoading(true)
+        try {
+            const response = await apiConnector('GET', api)
+            // console.log(response)
+            setCourseData(response?.data?.data)
+
+        } catch (err) {
+            console.log(err)
+            setCourseData([])
+            
+        }
+        setLoading(false)
+    }
     useEffect(() => {
         // console.log(categories)
         categories?.filter((category) => {
             return category._id === catelogId &&
                 setDescription(category.description)
         })
-        const fetchCategoryCourse = async () => {
-            const api = `${courseDetailsApi.getCategoriesCourse}/${catelogId}`
-            setLoading(true)
-            try {
-                const response = await apiConnector('GET', api)
-                // console.log(response)
-                setCourseData(response?.data?.data)
-
-            } catch (err) {
-                console.log(err)
-            }
-            setLoading(false)
-        }
         fetchCategoryCourse()
-    }, [catelogId, categories])
-    // useEffect(()=>{
+    }, [catelogId, catelogName])
 
-    // },[])
+
+    useEffect(()=>{
+        fetchCategoryCourse()
+    },[])
     return (
         <div>
             <div className="bg-richblack-800">

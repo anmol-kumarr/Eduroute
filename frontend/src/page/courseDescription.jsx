@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import Header from "../components/header"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
@@ -14,6 +14,9 @@ import CourseContent from "../components/course/courseContent"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCart } from "../redux/slice/cartSlice"
 import { cartHandler } from "../services/operation/cart"
+import Modal from "../components/modal"
+import { buyCourse } from "../services/operation/payment"
+import RatingStars from "../components/course/ratingStar"
 
 
 const CourseDescription = () => {
@@ -22,13 +25,17 @@ const CourseDescription = () => {
     const [courseDescription, setCourseDescription] = useState({})
     const [date, setDate] = useState('')
     const cartData = useSelector(state => state.cart.cart)
+    const token = useSelector(state => state.auth.token)
+    const user = useSelector(state => state.user.user)
+    const [modal, setModal] = useState(null)
+    const navigate = useNavigate()
     useEffect(() => {
         const fetchCourseDescription = async () => {
             setLoading(true)
             const api = `${courseDetailsApi.getCourseDetails}/${courseId}`
             try {
                 const response = await apiConnector('GET', api)
-                // console.log(response?.data?.data)
+                console.log(response?.data?.data)
                 setCourseDescription(response?.data?.data)
 
             } catch (err) {
@@ -56,9 +63,45 @@ const CourseDescription = () => {
 
 
     const handleAddToCart = () => {
+        if (user) {
 
-        cartHandler(dispatch, courseId)
+            cartHandler(dispatch, courseId)
+        } else {
+            setModal({
+                textOne: 'You are not logged In',
+                textTwo: 'Please login or signIn  for add to cart any course',
+                btnOneText: 'login',
+                btnTwoText: 'cancel',
+                btnOneHandler: () => navigate('/auth/login'),
+                btnTwoHandler: () => setModal(null)
+            })
+        }
     }
+    const handleBuyNow = () => {
+        const Ids = []
+        Ids.push(courseId)
+        if (user) {
+
+            buyCourse(
+                Ids,
+                user,
+                dispatch,
+                navigate
+            )
+
+        } else {
+        
+            setModal({
+                textOne: 'You are not logged In',
+                textTwo: 'Please login or signIn  for buying any course',
+                btnOneText: 'login',
+                btnTwoText: 'cancel',
+                btnOneHandler: () => navigate('/auth/login'),
+                btnTwoHandler: () => setModal(null)
+            })
+        }
+    }
+
     // useEffect(() => {
     // }, [cartData])
     return (
@@ -82,11 +125,12 @@ const CourseDescription = () => {
                         <p className="text-richblack-200">{courseDescription?.courseDescription}</p>
                         <div className="text-yellow-100 flex items-center">
                             <span className="mx-1">4.5 </span>
+                            {/* <GoStarFill></GoStarFill>
                             <GoStarFill></GoStarFill>
                             <GoStarFill></GoStarFill>
                             <GoStarFill></GoStarFill>
-                            <GoStarFill></GoStarFill>
-                            <GoStar></GoStar>
+                            <GoStar></GoStar> */}
+                            <RatingStars></RatingStars>
                         </div>
                         <p className="text-richblack-100">Created by: {courseDescription?.intructor?.firstName} {courseDescription?.intructor?.lastName}</p>
                         <p className="flex items-center text-richblack-200 gap-1"><IoIosInformationCircleOutline className="-mb-[2px]"></IoIosInformationCircleOutline>
@@ -107,7 +151,7 @@ const CourseDescription = () => {
                             <h2 className="text-richblack-50 font-semibold p-1 text-2xl">Rs: {courseDescription?.price}/-</h2>
 
 
-                            <LargeBtn content={'Buy now'}></LargeBtn>
+                            <LargeBtn behaviour={handleBuyNow} content={'Buy now'}></LargeBtn>
 
 
                             <LargeBtn behaviour={handleAddToCart} active={true} content={'Add to cart'}></LargeBtn>
@@ -162,7 +206,10 @@ const CourseDescription = () => {
                 </div>
                 <p className="w-3/5 my-2 text-richblack-300">{courseDescription?.intructor?.addtionalDetails?.about}</p>
             </div>
-
+            {modal && (<Modal
+                {...modal}
+            ></Modal>)
+            }
         </div>
     )
 }

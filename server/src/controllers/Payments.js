@@ -83,7 +83,6 @@ exports.verifyPayemnt = async (req, res) => {
     console.log('req.body?.razorpaySignature', req.body?.razorpay_signature)
     console.log('req.body?.courses', req.body?.courseId)
 
-
     if (!razorpayOrderId || !razorpayPaymentId || !razorpaySignature || !courses) {
         return res.status(204).json({
             success: false,
