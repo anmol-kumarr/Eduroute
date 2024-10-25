@@ -2,10 +2,10 @@ const { instance } = require('../config/Razorpay')
 const Course = require('../models/course.Model')
 const User = require('../models/User.Model')
 const mailSender = require('../utils/MailSender')
-const courseEnrollmentEmail = require('../mail/CourseEntrollment')
+const { courseEnrollmentEmail } = require('../mail/CourseEntrollment')
 const mongoose = require('mongoose')
 const { paymentSuccessEmail } = require('../mail/PaymentSuccessfull')
-
+const { createHmac } = require('node:crypto');
 
 
 exports.capturPayment = async (req, res) => {
@@ -26,7 +26,7 @@ exports.capturPayment = async (req, res) => {
         try {
             course = await Course.findById(course_id)
             if (!course) {
-                return res.status(400).json({
+                return res.status(404).json({
                     success: false,
                     message: 'Cannot find course'
                 })
@@ -51,7 +51,7 @@ exports.capturPayment = async (req, res) => {
         amount: totalAmount * 100,
         currency: "INR",
         receipt: Math.random(Date.now()).toString(),
-        // courseId
+
     }
 
     try {
@@ -71,11 +71,17 @@ exports.capturPayment = async (req, res) => {
 
 }
 exports.verifyPayemnt = async (req, res) => {
-    const razorpayOrderId = req.body?.razorpayOrderId
-    const razorpayPaymentId = req.body?.razorpayPaymentId
-    const razorpaySignature = req.body?.razorpaySignature
-    const courses = req?.body?.courses
+    const razorpayOrderId = req.body?.razorpay_order_id
+    const razorpayPaymentId = req.body?.razorpay_payment_id
+    const razorpaySignature = req.body?.razorpay_signature
+    const courses = req?.body?.courseId
     const userId = req.user.id
+
+
+    console.log('req.body?.razorpayOrderId', req.body?.razorpay_order_id)
+    console.log('req.body?.razorpayPaymentId', req.body?.razorpay_payment_id)
+    console.log('req.body?.razorpaySignature', req.body?.razorpay_signature)
+    console.log('req.body?.courses', req.body?.courseId)
 
 
     if (!razorpayOrderId || !razorpayPaymentId || !razorpaySignature || !courses) {
@@ -86,7 +92,7 @@ exports.verifyPayemnt = async (req, res) => {
     }
 
     let body = razorpayOrderId + "|" + razorpayPaymentId
-    const expectedSignature = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET).update(body.toString()).digest('hex')
+    const expectedSignature = createHmac("sha256", process.env.RAZORPAY_SECRET).update(body.toString()).digest('hex')
 
     if (razorpaySignature === expectedSignature) {
 
@@ -115,20 +121,29 @@ const enrollStudent = async (courses, userId, res) => {
         })
     }
 
+    let courseList = []
+
     for (const courseId of courses) {
         try {
 
-            const enrolledCourse = await Course.findByIdAndUpdate({ courseId }, { $push: { studentEnrolled: userId } }, { new: true })
+            const enrolledCourse = await Course.findByIdAndUpdate(courseId, { $push: { studentEnrolled: userId } }, { new: true })
             if (!enrolledCourse) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'Course not found'
-                })
+                // return res.status(400).json({
+                //     success: false,
+                //     message: 'Course not found'
+                // })
+                continue
             }
+            
 
-            const userEnroll = await User.findByIdAndUpdate({ userId }, { $push: { courses: courseId } }, { new: true })
+            const userEnroll = await User.findByIdAndUpdate(userId, { $push: { courses: courseId } }, { new: true })
+            console.log(1)
+
             const template = courseEnrollmentEmail(enrolledCourse?.courseName, userEnroll?.firstName)
             const emailResponse = await mailSender(userEnroll.email, 'Confirmation mail from Eduroute', template)
+            console.log("emailResponse", emailResponse)
+
+            
         } catch (err) {
             console.log(err)
             return res.status(500).json({
@@ -136,22 +151,41 @@ const enrollStudent = async (courses, userId, res) => {
                 message: 'internal server error'
             })
         }
+
+
     }
+
+    // try {
+
+    // const template = courseEnrollmentEmail
+
+    // } catch (err) {
+    //     console.log(err)
+    //     return res.status(500).json({
+    //         success: false,
+    //         message: 'cannot send Enrollment mail'
+    //     })
+    // }
 }
 
 
 exports.sendPaymentEmail = async (req, res) => {
     try {
-
+        console.log(req.body)
         const userId = req.user.id
-        const { orderId, paymentId, amount } = req.body
+        // const userId=req.body
+        const { orderId, razorpay_payment_id, amount } = req.body
+        console.log('orderId', orderId)
+        console.log('razorpay_payment_id', razorpay_payment_id)
+        console.log('amount', amount)
 
-        if (!orderId || !paymentId || !amount) {
+        if (!orderId || !razorpay_payment_id || !amount) {
             return res.status(203).json({
                 success: false,
-                message: 'field are empty'
+                message: 'field are empty',
             })
         }
+
         const findUser = await User.findById(userId)
         if (findUser.length === 0) {
             return res.status(404).json({
@@ -161,7 +195,7 @@ exports.sendPaymentEmail = async (req, res) => {
         }
 
 
-        const mailTemplate = paymentSuccessEmail(findUser.firstName, amount / 100, orderId, paymentId)
+        const mailTemplate = paymentSuccessEmail(findUser.firstName, amount / 100, orderId, razorpay_payment_id)
         const mailResponse = await mailSender(findUser.email, 'Payment successfully mail', mailTemplate)
         if (mailResponse) {
             return res.status(200).json({
@@ -171,7 +205,7 @@ exports.sendPaymentEmail = async (req, res) => {
         }
 
     } catch (err) {
-        console.log(err)
+        console.log('mail error', err)
         return res.status(500).json({
             success: false,
             message: 'Error while sending mail'
