@@ -59,3 +59,8 @@ export const cartApi={
     removeFromCart:BASE_URL+'cart/remove-from-cart',
     getCartData:BASE_URL+'cart/cart-data'
 }
+
+
+export const studentEnrolledCourseApi={
+    getEnrolledCourse:BASE_URL+'course/getEnrolledCourse'
+}
