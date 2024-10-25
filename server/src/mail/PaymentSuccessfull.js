@@ -7,7 +7,7 @@ return `<!DOCTYPE html>
             <title>Payment Confirmation</title>
             <style>
                 body {
-                    background - color: #ffffff;
+                background-color: #ffffff;
                 font-family: Arial, sans-serif;
                 font-size: 16px;
                 line-height: 1.4;
@@ -18,30 +18,30 @@ return `<!DOCTYPE html>
 
 
                 .container {
-                    max - width: 600px;
+                max-width: 600px;
                 margin: 0 auto;
                 padding: 20px;
                 text-align: center;
             }
 
                 .logo {
-                    max - width: 200px;
+                    max-width: 200px;
                 margin-bottom: 20px;
             }
 
                 .message {
-                    font - size: 18px;
+                    font-size: 18px;
                 font-weight: bold;
                 margin-bottom: 20px;
             }
 
                 .body {
-                    font - size: 16px;
+                    font-size: 16px;
                 margin-bottom: 20px;
             }
 
                 .cta {
-                    display: inline-block;
+                    display:inline-block;
                 padding: 10px 20px;
                 background-color: #FFD60A;
                 color: #000000;
@@ -53,13 +53,13 @@ return `<!DOCTYPE html>
             }
 
                 .support {
-                    font - size: 14px;
+                    font-size: 14px;
                 color: #999999;
                 margin-top: 20px;
             }
 
                 .highlight {
-                    font - weight: bold;
+                    font-weight: bold;
             }
             </style>
 
@@ -72,7 +72,7 @@ return `<!DOCTYPE html>
             <div class="message">Course Payment Confirmation</div>
             <div class="body">
                 <p>Dear ${name},</p>
-                <p>We have received a payment of <span class='highlight'>₹${amount}</span></p>.
+                <p>We have received a payment of <span class='highlight'><b>₹${amount}</b></span></p>.
                 <p>Your Payment ID is <b>${paymentId}</b></p>
                 <p>Your Order ID is <b>${orderId}</b></p>
             </div>

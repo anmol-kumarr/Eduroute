@@ -7,5 +7,6 @@ const router=express.Router()
 router.post('/capture',[auth,isStudent],capturPayment)
 router.post('/verify',[auth,isStudent],verifyPayemnt)
 router.post('/mail',[auth,isStudent],sendPaymentEmail)
+// router.post('/mail',sendPaymentEmail)
 
 module.exports=router
