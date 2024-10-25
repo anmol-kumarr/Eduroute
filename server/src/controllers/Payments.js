@@ -121,7 +121,7 @@ const enrollStudent = async (courses, userId, res) => {
         })
     }
 
-    let courseList = []
+    // let courseList = []
 
     for (const courseId of courses) {
         try {
@@ -154,18 +154,16 @@ const enrollStudent = async (courses, userId, res) => {
 
 
     }
-
-    // try {
-
-    // const template = courseEnrollmentEmail
-
-    // } catch (err) {
-    //     console.log(err)
-    //     return res.status(500).json({
-    //         success: false,
-    //         message: 'cannot send Enrollment mail'
-    //     })
-    // }
+    
+    try {
+    const clearCart=await User.findByIdAndUpdate(userId,{$set:{cart:[]}})
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({
+            success: false,
+            message: 'cannot clear cart '
+        })
+    }
 }
 
 

@@ -22,7 +22,7 @@ const scriptLoad = (src) => {
 }
 
 
-export const buyCourse = async (courseId, user, navigate, dispatch) => {
+export const buyCourse = async (courseId, user, dispatch, navigate) => {
     const key = process.env.REACT_APP_RAZROPAY_KEY
     toast.loading('loading')
     try {

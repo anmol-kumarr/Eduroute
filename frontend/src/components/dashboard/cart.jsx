@@ -136,11 +136,13 @@ const Cart = () => {
 
 
                                     </div>
-                                    <div className="w-3/12 max-h-[fit-content]  bg-richblack-700 rounded-md p-3">
-                                        <p>Total:</p>
-                                        <h2 className="my-1 text-yellow-100 font-semibold text-xl">Rs: {price}</h2>
-                                        <LargeBtn content={'Buy now'} behaviour={buyNowHandler}></LargeBtn>
-                                    </div>
+                                    {
+                                        cartData && cartData.length > 0 && (<div className="w-3/12 max-h-[fit-content]  bg-richblack-700 rounded-md p-3">
+                                            <p>Total:</p>
+                                            <h2 className="my-1 text-yellow-100 font-semibold text-xl">Rs: {price}</h2>
+                                            <LargeBtn content={'Buy now'} behaviour={buyNowHandler}></LargeBtn>
+                                        </div>)
+                                    }
                                 </div>
                             </div>
                         )
