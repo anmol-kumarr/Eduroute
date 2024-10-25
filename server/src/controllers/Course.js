@@ -5,7 +5,7 @@ const User = require('../models/User.Model')
 const { ImageUpload } = require('../utils/Cloudinary')
 const Section = require('../models/Section.Model')
 
-const SubSection =require('../models/SubSection.Model')
+const SubSection = require('../models/SubSection.Model')
 exports.createCourse = async (req, res) => {
     try {
         const { courseName, courseDescription, whatYouWillLearn, price, tag, categories, status, instruction } = req.body
@@ -165,8 +165,8 @@ exports.getCourseDetails = async (req, res) => {
                 path: 'subSection'
             }
         }).populate('categories')
-        // .populate('ratingAndReviews').
-        .exec()
+            // .populate('ratingAndReviews').
+            .exec()
         console.log(courseDetails)
         if (!courseDetails) {
             return res.status(400).json({
@@ -240,7 +240,7 @@ exports.deleteCourse = async (req, res) => {
         if (section && section.length > 0) {
             for (const sectionId of section) {
 
-            
+
 
                 const sectionResponse = await Section.findById(sectionId)
                 if (sectionResponse) {
@@ -255,11 +255,11 @@ exports.deleteCourse = async (req, res) => {
                         await SubSection.deleteMany({ _id: { $in: subSectionIds } })
 
                     }
-                    
+
                     await Section.findByIdAndDelete(sectionId)
                 }
 
-            
+
             }
 
         }
@@ -291,16 +291,16 @@ exports.deleteCourse = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: 'Error while deleting course',
-            data:err.message
+            data: err.message
         })
     }
 }
 
 
-exports.getCategoryCourse=async(req,res)=>{
-    const {id}=req.params
-    try{
-        const courseResponse=await Course.find({categories:id}).populate({
+exports.getCategoryCourse = async (req, res) => {
+    const { id } = req.params
+    try {
+        const courseResponse = await Course.find({ categories: id }).populate({
             path: 'intructor',
             populate: {
                 path: 'addtionalDetails'
@@ -311,26 +311,48 @@ exports.getCategoryCourse=async(req,res)=>{
                 path: 'subSection'
             }
         })
-        // .populate('ratingAndReviews')
-        .populate('categories').exec()
+            // .populate('ratingAndReviews')
+            .populate('categories').exec()
         console.log(courseResponse)
-        if(courseResponse.length===0){
+        if (courseResponse.length === 0) {
             return res.status(404).json({
-                success:true,
-                message:'Course not found releated to this categories'
+                success: true,
+                message: 'Course not found releated to this categories'
             })
-        }else{
+        } else {
             return res.status(200).json({
-                success:true,
-                message:'Course fechted successfully',
-                data:courseResponse
+                success: true,
+                message: 'Course fechted successfully',
+                data: courseResponse
             })
         }
-    }catch(err){
+    } catch (err) {
         console.log(err)
         return res.status(500).json({
-            success:false,
-            message:'internal server error'
+            success: false,
+            message: 'internal server error'
+        })
+    }
+}
+
+
+exports.getEnrolledCourse = async (req, res) => {
+    try {
+        const userId = req.user.id
+        const course = await User.findById(userId).populate({
+            path: 'courses'
+        }).populate('courceProgress')
+
+        return res.status(200).json({
+            success: false,
+            message: 'Enrolled course fetched',
+            data: course
+        })
+    } catch (err) {
+        console.log(err)
+        return res.status(500).josn({
+            sucess: false,
+            message: 'Internal server error'
         })
     }
 }
