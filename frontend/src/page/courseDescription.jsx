@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { courseDetailsApi } from "../services/api"
 import { apiConnector } from "../services/apiconnector"
-import { GoStar, GoStarFill } from "react-icons/go"
 import { IoIosInformationCircleOutline, IoMdTime } from "react-icons/io"
 import LargeBtn from "../components/largeBtn"
 import { FaArrowPointer } from "react-icons/fa6"
@@ -64,8 +63,17 @@ const CourseDescription = () => {
 
     const handleAddToCart = () => {
         if (user) {
+            if (user.accountType === 'Student') {
 
-            cartHandler(dispatch, courseId)
+                buyCourse(
+
+                    dispatch,
+                    courseId
+                )
+            } else {
+                toast.error('Instuctor cannot add to cart course')
+            }
+
         } else {
             setModal({
                 textOne: 'You are not logged In',
@@ -81,16 +89,20 @@ const CourseDescription = () => {
         const Ids = []
         Ids.push(courseId)
         if (user) {
+            if (user.accountType === 'Student') {
 
-            buyCourse(
-                Ids,
-                user,
-                dispatch,
-                navigate
-            )
+                buyCourse(
+                    Ids,
+                    user,
+                    dispatch,
+                    navigate
+                )
+            } else {
+                toast.error('Instuctor cannot buy course')
+            }
 
         } else {
-        
+
             setModal({
                 textOne: 'You are not logged In',
                 textTwo: 'Please login or signIn  for buying any course',
@@ -150,11 +162,23 @@ const CourseDescription = () => {
 
                             <h2 className="text-richblack-50 font-semibold p-1 text-2xl">Rs: {courseDescription?.price}/-</h2>
 
+                            <div className="">
+                                {
+                                    user?.courses?.includes(courseId) ? (
+                                        <LargeBtn behaviour={() => user.accountType==='Student'? navigate('/dashboard/enrolled-courses'):navigate('/dashboard/my-courses') } content={'View course'}></LargeBtn>
+                                    ) : (
 
-                            <LargeBtn behaviour={handleBuyNow} content={'Buy now'}></LargeBtn>
+                                        <div className="flex flex-col gap-3">
+
+                                            <LargeBtn behaviour={handleBuyNow} content={'Buy now'}></LargeBtn>
 
 
-                            <LargeBtn behaviour={handleAddToCart} active={true} content={'Add to cart'}></LargeBtn>
+                                            <LargeBtn behaviour={handleAddToCart} active={true} content={'Add to cart'}></LargeBtn>
+
+                                        </div>
+                                    )
+                                }
+                            </div>
                             <p className="text-center text-richblack-200">30 Days money back gurantee</p>
                             <div className="text-caribbeangreen-200 font-semibold">This Course Include
                                 <ul className="font-normal px-2">
@@ -179,7 +203,7 @@ const CourseDescription = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
             <div className="text-richblack-100 w-3/5 mx-10 my-10 ">
                 <h2 className="text-xl font-inter text-richblack-100 my-2">What will you learn</h2>
@@ -206,11 +230,12 @@ const CourseDescription = () => {
                 </div>
                 <p className="w-3/5 my-2 text-richblack-300">{courseDescription?.intructor?.addtionalDetails?.about}</p>
             </div>
-            {modal && (<Modal
-                {...modal}
-            ></Modal>)
+            {
+                modal && (<Modal
+                    {...modal}
+                ></Modal>)
             }
-        </div>
+        </div >
     )
 }
 export default CourseDescription
