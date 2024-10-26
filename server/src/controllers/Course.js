@@ -153,7 +153,7 @@ exports.getAllCourses = async (req, res) => {
 exports.getCourseDetails = async (req, res) => {
     try {
         const { courseId } = req.params
-        console.log(courseId)
+        // console.log(courseId)
         const courseDetails = await Course.findById({ _id: courseId }).populate({
             path: 'intructor',
             populate: {
@@ -339,18 +339,72 @@ exports.getCategoryCourse = async (req, res) => {
 exports.getEnrolledCourse = async (req, res) => {
     try {
         const userId = req.user.id
-        const course = await User.findById(userId).populate({
-            path: 'courses'
-        }).populate('courceProgress')
+        const userCourse = await User.findById(userId).populate({
+            path: 'courses',
+            populate: {
+                path: 'categories'
+            }
+        }).populate('courseProgress').exec()
+
+
+        // console.log("userCourse",userCourse)
+
+
+
+        let courseResponse
+        let totalSubsection = []
+
+        let totalTimeDuration=[]
+
+        for (const course of userCourse?.courses) {
+
+            courseResponse = await Course.findById(course._id).populate({
+                path: 'courseContent',
+                populate: {
+                    path: 'subSection'
+                }
+            })
+
+
+        
+            const time=courseResponse?.courseContent?.reduce((totalTime,item)=>{
+                const totalTimeStore =item?.subSection?.reduce((time,subSection)=>{
+                    const intoNumber = Number(subSection?.timeDuration)
+                    return time+(intoNumber||0)
+                },0)
+                return totalTime + totalTimeStore
+            },0)
+            
+            
+            const total = courseResponse?.courseContent?.reduce((total, item) => {
+                return total + (item?.subSection?.length || 0)
+            }, 0)
+
+
+
+
+
+            // console.log('total',courseResponse?.courseContent)
+
+            totalSubsection.push({ id: course._id, totalLength: total })
+            totalTimeDuration.push({id:course._id,totalTime:time})
+
+
+        }
+
+
+        // console.log(totalSubsection)
+
 
         return res.status(200).json({
-            success: false,
+            success: true,
             message: 'Enrolled course fetched',
-            data: course
+            data: userCourse, totalSubsection,totalTimeDuration
+
         })
     } catch (err) {
         console.log(err)
-        return res.status(500).josn({
+        return res.status(500).json({
             sucess: false,
             message: 'Internal server error'
         })

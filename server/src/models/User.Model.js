@@ -50,7 +50,7 @@ const userSchema=new mongoose.Schema({
     imageProfilePublicId:{
         type:String
     },
-    courceProgress:[
+    courseProgress:[
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:"CourseProgress"

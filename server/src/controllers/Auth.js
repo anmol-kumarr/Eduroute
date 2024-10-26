@@ -5,6 +5,7 @@ const otpGenerator = require('otp-generator')
 const bcrypt = require('bcrypt')
 const Profile = require('../models/Profile.Model')
 const jwt = require('jsonwebtoken')
+const CourseProgress = require('../models/CourseProgress.Model')
 //--------------------------- create otp --------------------------
 
 exports.createOtp = async (req, res) => {
@@ -64,7 +65,7 @@ exports.signUp = async (req, res) => {
 
     try {
 
-        const { firstName, mobileNumber, lastName, email, password, confirmPassword, accountType, otp,cart } = req.body
+        const { firstName, mobileNumber, lastName, email, password, confirmPassword, accountType, otp, cart, courseProgress } = req.body
 
 
         // console.log('email', email,
@@ -75,7 +76,7 @@ exports.signUp = async (req, res) => {
         //     confirmPassword,
         //     accountType,
         //     otp)
-        console.log('email',email)
+        console.log('email', email)
 
 
         if (!firstName || !lastName || !email || !password || !otp || !mobileNumber) {
@@ -84,12 +85,12 @@ exports.signUp = async (req, res) => {
                 message: 'All fields are required'
             })
         }
-    
 
-        console.log(password.length,typeof(password))
-        console.log('length',confirmPassword.length,typeof(confirmPassword))
 
-    
+        console.log(password.length, typeof (password))
+        console.log('length', confirmPassword.length, typeof (confirmPassword))
+
+
 
 
         if (password.trim() !== confirmPassword.trim()) {
@@ -108,8 +109,8 @@ exports.signUp = async (req, res) => {
         }
         // find latest otp
         // const existOtp = await Otp.find({email})
-        const existOtp = await Otp.find({email}).sort({ createdAt: -1 }).limit(1)
-        
+        const existOtp = await Otp.find({ email }).sort({ createdAt: -1 }).limit(1)
+
         console.log(existOtp)
         // if(existOtp[0].email){
         //     console.log('email matched')
@@ -136,6 +137,7 @@ exports.signUp = async (req, res) => {
             dateOfBirth: null,
             mobile: mobileNumber
         })
+
         const user = await User.create({
             firstName,
             lastName,
@@ -144,7 +146,8 @@ exports.signUp = async (req, res) => {
             accountType,
             addtionalDetails: profileDetails._id,
             image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
-            cart
+            cart,
+            courseProgress
         })
 
         res.status(200).json({
@@ -175,6 +178,7 @@ exports.login = async (req, res) => {
             })
         }
 
+
         const user = await User.findOne({ email }).populate('addtionalDetails')
         if (!user) {
             return res.status(400).json({
@@ -200,7 +204,7 @@ exports.login = async (req, res) => {
                 // httpOnly: true,
                 // secure: process.env.NODE_ENV === 'production', // Secure only on HTTPS
                 sameSite: 'Lax',
-                secure:false
+                secure: false
             }
 
             res.cookie('token', token, option).status(200).json({

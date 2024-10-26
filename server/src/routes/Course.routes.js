@@ -5,6 +5,7 @@ const { createCourse, getCourseDetails, updateCourse, getInstructorCourse, delet
 const { createCategories, showCategories } = require('../controllers/Categories')
 const { createSection, updateSection, deleteSection } = require('../controllers/Section')
 const { createSubSection, updateSubsection, deleteSubSection } = require('../controllers/SubSection')
+const { isEnrolled } = require('../middleware/Enrolled..Mw')
 
 const routes = express.Router()
 // testing done--------------------------------------------------------

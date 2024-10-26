@@ -66,7 +66,7 @@ export const buyCourse = async (courseId, user, dispatch, navigate) => {
             console.log(response.error);
         })
     } catch (err) {
-        // toast.remove()
+        toast.dismiss()
         console.log('payment fn err', err)
         toast.error('could not make payment')
     }
@@ -86,6 +86,7 @@ const paymentMailSender = async (razorpayResponse, amount) => {
         })
 
         console.log(response)
+        toast.success('Confirmation mail sent ')
     } catch (err) {
         console.log('err in mail sending', err)
         toast.error('Error in sending confirmation mail')
@@ -98,7 +99,7 @@ const paymentMailSender = async (razorpayResponse, amount) => {
 const verifyPayment = async (bodyData, dispatch, navigate) => {
     console.log('body data', bodyData)
     const api = paymentApi.paymentVerify
-    toast.loading('loading')
+    // toast.loading('loading')
 
     try {
         const response = await apiConnector('POST', api, bodyData)
@@ -109,7 +110,8 @@ const verifyPayment = async (bodyData, dispatch, navigate) => {
         }
         dispatch(addToCart(null))
         navigate('/dashboard/enrolled-courses')
-        toast.dismiss()
+        // toast.dismiss()
+        toast.success('You are enrolled')
 
 
     } catch (err) {
@@ -117,7 +119,7 @@ const verifyPayment = async (bodyData, dispatch, navigate) => {
         toast.dismiss()
         toast.error('Error while  verifying payment')
     }
-    toast.dismiss()
+    // toast.dismiss()
 }
 
 
