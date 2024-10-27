@@ -15,16 +15,16 @@ const ExploreMore = () => {
     ]
     const [activeTab, setActiveTab] = useState('Free')
     return (
-        <div className=" flex flex-col justify-center items-center gap-5">
+        <div className="w-full flex flex-col justify-center items-center gap-5">
             <div className="flex flex-col items-center">
                 <h2 className="font-inter font-bold text-3xl text-richblack-5">Unlock the <HighlightedText content={' Power of Code'}></HighlightedText></h2>
                 <p className="fonnt-inter text-richblack-200">Learn to Build Anything You Can Imagine</p>
             </div>
 
-            <div className="my-5 flex justify-between transition-all duration-700 w-1/2 p-1 rounded-3xl bg-richblack-700">
+            <div className="my-5 flex justify-between transition-all duration-700 min-[1330px]:w-1/2 max-[1000]:w-7/12 max-[670px]:max-w-1/2 p-1 rounded-3xl bg-richblack-700">
                 {
                     tabName.map((item, index) => (
-                        <button onClick={() => setActiveTab(item)} className={`font-inter text-richblack-25 ${activeTab === item ? 'bg-richblack-800 transition-all duration-300 ease-in-out py-2 px-4 rounded-3xl' : 'bg-transparent py-2 px-4 rounded-3xl'}`} key={index} >{item}</button>
+                        <button onClick={() => setActiveTab(item)} className={`min-w-[100px] font-inter text-richblack-25 ${activeTab === item ? 'bg-richblack-800 transition-all duration-300 ease-in-out py-2 px-4 rounded-3xl' : 'bg-transparent py-2 px-4 rounded-3xl'}`} key={index} >{item}</button>
                     ))
                 }
             </div>

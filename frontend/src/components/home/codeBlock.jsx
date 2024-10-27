@@ -8,17 +8,17 @@ const CodeBlock = ({
 
 
     return (
-        <div className={`flex flex-wrap ${position} items-center justify-between`}>
-            <div className="w-2/5  flex flex-col gap-4 ">
+        <div className={`flex w-full flex-wrap ${position}  min-[865px]:my-0 my-10 items-center justify-center  min-[865px]:justify-between`}>
+            <div className="min-[865px]:w-2/5 w-full max-[865px]:text-center max-[865px]:mx-1 min-[865px]:my-0 my-5  min-w-[300px] flex flex-col gap-4 mx-4">
 
                 <h2 className="text-richblack-5 font-bold text-2xl">{heading}</h2>
                 <p className="text-richblack-300">{subHeading}</p>
-                <div className="flex gap-4">
+                <div className="flex gap-4 max-[865px]:justify-center">
                     <HomeBtn content={btnOne.content} active={btnOne.active} render={btnOne.render} ></HomeBtn>
                     <HomeBtn content={btnTwo.content} active={btnTwo.active} render={btnTwo.render}></HomeBtn>
                 </div>
             </div>
-            <div className=" relative p-2 w-2/5 text-richblack-100 bg-transparent">
+            <div className="min-w-[390px] relative p-2 w-2/5 text-richblack-100 bg-transparent">
 
 
 
@@ -29,7 +29,7 @@ const CodeBlock = ({
 
                 </div>
 
-                <div className="bg-richblack-800  rounded-md p-2 z-20 flex gap-2">
+                <div className="bg-richblack-800   rounded-md p-2 z-20 flex gap-2">
                     <div className="font-mono text-sm text-center">
 
                         <p>1</p>
