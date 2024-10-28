@@ -64,3 +64,7 @@ export const cartApi={
 export const studentEnrolledCourseApi={
     getEnrolledCourse:BASE_URL+'course/getEnrolledCourse'
 }
+
+export const enrolledCourse={
+    getEnrolledCourse:BASE_URL+'course'
+}

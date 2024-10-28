@@ -22,6 +22,7 @@ import MyCourse from "./components/dashboard/instructor/mycourse/myCourse";
 import EditMyCourse from "./components/dashboard/instructor/mycourse/editMyCourse";
 import Catelog from "./page/categlog";
 import CourseDescription from "./page/courseDescription";
+import LectureSection from "./page/lectureSection";
 
 
 
@@ -34,13 +35,13 @@ function App() {
 
       <>
         {
-          location.includes('/catelog') ||  location.includes('/course') ? '' : <DashBoardRoute>
+          location.includes('/catelog') || location.includes('/course') || location.includes('/lecture') ? '' : <DashBoardRoute>
             <Header></Header>
           </DashBoardRoute>
         }
       </>
-      
-  
+
+
 
       <Routes>
         <Route path="/" element={<Home></Home>} />
@@ -70,6 +71,13 @@ function App() {
             <Route path="/dashboard/edit-course/:courseId" element={<EditMyCourse></EditMyCourse>} />
           </>
           }
+
+        </Route>
+
+        <Route path="/lecture/:courseId" element={<CloseRoute>
+          <LectureSection></LectureSection>
+        </CloseRoute>}>
+
 
         </Route>
 

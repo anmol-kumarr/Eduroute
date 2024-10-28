@@ -39,5 +39,7 @@ routes.get('/category/:id',getCategoryCourse)
 
 routes.get('/getEnrolledCourse',[auth,isStudent],getEnrolledCourse)
 
+routes.get('/:courseId',[auth,isStudent,isEnrolled],getCourseDetails)
+
 
 module.exports = routes

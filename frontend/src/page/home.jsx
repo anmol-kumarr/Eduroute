@@ -58,7 +58,7 @@ const Home = () => {
 
                 {/* section two */}
 
-                <div className="w-4/5 mx-auto mb-28">
+                <div className="min-[1050px]:w-4/5 w-11/12 mx-auto mb-28">
                     <CodeBlock bg={'yellow'} position={''} btnOne={{ content: <>Try it Yourself <IoArrowForward /></>, active: true, render: '/course' }}
                         btnTwo={{ content: <>learn more</>, active: false, render: '/learnmore' }}
 
