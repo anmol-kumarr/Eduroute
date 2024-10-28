@@ -119,7 +119,7 @@ function App() {
         <div className="bg-richblack-700 w-full">
           {
 
-            location.includes('/auth') ? "" : < Footer ></Footer>
+            location.includes('/auth') || location.includes('lecture') ? "" : < Footer ></Footer>
           }
         </div>
       </DashBoardRoute>

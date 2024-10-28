@@ -1,57 +1,71 @@
 import Collapsible from "react-collapsible"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { PiMonitorPlayLight } from "react-icons/pi";
-const Sidebar = ({ courseData }) => {
+const Sidebar = ({ courseData,setPlayVideo,setSubSection}) => {
+
+
+    const lectureHandler=(subSectionId,sectionId)=>{
+        console.log(courseData)
+        const filterData=courseData?.courseContent?.map((section)=>{
+            return section?.subSection?.filter((subSection)=>subSection._id===subSectionId)
+        }).flat().filter(Boolean)
+        console.log(filterData[0]._id,subSectionId)
+        setSubSection(filterData[0])
+        setPlayVideo(filterData[0].videoUrl)
+        
+    }
     return (
-        <div className="bg-richblack-700 w-2/12">
+        <div className="bg-richblack-800 w-2/12 min-h-[calc(100vh-3rem)]">
             <div >
-                <div>
+                <div className="p-2">
                     {courseData?.courseName}
 
                 </div>
-                {
-                    courseData?.courseContent?.map((content) => (
-                        <Collapsible trigger={
-                            <div className="p-2 flex justify-between items-center">
-                                <p>{content?.sectionName}</p>
 
-                                <p >
+                <div className="flex flex-col gap-1">
 
-                                    <MdOutlineKeyboardArrowDown></MdOutlineKeyboardArrowDown>
-
-                                </p>
-                            </div>
-                        }
-                            transitionTime={200}
-                            triggerWhenOpen={
-                                <div className="p-2 flex justify-between items-center">
+                    {
+                        courseData?.courseContent?.map((content) => (
+                            <Collapsible trigger={
+                                <div className=" p-2 flex justify-between items-center">
                                     <p>{content?.sectionName}</p>
-                                    <p>
-                                        <MdOutlineKeyboardArrowUp></MdOutlineKeyboardArrowUp>
+
+                                    <p >
+
+                                        <MdOutlineKeyboardArrowDown></MdOutlineKeyboardArrowDown>
+
                                     </p>
                                 </div>
                             }
-                        >
-                            <div className="bg-richblack-800">
-                                {
-                                    content?.subSection.map((subSection) => (
-                                        <div>
-                                            <div>
-                                                <label class="flex items-center space-x-2 cursor-pointer">
-                                                    <input type="checkbox" class="peer appearance-none w-5 h-5 border-2 border-gray-500 checked:bg-green-500" />
-                                                    
-                                                </label>
-                                            </div>
-                                            {subSection?.title}
-                                            <p><PiMonitorPlayLight></PiMonitorPlayLight></p>
-                                        </div>
-                                    ))
+                                transitionTime={200}
+                                triggerWhenOpen={
+                                    <div className=" p-2 flex justify-between items-center">
+                                        <p>{content?.sectionName}</p>
+                                        <p>
+                                            <MdOutlineKeyboardArrowUp></MdOutlineKeyboardArrowUp>
+                                        </p>
+                                    </div>
                                 }
-                            </div>
+                            >
+                                <div className="bg-richblack-800">
+                                    {
+                                        content?.subSection.map((subSection) => (
+                                            <div onClick={()=>lectureHandler(subSection._id,content._id)} className="cursor-pointer flex gap-2 items-center p-2">
 
-                        </Collapsible>
-                    ))
-                }
+                                                <p className="text-sm">
+
+                                                    {subSection?.title}
+                                                </p>
+                                                <p><PiMonitorPlayLight className="text-lg -mb-[2px]"></PiMonitorPlayLight></p>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+
+                            </Collapsible>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     )
