@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux"
 import Modal from "../components/modal"
 import { buyCourse } from "../services/operation/payment"
 import RatingStars from "../components/course/ratingStar"
+import{cartHandler} from '../services/operation/cart'
 
 
 const CourseDescription = () => {
@@ -63,7 +64,7 @@ const CourseDescription = () => {
         if (user) {
             if (user.accountType === 'Student') {
 
-                buyCourse(
+                cartHandler(
 
                     dispatch,
                     courseId

@@ -1,0 +1,54 @@
+import { LiaTimesSolid } from "react-icons/lia";
+import { useSelector } from "react-redux";
+import { GoStar, GoStarFill } from "react-icons/go";
+import { useState } from "react";
+const RatingModal = ({ setModal }) => {
+    const user = useSelector(state => state.user.user)
+    const [number, setNumber] = useState(0)
+    return (
+        <div className="flex justify-center my-[20%]  items-center">
+            <div className="w-96 bg-richblack-800 rounded-md overflow-hidden">
+                <div className="flex justify-between items-center px-3 py-2 border-b-[1px] border-richblack-400 bg-richblack-700">
+                    <p>Add review</p>
+                    <button onClick={() => setModal(false)}>
+                        <LiaTimesSolid className="-mb-[2px]"></LiaTimesSolid>
+                    </button>
+
+                </div>
+                <div className="flex flex-col items-center">
+
+                    <div className="flex  gap-1 items-center my-3">
+                        <div className="w-8 h-8 rounded-full overflow-hidden">
+                            <img className="w-full h-full" src={user.image} alt="" />
+                        </div>
+                        <div className="">
+                            <p >{user?.firstName} {user?.lastName}</p>
+                            <p className="text-xs text-richblack-500 font-medium">Posting publicly</p>
+                        </div>
+                    </div>
+                    <div className="text-yellow-100 flex gap-[2px] my-1">
+                        {[...Array(5)].map((_, i) => (
+
+                            number >= i ? (
+                                <GoStarFill onClick={()=>setNumber(i)}></GoStarFill>
+                            ) : (
+                                <GoStar  onClick={()=>setNumber(i)}></GoStar>
+                            )
+
+                        ))}
+                    </div>
+                    <div className="p-1 flex flex-col gap-1 mt-2 items-center">
+                        <label className="text-richblack-200 text-sm" htmlFor="review">Add your Experience <span className="text-[#ff0000] text-start">*</span></label>
+                        <textarea rows={3} cols={40} className="p-1 rounded-md bg-richblack-700 outline-none  border-richblack-500" name="review" id="review"></textarea>
+                    </div>
+
+                    <div className="mb-5 mt-2 flex gap-2 justify-end">
+                        <button className="bg-richblack-400 px-2 py-1 rounded-md shadow-[2px_2px_0px_#2C333F]">Cancel</button>
+                        <button className="text-black bg-yellow-100 px-2 py-1 rounded-md shadow-[2px_2px_0px_#FFE83D]">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+export default RatingModal

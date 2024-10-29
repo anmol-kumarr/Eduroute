@@ -6,15 +6,16 @@ import { enrolledCourse } from "../services/api"
 import Spinner from "../components/spinner"
 import Sidebar from "../components/videoLecture/sidebar"
 import Footer from "../components/footer"
+import RatingModal from "../components/videoLecture/ratingModal"
 
 const LectureSection = () => {
     const { courseId } = useParams()
-
+    const [modal, setModal] = useState(false)
     const [courseData, setCourseData] = useState([])
     const [loading, setLoading] = useState(false)
     const [playVideo, setPlayVideo] = useState('')
     const [subSection, setSubSection] = useState(null)
-    const[date,setDate]=useState('')
+    const [date, setDate] = useState('')
     const fetchLectureData = async () => {
         const api = `${enrolledCourse.getEnrolledCourse}/${courseId}`
         setLoading(true)
@@ -24,13 +25,13 @@ const LectureSection = () => {
             setCourseData(response?.data?.data)
             setPlayVideo(response?.data?.data?.courseContent[0]?.subSection[0]?.videoUrl)
             setSubSection(response?.data?.data?.courseContent[0]?.subSection[0])
-            
+
             const createdAt = response?.data?.data?.courseContent[0]?.subSection[0]?.createdAt;
             const date = new Date(createdAt).toLocaleString("en-IN", {
                 timeZone: "Asia/Kolkata",
                 year: "numeric",
                 month: "2-digit",
-                
+
             });
             setDate(date)
         }
@@ -43,17 +44,17 @@ const LectureSection = () => {
     useEffect(() => {
         fetchLectureData()
     }, [])
-    useEffect(()=>{
+    useEffect(() => {
         const date = new Date(subSection?.createdAt).toLocaleString("en-IN", {
             timeZone: "Asia/Kolkata",
             year: "numeric",
             month: "2-digit",
-            
+
         })
         setDate(date)
-    },[subSection])
+    }, [subSection])
 
-    
+
     useEffect(() => {
         // console.log(courseData)
         if (!courseData.length === 0) setPlayVideo(courseData?.courseContent[0]?.subSection[0]?.videoUrl)
@@ -61,7 +62,7 @@ const LectureSection = () => {
         // console.log(courseData?.courseContent[0]?.subSection[0]?.videoUrl)
     }, [courseData])
     return (
-        <div className="text-white w-full">
+        <div className="text-white w-full relative">
             <div className="bg-richblack-800 w-full">
                 <Header></Header>
             </div>
@@ -86,7 +87,7 @@ const LectureSection = () => {
                                         </div>
                                     ) : (
                                         <div className="flex  justify-between">
-                                            <Sidebar setDate={setDate} setPlayVideo={setPlayVideo} setSubSection={setSubSection} courseData={courseData}></Sidebar>
+                                            <Sidebar setModal={setModal} setDate={setDate} setPlayVideo={setPlayVideo} setSubSection={setSubSection} courseData={courseData}></Sidebar>
                                             <div className="min-h-[calc(100vh-5rem)] w-9/12 mx-auto flex flex-col justify-center">
 
                                                 <div className="my-2 max-h-[calc(100vh-5rem)] w-9/12 mx-auto flex justify-center">
@@ -113,6 +114,16 @@ const LectureSection = () => {
             <div className="bg-richblack-800 border-t-[1px] border-richblack-700">
                 <Footer></Footer>
             </div>
+            {
+                modal ? (
+
+                    <div className="absolute top-0 left-0 right-0 bg-richblack-800 bg-opacity-70  bottom-0">
+
+                        <RatingModal setModal={setModal}></RatingModal>
+
+                    </div>
+                ) : ''
+            }
         </div >
     )
 }

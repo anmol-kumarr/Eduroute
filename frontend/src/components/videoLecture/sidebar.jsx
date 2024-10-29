@@ -1,7 +1,7 @@
 import Collapsible from "react-collapsible"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { PiMonitorPlayLight } from "react-icons/pi";
-const Sidebar = ({ courseData,setPlayVideo,setSubSection}) => {
+const Sidebar = ({ courseData,setPlayVideo,setSubSection,setModal}) => {
 
 
     const lectureHandler=(subSectionId,sectionId)=>{
@@ -17,9 +17,9 @@ const Sidebar = ({ courseData,setPlayVideo,setSubSection}) => {
     return (
         <div className="bg-richblack-800 w-2/12 min-h-[calc(100vh-3rem)]">
             <div >
-                <div className="p-2">
-                    {courseData?.courseName}
-
+                <div className="p-2 flex flex-col items-center">
+                    <p>{courseData?.courseName}</p>
+                    <button onClick={()=>setModal(true)} className="bg-yellow-100 rounded-md px-2 py-1 text-black text-sm my-2">Rate course</button>
                 </div>
 
                 <div className="flex flex-col gap-1">
