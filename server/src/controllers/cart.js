@@ -97,7 +97,7 @@ exports.removeFromCart = async (req, res) => {
         const { courseId } = req.body
         const userId = req.user.id
 
-        const response = await User.findByIdAndUpdate({ userId }, { $pull: { cart: courseId } }, { new: true }).populate({
+        const response = await User.findByIdAndUpdate( userId , { $pull: { cart: courseId } }, { new: true }).populate({
             path: 'cart'
         }).exec()
 

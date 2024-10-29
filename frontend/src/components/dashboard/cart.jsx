@@ -11,6 +11,7 @@ import { FaTrashAlt } from "react-icons/fa"
 import { PiDotOutlineFill } from 'react-icons/pi'
 import LargeBtn from "../largeBtn"
 import { buyCourse } from "../../services/operation/payment"
+import { reomveFromCart } from "../../services/operation/cart"
 
 const Cart = () => {
     const navigate = useNavigate()
@@ -54,6 +55,9 @@ const Cart = () => {
             navigate
         )
 
+    }
+    const removeItemHandler=(id)=>{
+        reomveFromCart(dispatch,{courseId:id})
     }
     return (
         <div className="text-richblack-100">
@@ -119,7 +123,7 @@ const Cart = () => {
                                                             </div>
                                                         </div>
                                                         <div className="py-2 mx-5">
-                                                            <button className="flex items-center gap-1 bg-richblack-500 bg-opacity-60 px-2 py-1 rounded-md text-[#ff0000]">
+                                                            <button onClick={()=>removeItemHandler(item._id)} className="flex items-center gap-1 bg-richblack-500 bg-opacity-60 px-2 py-1 rounded-md text-[#ff0000]">
                                                                 <FaTrashAlt className="-mb-[2px]"></FaTrashAlt>
                                                                 Remove</button>
 
