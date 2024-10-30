@@ -57,7 +57,7 @@ return (
                 <div className='relative flex items-center gap-1 cursor-pointer group'>
                     <p className={`${currentLocation ? 'text-yellow-25' : ''}`}>Catelog</p>
                     <MdOutlineKeyboardArrowDown />
-                    <div className='px-2 py-2 w-[200%] gap-2 absolute top-[155%] -right-1/2 rounded-md opacity-0 transition-all duration-200 group-hover:visible invisible group-hover:opacity-100  bg-richblack-25 flex flex-col'>
+                    <div className='px-2 z-30 py-2 w-[200%] gap-2 absolute top-[155%] -right-1/2 rounded-md opacity-0 transition-all duration-200 group-hover:visible invisible group-hover:opacity-100  bg-richblack-25 flex flex-col'>
                         {
                             catelogData && catelogData.length > 0 && catelogData.map((item) => (
 

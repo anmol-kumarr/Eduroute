@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux";
-import { Player } from 'video-react';
+import { BigPlayButton, ForwardControl, Player } from 'video-react';
 import { setCompletedLecture } from "../../redux/slice/lecture";
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, courseData, playVideo }) => {
     const videoPlayerRef = useRef(null)
@@ -22,7 +23,7 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
     const isFirstVideo = () => {
         const sectionIndex = courseData?.courseContent.findIndex((data) => data._id === section._id)
 
-        const subSectionIndex = courseData?.courseContent[sectionIndex].findIndex((data) => subSection._id === data._id)
+        const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
         if (sectionIndex === 0 && subSectionIndex === 0) return true
 
@@ -36,7 +37,7 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
         const subSectionLength = courseData?.courseContent[sectionIndex]?.length
 
 
-        const subSectionIndex = courseData?.courseContent[sectionIndex].findIndex((data) => subSection._id === data._id)
+        const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
         if (sectionIndex === section?.subSection?.length - 1 && subSectionIndex === subSectionLength - 1) { return true }
         else {
@@ -48,13 +49,16 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
     const goNext = () => {
 
         const sectionIndex = courseData?.courseContent.findIndex((data) => data._id === section._id)
-        const subSectionLength = courseData?.courseContent[sectionIndex]?.length
+        console.log(sectionIndex)
+        const subSectionLength = courseData?.courseContent[sectionIndex]?.subSection?.length
 
 
-        const subSectionIndex = courseData?.courseContent[sectionIndex].findIndex((data) => subSection._id === data._id)
+
+        const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
         if (subSectionLength !== subSectionIndex - 1) {
             const nextSubSection = courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1]
+            console.log(courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1])
             setSubSection(nextSubSection)
             setPlayVideo(nextSubSection.videoUrl)
             setSection(courseData?.courseContent[sectionIndex])
@@ -69,10 +73,12 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
     const goPrev = () => {
         const sectionIndex = courseData?.courseContent.findIndex((data) => data._id === section._id)
-        const subSectionLength = courseData?.courseContent[sectionIndex]?.length
+        console.log(sectionIndex)
+        const subSectionLength = courseData?.courseContent[sectionIndex]?.subSection?.length
 
 
-        const subSectionIndex = courseData?.courseContent[sectionIndex].findIndex((data) => subSection._id === data._id)
+
+        const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
         if (subSectionIndex !== 0) {
             const nextSubSection = courseData?.courseContent[sectionIndex].subSection[subSectionIndex - 1]
@@ -91,10 +97,29 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
 
     return (
-        <div ref={videoPlayerRef} className="my-2 max-h-[calc(100vh-5rem)] w-9/12 mx-auto flex justify-center">
-            <Player ref={videoPlayerRef} onEnded={() => completeHandler()} aspectRatio="16:9">
-                <source src={playVideo} />
-            </Player>
+
+        <div ref={videoPlayerRef} className="my-2 relative z-0  w-9/12 mx-auto flex flex-col items-center">
+            <div className="max-h-[calc(100vh-5rem)] w-full">
+
+                <Player src={playVideo} ref={videoPlayerRef} onEnded={() => completeHandler()} aspectRatio="16:9">
+                    <BigPlayButton position="center" />
+
+                </Player>
+            </div>
+
+            <div className="flex mt-5 justify-around w-1/4">
+
+                {
+                    isFirstVideo() && <button onClick={goPrev} className="flex items-center px-2 py-1 rounded-md bg-richblack-700 "><IoIosArrowBack className="-mb-[2px]"></IoIosArrowBack> Previous</button>
+                }
+                { isLastVideo() && <button onClick={goNext} className="bg-yellow-100 px-2 flex items-center py-1 rounded-md text-black">
+                        Next
+                        <IoIosArrowForward className="-mb-[2px]"></IoIosArrowForward>
+                    </button>
+                }
+            </div>
+
+
         </div>
     )
 }
