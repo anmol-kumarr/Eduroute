@@ -8,15 +8,15 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
     const [videoEnd, setVideoEnd] = useState(false)
     const dispatch = useDispatch()
 
+    const completeHandler = () => {
 
-    useEffect(() => {
-        if (videoEnd) {
-            dispatch(setCompletedLecture({
-                courseId: courseData._id,
-                subSectionId: subSection._id
-            }))
-        }
-    }, [videoEnd])
+        dispatch(setCompletedLecture({
+            courseId: courseData._id,
+            subSectionId: subSection._id
+        }))
+
+    }
+
 
 
     const isFirstVideo = () => {
@@ -92,7 +92,7 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
     return (
         <div ref={videoPlayerRef} className="my-2 max-h-[calc(100vh-5rem)] w-9/12 mx-auto flex justify-center">
-            <Player ref={videoPlayerRef} onEnded={() => setVideoEnd(true)} aspectRatio="16:9">
+            <Player ref={videoPlayerRef} onEnded={() => completeHandler()} aspectRatio="16:9">
                 <source src={playVideo} />
             </Player>
         </div>

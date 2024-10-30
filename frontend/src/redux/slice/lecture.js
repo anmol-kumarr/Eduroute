@@ -19,7 +19,7 @@ const lectureSlice = createSlice({
             else{
                 state?.completedLecture?.push({
                     courseID:action.payload.courseId,
-                    completedVideo:action.payload.subSectionId
+                    completedVideo:[action.payload.subSectionId]
                 })
             }
         }
