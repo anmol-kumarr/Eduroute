@@ -7,6 +7,7 @@ import Spinner from "../components/spinner"
 import Sidebar from "../components/videoLecture/sidebar"
 import Footer from "../components/footer"
 import RatingModal from "../components/videoLecture/ratingModal"
+import Video from "../components/videoLecture/video"
 
 const LectureSection = () => {
     const { courseId } = useParams()
@@ -16,6 +17,7 @@ const LectureSection = () => {
     const [playVideo, setPlayVideo] = useState('')
     const [subSection, setSubSection] = useState(null)
     const [date, setDate] = useState('')
+    const[section,setSection]=useState(null)
     const fetchLectureData = async () => {
         const api = `${enrolledCourse.getEnrolledCourse}/${courseId}`
         setLoading(true)
@@ -24,6 +26,7 @@ const LectureSection = () => {
 
             setCourseData(response?.data?.data)
             setPlayVideo(response?.data?.data?.courseContent[0]?.subSection[0]?.videoUrl)
+            setSection(response?.data?.data?.courseContent[0])
             setSubSection(response?.data?.data?.courseContent[0]?.subSection[0])
 
             const createdAt = response?.data?.data?.courseContent[0]?.subSection[0]?.createdAt;
@@ -87,12 +90,10 @@ const LectureSection = () => {
                                         </div>
                                     ) : (
                                         <div className="flex  justify-between">
-                                            <Sidebar setModal={setModal} setDate={setDate} setPlayVideo={setPlayVideo} setSubSection={setSubSection} courseData={courseData}></Sidebar>
+                                            <Sidebar setSection={setSection} subSectionData={subSection} setModal={setModal} setDate={setDate} setPlayVideo={setPlayVideo} setSubSection={setSubSection} courseData={courseData}></Sidebar>
                                             <div className="min-h-[calc(100vh-5rem)] w-9/12 mx-auto flex flex-col justify-center">
 
-                                                <div className="my-2 max-h-[calc(100vh-5rem)] w-9/12 mx-auto flex justify-center">
-                                                    <video controls controlsList="nodownload" className="h-full w-96" src={playVideo}></video>
-                                                </div>
+                                                <Video setSection={setSection} setPlayVideo={setPlayVideo} setSubSection={setSubSection} subSection={subSection} section={section} courseData={courseData} playVideo={playVideo}></Video>
 
                                                 <div className="text-richblack-50 my-5 border border-richblack-600 p-3 rounded-md">
                                                     <h2 className="font-inter text-lg font-semibold">{subSection?.title}</h2>

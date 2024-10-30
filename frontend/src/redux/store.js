@@ -5,6 +5,7 @@ import profileSlice from './slice/profileSlice';
 import courseSlice from './slice/courseSlice';
 import instructorSlice from './slice/instructorSlice'
 import cartSlice from './slice/cartSlice'
+import LectureSlice from './slice/lecture'
 
 const Store=configureStore({
     reducer:{
@@ -12,7 +13,9 @@ const Store=configureStore({
         user:profileSlice,
         course:courseSlice,
         instructor:instructorSlice,
-        cart:cartSlice
+        cart:cartSlice,
+        lecture:LectureSlice
+        
     
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
