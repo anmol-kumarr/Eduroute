@@ -6,7 +6,7 @@ const { courseEnrollmentEmail } = require('../mail/CourseEntrollment')
 const mongoose = require('mongoose')
 const { paymentSuccessEmail } = require('../mail/PaymentSuccessfull')
 const { createHmac } = require('node:crypto');
-
+const CourseProgress=require('../models/CourseProgress.Model')
 
 exports.capturPayment = async (req, res) => {
     const { courseId } = req.body
@@ -127,15 +127,12 @@ const enrollStudent = async (courses, userId, res) => {
 
             const enrolledCourse = await Course.findByIdAndUpdate(courseId, { $push: { studentEnrolled: userId } }, { new: true })
             if (!enrolledCourse) {
-                // return res.status(400).json({
-                //     success: false,
-                //     message: 'Course not found'
-                // })
                 continue
             }
             
+            const progress=await CourseProgress.create({courseID:enrolledCourse._id,completedVideo:[]})
 
-            const userEnroll = await User.findByIdAndUpdate(userId, { $push: { courses: courseId } }, { new: true })
+            const userEnroll = await User.findByIdAndUpdate(userId, { $push: { courses: courseId,courseProgress:progress._id } }, { new: true })
             console.log(1)
 
             const template = courseEnrollmentEmail(enrolledCourse?.courseName, userEnroll?.firstName)

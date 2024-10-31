@@ -16,7 +16,7 @@ const EnrolledCourses = () => {
     const [courseSubsection, setCourseSubsection] = useState([])
     const [courseProgress, setCourseProgress] = useState([])
     const progress = useSelector(state => state.user.user.courseProgress)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     const fetchedEnrolledCourse = async () => {
         const api = studentEnrolledCourseApi.getEnrolledCourse
@@ -28,6 +28,9 @@ const EnrolledCourses = () => {
             setCourseDuration(response?.data?.totalTimeDuration)
             setCourseSubsection(response?.data?.totalSubsection)
             setCourseProgress(response?.data?.data?.courseProgress)
+
+            // console.log('response?.data?.totalSubsection', response?.data?.totalSubsection)
+            // console.log('response?.data?.data?.courseProgress', response?.data?.data?.courseProgress)
 
         } catch (err) {
             console.log(err)
@@ -81,8 +84,8 @@ const EnrolledCourses = () => {
                                             </div>
                                             <div className="w-full">
                                                 {
-                                                    enrolledCourse.map((course,index) => (
-                                                        <div key={course._id} onClick={()=>navigate(`/lecture/${course._id}`)} >
+                                                    enrolledCourse.map((course, index) => (
+                                                        <div key={course._id} onClick={() => navigate(`/lecture/${course._id}`)} >
                                                             <div className="flex justify-between items-center">
                                                                 <div className="p-2 flex w-[40%] gap-3 items-center">
 
@@ -100,21 +103,26 @@ const EnrolledCourses = () => {
                                                                     }
                                                                 </div>
 
-                                                                <div className="w-[30%] px-5">
+                                                                <div className="w-[30%] text-center px-5">
                                                                     {
-                                                                        !courseProgress.length > 0 ? (
-                                                                            <div className="font-inter text-center">
-                                                                                <span>Progress 0%</span>
 
-                                                                                <Line percent={0} strokeWidth={3} trailWidth={3} strokeColor="#E7C009"></Line>
-                                                                            </div>
-                                                                        ) : (
 
-                                                                            courseProgress.map((progress) => (
-                                                                                progress._id === course._id && <Line key={progress._id} percent={progress.completedVideo?.length / courseSubsection * 100} strokeWidth={5} trailColor={'#6E727F'} strokeColor={'#05A77B'} ></Line>
+                                                                        courseProgress?.map((progress) => (
+                                                                            progress.courseID === course._id &&
+
+                                                                            courseSubsection?.map((cour) => (
+                                                                                cour.id === course._id &&
+                                                                                <div key={cour.id}>
+                                                                                    <p>{progress.completedVideo?.length / cour?.totalLength * 100} % </p>
+                                                                                    <Line key={progress._id} percent={progress.completedVideo?.length / cour?.totalLength * 100} strokeWidth={5} trailWidth={5} trailColor={'#6E727F'} strokeColor={'#05A77B'} ></Line>
+                                                                                </div>
                                                                             ))
 
-                                                                        )
+
+
+                                                                        ))
+
+
                                                                     }
 
                                                                 </div>
@@ -122,7 +130,7 @@ const EnrolledCourses = () => {
 
                                                             </div>
                                                             {
-                                                                enrolledCourse.length-1>index && <hr className="text-richblack-500" />
+                                                                enrolledCourse.length - 1 > index && <hr className="text-richblack-500" />
                                                             }
                                                         </div>
                                                     ))
