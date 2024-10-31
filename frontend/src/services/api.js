@@ -66,5 +66,7 @@ export const studentEnrolledCourseApi={
 }
 
 export const enrolledCourse={
-    getEnrolledCourse:BASE_URL+'course'
+    getEnrolledCourse:BASE_URL+'course',
+    completedLecture:BASE_URL+'course/completed-lecture',
+    getCourseProgress:BASE_URL+'course/get-course-progress'
 }

@@ -8,21 +8,19 @@ const lectureSlice = createSlice({
 
     reducers: {
         setCompletedLecture: (state, action) => {
-            
-            if (state.completedLecture.length > 0 && state.completedLecture.includes({courseID:action.payload.courseId}) ) {
 
+            if (state.completedLecture.length === 0) {
+                state.completedLecture = action.payload
+            }
+            else {
+                if (!state.completedLecture.completedVideo.includes(action.payload.subSectionId)) {
+                    state.completedLecture.completedVideo.push(action.payload.subSectionId)
+                }
 
-                state.completedLecture.forEach((course) => (
-                    course.courseID === action.payload.courseId && course.completedVideo.push(action.payload.subSectionId)
-                ))
             }
-            else{
-                state?.completedLecture?.push({
-                    courseID:action.payload.courseId,
-                    completedVideo:[action.payload.subSectionId]
-                })
-            }
+
         }
+
     }
 })
 

@@ -3,7 +3,7 @@ import Collapsible from "react-collapsible"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { PiMonitorPlayLight } from "react-icons/pi";
 import { useSelector } from "react-redux";
-const Sidebar = ({ sectionData,setSection, subSectionData, courseData, setPlayVideo, setSubSection, setModal }) => {
+const Sidebar = ({ sectionData, setSection, subSectionData, courseData, setPlayVideo, setSubSection, setModal }) => {
     console.log(sectionData)
 
     const completedLecture = useSelector(state => state.lecture.completedLecture)
@@ -12,8 +12,7 @@ const Sidebar = ({ sectionData,setSection, subSectionData, courseData, setPlayVi
 
 
     useEffect(() => {
-        completedLecture?.length > 0 && completedLecture?.map((course) => course.courseID === courseData._id && setLectureList([...lectureList, ...course.completedVideo]))
-        console.log(completedLecture)
+        setLectureList([...lectureList, ...completedLecture?.completedVideo])
     }, [completedLecture, courseData._id])
 
 
@@ -52,7 +51,7 @@ const Sidebar = ({ sectionData,setSection, subSectionData, courseData, setPlayVi
 
                     {
                         courseData?.courseContent?.map((content, index) => (
-                            <Collapsible key={content._id} open={index === 0 ? true : false || content._id===sectionData._id} trigger={
+                            <Collapsible key={content._id} open={index === 0 ? true : false || content._id === sectionData._id} trigger={
                                 <div className=" p-2 flex justify-between items-center">
                                     <p>{content?.sectionName}</p>
 
@@ -98,7 +97,7 @@ const Sidebar = ({ sectionData,setSection, subSectionData, courseData, setPlayVi
                                                     )
                                                 }
 
-                                            
+
                                             </div>
 
                                         ))

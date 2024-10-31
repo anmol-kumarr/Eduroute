@@ -5,8 +5,9 @@ import { apiConnector } from "../../services/apiconnector"
 import Spinner from "../spinner"
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table"
 import { Line } from 'rc-progress';
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { setCompletedLecture } from "../../redux/slice/lecture"
 
 const EnrolledCourses = () => {
     const [activeBtn, setActiveBtn] = useState('All')
@@ -17,6 +18,7 @@ const EnrolledCourses = () => {
     const [courseProgress, setCourseProgress] = useState([])
     const progress = useSelector(state => state.user.user.courseProgress)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const fetchedEnrolledCourse = async () => {
         const api = studentEnrolledCourseApi.getEnrolledCourse
@@ -29,8 +31,15 @@ const EnrolledCourses = () => {
             setCourseSubsection(response?.data?.totalSubsection)
             setCourseProgress(response?.data?.data?.courseProgress)
 
+            // response?.data?.data?.courseProgress?.forEach((item) => 
+            //     dispatch(setCompletedLecture({courseId:item.courseID,completedVideo:item.completedVideo}))
+            // )
+
+
+
+
             // console.log('response?.data?.totalSubsection', response?.data?.totalSubsection)
-            // console.log('response?.data?.data?.courseProgress', response?.data?.data?.courseProgress)
+            console.log('response?.data?.data?.courseProgress', response?.data?.data?.courseProgress)
 
         } catch (err) {
             console.log(err)

@@ -3,10 +3,13 @@ import { useDispatch } from "react-redux";
 import { BigPlayButton, ForwardControl, Player } from 'video-react';
 import { setCompletedLecture } from "../../redux/slice/lecture";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { enrolledCourse } from "../../services/api";
+import { apiConnector } from '../../services/apiconnector'
 
 const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, courseData, playVideo }) => {
     const videoPlayerRef = useRef(null)
     const [videoEnd, setVideoEnd] = useState(false)
+
     const dispatch = useDispatch()
 
     const completeHandler = () => {
@@ -15,8 +18,19 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
             courseId: courseData._id,
             subSectionId: subSection._id
         }))
-    }
+        markedComplete()
 
+    }
+    const markedComplete = async () => {
+        const api = enrolledCourse.completedLecture
+        try {
+            const response = await apiConnector('PUT', api, { courseId: courseData._id, subSectionId: subSection._id })
+            console.log(response)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
 
 
     const isFirstVideo = () => {
@@ -63,7 +77,7 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
         console.log('subSectionIndex', subSectionIndex)
 
 
-        if (subSectionLength === subSectionIndex - 1 || subSectionIndex-1<0 ) {
+        if (subSectionLength === subSectionIndex - 1 || subSectionIndex - 1 < 0) {
 
             const nextSubSection = courseData.courseContent[sectionIndex + 1].subSection[0]
             setSubSection(nextSubSection)
@@ -92,7 +106,7 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
         const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
-        if (subSectionIndex !== 0 ) {
+        if (subSectionIndex !== 0) {
             const nextSubSection = courseData?.courseContent[sectionIndex].subSection[subSectionIndex - 1]
             setSubSection(nextSubSection)
             setPlayVideo(nextSubSection.videoUrl)

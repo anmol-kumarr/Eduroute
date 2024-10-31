@@ -8,6 +8,8 @@ import Sidebar from "../components/videoLecture/sidebar"
 import Footer from "../components/footer"
 import RatingModal from "../components/videoLecture/ratingModal"
 import Video from "../components/videoLecture/video"
+import { useDispatch } from "react-redux"
+import { setCompletedLecture } from "../redux/slice/lecture"
 
 const LectureSection = () => {
     const { courseId } = useParams()
@@ -17,12 +19,16 @@ const LectureSection = () => {
     const [playVideo, setPlayVideo] = useState('')
     const [subSection, setSubSection] = useState(null)
     const [date, setDate] = useState('')
-    const[section,setSection]=useState(null)
+    const [section, setSection] = useState(null)
+    const dispatch = useDispatch()
+
     const fetchLectureData = async () => {
         const api = `${enrolledCourse.getEnrolledCourse}/${courseId}`
+
         setLoading(true)
         try {
             const response = await apiConnector('GET', api, { courseId })
+
 
             setCourseData(response?.data?.data)
             setPlayVideo(response?.data?.data?.courseContent[0]?.subSection[0]?.videoUrl)
@@ -37,6 +43,8 @@ const LectureSection = () => {
 
             });
             setDate(date)
+
+
         }
         catch (err) {
             setCourseData([])
@@ -44,9 +52,23 @@ const LectureSection = () => {
         }
         setLoading(false)
     }
+
+    const fetchProgress = async () => {
+        try{
+            const api = `${enrolledCourse.getCourseProgress}/${courseId}`
+            const response = await apiConnector('GET', api)
+            console.log(response)
+            dispatch(setCompletedLecture(response?.data?.data))
+        }catch(err){
+            console.log(err)
+        }
+    }
     useEffect(() => {
         fetchLectureData()
+        fetchProgress()
     }, [])
+
+
     useEffect(() => {
         const date = new Date(subSection?.createdAt).toLocaleString("en-IN", {
             timeZone: "Asia/Kolkata",
@@ -64,6 +86,13 @@ const LectureSection = () => {
 
         // console.log(courseData?.courseContent[0]?.subSection[0]?.videoUrl)
     }, [courseData])
+
+
+
+
+
+
+
     return (
         <div className="text-white w-full relative">
             <div className="bg-richblack-800 w-full">
