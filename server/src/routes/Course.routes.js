@@ -1,7 +1,7 @@
 const express = require('express')
 const { route } = require('./Profile.routes')
 const { isInstructor, auth, isAdmin, isStudent } = require('../middleware/Auth.Mw')
-const { createCourse, getCourseDetails, updateCourse, getInstructorCourse, deleteCourse, getCategoryCourse, getEnrolledCourse } = require('../controllers/Course')
+const { createCourse, getCourseDetails, updateCourse, getInstructorCourse, deleteCourse, getCategoryCourse, getEnrolledCourse, completedLecture, getCourseProgress } = require('../controllers/Course')
 const { createCategories, showCategories } = require('../controllers/Categories')
 const { createSection, updateSection, deleteSection } = require('../controllers/Section')
 const { createSubSection, updateSubsection, deleteSubSection } = require('../controllers/SubSection')
@@ -40,6 +40,13 @@ routes.get('/category/:id',getCategoryCourse)
 routes.get('/getEnrolledCourse',[auth,isStudent],getEnrolledCourse)
 
 routes.get('/:courseId',[auth,isStudent,isEnrolled],getCourseDetails)
+
+
+
+// ---------------------------------------------------------------------------
+routes.put('/completed-lecture',[auth,isStudent],completedLecture)
+routes.get('/get-course-progress/:courseId',[auth,isStudent,isEnrolled],getCourseProgress)
+
 
 
 module.exports = routes

@@ -4,6 +4,7 @@ const Categories = require('../models/Categories.model')
 const User = require('../models/User.Model')
 const { ImageUpload } = require('../utils/Cloudinary')
 const Section = require('../models/Section.Model')
+const CourseProgress = require('../models/CourseProgress.Model')
 
 const SubSection = require('../models/SubSection.Model')
 exports.createCourse = async (req, res) => {
@@ -354,7 +355,7 @@ exports.getEnrolledCourse = async (req, res) => {
         let courseResponse
         let totalSubsection = []
 
-        let totalTimeDuration=[]
+        let totalTimeDuration = []
 
         for (const course of userCourse?.courses) {
 
@@ -366,16 +367,16 @@ exports.getEnrolledCourse = async (req, res) => {
             })
 
 
-        
-            const time=courseResponse?.courseContent?.reduce((totalTime,item)=>{
-                const totalTimeStore =item?.subSection?.reduce((time,subSection)=>{
+
+            const time = courseResponse?.courseContent?.reduce((totalTime, item) => {
+                const totalTimeStore = item?.subSection?.reduce((time, subSection) => {
                     const intoNumber = Number(subSection?.timeDuration)
-                    return time+(intoNumber||0)
-                },0)
+                    return time + (intoNumber || 0)
+                }, 0)
                 return totalTime + totalTimeStore
-            },0)
-            
-            
+            }, 0)
+
+
             const total = courseResponse?.courseContent?.reduce((total, item) => {
                 return total + (item?.subSection?.length || 0)
             }, 0)
@@ -387,7 +388,7 @@ exports.getEnrolledCourse = async (req, res) => {
             // console.log('total',courseResponse?.courseContent)
 
             totalSubsection.push({ id: course._id, totalLength: total })
-            totalTimeDuration.push({id:course._id,totalTime:time})
+            totalTimeDuration.push({ id: course._id, totalTime: time })
 
 
         }
@@ -399,7 +400,7 @@ exports.getEnrolledCourse = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: 'Enrolled course fetched',
-            data: userCourse, totalSubsection,totalTimeDuration
+            data: userCourse, totalSubsection, totalTimeDuration
 
         })
     } catch (err) {
@@ -407,6 +408,75 @@ exports.getEnrolledCourse = async (req, res) => {
         return res.status(500).json({
             sucess: false,
             message: 'Internal server error'
+        })
+    }
+}
+
+
+
+
+exports.completedLecture = async (req, res) => {
+    const { courseId, subSectionId } = req.body
+    const userId = req.user.id
+
+    if (!courseId || !subSectionId) return res.status(403).json({
+        success: false,
+        message: 'Feilds are empty'
+    })
+
+
+    try {
+
+        const courseProgress = await CourseProgress.findOne({
+            courseID: courseId,
+            userId: userId
+        })
+
+        if (courseProgress.completedVideo.includes(subSectionId)) {
+            return res.json({
+                success: false,
+                message: 'SubSection already completed'
+            })
+        } else {
+            courseProgress.completedVideo.push(subSectionId)
+        }
+
+        await courseProgress.save()
+
+        return res.status(200).json({
+            success: true,
+            message: 'Subsection completed'
+        })
+
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({
+            success: false,
+            message: 'internal server error'
+        })
+    }
+}
+
+
+exports.getCourseProgress = async (req, res) => {
+    try {
+        const userId = req.user.id
+        const { courseId } = req.params
+        const courseProgress = await CourseProgress.findOne({
+            userId: userId,
+            courseID: courseId
+        })
+        return res.status(200).json({
+            success: true,
+            message: 'Course progress fetched',
+            data:courseProgress
+        })
+        return
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({
+            success: false,
+            message: 'internal server error'
         })
     }
 }
