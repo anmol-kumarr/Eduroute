@@ -3,18 +3,23 @@ import Collapsible from "react-collapsible"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { PiMonitorPlayLight } from "react-icons/pi";
 import { useSelector } from "react-redux";
-const Sidebar = ({ setSection, subSectionData, courseData, setPlayVideo, setSubSection, setModal }) => {
+const Sidebar = ({ sectionData,setSection, subSectionData, courseData, setPlayVideo, setSubSection, setModal }) => {
+    console.log(sectionData)
 
     const completedLecture = useSelector(state => state.lecture.completedLecture)
     const [lectureList, setLectureList] = useState([])
+    const [collapsibleOpen, setCollapsibleOpen] = useState(false)
 
 
     useEffect(() => {
-        completedLecture?.length > 0 && completedLecture?.map((course) => course.courseID === courseData._id && setLectureList([...lectureList,...course.completedVideo]))
+        completedLecture?.length > 0 && completedLecture?.map((course) => course.courseID === courseData._id && setLectureList([...lectureList, ...course.completedVideo]))
         console.log(completedLecture)
-    }, [completedLecture,lectureList,courseData._id])
+    }, [completedLecture, courseData._id])
 
-    
+
+
+
+
 
 
 
@@ -47,11 +52,11 @@ const Sidebar = ({ setSection, subSectionData, courseData, setPlayVideo, setSubS
 
                     {
                         courseData?.courseContent?.map((content, index) => (
-                            <Collapsible key={content._id} open={index === 0 ? true : false} trigger={
+                            <Collapsible key={content._id} open={index === 0 ? true : false || content._id===sectionData._id} trigger={
                                 <div className=" p-2 flex justify-between items-center">
                                     <p>{content?.sectionName}</p>
 
-                                    <p >
+                                    <p>
 
                                         <MdOutlineKeyboardArrowDown></MdOutlineKeyboardArrowDown>
 
@@ -91,49 +96,13 @@ const Sidebar = ({ setSection, subSectionData, courseData, setPlayVideo, setSubS
                                                             <p><PiMonitorPlayLight className="text-lg -mb-[2px]"></PiMonitorPlayLight></p>
                                                         </>
                                                     )
-                                                    // completedLecture?.length > 0 ? completedLecture?.map((course) => course.courseID === courseData._id ? (
-                                                    //     course?.completedVideo?.map((sbSec) => (
-                                                    //         sbSec === subSection._id ? (
-                                                    // <strike>
-                                                    //     <p className="text-sm flex items-center gap-1">
-                                                    //         <input type="checkbox" checked disabled />
-                                                    //         {subSection?.title}
-                                                    //     </p>
-                                                    //     <p><PiMonitorPlayLight className="text-lg -mb-[2px]"></PiMonitorPlayLight></p>
-                                                    // </strike>
-                                                    //         ) : (
-                                                    //             <>
-                                                    //                 <p className="text-sm flex items-center gap-1">
-                                                    //                     <input type="checkbox" />
-                                                    //                     {subSection?.title}
-                                                    //                 </p>
-                                                    //                 <p><PiMonitorPlayLight className="text-lg -mb-[2px]"></PiMonitorPlayLight></p>
-                                                    //             </>
-                                                    //         )
-                                                    //     ))
-                                                    // ) : (
-                                                    // <>
-                                                    //     <p className="text-sm flex items-center gap-1">
-                                                    //         <input type="checkbox" />
-                                                    //         {subSection?.title}
-                                                    //     </p>
-                                                    //     <p><PiMonitorPlayLight className="text-lg -mb-[2px]"></PiMonitorPlayLight></p>
-                                                    // </>
-
-                                                    // )):(
-                                                    //     <>
-                                                    //     <p className="text-sm flex items-center gap-1">
-                                                    //         <input type="checkbox" />
-                                                    //         {subSection?.title}
-                                                    //     </p>
-                                                    //     <p><PiMonitorPlayLight className="text-lg -mb-[2px]"></PiMonitorPlayLight></p>
-                                                    // </>
-                                                    // )
-
-
                                                 }
+
+                                            
                                             </div>
+
                                         ))
+
                                     }
                                 </div>
 

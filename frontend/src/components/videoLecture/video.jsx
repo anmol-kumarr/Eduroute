@@ -15,7 +15,6 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
             courseId: courseData._id,
             subSectionId: subSection._id
         }))
-
     }
 
 
@@ -34,10 +33,15 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
 
         const sectionIndex = courseData?.courseContent.findIndex((data) => data._id === section._id)
+        console.log('sectionIndex', sectionIndex)
         const subSectionLength = courseData?.courseContent[sectionIndex]?.length
+
+        console.log('subSectionLength', subSectionLength)
 
 
         const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
+
+        console.log('subSectionIndex', subSectionIndex)
 
         if (sectionIndex === section?.subSection?.length - 1 && subSectionIndex === subSectionLength - 1) { return true }
         else {
@@ -49,25 +53,33 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
     const goNext = () => {
 
         const sectionIndex = courseData?.courseContent.findIndex((data) => data._id === section._id)
-        console.log(sectionIndex)
+        console.log("sectionIndex", sectionIndex)
         const subSectionLength = courseData?.courseContent[sectionIndex]?.subSection?.length
-
+        console.log('subSectionLength', subSectionLength)
 
 
         const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
-        if (subSectionLength !== subSectionIndex - 1) {
-            const nextSubSection = courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1]
-            console.log(courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1])
-            setSubSection(nextSubSection)
-            setPlayVideo(nextSubSection.videoUrl)
-            setSection(courseData?.courseContent[sectionIndex])
-        }
-        else {
+        console.log('subSectionIndex', subSectionIndex)
+
+
+        if (subSectionLength === subSectionIndex - 1 || subSectionIndex-1<0 ) {
+
             const nextSubSection = courseData.courseContent[sectionIndex + 1].subSection[0]
             setSubSection(nextSubSection)
             setPlayVideo(nextSubSection.videoUrl)
             setSection(courseData.courseContent[sectionIndex + 1])
+
+        }
+        else {
+            const nextSubSection = courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1]
+
+            console.log(courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1])
+            console.log('nextSubSection',)
+
+            setSubSection(nextSubSection)
+            setPlayVideo(nextSubSection.videoUrl)
+            setSection(courseData?.courseContent[sectionIndex])
         }
     }
 
@@ -80,7 +92,7 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
         const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
-        if (subSectionIndex !== 0) {
+        if (subSectionIndex !== 0 ) {
             const nextSubSection = courseData?.courseContent[sectionIndex].subSection[subSectionIndex - 1]
             setSubSection(nextSubSection)
             setPlayVideo(nextSubSection.videoUrl)
@@ -109,14 +121,18 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
             <div className="flex mt-5 justify-around w-1/4">
 
-                {
-                    isFirstVideo() && <button onClick={goPrev} className="flex items-center px-2 py-1 rounded-md bg-richblack-700 "><IoIosArrowBack className="-mb-[2px]"></IoIosArrowBack> Previous</button>
-                }
-                { isLastVideo() && <button onClick={goNext} className="bg-yellow-100 px-2 flex items-center py-1 rounded-md text-black">
-                        Next
-                        <IoIosArrowForward className="-mb-[2px]"></IoIosArrowForward>
-                    </button>
-                }
+                {/* { */}
+                {/* isFirstVideo() &&  */}
+
+                <button onClick={goPrev} className="flex items-center px-2 py-1 rounded-md bg-richblack-700 "><IoIosArrowBack className="-mb-[2px]"></IoIosArrowBack> Previous</button>
+                {/* } */}
+                {/* { isLastVideo() &&  */}
+
+                <button onClick={goNext} className="bg-yellow-100 px-2 flex items-center py-1 rounded-md text-black">
+                    Next
+                    <IoIosArrowForward className="-mb-[2px]"></IoIosArrowForward>
+                </button>
+                {/* } */}
             </div>
 
 
