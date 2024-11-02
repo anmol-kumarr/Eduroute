@@ -9,8 +9,28 @@ import TimeLine from "../components/home/timeline";
 import LearningLanguageSection from "../components/home/learningLanguageSection";
 import InstructorSection from "../components/home/instructorsection";
 import ExploreMore from "../components/home/exploreMore";
+import { useEffect, useState } from "react";
+import { homePageApi } from "../services/api";
+import { apiConnector } from "../services/apiconnector";
+import Rating from "../components/home/ratings";
 
 const Home = () => {
+    const [ratings, setRatings] = useState([])
+    const fetchRatings = async () => {
+        try {
+            const api = homePageApi.getAllRatings
+            const response = await apiConnector('GET', api)
+            console.log(response)
+            setRatings(response?.data?.data)
+
+        } catch (err) {
+            console.log()
+            setRatings([])
+        }
+    }
+    useEffect(() => {
+        fetchRatings()
+    }, [])
     return (
         <div className="w-[100vw] bg-richblack-900 p-1">
             {/* <Header></Header> */}
@@ -165,8 +185,10 @@ const Home = () => {
                 <InstructorSection />
             </div>
 
+            <div>
 
-
+                <Rating ratings={ratings}></Rating>
+            </div>
         </div>
     )
 }

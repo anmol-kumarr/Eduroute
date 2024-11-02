@@ -13,6 +13,8 @@ const courseRoutes=require('./src/routes/Course.routes')
 const profileRoutes=require('./src/routes/Profile.routes')
 const cartRoutes=require('./src/routes/cart.routes')
 
+const ratingRoutes=require('./src/routes/rating.routes')
+
 
 
 const app=express()
@@ -39,6 +41,7 @@ app.use('/api/v1/profile',profileRoutes)
 app.use('/api/v1/course',courseRoutes)
 app.use('/api/v1/payment',paymentRoutes)
 app.use('/api/v1/cart',cartRoutes)
+app.use('/api/v1',ratingRoutes)
 
 
 app.listen(port,()=>{

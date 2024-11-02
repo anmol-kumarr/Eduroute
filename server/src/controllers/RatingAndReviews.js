@@ -91,7 +91,7 @@ exports.getAllRating=async(req,res)=>{
             path:'user',
             select:'firstName lastName email image'
         }).populate({
-            path:'Course',
+            path:'course',
             select:'courseName'
         })
 

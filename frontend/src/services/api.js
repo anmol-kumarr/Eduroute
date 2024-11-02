@@ -69,5 +69,9 @@ export const enrolledCourse={
     getEnrolledCourse:BASE_URL+'course',
     completedLecture:BASE_URL+'course/completed-lecture',
     getCourseProgress:BASE_URL+'course/get-course-progress',
-    rateCourse:BASE_URL+'course/rating-course'
+    rateCourse:BASE_URL+'course/rating-course',
+}
+
+export const homePageApi={
+    getAllRatings:BASE_URL+'get-all-ratings'
 }
