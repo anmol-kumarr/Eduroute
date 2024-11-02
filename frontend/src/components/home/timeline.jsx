@@ -37,7 +37,7 @@ const TimeLine = () => {
     return (
         <>{
             data.map((item ,index) => (
-                <div  key={index} className="flex gap-2  ">
+                <div  key={index} className="flex gap-2 justify-center">
                     <div className=" flex flex-col justify-center items-center  ">
                         <div className="bg-white p-2 flex justify-center items-center h-11 w-11 rounded-full">
                             <img src={item.image} alt="" />
@@ -47,7 +47,7 @@ const TimeLine = () => {
                         }
                     </div>
 
-                    <div className="font-inter text-[#161D29] ">
+                    <div className="font-inter min-w-[250px]  text-[#161D29] ">
                         <p className="text-lg font-semibold">{item.heading}</p>
                         <p className="text-sm">{item.text}</p>
                     </div>

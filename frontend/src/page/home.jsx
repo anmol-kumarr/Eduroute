@@ -100,7 +100,7 @@ const Home = () => {
 
                 {/* seciton three */}
 
-                <div className="w-full mb-16">
+                <div className="w-full lg:mb-16">
                     <ExploreMore></ExploreMore>
                 </div>
 
@@ -141,7 +141,7 @@ const Home = () => {
 
                         </div>
 
-                        <div className="w-2/5 relative">
+                        <div className="w-2/5 my-4 min-w-[380px] relative">
 
                             <img className="w-full" src={GirlImage} alt="" />
                             <div className="px-3 py-4 absolute top-[90%] left-[10%] right-[50%] bg-caribbeangreen-700 w-4/5 flex justify-between">

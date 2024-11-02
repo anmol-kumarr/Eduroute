@@ -8,7 +8,7 @@ import RatingCard from './ratingCard';
 const Rating = ({ ratings }) => {
 
     return (
-        <div className='w-9/12 mx-auto my-5'>
+        <div className='w-9/12  mx-auto my-5'>
             <hr className='text-[1px] text-richblack-600' />
             <h2 className='font-inter text-2xl text-center my-5 text-richblack-50'>Ratings from other students</h2>
             <div className='flex justify-center'>
@@ -22,6 +22,10 @@ const Rating = ({ ratings }) => {
                             1024: {
                                 slidesPerView: 3
                             },
+                            600: {
+                                slidesPerView: 1
+                            }
+
                         }}
                     >
                         {

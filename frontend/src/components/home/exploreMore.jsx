@@ -21,24 +21,24 @@ const ExploreMore = () => {
                 <p className="fonnt-inter text-richblack-200">Learn to Build Anything You Can Imagine</p>
             </div>
 
-            <div className="my-5 flex justify-between transition-all duration-700 min-[1330px]:w-1/2 max-[1000]:w-7/12 max-[670px]:max-w-1/2 p-1 rounded-3xl bg-richblack-700">
+            <div className="my-5 sm:overflow-scroll w-[410px] sm:max-w-[max-content]  flex md:justify-between transition-all duration-700  p-1 rounded-3xl bg-richblack-700">
                 {
                     tabName.map((item, index) => (
-                        <button onClick={() => setActiveTab(item)} className={`min-w-[100px] font-inter text-richblack-25 ${activeTab === item ? 'bg-richblack-800 transition-all duration-300 ease-in-out py-2 px-4 rounded-3xl' : 'bg-transparent py-2 px-4 rounded-3xl'}`} key={index} >{item}</button>
+                        <button onClick={() => setActiveTab(item)} className={`text-xs sm:text-base sm:min-w-[100px] font-inter text-richblack-25 ${activeTab === item ? 'bg-richblack-800 transition-all duration-300 ease-in-out py-2 sm:px-4 px-4 rounded-3xl' : 'bg-transparent py-2 sm:px-4 px-4 rounded-3xl'}`} key={index} >{item}</button>
                     ))
                 }
             </div>
 
 
-            <div className="relative w-4/5 mb-10">
-                <div className="absolute  w-full  flex ">
+            <div className="lg:relative w-4/5 mb-10">
+                <div className="lg:absolute  w-full flex ">
                     {
                         HomePageExplore.map((item, index) => {
-                            return item.tag === activeTab && <div className="text-black flex w-full gap-5" key={index}>
+                            return item.tag === activeTab && <div className=" text-black flex lg:flex-nowrap flex-wrap justify-center w-full gap-5" key={index}>
                                 {
                                     
                                     item.courses.map((value, index) => (
-                                        <div key={index} className={`p-5 w-1/3 ${index===0?'text-richblack-700 bg-white shadow-[5px_5px_0px_#FFE83D]':'bg-richblack-700 text-richblack-400'}`}>
+                                        <div key={index} className={`min-w-[280px] p-5 w-1/3 ${index===0?'text-richblack-700 bg-white shadow-[5px_5px_0px_#FFE83D]':'bg-richblack-700 text-richblack-400'}`}>
                                             <div>
                                                 <p className={`font-semibold my-2 ${index===0?'text-richblack-800':'text-richblack-5'}`}>{value.heading}</p>
                                                 <p className="text-richblack-400 ">{value.description}</p>
