@@ -3,17 +3,42 @@ import { useSelector } from "react-redux";
 import { GoStar, GoStarFill } from "react-icons/go";
 import { useState } from "react";
 import { useForm } from "react-hook-form"
+import { apiConnector } from "../../services/apiconnector";
+import { useParams } from "react-router-dom";
+import { enrolledCourse } from "../../services/api";
+import toast from "react-hot-toast";
 const RatingModal = ({ setModal }) => {
     const user = useSelector(state => state.user.user)
+    const { courseId } = useParams()
     const [number, setNumber] = useState(0)
     const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm()
 
-    const submitHandler = (data) => {
-        console.log(data, number)
+    const submitHandler = async (data) => {
+        const formData = new FormData()
+        console.log(data)
         console.log(errors)
+
+        formData.append('courseId', courseId)
+        formData.append('reviews', data.description)
+        formData.append('rating', number+1)
+        const api = enrolledCourse.rateCourse
+        toast.loading('loading')
+        try {
+
+            const response = await apiConnector('POST', api, formData)
+            toast.dismiss()
+            toast.success('Thank you for rating us')
+            console.log(response)
+
+        } catch (err) {
+            toast.dismiss()
+            console.log(err)
+            toast.error('Cannot rate this course')
+        }
+        setModal(false)
     }
     return (
-        <div className="flex justify-center my-[20%]  items-center">
+        <div className="flex justify-center my-[10%]  items-center">
             <div className="w-96 bg-richblack-800 rounded-md overflow-hidden">
                 <div className="flex justify-between items-center px-3 py-2 border-b-[1px] border-richblack-400 bg-richblack-700">
                     <p>Add review</p>
@@ -50,7 +75,7 @@ const RatingModal = ({ setModal }) => {
 
                                 <label className="text-richblack-200 text-sm mb-1" htmlFor="review">Add your Experience <span className="text-[#ff0000] text-start">*</span></label>
 
-                                <textarea placeholder="" {...register('ratingdescription', { required: true })} rows={5} cols={50} className="p-1 rounded-md bg-richblack-700 outline-none  border-richblack-500" name="review" id="review"></textarea>
+                                <textarea placeholder="Enter your review" {...register('description', { required: true })} rows={5} cols={50} className="p-1 rounded-md bg-richblack-700 outline-none  border-richblack-500" name="description" id="review"></textarea>
 
                                 <p>{errors.description && 'Error'}</p>
 

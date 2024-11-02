@@ -5,7 +5,7 @@ const ratingAndReviewsSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
-    ratings:{
+    rating:{
         type:Number,
         required:true
     },

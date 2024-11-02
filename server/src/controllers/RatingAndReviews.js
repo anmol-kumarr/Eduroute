@@ -7,7 +7,7 @@ exports.createRating = async (req, res) => {
     try {
         const userId = req.user.id
         const { courseId, rating, reviews } = req.body
-        const courseDetails = await Course.findOne({ _id: courseId, studentEnrolled: { $eleMatch: { $eq: userId } } })
+        const courseDetails = await Course.findOne({ _id: courseId, studentEnrolled: { $elemMatch: { $eq: userId } } })
 
         if (!courseDetails) {
             return res.status(400).json({
@@ -27,7 +27,8 @@ exports.createRating = async (req, res) => {
         const ratingReviews=await RatingAndReviews.create({
             rating:rating,
             course:courseId,
-            user:userId
+            user:userId,
+            reviews:reviews
         })
 
         await Course.findByIdAndUpdate(courseId,{$push:{ratingAndReviews:ratingReviews._id}},{new:true})
