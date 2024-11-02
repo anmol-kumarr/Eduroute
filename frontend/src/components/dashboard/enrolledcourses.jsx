@@ -122,7 +122,9 @@ const EnrolledCourses = () => {
                                                                             courseSubsection?.map((cour) => (
                                                                                 cour.id === course._id &&
                                                                                 <div key={cour.id}>
-                                                                                    <p>{progress.completedVideo?.length / cour?.totalLength * 100} % </p>
+                                                                                    <p className="mb-1">Progress {cour?.totalLength
+                                                                                        ? `${Math.floor((progress.completedVideo?.length || 0) / cour.totalLength * 100)}%`
+                                                                                        : "0 %"}</p>
                                                                                     <Line key={progress._id} percent={progress.completedVideo?.length / cour?.totalLength * 100} strokeWidth={5} trailWidth={5} trailColor={'#6E727F'} strokeColor={'#05A77B'} ></Line>
                                                                                 </div>
                                                                             ))

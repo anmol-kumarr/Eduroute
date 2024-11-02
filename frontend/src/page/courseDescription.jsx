@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux"
 import Modal from "../components/modal"
 import { buyCourse } from "../services/operation/payment"
 import RatingStars from "../components/course/ratingStar"
-import{cartHandler} from '../services/operation/cart'
+import { cartHandler } from '../services/operation/cart'
 
 
 const CourseDescription = () => {
@@ -27,6 +27,7 @@ const CourseDescription = () => {
     const user = useSelector(state => state.user.user)
     const [modal, setModal] = useState(null)
     const navigate = useNavigate()
+
     useEffect(() => {
         const fetchCourseDescription = async () => {
             setLoading(true)
@@ -41,6 +42,9 @@ const CourseDescription = () => {
                 toast.error('Cannot get course')
             }
             setLoading(false)
+
+
+
         }
         fetchCourseDescription()
 
@@ -135,13 +139,23 @@ const CourseDescription = () => {
                         <h2 className="font-inter text-richblack-50 text-4xl">{courseDescription?.courseName}</h2>
                         <p className="text-richblack-200">{courseDescription?.courseDescription}</p>
                         <div className="text-yellow-100 flex items-center">
-                            <span className="mx-1">4.5 </span>
+                            <span className="mx-1">{
+                                Math.floor(courseDescription?.ratingAndReviews?.reduce((total, rating) => {
+                                    return total + (rating?.rating | 0)
+                                }, 0)/courseDescription?.ratingAndReviews?.length)||0 }.0+
+
+                                
+                            </span>
                             {/* <GoStarFill></GoStarFill>
                             <GoStarFill></GoStarFill>
                             <GoStarFill></GoStarFill>
                             <GoStarFill></GoStarFill>
                             <GoStar></GoStar> */}
-                            <RatingStars></RatingStars>
+                            <RatingStars reviewCount={courseDescription?.ratingAndReviews?.reduce((total, rating) => {
+                                return total + (rating?.rating | 0)
+                            }, 0)} size={20}  ></RatingStars>
+
+                            <p className="mx-1">({courseDescription?.ratingAndReviews?.length}+ ratings)</p>
                         </div>
                         <p className="text-richblack-100">Created by: {courseDescription?.intructor?.firstName} {courseDescription?.intructor?.lastName}</p>
                         <p className="flex items-center text-richblack-200 gap-1"><IoIosInformationCircleOutline className="-mb-[2px]"></IoIosInformationCircleOutline>
@@ -149,6 +163,7 @@ const CourseDescription = () => {
                                 date
                             }
                         </p>
+                        <p className="text-richblack-100">({courseDescription?.studentEnrolled?.length}) Students enrolled</p>
                     </div>
                 </div>
                 <div className="w-[40%]  z-10 flex justify-center" >
@@ -164,7 +179,7 @@ const CourseDescription = () => {
                             <div className="">
                                 {
                                     user?.courses?.includes(courseId) ? (
-                                        <LargeBtn behaviour={() => user.accountType==='Student'? navigate('/dashboard/enrolled-courses'):navigate('/dashboard/my-courses') } content={'View course'}></LargeBtn>
+                                        <LargeBtn behaviour={() => user.accountType === 'Student' ? navigate('/dashboard/enrolled-courses') : navigate('/dashboard/my-courses')} content={'View course'}></LargeBtn>
                                     ) : (
 
                                         <div className="flex flex-col gap-3">

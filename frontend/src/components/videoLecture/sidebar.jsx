@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Collapsible from "react-collapsible"
-import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
+import { MdArrowLeft, MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { PiMonitorPlayLight } from "react-icons/pi";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Sidebar = ({ sectionData, setSection, subSectionData, courseData, setPlayVideo, setSubSection, setModal }) => {
     console.log(sectionData)
+    const navigate=useNavigate()
 
     const completedLecture = useSelector(state => state.lecture.completedLecture)
     const [lectureList, setLectureList] = useState([])
@@ -42,6 +44,7 @@ const Sidebar = ({ sectionData, setSection, subSectionData, courseData, setPlayV
     return (
         <div className="bg-richblack-800 w-2/12 min-h-[calc(100vh-3rem)]">
             <div >
+                <p onClick={()=>navigate(-1)} className="p-2 flex items-center cursor-pointer"><MdArrowLeft className="-mb[1px]"></MdArrowLeft>Back</p>
                 <div className="p-2 flex flex-col items-center">
                     <p>{courseData?.courseName}</p>
                     <button onClick={() => setModal(true)} className="bg-yellow-100 rounded-md px-2 py-1 text-black text-sm my-2">Rate course</button>

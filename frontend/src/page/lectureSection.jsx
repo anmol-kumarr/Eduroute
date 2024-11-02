@@ -147,7 +147,7 @@ const LectureSection = () => {
             {
                 modal ? (
 
-                    <div className="absolute top-0 left-0 right-0 bg-richblack-800 bg-opacity-70  bottom-0">
+                    <div className="absolute top-0 left-0 right-0 bg-black bg-opacity-80  bottom-0">
 
                         <RatingModal setModal={setModal}></RatingModal>
 
