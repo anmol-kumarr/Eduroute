@@ -121,11 +121,11 @@ const Home = () => {
 
                 <div className="w-11/12 mx-auto">
 
-                    <div className="font-inter flex justify-around my-16">
-                        <div className="w-2/5 text-3xl font-semibold ">
+                    <div className="font-inter flex flex-wrap  justify-around my-16">
+                        <div className="sm:w-2/5 min-w-[350px] w-full sm:text-left text-center text-3xl font-semibold ">
                             Get the skills you need for a <HighlightedText content={'job that is in demand.'}></HighlightedText>
                         </div>
-                        <div className="w-2/5  text-[#2C333F] font-inter flex flex-col gap-5">
+                        <div className="sm:w-2/5  w-full sm:text-left text-center text-[#2C333F] font-inter flex sm:items-start items-center flex-col gap-5">
                             The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
 
                             <HomeBtn active={true} content={"Learn more"} render={'/learnmore'}></HomeBtn>
@@ -134,8 +134,8 @@ const Home = () => {
                     </div>
 
 
-                    <div className="flex justify-around items-center my-10">
-                        <div className="w-2/5">
+                    <div className="flex flex-wrap sm:my-5 md:justify-around justify-center items-center my-10">
+                        <div className="w-2/5 flex flex-col justify-center  min-w-[400px] md:my-10">
 
                             <TimeLine></TimeLine>
 

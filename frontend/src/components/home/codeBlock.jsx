@@ -8,12 +8,12 @@ const CodeBlock = ({
 
 
     return (
-        <div className={`flex w-full flex-wrap ${position}  min-[865px]:my-0 my-10 items-center min-[865px]justify-center  justify-between`}>
-            <div className="w-2/5  max-[865px]:text-center max-[865px]:mx-1 min-[865px]:my-0 my-5  min-w-[300px] flex flex-col gap-4 mx-4">
+        <div className={`flex w-full flex-wrap ${position} justify-center my-10 items-center lg:justify-between`}>
+            <div className="lg:w-2/5  my-5 w-full  lg:min-w-[300px] flex flex-col gap-4 mx-4">
             {/* min-[865px]: */}
-                <h2 className="text-richblack-5 font-bold text-2xl">{heading}</h2>
-                <p className="text-richblack-300">{subHeading}</p>
-                <div className="flex gap-4 max-[865px]:justify-center">
+                <h2 className="text-richblack-5 lg:text-left text-center font-bold text-2xl">{heading}</h2>
+                <p className="text-richblack-300 lg:text-left text-center">{subHeading}</p>
+                <div className="flex gap-4 justify-center lg:justify-start">
                     <HomeBtn content={btnOne.content} active={btnOne.active} render={btnOne.render} ></HomeBtn>
                     <HomeBtn content={btnTwo.content} active={btnTwo.active} render={btnTwo.render}></HomeBtn>
                 </div>

@@ -83,12 +83,12 @@ const Footer = () => {
     ]
     return (
         <footer className="w-11/12 mx-auto pb-10 ">
-            <div className="flex w-full justify-evenly pt-20 pb-5">
+            <div className="flex w-full justify-evenly  pt-20 pb-5">
 
                 <div className="w-2/5">
 
-                    <div className="flex justify-between">
-                        <div>
+                    <div className="flex justify-between flex-wrap">
+                        <div className="min-w-[150px]">
 
                             <div className="font-edu-sa text-richblack-50 font-bold text-xl mb-3">Eduroute</div>
                             <div className="text-richblack-400 font-inter flex flex-col gap-1 text-sm">
@@ -99,7 +99,7 @@ const Footer = () => {
                                 <p>Affiliates</p>
                             </div>
 
-                            <div className="flex text-lg my-2  items-center gap-2 text-richblack-400">
+                            <div className=" flex text-lg my-2  items-center gap-2 text-richblack-400">
                                 <FaFacebook></FaFacebook>
                                 <FaInstagram></FaInstagram>
                                 <BsYoutube></BsYoutube>
@@ -107,7 +107,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className="min-w-[150px]">
                             <p className="text-richblack-100 font-inter mb-3  font-semibold text-lg">{list[0].heading}</p>
                             {
                                 list[0].data.map((item, index) => (
@@ -119,7 +119,7 @@ const Footer = () => {
                             <p className="text-richblack-400 font-inter my-1 text-sm">Help center</p>
                         </div>
 
-                        <div>
+                        <div className="min-w-[150px]">
                             <p className="text-richblack-100 mb-3 font-inter font-semibold text-lg">{list[1].heading}</p>
                             {
                                 list[1].data.map((item, index) => (
@@ -137,8 +137,8 @@ const Footer = () => {
                 <div className="w-[0.6px] bg-richblack-600"></div>
 
 
-                <div className="w-2/5 flex justify-between">
-                    <div>
+                <div className="w-2/5 flex justify-between flex-wrap">
+                    <div className="min-w-[150px]">
 
                         <p className="text-richblack-100 font-semibold text-lg mb-3">{list[2].heading}</p>
                         {
@@ -148,7 +148,7 @@ const Footer = () => {
                         }
 
                     </div>
-                    <div>
+                    <div className="min-w-[150px]">
                         <p className="text-richblack-100 font-semibold text-lg mb-3">{list[3].heading}</p>
                         {
                             list[3].data.map((item, index) => (
@@ -156,7 +156,7 @@ const Footer = () => {
                             ))
                         }
                     </div>
-                    <div>
+                    <div className="min-w-[150px]">
                         <p className="text-richblack-100 font-semibold text-lg mb-3">{list[4].heading}</p>
                         {
                             list[4].data.map((item, index) => (

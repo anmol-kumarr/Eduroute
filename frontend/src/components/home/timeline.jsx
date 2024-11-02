@@ -37,8 +37,8 @@ const TimeLine = () => {
     return (
         <>{
             data.map((item ,index) => (
-                <div  key={index} className="flex gap-2">
-                    <div className="flex flex-col justify-center items-center  ">
+                <div  key={index} className="flex gap-2  ">
+                    <div className=" flex flex-col justify-center items-center  ">
                         <div className="bg-white p-2 flex justify-center items-center h-11 w-11 rounded-full">
                             <img src={item.image} alt="" />
                         </div>
