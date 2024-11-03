@@ -38,7 +38,7 @@ exports.createRating = async (req, res) => {
             message:'Successfully added rating and reviews'
         })
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success:false,
             message:'Fail while adding reviews'
@@ -77,7 +77,7 @@ exports.getAverageRating=async(req,res)=>{
             })
         }
     }catch(err){
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success:false,
             message:'Something went wrong while fetching average rating'
@@ -101,7 +101,7 @@ exports.getAllRating=async(req,res)=>{
             data:getAllReviews
         })
     }catch(err){
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success:false,
             message:'Something went  wrong while fetching ratings'

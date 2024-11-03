@@ -6,7 +6,7 @@ exports.isEnrolled = async (req, res, next) => {
         const userId = req.user.id
 
         const course = await Course.findById(courseId)
-        console.log("course",course)
+        //console.log("course",course)
     
         const uid = new mongoose.Types.ObjectId(userId)
         if (course.studentEnrolled.includes(uid)) {
@@ -21,7 +21,7 @@ exports.isEnrolled = async (req, res, next) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Error while verifying student'

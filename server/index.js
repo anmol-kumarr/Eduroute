@@ -45,7 +45,7 @@ app.use('/api/v1',ratingRoutes)
 
 
 app.listen(port,()=>{
-    console.log('app is running on port',process.env.PORT)
+    //console.log('app is running on port',process.env.PORT)
 })
 
 

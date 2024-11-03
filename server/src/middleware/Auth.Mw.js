@@ -6,9 +6,9 @@ const User=require('../models/User.Model')
 exports.auth=async (req,res,next)=>{
     try{    
         const token=req.cookies.token || req.body.token || req.header('Authorization')?.replace('Bearer ','')
-        // console.log('cookie:',req.cookies.token)
-        // console.log('body:',req.body.token)
-        // console.log('header:',req.header('Authorization')?.replace('Bearer ',''))
+        // //console.log('cookie:',req.cookies.token)
+        // //console.log('body:',req.body.token)
+        // //console.log('header:',req.header('Authorization')?.replace('Bearer ',''))
 
         if(!token){
             return res.status(401).json({
@@ -19,12 +19,12 @@ exports.auth=async (req,res,next)=>{
 
         try{
             const decode=jwt.verify(token,process.env.JWT_SECRET)
-            console.log(decode)
+            //console.log(decode)
             req.user=decode
             next()
 
         }catch(err){
-            console.log(err)
+            //console.log(err)
             res.status(401).json({
                 
                 success:false,
@@ -33,7 +33,7 @@ exports.auth=async (req,res,next)=>{
         }
     }
     catch(err){
-        console.log('error in auth middleware',err)
+        //console.log('error in auth middleware',err)
         res.status(500).json({
             success:false,
             message:'something went wrong'
@@ -52,7 +52,7 @@ exports.isStudent=async(req,res,next)=>{
         }
         next()
     }catch(err){
-        console.log('error in isStudent middleware',err)
+        //console.log('error in isStudent middleware',err)
         res.status(500).json({
             success:false,
             message:'something went wrong'
@@ -72,7 +72,7 @@ exports.isInstructor=async(req,res,next)=>{
         next()
 
     }catch(err){
-        console.log('error in isInstructor middleware',err)
+        //console.log('error in isInstructor middleware',err)
         res.status(500).json({
             success:false,
             message:'something went wrong'
@@ -91,7 +91,7 @@ exports.isAdmin=async(req,res,next)=>{
         next()
 
     }catch(err){
-        console.log('error in isAdmin middleware',err)
+        //console.log('error in isAdmin middleware',err)
         res.status(500).json({
             success:false,
             message:'something went wrong'

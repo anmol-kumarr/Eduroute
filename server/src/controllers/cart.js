@@ -12,7 +12,7 @@ exports.getCart=async(req,res)=>{
                 path:'intructor'
             }
         }).exec()
-        // console.log('cart',findUser)
+        // //console.log('cart',findUser)
         return res.status(200).json({
             success:true,
             message:'Cart data fetched',
@@ -20,7 +20,7 @@ exports.getCart=async(req,res)=>{
         })
 
     }catch(err){
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success:false,
             message:'Internal server error'
@@ -40,7 +40,7 @@ exports.addToCart = async (req, res) => {
         
         const userId = req.user.id
         if (!courseId) {
-            // console.log('error')
+            // //console.log('error')
             return res.status(203).json({
                 success: false,
                 message: 'CourseId is empty'
@@ -64,7 +64,7 @@ exports.addToCart = async (req, res) => {
         const response = await User.findByIdAndUpdate(userId, { $push: { cart: courseId } }, { new: true }).populate({
             path: 'cart'
         }).exec()
-        console.log("user",response)
+        //console.log("user",response)
 
 
         if (response.length === 0) {
@@ -82,7 +82,7 @@ exports.addToCart = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'error while adding to cart'
@@ -116,7 +116,7 @@ exports.removeFromCart = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Error while removing from cart'

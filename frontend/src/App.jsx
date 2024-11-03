@@ -23,6 +23,7 @@ import EditMyCourse from "./components/dashboard/instructor/mycourse/editMyCours
 import Catelog from "./page/categlog";
 import CourseDescription from "./page/courseDescription";
 import LectureSection from "./page/lectureSection";
+import InstructorDashboard from "./components/dashboard/instructor/dashboard/instructorDashboard";
 
 
 
@@ -69,6 +70,7 @@ function App() {
             <Route path="/dashboard/add-course" element={<AddCourse></AddCourse>} />
             <Route path="/dashboard/my-courses" element={<MyCourse></MyCourse>} />
             <Route path="/dashboard/edit-course/:courseId" element={<EditMyCourse></EditMyCourse>} />
+            <Route path="/dashboard/instructor" element={<InstructorDashboard></InstructorDashboard>}></Route>
           </>
           }
 

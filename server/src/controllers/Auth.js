@@ -39,7 +39,7 @@ exports.createOtp = async (req, res) => {
         const payload = { email, otp }
 
         const otpBody = await Otp.create(payload)
-        console.log(otpBody)
+        //console.log(otpBody)
         // create entry in db of otp
 
         res.status(200).json({
@@ -49,7 +49,7 @@ exports.createOtp = async (req, res) => {
 
     }
     catch (err) {
-        console.log(err)
+        //console.log(err)
         res.status(500).json({
             success: false,
             message: 'some thing went wrong '
@@ -68,7 +68,7 @@ exports.signUp = async (req, res) => {
         const { firstName, mobileNumber, lastName, email, password, confirmPassword, accountType, otp, cart, courseProgress } = req.body
 
 
-        // console.log('email', email,
+        // //console.log('email', email,
         //     'firstname', firstName,
         //     mobileNumber,
         //     lastName,
@@ -76,7 +76,7 @@ exports.signUp = async (req, res) => {
         //     confirmPassword,
         //     accountType,
         //     otp)
-        console.log('email', email)
+        //console.log('email', email)
 
 
         if (!firstName || !lastName || !email || !password || !otp || !mobileNumber) {
@@ -87,8 +87,8 @@ exports.signUp = async (req, res) => {
         }
 
 
-        console.log(password.length, typeof (password))
-        console.log('length', confirmPassword.length, typeof (confirmPassword))
+        //console.log(password.length, typeof (password))
+        //console.log('length', confirmPassword.length, typeof (confirmPassword))
 
 
 
@@ -111,9 +111,9 @@ exports.signUp = async (req, res) => {
         // const existOtp = await Otp.find({email})
         const existOtp = await Otp.find({ email }).sort({ createdAt: -1 }).limit(1)
 
-        console.log(existOtp)
+        //console.log(existOtp)
         // if(existOtp[0].email){
-        //     console.log('email matched')
+        //     //console.log('email matched')
         // }
 
         if (existOtp.length === 0) {
@@ -157,7 +157,7 @@ exports.signUp = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         res.status(500).json({
             success: false,
             message: 'error While Signup'
@@ -224,7 +224,7 @@ exports.login = async (req, res) => {
 
     }
     catch (err) {
-        console.log(err)
+        //console.log(err)
         res.status(500).json({
             success: false,
             message: 'Some thing went wrong'

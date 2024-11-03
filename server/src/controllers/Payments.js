@@ -40,7 +40,7 @@ exports.capturPayment = async (req, res) => {
             }
             totalAmount += course.price
         } catch (err) {
-            console.log(err)
+            //console.log(err)
             return res.status(500).json({
                 success: false,
                 message: 'internal server error'
@@ -62,7 +62,7 @@ exports.capturPayment = async (req, res) => {
         })
     }
     catch (err) {
-        console.log(err)
+        //console.log(err)
         res.status(500).json({
             success: false,
             message: 'could not initiate order'
@@ -78,10 +78,10 @@ exports.verifyPayemnt = async (req, res) => {
     const userId = req.user.id
 
 
-    console.log('req.body?.razorpayOrderId', req.body?.razorpay_order_id)
-    console.log('req.body?.razorpayPaymentId', req.body?.razorpay_payment_id)
-    console.log('req.body?.razorpaySignature', req.body?.razorpay_signature)
-    console.log('req.body?.courses', req.body?.courseId)
+    //console.log('req.body?.razorpayOrderId', req.body?.razorpay_order_id)
+    //console.log('req.body?.razorpayPaymentId', req.body?.razorpay_payment_id)
+    //console.log('req.body?.razorpaySignature', req.body?.razorpay_signature)
+    //console.log('req.body?.courses', req.body?.courseId)
 
     if (!razorpayOrderId || !razorpayPaymentId || !razorpaySignature || !courses) {
         return res.status(204).json({
@@ -133,15 +133,15 @@ const enrollStudent = async (courses, userId, res) => {
             const progress=await CourseProgress.create({courseID:enrolledCourse._id,userId:userId,completedVideo:[]})
 
             const userEnroll = await User.findByIdAndUpdate(userId, { $push: { courses: courseId,courseProgress:progress._id } }, { new: true })
-            console.log(1)
+            //console.log(1)
 
             const template = courseEnrollmentEmail(enrolledCourse?.courseName, userEnroll?.firstName)
             const emailResponse = await mailSender(userEnroll.email, 'Confirmation mail from Eduroute', template)
-            console.log("emailResponse", emailResponse)
+            //console.log("emailResponse", emailResponse)
 
             
         } catch (err) {
-            console.log(err)
+            //console.log(err)
             return res.status(500).json({
                 success: false,
                 message: 'internal server error'
@@ -154,7 +154,7 @@ const enrollStudent = async (courses, userId, res) => {
     try {
     const clearCart=await User.findByIdAndUpdate(userId,{$set:{cart:[]}})
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'cannot clear cart '
@@ -165,13 +165,13 @@ const enrollStudent = async (courses, userId, res) => {
 
 exports.sendPaymentEmail = async (req, res) => {
     try {
-        console.log(req.body)
+        //console.log(req.body)
         const userId = req.user.id
         // const userId=req.body
         const { orderId, razorpay_payment_id, amount } = req.body
-        console.log('orderId', orderId)
-        console.log('razorpay_payment_id', razorpay_payment_id)
-        console.log('amount', amount)
+        //console.log('orderId', orderId)
+        //console.log('razorpay_payment_id', razorpay_payment_id)
+        //console.log('amount', amount)
 
         if (!orderId || !razorpay_payment_id || !amount) {
             return res.status(203).json({
@@ -199,7 +199,7 @@ exports.sendPaymentEmail = async (req, res) => {
         }
 
     } catch (err) {
-        console.log('mail error', err)
+        //console.log('mail error', err)
         return res.status(500).json({
             success: false,
             message: 'Error while sending mail'
@@ -265,7 +265,7 @@ exports.sendPaymentEmail = async (req, res) => {
 //             }
 //         }
 //         const paymentResponse = await instance.orders.create(options)
-//         console.log(paymentResponse)
+//         //console.log(paymentResponse)
 //         return res.status(200).json({
 //             success: true,
 //             message: 'Payment done successfully',
@@ -292,7 +292,7 @@ exports.sendPaymentEmail = async (req, res) => {
 //     const digest = shasum.digest('hex')
 
 //     if (signature === digest) {
-//         console.log('payment is authorized')
+//         //console.log('payment is authorized')
 //         const { courseId, userId } = req.body.payload.payment.entity.notes
 //         try {
 
@@ -307,7 +307,7 @@ exports.sendPaymentEmail = async (req, res) => {
 
 //             const student=await User.findOneAndUpdate({_id:userId},{$push:{course:courseId}},{new:true})
 
-//             console.log(student)
+//             //console.log(student)
 
 //             // send mail
 
@@ -316,14 +316,14 @@ exports.sendPaymentEmail = async (req, res) => {
 //                 "Congratulation from codehelp",
 //                 "You are enrolled into Our course"
 //             )
-//             console.log(emailResponse)
+//             //console.log(emailResponse)
 //             return res.status(200).json({
 //                 success:true,
 //                 message:'Student enrolled'
 //             })
 
 //         } catch (err) {
-//             console.log(err)
+//             //console.log(err)
 //             res.status.json({
 //                 success:false,
 //                 message:'server error while enrolling student'

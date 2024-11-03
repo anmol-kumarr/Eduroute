@@ -20,7 +20,7 @@ exports.createCourse = async (req, res) => {
         // check intructor
         const userId = req.user.id
         const instructorDetails = await User.findById(userId)
-        console.log("instructor details", instructorDetails)
+        //console.log("instructor details", instructorDetails)
 
         if (!instructorDetails) {
             return res.status(400).json({
@@ -40,7 +40,7 @@ exports.createCourse = async (req, res) => {
         // upload thumbnail
 
         const thumbnailUpload = await ImageUpload(thumbnail, 'eduroute/thumbnail')
-        console.log(thumbnailUpload)
+        //console.log(thumbnailUpload)
         // create entry for course
         const newCourse = await Course.create({
             courseName,
@@ -70,7 +70,7 @@ exports.createCourse = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while created course'
@@ -81,7 +81,7 @@ exports.createCourse = async (req, res) => {
 exports.updateCourse = async (req, res) => {
     try {
         const { status, courseId } = req.body
-        console.log('body', req.body)
+        //console.log('body', req.body)
         if (!status || !courseId) {
             return res.status(400).json({
                 success: false,
@@ -114,7 +114,7 @@ exports.updateCourse = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Internal server error'
@@ -142,7 +142,7 @@ exports.getAllCourses = async (req, res) => {
             data: allCourses
         })
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while fetching courses'
@@ -154,7 +154,7 @@ exports.getAllCourses = async (req, res) => {
 exports.getCourseDetails = async (req, res) => {
     try {
         const { courseId } = req.params
-        // console.log(courseId)
+        // //console.log(courseId)
         const courseDetails = await Course.findById({ _id: courseId }).populate({
             path: 'intructor',
             populate: {
@@ -166,7 +166,7 @@ exports.getCourseDetails = async (req, res) => {
                 path: 'subSection'
             }
         }).populate('categories').populate('ratingAndReviews').exec()
-        console.log(courseDetails)
+        //console.log(courseDetails)
         if (!courseDetails) {
             return res.status(400).json({
                 success: false,
@@ -181,7 +181,7 @@ exports.getCourseDetails = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         res.status(500).json({
             success: false,
             message: 'Something went wrong fetching course details'
@@ -203,7 +203,7 @@ exports.getInstructorCourse = async (req, res) => {
         }).populate({
             path: 'studentEnrolled'
         }).exec()
-        // console.log(response)
+        // //console.log(response)
 
         if (!response) {
             return res.status(404).json({
@@ -221,7 +221,7 @@ exports.getInstructorCourse = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong'
@@ -244,13 +244,13 @@ exports.deleteCourse = async (req, res) => {
                 const sectionResponse = await Section.findById(sectionId)
                 if (sectionResponse) {
 
-                    console.log('section response:', sectionResponse)
+                    //console.log('section response:', sectionResponse)
                     const subSectionIds = sectionResponse?.subSection
 
 
                     if (subSectionIds && subSectionIds.length > 0) {
 
-                        console.log('section ids:', subSectionIds)
+                        //console.log('section ids:', subSectionIds)
                         await SubSection.deleteMany({ _id: { $in: subSectionIds } })
 
                     }
@@ -274,7 +274,7 @@ exports.deleteCourse = async (req, res) => {
         }).populate({
             path: 'studentEnrolled'
         }).exec()
-        // console.log(response)
+        // //console.log(response)
 
 
         return res.status(200).json({
@@ -286,7 +286,7 @@ exports.deleteCourse = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Error while deleting course',
@@ -312,7 +312,7 @@ exports.getCategoryCourse = async (req, res) => {
         })
             // .populate('ratingAndReviews')
             .populate('categories').exec()
-        console.log(courseResponse)
+        //console.log(courseResponse)
         if (courseResponse.length === 0) {
             return res.status(404).json({
                 success: true,
@@ -326,7 +326,7 @@ exports.getCategoryCourse = async (req, res) => {
             })
         }
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'internal server error'
@@ -346,7 +346,7 @@ exports.getEnrolledCourse = async (req, res) => {
         }).populate('courseProgress').exec()
 
 
-        // console.log("userCourse",userCourse)
+        // //console.log("userCourse",userCourse)
 
 
 
@@ -383,7 +383,7 @@ exports.getEnrolledCourse = async (req, res) => {
 
 
 
-            // console.log('total',courseResponse?.courseContent)
+            // //console.log('total',courseResponse?.courseContent)
 
             totalSubsection.push({ id: course._id, totalLength: total })
             totalTimeDuration.push({ id: course._id, totalTime: time })
@@ -392,7 +392,7 @@ exports.getEnrolledCourse = async (req, res) => {
         }
 
 
-        // console.log(totalSubsection)
+        // //console.log(totalSubsection)
 
 
         return res.status(200).json({
@@ -402,7 +402,7 @@ exports.getEnrolledCourse = async (req, res) => {
 
         })
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             sucess: false,
             message: 'Internal server error'
@@ -447,7 +447,7 @@ exports.completedLecture = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'internal server error'
@@ -471,7 +471,7 @@ exports.getCourseProgress = async (req, res) => {
         })
         return
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'internal server error'

@@ -37,7 +37,7 @@ export const editCourse={
 }
 
 export const instructorApi={
-
+    getDashboardData:BASE_URL+'profile/get-dashboard-info',
     getInstructorCourse:BASE_URL+'course/instructor/my-course',
 }
 

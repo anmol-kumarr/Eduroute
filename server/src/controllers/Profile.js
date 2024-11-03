@@ -24,7 +24,7 @@ exports.User = async (req, res) => {
             profileDetails: profileDetils
         })
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while Updating Updating user details'
@@ -55,7 +55,7 @@ exports.getAllUserDetails = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while fetching User'
@@ -67,9 +67,9 @@ exports.getAllUserDetails = async (req, res) => {
 exports.updateProfilePicture = async (req, res) => {
     try {
         const userId = req.user.id
-        console.log(req.files)
+        //console.log(req.files)
         const profilePicture = req.files.profilePicture
-        console.log(profilePicture)
+        //console.log(profilePicture)
         const user = await User.findById(userId)
         if (!user) {
             return res.status(400).json({
@@ -82,13 +82,13 @@ exports.updateProfilePicture = async (req, res) => {
                 if (error) {
                     console.error('Error:', error);
                 } else {
-                    console.log('Deleted:', result);
+                    //console.log('Deleted:', result);
                 }
             })
         }
 
         const uploadImage = await ImageUpload(profilePicture, 'eduroute/profile',)
-        console.log(uploadImage)
+        //console.log(uploadImage)
         const updateResponse = await User.findByIdAndUpdate(userId, {
             image: uploadImage.secure_url, imageProfilePublicId: uploadImage.public_id
         }, { new: true }).populate('addtionalDetails').exec()
@@ -101,7 +101,7 @@ exports.updateProfilePicture = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while uploading profile picture'
@@ -114,7 +114,7 @@ exports.updateAdditionalDetails = async (req, res) => {
     try {
         const userId = req.user.id
         const {firstName,lastName, gender, dateOfBirth, about, mobile,profession } = req.body
-        console.log('firstname:',firstName,'lastname:',lastName,gender, dateOfBirth, about, mobile)
+        //console.log('firstname:',firstName,'lastname:',lastName,gender, dateOfBirth, about, mobile)
 
         const user = await User.findById(userId)
         if (!user) {
@@ -128,7 +128,7 @@ exports.updateAdditionalDetails = async (req, res) => {
         const updateName=await User.findByIdAndUpdate(userId,{firstName,lastName},{new:true}).populate('addtionalDetails').exec()
         
 
-        console.log(updateDetails)
+        //console.log(updateDetails)
         return res.status(200).json({
             success: true,
             message: 'User details updated successfully',
@@ -136,7 +136,7 @@ exports.updateAdditionalDetails = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         res.status(500).json({
             success: false,
             message: 'Server error while updating profile details'

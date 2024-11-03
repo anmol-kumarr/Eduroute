@@ -16,7 +16,7 @@ exports.forgetPassword = async (req, res) => {
 
         const token = crypto.randomUUID()
         const updateToken = await User.findOneAndUpdate({ email: email }, { token: token, expiresIn: Date.now() + 3 * 60 * 1000 }, { new: true })
-        console.log(updateToken)
+        //console.log(updateToken)
         const forgetPasswordUrl = ` http://localhost:3000/update-password/${token}`;
     
         await mailSender(email, "password reset link", `Password reset link${forgetPasswordUrl}`)
@@ -26,7 +26,7 @@ exports.forgetPassword = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         res.status(500).json({
             success: false,
             message: 'error while forget password'
@@ -68,7 +68,7 @@ exports.resetPassword = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         res.status(500).json({
             success: false,
             message: 'error While password forget'

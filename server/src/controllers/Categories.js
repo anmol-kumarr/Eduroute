@@ -5,7 +5,7 @@ const { find } = require('../models/User.Model')
 exports.createCategories = async (req, res) => {
     try {
         const { categories, description } = req.body
-        console.log("create categoires",categories,description)
+        //console.log("create categoires",categories,description)
         if (!categories || !description) {
             return res.status(401).json({
                 success: false,
@@ -14,13 +14,13 @@ exports.createCategories = async (req, res) => {
         }
 
         const categoriesDetails = await Categories.create({name:categories, description })
-        // console.log("categories details",categoriesDetails)
+        // //console.log("categories details",categoriesDetails)
         return res.status(200).json({
             success: true,
             message: 'Categories created successfully'
         })
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong'
@@ -32,7 +32,7 @@ exports.createCategories = async (req, res) => {
 exports.showCategories = async (req, res) => {
     try {
         const allCategories = await Categories.find({}, { name: true, description: true })
-        // console.log(allCategories)
+        // //console.log(allCategories)
 
         return res.status(200).json({
             success: true,
@@ -42,7 +42,7 @@ exports.showCategories = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong'
@@ -92,7 +92,7 @@ exports.categoriesPageDetails = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong'

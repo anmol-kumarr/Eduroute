@@ -24,10 +24,10 @@ const otpSchema = new mongoose.Schema({
 // const sendMail = async (email, otp) => {
 //     try {
 //         let response = sendVerification(email, "Verification mail send by Eduroute", otp)
-//         console.log(response)
+//         //console.log(response)
 //     }
 //     catch (err) {
-//         console.log('error in sending mail in schema file', err)
+//         //console.log('error in sending mail in schema file', err)
 //     }
 // }
 

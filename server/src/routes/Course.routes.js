@@ -7,6 +7,7 @@ const { createSection, updateSection, deleteSection } = require('../controllers/
 const { createSubSection, updateSubsection, deleteSubSection } = require('../controllers/SubSection')
 const { isEnrolled } = require('../middleware/Enrolled..Mw')
 const { createRating } = require('../controllers/RatingAndReviews')
+const { getDashboardInfo } = require('../controllers/instructorDashboard')
 
 const routes = express.Router()
 // testing done--------------------------------------------------------
@@ -48,6 +49,8 @@ routes.get('/:courseId',[auth,isStudent,isEnrolled],getCourseDetails)
 routes.put('/completed-lecture',[auth,isStudent],completedLecture)
 routes.get('/get-course-progress/:courseId',[auth,isStudent,isEnrolled],getCourseProgress)
 routes.post('/rating-course',[auth,isStudent],createRating)
+
+
 
 
 

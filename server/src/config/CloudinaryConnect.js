@@ -9,7 +9,7 @@ const connectCloudinary=()=>{
         })
     }
     catch(err){
-        console.log(err,'in cloudinary connection')
+        //console.log(err,'in cloudinary connection')
     }
 }
 

@@ -24,7 +24,7 @@ exports.createSection = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while created section'
@@ -58,7 +58,7 @@ exports.updateSection = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while updating section'
@@ -69,9 +69,9 @@ exports.updateSection = async (req, res) => {
 
 exports.deleteSection = async (req, res) => {
     try {
-        // console.log('req.params-',req.params)
+        // //console.log('req.params-',req.params)
         const {courseId,sectionId } = req.body
-        // console.log('sectionId',id)
+        // //console.log('sectionId',id)
         const sectionData = await Section.findById(sectionId)
         const subsectionIds = sectionData?.subSection
 
@@ -91,7 +91,7 @@ exports.deleteSection = async (req, res) => {
             data:response
         })
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while deleting section'

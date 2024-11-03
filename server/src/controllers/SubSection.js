@@ -10,7 +10,7 @@ exports.createSubSection = async (req, res) => {
 
         const video  = req?.files?.video
 
-        console.log('data of sub section creation',sectionId,title,timeDuration,description,video)
+        //console.log('data of sub section creation',sectionId,title,timeDuration,description,video)
         if (!sectionId,courseId, !title, !timeDuration, !description, !video) {
 
             return res.status(400).json({
@@ -25,8 +25,8 @@ exports.createSubSection = async (req, res) => {
             title, timeDuration, description, videoUrl: uploadVideo.secure_url
         })
 
-        console.log(subSection)
-        console.log('seciton id-',sectionId)
+        //console.log(subSection)
+        //console.log('seciton id-',sectionId)
     
         const updateSection = await Section.findByIdAndUpdate(sectionId,{ $push:{subSection:subSection._id } }, { new: true }).populate('subSection')
         const response=await Course.findById(courseId).populate({
@@ -36,11 +36,11 @@ exports.createSubSection = async (req, res) => {
             }
         })
 
-        console.log(updateSection)
+        //console.log(updateSection)
 
 
         // const find=await Section.findById(sectionId)
-        // console.log("find-",find)
+        // //console.log("find-",find)
     
         return res.status(200).json({
             success: true,
@@ -50,7 +50,7 @@ exports.createSubSection = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while created Sub Section'
@@ -83,7 +83,7 @@ exports.updateSubsection = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while updating sub section'
@@ -113,7 +113,7 @@ exports.deleteSubSection = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while deleting SubSection'

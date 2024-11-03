@@ -21,12 +21,12 @@ const sendVerification = async (email,title,body) => {
             html:`${body}`
         })
 
-        console.log(response)
+        //console.log(response)
 
         return response
     }
     catch(err){
-        console.log('err in sending mail',err)
+        //console.log('err in sending mail',err)
     }
 
 }
