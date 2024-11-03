@@ -1,19 +1,19 @@
 require('dotenv').config()
 const express=require('express')
-const routes = require('./src/routes/User.routes')
-const DbConnect=require('./src/config/DBConnect')
-const cloudinaryconnect=require('./src/config/CloudinaryConnect')
+const routes = require('./src/routes/User.routes.js')
+const DbConnect=require('./src/config/DBConnect.js')
+const cloudinaryconnect=require('./src/config/CloudinaryConnect.js')
 const cookieParser=require('cookie-parser')
 const cors=require('cors')
 const fileupload=require('express-fileupload')
 
-const userRoutes=require('./src/routes/User.routes')
-const paymentRoutes=require('./src/routes/Payement.routes')
-const courseRoutes=require('./src/routes/Course.routes')
-const profileRoutes=require('./src/routes/Profile.routes')
-const cartRoutes=require('./src/routes/cart.routes')
+const userRoutes=require('./src/routes/User.routes.js')
+const paymentRoutes=require('./src/routes/Payement.routes.js')
+const courseRoutes=require('./src/routes/Course.routes.js')
+const profileRoutes=require('./src/routes/Profile.routes.js')
+const cartRoutes=require('./src/routes/cart.routes.js')
 
-const ratingRoutes=require('./src/routes/rating.routes')
+const ratingRoutes=require('./src/routes/rating.routes.js')
 
 
 
