@@ -1,12 +1,12 @@
 const { instance } = require('../config/Razorpay')
-const Course = require('../models/course.Model')
-const User = require('../models/User.Model')
-const mailSender = require('../utils/MailSender')
-const { courseEnrollmentEmail } = require('../mail/CourseEntrollment')
+const Course = require('../models/course.Model.js')
+const User = require('../models/User.Model.js')
+const mailSender = require('../utils/MailSender.js')
+const { courseEnrollmentEmail } = require('../mail/CourseEntrollment.js')
 const mongoose = require('mongoose')
-const { paymentSuccessEmail } = require('../mail/PaymentSuccessfull')
+const { paymentSuccessEmail } = require('../mail/PaymentSuccessfull.js')
 const { createHmac } = require('node:crypto');
-const CourseProgress=require('../models/CourseProgress.Model')
+const CourseProgress=require('../models/CourseProgress.Model.js')
 
 exports.capturPayment = async (req, res) => {
     const { courseId } = req.body

@@ -1,6 +1,6 @@
-const Profile = require('../models/Profile.Model')
-const User = require('../models/User.Model')
-const Course = require('../models/course.Model')
+const Profile = require('../models/Profile.Model.js')
+const User = require('../models/User.Model.js')
+const Course = require('../models/course.Model.js')
 
 
 exports.deleteUser = async (req, res) => {

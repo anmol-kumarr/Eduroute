@@ -1,6 +1,6 @@
-const User = require('../models/User.Model')
+const User = require('../models/User.Model.js')
 
-const mailSender = require('../utils/MailSender')
+const mailSender = require('../utils/MailSender.js')
 const bcrypt = require('bcrypt')
 
 exports.forgetPassword = async (req, res) => {

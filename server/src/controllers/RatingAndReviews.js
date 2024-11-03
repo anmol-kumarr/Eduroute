@@ -1,6 +1,6 @@
 const { default: mongoose } = require('mongoose')
-const Course = require('../models/course.Model')
-const RatingAndReviews = require('../models/RatingAndReviews.Model')
+const Course = require('../models/course.Model.js')
+const RatingAndReviews = require('../models/RatingAndReviews.Model.js')
 
 
 exports.createRating = async (req, res) => {

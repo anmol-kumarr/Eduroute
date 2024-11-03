@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Course = require('../models/course.Model')
+const Course = require('../models/course.Model.js')
 exports.isEnrolled = async (req, res, next) => {
     try {
         const { courseId } = req.params

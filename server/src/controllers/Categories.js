@@ -1,5 +1,5 @@
-const Categories = require('../models/Categories.model')
-const { find } = require('../models/User.Model')
+const Categories = require('../models/Categories.model.js')
+// const { find } = require('../models/User.Model.js')
 
 
 exports.createCategories = async (req, res) => {

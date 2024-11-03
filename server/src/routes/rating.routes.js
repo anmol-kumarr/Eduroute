@@ -1,4 +1,4 @@
-const { getAllRating } = require('../controllers/RatingAndReviews')
+const { getAllRating } = require('../controllers/RatingAndReviews.js')
 
 const routes=require('express').Router()
 

@@ -1,4 +1,4 @@
-const Course=require('../models/course.Model')
+const Course=require('../models/course.Model.js')
 exports.getDashboardInfo=async(req,res)=>{
     try{
         const instructorCourse=await Course.find({intructor:req.user.id})

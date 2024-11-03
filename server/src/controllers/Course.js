@@ -1,12 +1,12 @@
 require('dotenv').config()
-const Course = require('../models/course.Model')
-const Categories = require('../models/Categories.model')
-const User = require('../models/User.Model')
-const { ImageUpload } = require('../utils/Cloudinary')
-const Section = require('../models/Section.Model')
-const CourseProgress = require('../models/CourseProgress.Model')
+const Course = require('../models/course.Model.js')
+const Categories = require('../models/Categories.model.js')
+const User = require('../models/User.Model.js')
+const { ImageUpload } = require('../utils/Cloudinary.js')
+const Section = require('../models/Section.Model.js')
+const CourseProgress = require('../models/CourseProgress.Model.js')
 
-const SubSection = require('../models/SubSection.Model')
+const SubSection = require('../models/SubSection.Model.js')
 exports.createCourse = async (req, res) => {
     try {
         const { courseName, courseDescription, whatYouWillLearn, price, tag, categories, status, instruction } = req.body

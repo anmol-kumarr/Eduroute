@@ -1,6 +1,6 @@
-const Profile = require('../models/Profile.Model')
-const User = require('../models/User.Model')
-const { ImageUpload } = require('../utils/Cloudinary')
+const Profile = require('../models/Profile.Model.js')
+const User = require('../models/User.Model.js')
+const { ImageUpload } = require('../utils/Cloudinary.js')
 const cloudinary = require('cloudinary')
 
 

@@ -1,7 +1,7 @@
-const Section = require('../models/Section.Model')
-const SubSectionModel = require('../models/SubSection.Model')
-const Course = require('../models/course.Model')
-const { User } = require('./Profile')
+const Section = require('../models/Section.Model.js')
+const SubSectionModel = require('../models/SubSection.Model.js')
+const Course = require('../models/course.Model.js')
+// const { User } = require('./Profile')
 
 
 exports.createSection = async (req, res) => {

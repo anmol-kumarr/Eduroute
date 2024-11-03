@@ -1,4 +1,4 @@
-const User = require('../models/User.Model')
+const User = require('../models/User.Model.js')
 
 
 exports.getCart=async(req,res)=>{

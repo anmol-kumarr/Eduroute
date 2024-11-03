@@ -1,11 +1,11 @@
 const express=require('express')
 const routes=express.Router()
 
-const {updateProfilePicture, getAllUserDetails, updateAdditionalDetails}=require('../controllers/Profile')
-const { auth, isStudent, isInstructor } = require('../middleware/Auth.Mw')
-const { resetPassword, forgetPassword } = require('../controllers/ForgetPass')
-const { deleteUser } = require('../controllers/DeleteAcc')
-const { getDashboardInfo } = require('../controllers/instructorDashboard')
+const {updateProfilePicture, getAllUserDetails, updateAdditionalDetails}=require('../controllers/Profile.js')
+const { auth, isStudent, isInstructor } = require('../middleware/Auth.Mw.js')
+const { resetPassword, forgetPassword } = require('../controllers/ForgetPass.js')
+const { deleteUser } = require('../controllers/DeleteAcc.js')
+const { getDashboardInfo } = require('../controllers/instructorDashboard.js')
 
 
 

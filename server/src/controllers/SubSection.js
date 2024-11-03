@@ -1,8 +1,8 @@
 const { mongoose } = require('mongoose')
-const SubSection = require('../models/SubSection.Model')
-const Section = require('../models/Section.Model')
-const  Course=require(('../models/course.Model'))
-const {ImageUpload} = require('../utils/Cloudinary')
+const SubSection = require('../models/SubSection.Model.js')
+const Section = require('../models/Section.Model.js')
+const  Course=require(('../models/course.Model.js'))
+const {ImageUpload} = require('../utils/Cloudinary.js')
 
 exports.createSubSection = async (req, res) => {
     try {

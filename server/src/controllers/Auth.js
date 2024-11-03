@@ -1,11 +1,11 @@
 require('dotenv').config()
-const User = require('../models/User.Model')
-const Otp = require('../models/Otp.model')
+const User = require('../models/User.Model.js')
+const Otp = require('../models/Otp.model.js')
 const otpGenerator = require('otp-generator')
 const bcrypt = require('bcrypt')
-const Profile = require('../models/Profile.Model')
+const Profile = require('../models/Profile.Model.js')
 const jwt = require('jsonwebtoken')
-const CourseProgress = require('../models/CourseProgress.Model')
+const CourseProgress = require('../models/CourseProgress.Model.js')
 //--------------------------- create otp --------------------------
 
 exports.createOtp = async (req, res) => {
