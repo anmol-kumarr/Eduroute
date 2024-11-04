@@ -193,18 +193,17 @@ exports.login = async (req, res) => {
                 id: user._id,
                 accountType: user.accountType
             }
-            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '3d' })
+            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' })
 
             user.toObject()
             user.token = token
             user.password = null
             const option = {
-                expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-                // httpOnly: true,
-                // httpOnly: true,
-                // secure: process.env.NODE_ENV === 'production', // Secure only on HTTPS
+                expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production', // Secure only on HTTPS
                 sameSite: 'Lax',
-                secure: false
+                secure: true
             }
 
             res.cookie('token', token, option).status(200).json({
