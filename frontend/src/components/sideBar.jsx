@@ -9,6 +9,7 @@ import { FaXmark } from "react-icons/fa6";
 const SideBar = () => {
     const sidebar = useSelector(state => state.responsive.sidebar);
     const courseCategories = useSelector(state => state.course.courseCategories)
+    // const 
     const dispatch = useDispatch()
     const [openCatelog, setOpenCatelog] = useState(true)
     useEffect(() => {

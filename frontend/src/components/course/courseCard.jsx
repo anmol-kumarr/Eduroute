@@ -4,7 +4,7 @@ const CourseCard=({course,width,height,catelogName})=>{
     const navigate=useNavigate()
     // console.log(catelogName)
     return (
-        <div onClick={()=>navigate(`/course/${course._id}`)} className={`bg-richblack-800 rounded-md ${width?width:'min-w-80'}`}>
+        <div onClick={()=>navigate(`/course/${course._id}`)} className={`bg-richblack-800 rounded-md w-96 ${width?width:'min-w-80'}`}>
             <div className={`w-full  rounded-t-md overflow-hidden ${height?height:'h-40'}`}>
                 <img className="w-full h-full" src={course?.thumbnail} alt="" />
             </div>

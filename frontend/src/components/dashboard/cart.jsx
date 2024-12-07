@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { apiConnector } from "../../services/apiconnector"
@@ -56,12 +56,12 @@ const Cart = () => {
         )
 
     }
-    const removeItemHandler=(id)=>{
-        reomveFromCart(dispatch,{courseId:id})
+    const removeItemHandler = (id) => {
+        reomveFromCart(dispatch, { courseId: id })
     }
     return (
         <div className="text-richblack-100">
-            <div className="w-11/12 mx-auto my-14">
+            <div className="md:w-11/12 w-full p-2 1050px:p-2 mx-auto my-14">
                 <p className="text-sm mb-2">
                     <span className="cursor-pointer px-1">
                         Home
@@ -85,67 +85,75 @@ const Cart = () => {
                                 <p>{
                                     cartData?.length
                                 } Course in WishList</p>
-                                <hr className="text-richblack-700 mt-5" />
-                                <div className="mt-5 flex w-full">
-                                    <div className="w-9/12">
+                                <hr className="text-richblack-700 mt-5 " />
+                                <div className="mt-5 sm:flex w-full">
+                                    <div className="lg:w-9/12 w-11/12 mx-auto">
 
                                         {
                                             cartData && cartData.map((item, index) => (
-                                                <div key={item?._id}>
-                                                    <div className={`flex gap-7 h-36 my-4 rounded-md overflow-hidden w-10/12 `} >
-                                                        <div className="w-48 h-full overflow-hidden">
-                                                            <img className="w-full h-full " src={item.thumbnail} alt="" />
+
+
+
+                                                <div className="w-full flex justify-center" key={item?._id}>
+                                                    <div className="flex flex-col sm:flex-row lg:gap-7 gap-3 lg:h-36 my-4 rounded-md overflow-hidden lg:w-10/12 w-[99%]">
+                                                        {/* Thumbnail */}
+                                                        <div className="sm:w-48 w-full h-52 sm:h-auto overflow-hidden">
+                                                            <img className="w-full h-full object-cover" src={item.thumbnail} alt="" />
                                                         </div>
 
-                                                        <div>
+                                                        {/* Content Section */}
+                                                        <div className="flex flex-col sm:items-start items-center sm:block">
                                                             <h3 className="text-xl text-richblack-50 font-inter">{item.courseName}</h3>
                                                             <p>By: {item?.intructor?.firstName} {item?.intructor?.lastName}</p>
                                                             <div className="text-yellow-100 my-1 flex items-center">
                                                                 <span className="mx-1">4.5 </span>
-                                                                <GoStarFill></GoStarFill>
-                                                                <GoStarFill></GoStarFill>
-                                                                <GoStarFill></GoStarFill>
-                                                                <GoStarFill></GoStarFill>
-                                                                <GoStar></GoStar>
+                                                                <GoStarFill />
+                                                                <GoStarFill />
+                                                                <GoStarFill />
+                                                                <GoStarFill />
+                                                                <GoStar />
                                                             </div>
                                                             <div className="my-2 flex items-center">
-                                                                {
-                                                                    JSON.parse(item?.tag)?.map((tag, index) => (
-                                                                        <>
-                                                                            <span className="" key={index}>{tag}</span>
-                                                                            {
-                                                                                JSON.parse(item?.tag)?.length - 1 > index && <PiDotOutlineFill className="-mb-[2px]"></PiDotOutlineFill>
-                                                                            }
-                                                                        </>
-
-                                                                    ))
-                                                                }
+                                                                {Array.isArray(JSON.parse(item?.tag || "[]")) &&
+                                                                    JSON.parse(item?.tag || "[]").map((tag, index) => (
+                                                                        <React.Fragment key={index}>
+                                                                            <span>{tag}</span>
+                                                                            {JSON.parse(item?.tag || "[]").length - 1 > index && (
+                                                                                <PiDotOutlineFill className="-mb-[2px]" />
+                                                                            )}
+                                                                        </React.Fragment>
+                                                                    ))}
                                                             </div>
                                                         </div>
-                                                        <div className="py-2 mx-5">
-                                                            <button onClick={()=>removeItemHandler(item._id)} className="flex items-center gap-1 bg-richblack-500 bg-opacity-60 px-2 py-1 rounded-md text-[#ff0000]">
-                                                                <FaTrashAlt className="-mb-[2px]"></FaTrashAlt>
-                                                                Remove</button>
 
-                                                            <p className="text-yellow-100 font-medium text-xl my-3">Rs: {item?.price}</p>
+                                                        {/* Button and Pricing */}
+                                                        <div className="py-2 lg:mx-5 mx-2 flex flex-col items-center lg:items-center">
+                                                            <button
+                                                                onClick={() => removeItemHandler(item._id)}
+                                                                className="flex items-center gap-1 bg-richblack-500 bg-opacity-60 px-2 py-1 rounded-md text-[#ff0000]"
+                                                            >
+                                                                <FaTrashAlt className="-mb-[2px]" />
+                                                                Remove
+                                                            </button>
+                                                            <p className="text-yellow-100 font-medium text-xl my-3">
+                                                                Rs: {item?.price}
+                                                            </p>
                                                         </div>
                                                     </div>
-                                                    {
-
-                                                        cartData?.length > index && <hr className="w-11/12 text-richblack-600" />
-                                                    }
                                                 </div>
+
                                             ))
                                         }
 
 
                                     </div>
                                     {
-                                        cartData && cartData.length > 0 && (<div className="w-3/12 max-h-[fit-content]  bg-richblack-700 rounded-md p-3">
-                                            <p>Total:</p>
-                                            <h2 className="my-1 text-yellow-100 font-semibold text-xl">Rs: {price}</h2>
-                                            <LargeBtn content={'Buy now'} behaviour={buyNowHandler}></LargeBtn>
-                                        </div>)
+                                        cartData && cartData.length > 0 && (
+                                            <div className="sm:w-3/12 mx-auto sm:my-5 my-0 w-8/12 max-h-[fit-content]  bg-richblack-700 rounded-md p-3">
+                                                <p>Total:</p>
+                                                <h2 className="my-1 text-yellow-100 font-semibold text-xl">Rs: {price}</h2>
+                                                <LargeBtn content={'Buy now'} behaviour={buyNowHandler}></LargeBtn>
+                                            </div>)
                                     }
                                 </div>
                             </div>

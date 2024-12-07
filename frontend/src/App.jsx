@@ -24,21 +24,41 @@ import Catelog from "./page/categlog";
 import CourseDescription from "./page/courseDescription";
 import LectureSection from "./page/lectureSection";
 import InstructorDashboard from "./components/dashboard/instructor/dashboard/instructorDashboard";
+import SideBar from "./components/sideBar";
+import { useMediaQuery } from 'usehooks-ts'
+import CoursePage from "./components/videoLecture/coursePage";
+import { useEffect, useState } from "react";
+import MobileRoute from "./utils/mobileRoute";
+import { useDispatch } from "react-redux";
 
 
 
 function App() {
   const location = useLocation().pathname
+  const [showPage, setShowPage] = useState()
+  const width = useMediaQuery('(min-width: 850px)')
+  const dispatch=useDispatch()
   // console.log(location.split('/').includes('course'))
 
+  useEffect(() => {
+      // dispatch(setShowPage(width))
+  }, [width])
+
   return (
-    <div className="overflow-x-hidden max-h-full bg-richblack-900">
+    <div className="overflow-x-hidden relative max-h-full bg-richblack-900">
 
       <>
         {
           location.includes('/catelog') || location.includes('/course') || location.includes('/lecture') ? '' : <DashBoardRoute>
             <Header></Header>
           </DashBoardRoute>
+        }
+
+        {
+
+
+          <SideBar></SideBar>
+
         }
       </>
 
@@ -79,9 +99,24 @@ function App() {
         <Route path="/lecture/:courseId" element={<CloseRoute>
           <LectureSection></LectureSection>
         </CloseRoute>}>
-
-
         </Route>
+        {/* <Route path="/lecture" element={<CloseRoute>
+          <LectureSection></LectureSection>
+        </CloseRoute>}>
+        </Route> */}
+
+
+
+
+
+
+
+        <Route path="/my-course/:courseId" element={<CloseRoute>
+          <MobileRoute>
+            <CoursePage></CoursePage>
+          </MobileRoute>
+        </CloseRoute>} />
+
 
 
 
