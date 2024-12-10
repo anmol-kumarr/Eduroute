@@ -1,7 +1,7 @@
 const express = require('express')
 const { route } = require('./Profile.routes')
 const { isInstructor, auth, isAdmin, isStudent } = require('../middleware/Auth.Mw.js')
-const { createCourse, getCourseDetails, updateCourse, getInstructorCourse, deleteCourse, getCategoryCourse, getEnrolledCourse, completedLecture, getCourseProgress } = require('../controllers/Course.js')
+const { createCourse, getCourseDetails, updateCourse, getInstructorCourse, deleteCourse, getCategoryCourse, getEnrolledCourse, completedLecture, getCourseProgress, updateCourseDetails } = require('../controllers/Course.js')
 const { createCategories, showCategories } = require('../controllers/Categories.js')
 const { createSection, updateSection, deleteSection } = require('../controllers/Section.js')
 const { createSubSection, updateSubsection, deleteSubSection } = require('../controllers/SubSection.js')
@@ -52,6 +52,6 @@ routes.post('/rating-course',[auth,isStudent],createRating)
 
 
 
-
+routes.put('/update/course-details',[auth,isInstructor],updateCourseDetails)
 
 module.exports = routes

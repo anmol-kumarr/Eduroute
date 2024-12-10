@@ -14,6 +14,7 @@ const profileRoutes=require('./src/routes/Profile.routes.js')
 const cartRoutes=require('./src/routes/cart.routes.js')
 
 const ratingRoutes=require('./src/routes/rating.routes.js')
+const fileUpload = require('express-fileupload')
 
 
 
@@ -26,11 +27,11 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-    origin:'https://eduroute.vercel.app',
+    origin:'http://localhost:3000',
     credentials:true
 }))
 
-app.use(fileupload({
+app.use(fileUpload({
     useTempFiles:true,
     tempFileDir:'/tmp'
 }))

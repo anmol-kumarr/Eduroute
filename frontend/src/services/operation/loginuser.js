@@ -20,7 +20,7 @@ export const login = (email, password) => {
             dispatch(setUser(response.data.user))
 
             localStorage.setItem('user', JSON.stringify(response.data.user))
-            localStorage.setItem('authToken', JSON.stringify(response.data.token))
+            localStorage.setItem('authToken', JSON.stringify({ token: response.data.token, expiresIn: Date.now()+7*24*60*60*1000 }))
             // localStorage.setItem()
 
 
@@ -37,6 +37,7 @@ export const login = (email, password) => {
 
 
 export const logout = (navigate) => {
+    console.log('hello')
     return (dispatch) => {
 
 

@@ -122,6 +122,81 @@ exports.updateCourse = async (req, res) => {
     }
 }
 
+exports.updateCourseDetails = async (req, res) => {
+    try {
+        const { thumbnailImage, courseId, courseName, courseDescription, whatYouWillLearn, price, tag, category, instruction } = req.body
+        const files = req.files
+        console.log('files', files)
+
+
+        console.log('body', req.body)
+        if (!courseId) {
+            return res.status(400).json({
+                success: false,
+                message: 'Course id is missing'
+            })
+        }
+
+        if (!courseName || !courseDescription || !whatYouWillLearn || !price || !tag || !category || !instruction) {
+            return res.status(400).json({
+                success: false,
+                message: 'All fields are required'
+            })
+        }
+
+        let thumbnailUpload
+        if (files?.thumbnailImage) {
+            console.log('thumbnailImageFrom File', files?.thumbnailImage)
+            // console.log('thumbnail', thumbnailImage)
+            const thumbnail = files.thumbnailImage
+            thumbnailUpload = await ImageUpload(thumbnail, 'eduroute/thumbnail')
+            console.log('thumbnailUpload', thumbnailUpload)
+
+        }
+
+        const categoriesDetails = await Categories.findById(category)
+        console.log('categories', categoriesDetails)
+        if (!categoriesDetails) {
+            return res.status(400).json({
+                success: false,
+                message: 'category details not found'
+            })
+        }
+
+        const courseDetails = await Course.findByIdAndUpdate(courseId, {
+
+            courseName,
+            courseDescription,
+            price,
+            tag,
+            instruction,
+            whatYouWillLearn,
+            categories: categoriesDetails._id,
+            status:'Draft',
+            thumbnail: thumbnailUpload?.secure_url ? thumbnailUpload.secure_url : thumbnailImage
+        },
+            { new: true }).populate({
+                path: 'courseContent',
+                populate: {
+                    path: 'subSection'
+                }
+            }).populate('categories').exec()
+
+
+        return res.status(200).json({
+            success: true,
+            message: 'Course updated successfully',
+            data: courseDetails
+        })
+
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        })
+    }
+}
 
 
 exports.getAllCourses = async (req, res) => {
@@ -467,7 +542,7 @@ exports.getCourseProgress = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: 'Course progress fetched',
-            data:courseProgress
+            data: courseProgress
         })
         return
     } catch (err) {

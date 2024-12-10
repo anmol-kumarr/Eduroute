@@ -5,6 +5,7 @@ import RzrPayLogo from '../../assets/Logo/rzp_logo.png'
 import { addToCart } from "../../redux/slice/cartSlice"
 
 
+
 const scriptLoad = (src) => {
 
     return new Promise((resolve) => {
@@ -24,6 +25,7 @@ const scriptLoad = (src) => {
 
 export const buyCourse = async (courseId, user, dispatch, navigate) => {
     const key = process.env.REACT_APP_RAZROPAY_KEY
+
     toast.loading('loading')
     try {
         const res = await scriptLoad('https://checkout.razorpay.com/v1/checkout.js')
