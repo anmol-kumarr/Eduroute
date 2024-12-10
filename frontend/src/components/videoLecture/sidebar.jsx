@@ -4,9 +4,13 @@ import { MdArrowLeft, MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } fro
 import { PiMonitorPlayLight } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+
 const Sidebar = ({ sectionData, setSection, subSectionData, courseData, setPlayVideo, setSubSection, setModal }) => {
-    console.log(sectionData)
-    const navigate=useNavigate()
+
+
+    console.log(courseData)
+    const navigate = useNavigate()
 
     const completedLecture = useSelector(state => state.lecture.completedLecture)
     const [lectureList, setLectureList] = useState([])
@@ -42,9 +46,14 @@ const Sidebar = ({ sectionData, setSection, subSectionData, courseData, setPlayV
 
     }
     return (
-        <div className="bg-richblack-800 w-2/12 min-h-[calc(100vh-3rem)]">
+        // <div className="bg-richblack-800 min-w-[200px] max-[850px]:my-5 max-[850px]:mx-auto max-[850px]:w-11/12   min-[850px]:w-2/12 min-[850px]:min-h-[calc(100vh-3rem)] ">
+    
+        < div className = "bg-richblack-800 min-w-[200px] max-850:my-5 max-850:mx-auto max-850:w-11/12 850px:w-2/12 850px:min-h-[calc(100vh-3rem)]" >
+
+
+
             <div >
-                <p onClick={()=>navigate(-1)} className="p-2 flex items-center cursor-pointer"><MdArrowLeft className="-mb[1px]"></MdArrowLeft>Back</p>
+                <p onClick={() => navigate(-1)} className="min-[850px]:hidden  p-2 flex items-center cursor-pointer"><MdArrowLeft className="-mb[1px]"></MdArrowLeft>Back</p>
                 <div className="p-2 flex flex-col items-center">
                     <p>{courseData?.courseName}</p>
                     <button onClick={() => setModal(true)} className="bg-yellow-100 rounded-md px-2 py-1 text-black text-sm my-2">Rate course</button>
@@ -113,7 +122,7 @@ const Sidebar = ({ sectionData, setSection, subSectionData, courseData, setPlayV
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 export default Sidebar

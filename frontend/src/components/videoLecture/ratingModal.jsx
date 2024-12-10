@@ -38,8 +38,8 @@ const RatingModal = ({ setModal }) => {
         setModal(false)
     }
     return (
-        <div className="flex justify-center my-[10%]  items-center">
-            <div className="w-96 bg-richblack-800 rounded-md overflow-hidden">
+        <div className="flex justify-center sm:my-[10%] my-[60%]  items-center">
+            <div className="sm:w-96 w-11/12 bg-richblack-800 rounded-md overflow-hidden">
                 <div className="flex justify-between items-center px-3 py-2 border-b-[1px] border-richblack-400 bg-richblack-700">
                     <p>Add review</p>
                     <button onClick={() => setModal(false)}>
@@ -69,19 +69,19 @@ const RatingModal = ({ setModal }) => {
 
                         ))}
                     </div>
-                    <div className=" flex flex-col gap-1  items-center">
+                    <div className="w-full flex flex-col gap-1  items-center">
                         <form onSubmit={handleSubmit(submitHandler)}>
                             <div className="flex flex-col items-center p-1 text-sm">
 
                                 <label className="text-richblack-200 text-sm mb-1" htmlFor="review">Add your Experience <span className="text-[#ff0000] text-start">*</span></label>
 
-                                <textarea placeholder="Enter your review" {...register('description', { required: true })} rows={5} cols={50} className="p-1 rounded-md bg-richblack-700 outline-none  border-richblack-500" name="description" id="review"></textarea>
+                                <textarea placeholder="Enter your review" {...register('description', { required: true })} rows={5} cols={50} className="p-1 rounded-md bg-richblack-700 outline-none w-full  border-richblack-500" name="description" id="review"></textarea>
 
                                 <p>{errors.description && 'Error'}</p>
 
 
                             </div>
-                            <div className="mb-5 mt-3 flex gap-2 justify-end">
+                            <div className="mb-5 mt-3 flex gap-2 w-full sm:px-0 px-2 justify-end">
                                 <button className="bg-richblack-400 px-2 py-1 rounded-md shadow-[2px_2px_0px_#2C333F]">Cancel</button>
                                 <button type="submit" className="text-black bg-yellow-100 px-2 py-1 rounded-md shadow-[2px_2px_0px_#FFE83D]">Submit</button>
                             </div>
