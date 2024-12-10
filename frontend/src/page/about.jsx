@@ -28,14 +28,14 @@ const About = () => {
                         <div className="w-full  flex flex-col justify-center items-center text-center">
 
                             <p>About us</p>
-                            <h1 className="text-white p-2 text-center font-inter text-2xl font-semibold w-2/3">Driving Innovation in Online Education for a <HighlightedText content={'Brighter Future'}></HighlightedText></h1>
-                            <p className="w-2/3 text-center p-2">
-                                Studynotion is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.
+                            <h1 className="text-white p-2 text-center font-inter text-2xl font-semibold sm:w-2/3 w-[97%]">Driving Innovation in Online Education for a <HighlightedText content={'Brighter Future'}></HighlightedText></h1>
+                            <p className="sm:w-2/3 w-11/12 text-center p-2">
+                                Eduroute is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.
                             </p>
                         </div>
 
 
-                        <div className="w-5/6 flex mt-5 -mb-24 justify-center items-center gap-5">
+                        <div className="sm:w-5/6 w-[98%] flex mt-5 sm:-mb-24 -mb-14 justify-center items-center gap-5">
                             <div className="w-1/3">
                                 <img src={headingOne} alt="" />
                             </div>
@@ -58,8 +58,8 @@ const About = () => {
 
 
 
-                <div className="w-11/12 mx-auto my-10  text-white ">
-                    <div className="py-20 mx-auto w-[75%]  text-center">
+                <div className="sm:w-11/12 w-[95%] mx-auto my-10  text-white ">
+                    <div className="py-20 mx-auto sm:w-[75%] w-full  text-center">
 
 
                         <h2 className="text-3xl  font-semibold">
@@ -70,7 +70,7 @@ const About = () => {
                     <hr className="text-richblack-700 w-full" />
                     <div className="w-full">
                         <div className="flex my-5 justify-around items-center flex-wrap">
-                            <div className="w-2/5 min-w-[300px]">
+                            <div className="sm:w-2/5 w-[95%] min-w-[300px]">
                                 <h2 className="text-2xl font-semibold"><ColoredText content={'Our Founding Story '}></ColoredText></h2>
                                 <p className="text-richblack-200  my-3">
                                     Our e-learning platform was born out of a shared vision and passion for transforming education. It all began with a group of educators, technologists, and lifelong learners who recognized the need for accessible, flexible, and high-quality learning opportunities in a rapidly evolving digital world.
@@ -79,13 +79,13 @@ const About = () => {
                                     As experienced educators ourselves, we witnessed firsthand the limitations and challenges of traditional education systems. We believed that education should not be confined to the walls of a classroom or restricted by geographical boundaries. We envisioned a platform that could bridge these gaps and empower individuals from all walks of life to unlock their full potential.
                                 </p>
                             </div>
-                            <div className="w-1/3 min-w-[300px]">
+                            <div className="sm:w-1/3 w-11/12 min-w-[300px]">
                                 <img className="w-full" src={foundingStory} alt="" />
                             </div>
                         </div>
 
                         <div className="flex my-5 justify-around items-center flex-wrap">
-                            <div className="w-2/5  min-w-[300px]">
+                            <div className="sm:w-2/5 w-[95%]  min-w-[300px]">
                                 <h2 className="text-2xl"><HighlightedText content={'Our Vision'}></HighlightedText></h2>
 
                                 <p className="text-richblack-200 my-3">
@@ -93,7 +93,7 @@ const About = () => {
                                 </p>
                             </div>
 
-                            <div className="w-1/3  min-w-[300px]">
+                            <div className="sm:w-1/3 w-11/12  min-w-[300px]">
                                 <h2 className="text-2xl">
                                     <ColoredText content={'Our Mission'}></ColoredText>
                                 </h2>
@@ -121,7 +121,7 @@ const About = () => {
 
 
 
-                <div className="w-[80%] mx-auto my-20">
+                <div className="sm:w-[80%] w-[95%] mx-auto my-20">
                     <ContactForm></ContactForm>
                 </div>
 

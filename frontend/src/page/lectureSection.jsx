@@ -115,12 +115,12 @@ const LectureSection = () => {
                                         <div className="h-[calc(100vh-3rem)] w-full flex flex-col justify-center items-center"><h2 className="text-2xl font-inter">
                                             404 Course not found
                                         </h2>
-                                            <p>Please contact cutomer service</p>
+                                            <p>Please contact Customer service</p>
                                         </div>
                                     ) : (
-                                        <div className="flex  justify-between">
+                                        <div className="flex flex-wrap-reverse  justify-between">
                                             <Sidebar sectionData={section} setSection={setSection} subSectionData={subSection} setModal={setModal} setDate={setDate} setPlayVideo={setPlayVideo} setSubSection={setSubSection} courseData={courseData}></Sidebar>
-                                            <div className="min-h-[calc(100vh-5rem)] w-9/12 mx-auto flex flex-col justify-center">
+                                            <div className="min-h-[calc(100vh-5rem)] 850px:w-9/12 w-11/12 mx-auto flex flex-col justify-center">
 
                                                 <Video setSection={setSection} setPlayVideo={setPlayVideo} setSubSection={setSubSection} subSection={subSection} section={section} courseData={courseData} playVideo={playVideo}></Video>
 

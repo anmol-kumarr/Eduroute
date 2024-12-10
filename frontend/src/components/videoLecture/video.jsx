@@ -124,16 +124,19 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
     return (
 
-        <div ref={videoPlayerRef} className="my-2 relative z-0  w-9/12 mx-auto flex flex-col items-center">
+        <div ref={videoPlayerRef} className="my-2 relative z-0   850px:w-9/12 w-full mx-auto flex flex-col items-center">
             <div className="max-h-[calc(100vh-5rem)] w-full">
 
-                <Player src={playVideo} ref={videoPlayerRef} onEnded={() => completeHandler()} aspectRatio="16:9">
+                {/* <Player src={playVideo} ref={videoPlayerRef} onEnded={() => completeHandler()} aspectRatio="16:9">
                     <BigPlayButton position="center" />
 
-                </Player>
+                </Player> */}
+                <video  controls controlsList="nodownload" className="aspect-video" onEnded={()=>completeHandler()}>
+                    <source type="video/mp4" src={playVideo} />
+                </video>
             </div>
 
-            <div className="flex mt-5 justify-around w-1/4">
+            <div className="flex mt-5 justify-around 850px:w-1/4 sm:w-1/2 w-10/12">
 
                 {/* { */}
                 {/* isFirstVideo() &&  */}

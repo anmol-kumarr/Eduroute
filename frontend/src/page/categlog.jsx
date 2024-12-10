@@ -53,9 +53,9 @@ const Catelog = () => {
             <div className="text-white  min-h-[calc(100vh-3rem)]">
                 <div className=" bg-richblack-800  border-t-[1px] border-richblack-500  ">
                     <div className="w-10/12 mx-auto mt-10 pb-10  ">
-                        <div className="flex justify-between items-center">
+                        <div className="flex flex-wrap gap-5 justify-between items-center">
 
-                            <div>
+                            <div className="min-w-[320px] ">
 
                                 <p className="text-sm mb-2 text-richblack-300">
                                     <Link to='/'>
@@ -68,7 +68,7 @@ const Catelog = () => {
                                 <h2 className="text-2xl font-inter">{catelogName}</h2>
                                 <p className="text-richblack-200 text-sm font-inter">{description}</p>
                             </div>
-                            <div>
+                            <div className="min-w-[320px] text-sm sm:text-base px-3 sm:px-0">
                                 <p>Related rourses</p>
                                 <ul className="text-richblack-300 list-disc">
                                     <li>Doc {catelogName}</li>
@@ -89,7 +89,7 @@ const Catelog = () => {
                     courseData.length>0?(
                     <>
 
-                        <div className="w-10/12 mx-auto my-5">
+                        <div className="w-10/12 mx-auto sm:my-5 my-10">
                             <h2 className="text-2xl mb-4 font-inter">Courses to get you started</h2>
                             <div className="flex gap-5 cursor-pointer border-b-[1.5px] border-richblack-500">
                                 <p onClick={() => setShowCourse('popular')} className={`pb-1 px-3 ${showCourse === 'popular' ? 'text-yellow-100 border-b-[1.5px]  border-yellow-100 -mb-[1.3px]' : ''}`}>Most Popular</p>
