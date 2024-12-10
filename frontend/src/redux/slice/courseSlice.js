@@ -32,7 +32,7 @@ const courseSlice = createSlice({
             state.editCourse = action.payload
         },
         setEditSubSection: (state, action) => {
-            console.log(action.payload)
+            // console.log(action.payload)
             const { sectionId, subSectionId, data } = action.payload;
             // console.log(action.payload)
 

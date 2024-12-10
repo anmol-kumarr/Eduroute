@@ -30,7 +30,7 @@ const Cart = () => {
                 dispatch(addToCart(response?.data?.data))
                 setLoading(false)
             } catch (err) {
-                console.log(err)
+                // console.log(err)
                 toast.error('Internal server error')
             }
             setLoading(false)

@@ -19,14 +19,14 @@ export const otpSender = (email, navigate) => {
 
                 throw new Error(response.data.message)
             }
-            console.log(response)
+            // console.log(response)
             toast.success('otp sent on email')
             navigate('/verify-email')
 
 
 
         } catch (err) {
-            console.log("err in email verification", err)
+            // console.log("err in email verification", err)
             err?.response?.data?.message && toast.error(err?.response?.data?.message)
 
         }
@@ -45,27 +45,27 @@ export const signUp = (otp, firstName, lastName, password, confirmPassword, mobi
     return async (dispatch, navigate) => {
         dispatch(setLoading(true))
         const url = authApi.signup
-        console.log('url', url)
+        // console.log('url', url)
         try {
             const response = await apiConnector("POST", url, {
                 otp, firstName, email, lastName, password, confirmPassword, mobileNumber, accountType
 
             })
-            console.log(email)
+            // console.log(email)
 
             if (!response.data.success) {
 
                 throw new Error(response.data.message)
             }
 
-            console.log(response)
+            // console.log(response)
             navigate(`'/auth/${'login'}'`)
             toast.success('User regiestered successfully')
 
 
 
         } catch (err) {
-            console.log("error while registering user", err)
+            // console.log("error while registering user", err)
             toast.error('cannot register user')
         }
         dispatch(setLoading(false))

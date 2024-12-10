@@ -34,11 +34,11 @@ const CourseDescription = () => {
             const api = `${courseDetailsApi.getCourseDetails}/${courseId}`
             try {
                 const response = await apiConnector('GET', api)
-                console.log(response?.data?.data)
+                // console.log(response?.data?.data)
                 setCourseDescription(response?.data?.data)
 
             } catch (err) {
-                console.log(err)
+                // console.log(err)
                 toast.error('Cannot get course')
             }
             setLoading(false)

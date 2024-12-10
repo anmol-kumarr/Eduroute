@@ -54,7 +54,7 @@ export const buyCourse = async (courseId, user, dispatch, navigate) => {
                 email: user?.email,
             },
             handler: function (response) {
-                console.log(response)
+                // console.log(response)
                 paymentMailSender(response, orderResponse?.data?.data?.amount)
                 verifyPayment({ ...response, courseId }, dispatch, navigate)
             }
@@ -65,11 +65,11 @@ export const buyCourse = async (courseId, user, dispatch, navigate) => {
         paymentObject.open();
         paymentObject.on("payment.failed", function handler(response) {
             toast.error("oops, payment failed");
-            console.log(response.error);
+            // console.log(response.error);
         })
     } catch (err) {
         toast.dismiss()
-        console.log('payment fn err', err)
+        // console.log('payment fn err', err)
         toast.error('could not make payment')
     }
     toast.dismiss()
@@ -87,10 +87,10 @@ const paymentMailSender = async (razorpayResponse, amount) => {
             amount
         })
 
-        console.log(response)
+        // console.log(response)
         toast.success('Confirmation mail sent ')
     } catch (err) {
-        console.log('err in mail sending', err)
+        // console.log('err in mail sending', err)
         toast.error('Error in sending confirmation mail')
     }
 }
@@ -99,13 +99,13 @@ const paymentMailSender = async (razorpayResponse, amount) => {
 
 
 const verifyPayment = async (bodyData, dispatch, navigate) => {
-    console.log('body data', bodyData)
+    // console.log('body data', bodyData)
     const api = paymentApi.paymentVerify
     // toast.loading('loading')
 
     try {
         const response = await apiConnector('POST', api, bodyData)
-        console.log('verifypayment',response)
+        // console.log('verifypayment',response)
         if (!response?.data?.success) {
 
             throw new Error('Error while verified payment')
@@ -117,7 +117,7 @@ const verifyPayment = async (bodyData, dispatch, navigate) => {
 
 
     } catch (err) {
-        console.log('verify payment', err)
+        // console.log('verify payment', err)
         toast.dismiss()
         toast.error('Error while  verifying payment')
     }

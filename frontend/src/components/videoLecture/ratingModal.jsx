@@ -15,8 +15,8 @@ const RatingModal = ({ setModal }) => {
 
     const submitHandler = async (data) => {
         const formData = new FormData()
-        console.log(data)
-        console.log(errors)
+        // console.log(data)
+        // console.log(errors)
 
         formData.append('courseId', courseId)
         formData.append('reviews', data.description)
@@ -28,11 +28,11 @@ const RatingModal = ({ setModal }) => {
             const response = await apiConnector('POST', api, formData)
             toast.dismiss()
             toast.success('Thank you for rating us')
-            console.log(response)
+            // console.log(response)
 
         } catch (err) {
             toast.dismiss()
-            console.log(err)
+            // console.log(err)
             toast.error('Cannot rate this course')
         }
         setModal(false)

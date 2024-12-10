@@ -18,7 +18,7 @@ export const cartHandler = async (dispatch, courseId) => {
         toast.success('Course added to cart')
 
     } catch (err) {
-        console.log(err)
+        // console.log(err)
         toast.dismiss()
         toast.error('Cannot add to cart')
     }
@@ -31,14 +31,14 @@ export const reomveFromCart=async(dispatch,courseId)=>{
     const api=cartApi.removeFromCart
     try{
         const response=await apiConnector("PUT",api,courseId)
-        console.log(response)
+        // console.log(response)
         toast.dismiss()
         dispatch(addToCart(response?.data?.data))
         toast.success('item removed from cart')
 
     }catch(err){
         toast.dismiss()
-        console.log(err)
+        // console.log(err)
     }
     
 }

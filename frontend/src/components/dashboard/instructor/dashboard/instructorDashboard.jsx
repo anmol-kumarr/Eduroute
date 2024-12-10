@@ -14,11 +14,11 @@ const InstructorDashboard = () => {
         setLoading(true)
         try {
             const response = await apiConnector('GET', api)
-            console.log(response)
+            // console.log(response)
             setDashboardData(response?.data?.data)
 
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             setDashboardData([])
         }
         setLoading(false)

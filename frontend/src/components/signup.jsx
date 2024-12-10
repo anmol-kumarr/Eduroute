@@ -52,7 +52,7 @@ const SignUp = () => {
         let mob = /^[0-9]{10}$/
 
         if (signUpData.mobileNumber.length !== 10 || !mob.test(signUpData.mobileNumber)) {
-            console.log('mobile');
+            // console.log('mobile');
             return setWarning('Please enter a valid 10-digit mobile number');
         }
 

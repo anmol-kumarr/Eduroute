@@ -23,13 +23,13 @@ export const profileImage = (image) => {
             const response = await apiConnector('PUT', api, formData)
             dispatch(setUser(response.data.user))
             // setFile(null)
-            console.log(response.data.user)
+            // console.log(response.data.user)
             localStorage.setItem('user', JSON.stringify(response.data.user))
             toast.remove()
             toast.success('Profile picture updated')
         } catch (err) {
             toast.remove()
-            console.log(err)
+            // console.log(err)
             toast.error('Cannot update profile')
         }
         // toast.dismiss()
@@ -44,7 +44,7 @@ export const updateUserDetails = (navigate,{ name, profession, dateOfBirth, gend
         const fullName=name.split(' ')
         const firstName=fullName[0]
         const lastName=fullName[1]
-        console.log(firstName,lastName)
+        // console.log(firstName,lastName)
         try {
             toast.loading("loading")
             const response=await apiConnector("PUT",api,{
@@ -56,7 +56,7 @@ export const updateUserDetails = (navigate,{ name, profession, dateOfBirth, gend
                 mobileNumber,
                 about
             })
-            console.log(response)
+            // console.log(response)
             toast.remove()
             localStorage.setItem('user',JSON.stringify(response.data.updateName))
             dispatch(setUser(response.data.updateName))
@@ -64,7 +64,7 @@ export const updateUserDetails = (navigate,{ name, profession, dateOfBirth, gend
             navigate('/dashboard/my-profile')
         } catch (err) {
             toast.remove()
-            console.log(err)
+            // console.log(err)
             toast.error("error while updating")
         }
 

@@ -20,11 +20,11 @@ const Home = () => {
         try {
             const api = homePageApi.getAllRatings
             const response = await apiConnector('GET', api)
-            console.log(response)
+            // console.log(response)
             setRatings(response?.data?.data)
 
         } catch (err) {
-            console.log()
+            // console.log()
             setRatings([])
         }
     }

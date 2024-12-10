@@ -48,7 +48,7 @@ const LectureSection = () => {
         }
         catch (err) {
             setCourseData([])
-            console.log(err)
+            // console.log(err)
         }
         setLoading(false)
     }
@@ -57,10 +57,10 @@ const LectureSection = () => {
         try{
             const api = `${enrolledCourse.getCourseProgress}/${courseId}`
             const response = await apiConnector('GET', api)
-            console.log(response)
+            // console.log(response)
             dispatch(setCompletedLecture(response?.data?.data))
         }catch(err){
-            console.log(err)
+            // console.log(err)
         }
     }
     useEffect(() => {

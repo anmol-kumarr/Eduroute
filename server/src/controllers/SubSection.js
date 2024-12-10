@@ -79,7 +79,7 @@ exports.updateSubsection = async (req, res) => {
 
         let uploadVideo
         if (files?.video) {
-            console.log(files?.video)
+            // console.log(files?.video)
             const video = files.video
             uploadVideo = await ImageUpload(video, 'eduroute/videos')
         }
@@ -94,7 +94,7 @@ exports.updateSubsection = async (req, res) => {
 
         }, { new: true })
 
-        console.log(updateSubSectionData)
+        // console.log(updateSubSectionData)
         return res.status(200).json({
             success: true,
             message: "sub section updated successfully",
@@ -104,7 +104,7 @@ exports.updateSubsection = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        // console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Something went wrong while updating sub section'

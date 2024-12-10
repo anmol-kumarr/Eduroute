@@ -61,7 +61,7 @@ const CourseIntroForm = () => {
             // }
 
             if (isFormUpdated()) {
-                console.log(data)
+                // console.log(data)
                 const currentValues = getValues()
                 const formData = new FormData()
                 // console.log(data)
@@ -112,10 +112,10 @@ const CourseIntroForm = () => {
                 }
                 if (currentValues.thumbnail !== course.thumbnail) {
                     formData.append("thumbnailImage", data.thumbnail)
-                    console.log('thumbnail:',data.thumbnail)
+                    // console.log('thumbnail:',data.thumbnail)
                 }else{
                     formData.append("thumbnailImage", course.thumbnail)
-                    console.log('thumbnail:',course.thumbnail)
+                    // console.log('thumbnail:',course.thumbnail)
                 }
 
                 dispatch(updateCourse(formData))

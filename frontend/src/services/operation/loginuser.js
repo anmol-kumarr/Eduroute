@@ -14,7 +14,7 @@ export const login = (email, password) => {
                 throw new Error(response.data.message)
             }
 
-            console.log(response)
+            // console.log(response)
             toast.success('logged in successfully')
             dispatch(setToken(response.data.token))
             dispatch(setUser(response.data.user))
@@ -28,7 +28,7 @@ export const login = (email, password) => {
 
         }
         catch (err) {
-            console.log('error while logged in', err)
+            // console.log('error while logged in', err)
             toast.error('cannot logged in')
         }
         dispatch(setLoading(false))
@@ -37,7 +37,7 @@ export const login = (email, password) => {
 
 
 export const logout = (navigate) => {
-    console.log('hello')
+    // console.log('hello')
     return (dispatch) => {
 
 

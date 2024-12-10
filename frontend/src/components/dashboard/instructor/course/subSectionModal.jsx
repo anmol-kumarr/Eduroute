@@ -63,7 +63,7 @@ const SubSectionModal = ({
             }
         }
         else {
-            console.log(data)
+            // console.log(data)
             const formData = new FormData()
             formData.append('video', data.videoLecture)
             formData.append('title', data.lectureTitle)
@@ -111,10 +111,10 @@ const SubSectionModal = ({
     const checkEdit = () => {
         const getValue = getValues()
         if (getValue.lectureTitle !== title || getValue.timeDuration.toString() !== timeDuration || getValue.lectureDescription !== description || getValue.videoLecture !== video) {
-            console.log(getValue.lectureTitle, title)
-            console.log(getValue.timeDuration, timeDuration)
-            console.log(getValue.lectureDescription, description)
-            console.log(getValue.videoLecture, video)
+            // console.log(getValue.lectureTitle, title)
+            // console.log(getValue.timeDuration, timeDuration)
+            // console.log(getValue.lectureDescription, description)
+            // console.log(getValue.videoLecture, video)
 
             return true
         }

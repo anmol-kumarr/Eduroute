@@ -8,7 +8,7 @@ const Tags = ({ register, errors, handleSubmit, setValue, getValue }) => {
     useEffect(() => {
         const tag = getValue('tags')
         if (tag) {
-            console.log('tag:',tag)
+            // console.log('tag:',tag)
             setTagList(tag)
         }
     }, [])

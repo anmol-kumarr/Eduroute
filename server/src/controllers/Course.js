@@ -126,10 +126,10 @@ exports.updateCourseDetails = async (req, res) => {
     try {
         const { thumbnailImage, courseId, courseName, courseDescription, whatYouWillLearn, price, tag, category, instruction } = req.body
         const files = req.files
-        console.log('files', files)
+        // console.log('files', files)
 
 
-        console.log('body', req.body)
+        // console.log('body', req.body)
         if (!courseId) {
             return res.status(400).json({
                 success: false,
@@ -146,16 +146,16 @@ exports.updateCourseDetails = async (req, res) => {
 
         let thumbnailUpload
         if (files?.thumbnailImage) {
-            console.log('thumbnailImageFrom File', files?.thumbnailImage)
+            // console.log('thumbnailImageFrom File', files?.thumbnailImage)
             // console.log('thumbnail', thumbnailImage)
             const thumbnail = files.thumbnailImage
             thumbnailUpload = await ImageUpload(thumbnail, 'eduroute/thumbnail')
-            console.log('thumbnailUpload', thumbnailUpload)
+            // console.log('thumbnailUpload', thumbnailUpload)
 
         }
 
         const categoriesDetails = await Categories.findById(category)
-        console.log('categories', categoriesDetails)
+        // console.log('categories', categoriesDetails)
         if (!categoriesDetails) {
             return res.status(400).json({
                 success: false,
@@ -190,7 +190,7 @@ exports.updateCourseDetails = async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err)
+        // console.log(err)
         return res.status(500).json({
             success: false,
             message: 'Internal server error'

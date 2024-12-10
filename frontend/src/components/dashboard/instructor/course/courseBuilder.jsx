@@ -42,7 +42,7 @@ const CourseBuilder = () => {
                 courseId: course?._id,
                 sectionName: data.section
             }
-            console.log(data)
+            // console.log(data)
             if (editSection) {
                 return
             }
@@ -53,7 +53,7 @@ const CourseBuilder = () => {
         }
     }
     const editSectionHandler = (sectionName, sectionId) => {
-        console.log('hello')
+        // console.log('hello')
         setEditSection(true)
         setValue('section',sectionName)
         setEditSectionId(sectionId)

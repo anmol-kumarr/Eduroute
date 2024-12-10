@@ -15,15 +15,15 @@ const EditMyCourse = () => {
         const api = `${courseDetailsApi.getCourseDetails}/${courseId}`
         setLoading(true)
         try {
-            console.log(courseId)
+            // console.log(courseId)
 
             const response = await apiConnector('GET', api)
-            console.log(response)
+            // console.log(response)
             dispatch(setCourse(response?.data?.data))
             dispatch(setEditCourse(true))
 
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
         setLoading(false)
 

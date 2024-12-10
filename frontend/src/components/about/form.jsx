@@ -19,16 +19,16 @@ const Form = () => {
     }, [isSubmitSuccessful, reset]);
     const submitContactForm = async (data) => {
         setLoading(true)
-        console.log(errors)
+        // console.log(errors)
         // if (errors) {
         //     return toast.error('cannot submit')
         // }
 
         try {
-            console.log(data)
+            // console.log(data)
         }
         catch (err) {
-            console.log(err)
+            // console.log(err)
             toast.error('Cannot send message')
         }
         setLoading(false)

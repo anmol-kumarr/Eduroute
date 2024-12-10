@@ -33,7 +33,7 @@ const UploadVideo = ({
 
     const fileHandler = (e) => {
         const file = e.target.files[0]
-        console.log(file)
+        // console.log(file)
         const supportedFileTypes = ["video/mp4"]
         if (!supportedFileTypes.includes(file.type)) {
             return toast.error('File type not supported');

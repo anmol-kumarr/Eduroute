@@ -44,7 +44,7 @@ const Requirement = ({ register, errors, handleSubmit, setValue, getValue }) => 
         // setRequirementList(editList)
         const updatedList = editList.filter((list, i) => i !== index)
 
-        console.log(editList)
+        // console.log(editList)
         setRequirementList(updatedList)
     }
     return (

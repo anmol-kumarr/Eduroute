@@ -29,7 +29,7 @@ const ProfilePicture = () => {
 
     }
     const sendFile = () => {
-        console.log(file)
+        // console.log(file)
         dispatch(profileImage(file))
         setFile(null)
     }

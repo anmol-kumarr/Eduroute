@@ -28,7 +28,7 @@ const EnrolledCourses = () => {
         setLoading(true)
         try {
             const response = await apiConnector('GET', api)
-            console.log(response?.data)
+            // console.log(response?.data)
             setEnrolledCourse(response?.data?.data?.courses)
             setCourseDuration(response?.data?.totalTimeDuration)
             setCourseSubsection(response?.data?.totalSubsection)
@@ -42,10 +42,10 @@ const EnrolledCourses = () => {
 
 
             // console.log('response?.data?.totalSubsection', response?.data?.totalSubsection)
-            console.log('response?.data?.data?.courseProgress', response?.data?.data?.courseProgress)
+            // console.log('response?.data?.data?.courseProgress', response?.data?.data?.courseProgress)
 
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             setEnrolledCourse([])
             toast.error('Cannot get enrolled course')
         }
@@ -58,7 +58,7 @@ const EnrolledCourses = () => {
     }, [])
     useEffect(() => {
         setWidth(deviceWidth)
-        console.log(deviceWidth)
+        // console.log(deviceWidth)
     }, [deviceWidth])
     return (
         <div className="w-full">

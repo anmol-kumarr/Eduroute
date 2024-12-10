@@ -25,10 +25,10 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
         const api = enrolledCourse.completedLecture
         try {
             const response = await apiConnector('PUT', api, { courseId: courseData._id, subSectionId: subSection._id })
-            console.log(response)
+            // console.log(response)
         }
         catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 
@@ -47,15 +47,15 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
 
         const sectionIndex = courseData?.courseContent.findIndex((data) => data._id === section._id)
-        console.log('sectionIndex', sectionIndex)
+        // console.log('sectionIndex', sectionIndex)
         const subSectionLength = courseData?.courseContent[sectionIndex]?.length
 
-        console.log('subSectionLength', subSectionLength)
+        // console.log('subSectionLength', subSectionLength)
 
 
         const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
-        console.log('subSectionIndex', subSectionIndex)
+        // console.log('subSectionIndex', subSectionIndex)
 
         if (sectionIndex === section?.subSection?.length - 1 && subSectionIndex === subSectionLength - 1) { return true }
         else {
@@ -67,14 +67,14 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
     const goNext = () => {
 
         const sectionIndex = courseData?.courseContent.findIndex((data) => data._id === section._id)
-        console.log("sectionIndex", sectionIndex)
+        // console.log("sectionIndex", sectionIndex)
         const subSectionLength = courseData?.courseContent[sectionIndex]?.subSection?.length
-        console.log('subSectionLength', subSectionLength)
+        // console.log('subSectionLength', subSectionLength)
 
 
         const subSectionIndex = courseData?.courseContent[sectionIndex].subSection.findIndex((data) => subSection._id === data._id)
 
-        console.log('subSectionIndex', subSectionIndex)
+        // console.log('subSectionIndex', subSectionIndex)
 
 
         if (subSectionLength === subSectionIndex - 1 || subSectionIndex - 1 < 0) {
@@ -88,8 +88,8 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
         else {
             const nextSubSection = courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1]
 
-            console.log(courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1])
-            console.log('nextSubSection',)
+            // console.log(courseData?.courseContent[sectionIndex].subSection[subSectionIndex + 1])
+            // console.log('nextSubSection',)
 
             setSubSection(nextSubSection)
             setPlayVideo(nextSubSection.videoUrl)
@@ -99,7 +99,7 @@ const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, c
 
     const goPrev = () => {
         const sectionIndex = courseData?.courseContent.findIndex((data) => data._id === section._id)
-        console.log(sectionIndex)
+        // console.log(sectionIndex)
         const subSectionLength = courseData?.courseContent[sectionIndex]?.subSection?.length
 
 

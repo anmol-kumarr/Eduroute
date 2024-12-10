@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const CourseContent = ({ sectionData, setSection, subSectionData, courseData, setPlayVideo, setSubSection, setModal }) => {
 
 
-    console.log(courseData)
+    // console.log(courseData)
     const navigate = useNavigate()
 
     const completedLecture = useSelector(state => state.lecture.completedLecture)
@@ -29,11 +29,11 @@ const CourseContent = ({ sectionData, setSection, subSectionData, courseData, se
 
 
     const lectureHandler = (subSectionId, sectionId) => {
-        console.log(courseData)
+        // console.log(courseData)
         const filterData = courseData?.courseContent?.map((section) => {
             return section?.subSection?.filter((subSection) => subSection._id === subSectionId)
         }).flat().filter(Boolean)
-        console.log(filterData[0]._id, subSectionId)
+        // console.log(filterData[0]._id, subSectionId)
         setSubSection(filterData[0])
 
         setPlayVideo(filterData[0].videoUrl)

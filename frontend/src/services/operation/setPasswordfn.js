@@ -11,7 +11,7 @@ export const getPasswordToken = (email, setEmailSent, messageSetter) => {
 
         try {
             const response = await apiConnector('POST', profileApi.forgetPassword, { email })
-            console.log('reset password token response', response)
+            // console.log('reset password token response', response)
 
             if (!response.data.success) {
                 messageSetter(response.data.message)
@@ -25,7 +25,7 @@ export const getPasswordToken = (email, setEmailSent, messageSetter) => {
 
         } catch (err) {
             messageSetter(err.response.data.message)
-            console.log(err)
+            // console.log(err)
         }
         dispatch(setLoading(false))
     }
@@ -35,14 +35,14 @@ export const setResetPassword = (password, confirmPassword, token) => {
         dispatch(setLoading(true))
         try {
             const response = await apiConnector('POST', passwordApi.resetPasswordApi, { password, confirmPassword, token })
-            console.log(response)
+            // console.log(response)
             if (!response.data.success) {
             
                 throw new Error(response.data.message)
             }
             toast.success('Reset password successfull')
         } catch (err) {
-            console.log('error in setresetpassword', err)
+            // console.log('error in setresetpassword', err)
             toast.error('Unable to reset password')
             // <ToastBar>
         }

@@ -25,7 +25,7 @@ const Catelog = () => {
             setCourseData(response?.data?.data)
 
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             setCourseData([])
             
         }

@@ -6,9 +6,9 @@ const User=require('../models/User.Model.js')
 exports.auth=async (req,res,next)=>{
     try{    
         const token=req.cookies.token || req.body.token || req.header('Authorization')?.replace('Bearer ','')
-        console.log('cookie:',req.cookies.token)
-        console.log('body:',req.body.token)
-        console.log('header:',req.header('Authorization')?.replace('Bearer ',''))
+        // console.log('cookie:',req.cookies.token)
+        // console.log('body:',req.body.token)
+        // console.log('header:',req.header('Authorization')?.replace('Bearer ',''))
 
         if(!token){
             return res.status(401).json({
