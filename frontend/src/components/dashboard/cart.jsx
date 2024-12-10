@@ -86,7 +86,7 @@ const Cart = () => {
                                     cartData?.length
                                 } Course in WishList</p>
                                 <hr className="text-richblack-700 mt-5 " />
-                                <div className="mt-5 sm:flex w-full">
+                                <div className="mt-5 min-[850px]:flex min-[850px]:flex-wrap w-full">
                                     <div className="lg:w-9/12 w-11/12 mx-auto">
 
                                         {
@@ -94,8 +94,8 @@ const Cart = () => {
 
 
 
-                                                <div className="w-full flex justify-center" key={item?._id}>
-                                                    <div className="flex flex-col sm:flex-row lg:gap-7 gap-3 lg:h-36 my-4 rounded-md overflow-hidden lg:w-10/12 w-[99%]">
+                                                <div className=" w-full flex justify-center" key={item?._id}>
+                                                    <div className="sm:border-none border-[1px] border-richblack-500 flex flex-col sm:flex-row lg:gap-7 gap-3 lg:h-36 my-4 rounded-md overflow-hidden lg:w-10/12 w-[99%]">
                                                         {/* Thumbnail */}
                                                         <div className="sm:w-48 w-full h-52 sm:h-auto overflow-hidden">
                                                             <img className="w-full h-full object-cover" src={item.thumbnail} alt="" />
@@ -149,11 +149,25 @@ const Cart = () => {
                                     </div>
                                     {
                                         cartData && cartData.length > 0 && (
-                                            <div className="sm:w-3/12 mx-auto sm:my-5 my-0 w-8/12 max-h-[fit-content]  bg-richblack-700 rounded-md p-3">
+                                            // <div className=" min-[850px]:w-3/12 mx-auto sm:my-5 my-0  max-h-[fit-content]  bg-richblack-700 rounded-md p-3">
+                                            //     <p>Total:</p>
+                                            //     <h2 className="my-1 text-yellow-100 font-semibold text-xl">Rs: {price}</h2>
+                                            //     <LargeBtn content={'Buy now'} behaviour={buyNowHandler}></LargeBtn>
+                                            // </div>
+
+                                            <div className="w-9/12 sm:w-8/12 md:w-6/12 min-[850px]:w-5/12 lg:w-3/12 mx-auto sm:my-5 my-0 max-h-[fit-content] bg-richblack-700 rounded-md p-3">
                                                 <p>Total:</p>
                                                 <h2 className="my-1 text-yellow-100 font-semibold text-xl">Rs: {price}</h2>
                                                 <LargeBtn content={'Buy now'} behaviour={buyNowHandler}></LargeBtn>
-                                            </div>)
+                                            </div>
+
+
+
+
+
+
+
+                                        )
                                     }
                                 </div>
                             </div>

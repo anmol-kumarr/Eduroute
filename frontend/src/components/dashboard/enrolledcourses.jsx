@@ -8,6 +8,7 @@ import { Line } from 'rc-progress';
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { setCompletedLecture } from "../../redux/slice/lecture"
+import { useMediaQuery } from "usehooks-ts"
 
 const EnrolledCourses = () => {
     const [activeBtn, setActiveBtn] = useState('All')
@@ -16,9 +17,11 @@ const EnrolledCourses = () => {
     const [courseDuration, setCourseDuration] = useState([])
     const [courseSubsection, setCourseSubsection] = useState([])
     const [courseProgress, setCourseProgress] = useState([])
+    const [width, setWidth] = useState(false)
     const progress = useSelector(state => state.user.user.courseProgress)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const deviceWidth = useMediaQuery('(min-width: 850px)')
 
     const fetchedEnrolledCourse = async () => {
         const api = studentEnrolledCourseApi.getEnrolledCourse
@@ -49,10 +52,14 @@ const EnrolledCourses = () => {
         setLoading(false)
     }
     useEffect(() => {
+
         fetchedEnrolledCourse()
 
     }, [])
-
+    useEffect(() => {
+        setWidth(deviceWidth)
+        console.log(deviceWidth)
+    }, [deviceWidth])
     return (
         <div className="w-full">
             <div className="w-11/12 mx-auto my-10">
@@ -86,7 +93,7 @@ const EnrolledCourses = () => {
                                         </div>
                                     ) : (
                                         <div className="w-full my-5 rounded-md border border-richblack-600">
-                                            <div className="w-full flex justify-between rounded-md p-2 bg-richblack-800">
+                                            <div className="hidden w-full sm:flex justify-between rounded-md p-2 bg-richblack-800">
                                                 <div className="w-[40%] text-center">Course name</div>
                                                 <div className="w-[30%] text-center">Course duration</div>
                                                 <div className="w-[30%] text-center">Course progress</div>
@@ -94,17 +101,18 @@ const EnrolledCourses = () => {
                                             <div className="w-full">
                                                 {
                                                     enrolledCourse.map((course, index) => (
-                                                        <div key={course._id} onClick={() => navigate(`/lecture/${course._id}`)} >
-                                                            <div className="flex justify-between items-center">
-                                                                <div className="p-2 flex w-[40%] gap-3 items-center">
+                                                        <div key={course._id} onClick={() => !width ? navigate(`/lecture/${course?._id}`) : navigate(`/lecture/${course._id}`)} >
+                                                            <div className="sm:flex justify-between items-center">
+                                                                <div className="p-2 sm:flex sm:w-[40%] gap-3 items-center">
 
-                                                                    <div className="max-w-40 overflow-hidden rounded-md max-h-20">
+                                                                    <div className="sm:max-w-40 overflow-hidden rounded-md max-h-[200px] sm:max-h-20">
                                                                         <img className="w-full h-full" src={course.thumbnail} alt="" />
                                                                     </div>
-                                                                    <p className="font-inter text-lg font-medium">{course?.courseName}</p>
+                                                                    <p className="font-inter sm:text-start text-center sm:text-lg text-2xl font-medium">{course?.courseName}</p>
 
                                                                 </div>
-                                                                <div className="w-[30%] text-center">
+                                                                <div className="sm:w-[30%]  text-center">
+                                                                    <span className="sm:hidden font-inter">Total duration: </span>
                                                                     {
                                                                         courseDuration.map((duration) => (
                                                                             duration.id === course._id && duration.totalTime
@@ -112,7 +120,7 @@ const EnrolledCourses = () => {
                                                                     }
                                                                 </div>
 
-                                                                <div className="w-[30%] text-center px-5">
+                                                                <div className="my-2 sm:my-0 sm:w-[30%] w-9/12 mx-auto text-center px-5">
                                                                     {
 
 

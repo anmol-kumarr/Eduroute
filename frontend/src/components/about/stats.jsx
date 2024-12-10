@@ -9,7 +9,7 @@ const Stats = () => {
 
     ]
     return (
-        <div className="w-11/12 mx-auto">
+        <div className="sm:w-11/12 w-full mx-auto">
             <div className="text-white flex justify-around py-10 ">
                 {
                     data.map((item,index)=>(

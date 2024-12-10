@@ -34,10 +34,10 @@ const Form = () => {
         setLoading(false)
     }
     return (
-        <div>
+        <div className="w-full">
             <form onSubmit={handleSubmit(submitContactForm)}>
-                <div className="text-richblack-100 flex  gap-4 ">
-                    <div className="w-1/2">
+                <div className="text-richblack-100 sm:flex  gap-4 ">
+                    <div className="sm:w-1/2 w-full my-2 sm:my-0">
 
                         <label htmlFor="firstname">First Name</label>
                         <br />
@@ -47,7 +47,7 @@ const Form = () => {
                         )}
                     </div>
 
-                    <div className="w-1/2">
+                    <div className="sm:w-1/2 w-full sm:my-0 my-2">
 
                         <label htmlFor="lastname">Last Name</label>
                         <br />
@@ -61,7 +61,7 @@ const Form = () => {
                 </div>
 
 
-                <div className="text-richblack-100">
+                <div className="text-richblack-100 sm:my-0 my-2">
                     <label htmlFor="email">Email</label>
                     <br />
                     <input placeholder="Enter your email" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2" type="email" id="email" {...register("email", { required: true })} />
@@ -74,9 +74,9 @@ const Form = () => {
                     }
                 </div>
 
-                <label className="text-richblack-100" htmlFor="mobile">Mobile number</label>
-                <div className="flex gap-2  text-richblack-100">
-                    <div className="w-[25%]">
+                <label className="text-richblack-100 mt-2 sm:mt-0" htmlFor="mobile">Mobile number</label>
+                <div className="sm:flex gap-2   text-richblack-100">
+                    <div className="sm:w-[25%]  w-full">
 
 
                         <select value={"+91"} className="w-full text-richblack-100 rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2" name="dropdown" id="dropdown" {...register('countryCode', { required: true })}>
@@ -96,7 +96,7 @@ const Form = () => {
 
 
 
-                    <div className="w-[75%]">
+                    <div className="sm:w-[75%] my-2 sm:my-0 w-full">
 
                         <input className="w-full  rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2" id="mobile" name="mobile" type="text" placeholder="Enter mobile number"
                             {...register("mobileNumber",
@@ -112,7 +112,7 @@ const Form = () => {
                 </div>
 
 
-                <div className="text-richblack-100">
+                <div className="text-richblack-100 sm:my-0 my-2">
                     <label htmlFor="message">Message</label>
                     <br />
                     <textarea cols={30} rows={5} placeholder="Enter your message" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2" type="text" id="message" {...register("message", { required: true })} />
