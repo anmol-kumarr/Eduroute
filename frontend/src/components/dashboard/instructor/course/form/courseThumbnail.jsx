@@ -1,3 +1,4 @@
+// import { get } from "mongoose";
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { IoMdCloudUpload } from "react-icons/io";
@@ -9,10 +10,11 @@ const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue })
 
     const [preview, setPreview] = useState(null)
 
+
     useEffect(() => {
-        const thumbnail=getValue('thumbnail')
+        const thumbnail = getValue('thumbnail')
         // console.log(thumbnail)
-        if(thumbnail){
+        if (thumbnail) {
             setPreview(thumbnail)
         }
     }, [])
@@ -82,7 +84,7 @@ const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue })
                     )
 
             }
-        
+
         </div>
     )
 }

@@ -12,11 +12,11 @@ const InstructorSection = () => {
                 <h2 className=' font-semibold text-pure-greys-50 text-3xl'>Become an
                     <HighlightedText content={' instructor'}></HighlightedText></h2>
 
-                <p className='text-richblack-500 my-5'>Instructors from around the world teach millions of students on StudyNotion. We provide the tools and skills to teach what you love.</p>
+                <p className='text-richblack-500 my-5'>Instructors from around the world teach millions of students on Eduroute. We provide the tools and skills to teach what you love.</p>
                 <div className='flex justify-center'>
 
 
-                    <HomeBtn active={true} content={<>Start teaching today <IoArrowForward></IoArrowForward> </>} render={'/signup'}></HomeBtn>
+                    <HomeBtn active={true} content={<>Start teaching today <IoArrowForward></IoArrowForward> </>} render={'/auth/signup'}></HomeBtn>
                 </div>
             </div>
         </div>
