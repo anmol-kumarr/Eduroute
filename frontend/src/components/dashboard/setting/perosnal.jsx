@@ -4,12 +4,13 @@ import { techProfessions } from "../../../data/professionData";
 import { useDispatch } from "react-redux";
 import { updateUserDetails } from "../../../services/operation/updateDetails";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Personal = () => {
     // const [selectedGender, setSelectedGender] = useState('male');
-    const dispatch=useDispatch()
-     // Set the initial state to 'male'
-    const navigate=useNavigate()
+    const dispatch = useDispatch()
+    // Set the initial state to 'male'
+    const navigate = useNavigate()
     const [details, setDetails] = useState({
         name: '',
         profession: 'Software Engineer',
@@ -31,14 +32,17 @@ const Personal = () => {
 
 
     const submitDetails = () => {
-        dispatch(updateUserDetails(navigate,{...details}))
+        if (!details.name || details.about || details.dateOfBirth || !details.gender || !details.mobileNumber || !details.profession) {
+            return toast.error('All fields are required')
+        }
+        dispatch(updateUserDetails(navigate, { ...details }))
     }
 
     return (
-        <div className="bg-richblack-800  p-5 rounded-md border border-richblack-700 my-2">
+        <div className="bg-richblack-800  sm:p-5 350px:p-2 py-2 px-1 350px:px-0 350px:py-0 rounded-md border border-richblack-700 my-2">
             <h2 className="text-richblack-50 text-xl mb-5">Profile information</h2>
-            <div className="flex justify-between my-2 w-full text-richblack-100">
-                <div className="w-[45%]">
+            <div className="sm:flex justify-between my-2 w-full text-richblack-100">
+                <div className="sm:w-[45%] w-[95%]  mx-auto">
 
                     <label htmlFor="name">Display name</label>
                     <br />
@@ -47,7 +51,7 @@ const Personal = () => {
                     <input value={details.name} onChange={(e) => setDetails({ ...details, name: e.target.value })} className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2 " name="name" type="text" id="name" placeholder="Enter your name" />
                 </div>
 
-                <div className="w-[45%] ">
+                <div className="sm:w-[45%] w-[95%] mx-auto">
                     <label htmlFor="profession">Profession</label><br />
                     <select value={details.profession} onChange={(e) => setDetails({ ...details, profession: e.target.value })} name="profession" id="profession" className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2 ">
                         {
@@ -61,16 +65,16 @@ const Personal = () => {
 
 
 
-            <div className="flex justify-between items-center w-full">
+            <div className="sm:flex justify-between items-center w-full">
 
 
-                <div className="w-[45%] text-richblack-100">
+                <div className="sm:w-[45%] w-[95%] mx-auto text-richblack-100">
                     <div className="">
                         <label htmlFor="dateOfBirth">Date of birth</label><br />
                         <input value={details.dateOfBirth} onChange={(e) => setDetails({ ...details, dateOfBirth: e.target.value })} className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2 " type="date" />
                     </div>
                 </div>
-                <div className="w-[45%]" >
+                <div className="sm:w-[45%] w-[95%] mx-auto" >
                     <p>Gender</p>
                     <div className="bg-richblack-700 my-1 py-2 px-3 rounded-md flex justify-between shadow-richblack-400 shadow-sm ">
                         <div>
@@ -94,14 +98,14 @@ const Personal = () => {
             </div>
 
 
-            <div className="flex justify-between my-3 w-full text-richblack-100">
-                <div className="w-[45%]">
+            <div className="sm:flex justify-between my-3 w-full text-richblack-100">
+                <div className="sm:w-[45%] w-[95%] mx-auto">
 
                     <label htmlFor="mobile">Mobile number</label>
                     <br />
                     <input value={details.mobileNumber} onChange={(e) => setDetails({ ...details, mobileNumber: e.target.value })} className="w-full rounded-md shadow-richblack-400 shadow-sm outline-none border-none my-1 bg-richblack-700 py-2 px-2 " name="mobile" type="text" id="mobile" placeholder="1234567890" />
                 </div>
-                <div className="w-[45%]">
+                <div className="sm:w-[45%] w-[95%] mx-auto">
 
                     <label htmlFor="bio">About</label>
                     <br />

@@ -1,10 +1,13 @@
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import UploadVideo from "./uploadVideo";
-import { createSubSection } from "../../../../services/operation/course";
+import { createSubSection, editSubSection } from "../../../../services/operation/course";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 const SubSectionModal = ({
+    sectionId,
+    subSectionId,
     id,
     type,
     create = false,
@@ -19,6 +22,7 @@ const SubSectionModal = ({
     view = false,
     edit = false
 }) => {
+    // console.log(sectionId,subSectionId)
     const { register, handleSubmit, setValue, watch, getValues, formState: { errors } } = useForm()
     const loading = useSelector(state => state.course.loading)
     const course = useSelector(state => state.course.MyCourse)
@@ -28,7 +32,35 @@ const SubSectionModal = ({
 
     const submitHandler = (data) => {
         if (edit) {
+            const formData = new FormData()
+            const value = getValues()
+            if (checkEdit()) {
+                formData.append('sectionId', sectionId)
+                formData.append('subSectionId', subSectionId)
+                if (title !== value.lectureTitle) {
+                    formData.append('title', value.lectureTitle)
+                } else {
+                    formData.append('title', title)
+                } if (description !== value.lectureDescription) {
+                    formData.append('description', value.lectureDescription)
+                } else {
+                    formData.append('description', description)
+                } if (timeDuration !== value.timeDuration.toString()) {
+                    formData.append('timeDuration', value.timeDuration)
+                } else {
+                    formData.append('timeDuration', timeDuration)
+                } if (video !== value.videoLecture) {
+                    formData.append('video', value.videoLecture)
+                } else {
+                    formData.append('video', video)
+                }
 
+
+
+                dispatch(editSubSection(formData,setSubSectionModal))
+            } else {
+                return toast.error('No changes made')
+            }
         }
         else {
             console.log(data)
@@ -76,15 +108,29 @@ const SubSectionModal = ({
         setCreateSubSection(null)
         setSubSectionModal(false)
     }
+    const checkEdit = () => {
+        const getValue = getValues()
+        if (getValue.lectureTitle !== title || getValue.timeDuration.toString() !== timeDuration || getValue.lectureDescription !== description || getValue.videoLecture !== video) {
+            console.log(getValue.lectureTitle, title)
+            console.log(getValue.timeDuration, timeDuration)
+            console.log(getValue.lectureDescription, description)
+            console.log(getValue.videoLecture, video)
+
+            return true
+        }
+        else {
+            return false
+        }
+    }
 
     return (
-        <div className="absolute top-0 -bottom-[100%] right-0 left-0 bg-richblack-900 bg-opacity-80">
+        <div className="absolute top-0  bottom:0  right-0 left-0 bg-richblack-900 bg-opacity-70">
 
-            <div className="w-1/2 rounded-md my-[10%] mx-auto bg-richblack-800  py-3 px-4">
+            <div className="md:w-1/2 w-11/12 rounded-md my-[10%] mx-auto bg-richblack-800  py-3 px-4">
                 <div className="flex flex-col gap-2">
                     <div className="flex bg-richblack-800 rounded-md text-richblack-25 p-2 justify-between items-center ">
                         <p>{type} lecture</p>
-                        <button onClick={!loading ? (modalHandler):undefined} type="button"><RxCross2></RxCross2></button>
+                        <button onClick={!loading ? (modalHandler) : undefined} type="button"><RxCross2></RxCross2></button>
                     </div>
                     <hr className="text-richblack-600" />
                     <div>

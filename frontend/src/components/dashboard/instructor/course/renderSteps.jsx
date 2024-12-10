@@ -7,7 +7,7 @@ import Step from "./step"
 const RenderSteps = () => {
     const { step } = useSelector(state => state.course)
     return (
-        <div className="">
+        <div className="w-full">
             <Step></Step>
 
             {

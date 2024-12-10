@@ -9,7 +9,6 @@ const ExploreMore = () => {
         'Free',
         'New to coding',
         'Most popular',
-        'Skills paths',
         'Career paths',
 
     ]
@@ -21,10 +20,10 @@ const ExploreMore = () => {
                 <p className="fonnt-inter text-richblack-200">Learn to Build Anything You Can Imagine</p>
             </div>
 
-            <div className="my-5 sm:overflow-scroll w-[410px] sm:max-w-[max-content]  flex md:justify-between transition-all duration-700  p-1 rounded-3xl bg-richblack-700">
+            <div className="my-5 max-[450px]:w-[100%] xl:w-1/2 lg:w-[60%] sm:max-w-maxContent      flex md:justify-between transition-all duration-700  p-1 rounded-3xl bg-richblack-700">
                 {
                     tabName.map((item, index) => (
-                        <button onClick={() => setActiveTab(item)} className={`text-xs sm:text-base sm:min-w-[100px] font-inter text-richblack-25 ${activeTab === item ? 'bg-richblack-800 transition-all duration-300 ease-in-out py-2 sm:px-4 px-4 rounded-3xl' : 'bg-transparent py-2 sm:px-4 px-4 rounded-3xl'}`} key={index} >{item}</button>
+                        <button onClick={() => setActiveTab(item)} className={` text-xs sm:text-base sm:min-w-[100px] font-inter text-richblack-25 ${activeTab === item ? 'bg-richblack-800 transition-all duration-300 ease-in-out py-2 sm:px-4 px-4 rounded-3xl' : 'bg-transparent py-2 sm:px-4 px-4 rounded-3xl'}`} key={index} >{item}</button>
                     ))
                 }
             </div>
