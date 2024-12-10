@@ -5,7 +5,7 @@ const Modal = ({ textOne, textTwo, btnOneText, btnTwoText, btnOneHandler, btnTwo
 
     return (
         <div className="bg-richblack-500 duration-500 bg-opacity-70 absolute top-0 bottom-0 left-0 right-0">
-            <div className=" flex justify-center items-center h-full  w-full text-richblack-700">
+            <div className="-my-64 flex justify-center items-center h-full  w-full text-richblack-700">
                 <div className="w-3/12 p-5 bg-richblack-800 text-richblack-50 rounded-md">
 
                     <div>

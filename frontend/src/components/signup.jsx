@@ -105,16 +105,16 @@ const SignUp = () => {
         <>
             {loading ? <Spinner></Spinner> :
 
-                <div className="w-[36%] mx-auto my-20 bg-richblack-800 p-5 rounded-md flex flex-col items-center justify-center">
+                <div className="lg:w-[36%] md:w-[44%] sm:w-[50%] min-[600px]:w-7/12 w-11/12 mx-auto my-20 bg-richblack-800 sm:p-5 p-3 rounded-md flex flex-col items-center justify-center">
 
                     <div className="text-center">
                         <h1 className="text-richblack-25 my-3 text-2xl font-inter font-bold">
-                            Join the millions learning to code with StudyNotion for free
+                            Join the millions learning to code with Eduroute for free
 
                         </h1>
                         <p className="text-normal text-sm my-3 text-richblack-25">Build skills for today, tomorrow, and beyond. <HighlightedText content={'Education to future-proof your career.'}></HighlightedText></p>
                     </div>
-                    <div className="w-1/2 py-1 my-5  px-1 flex justify-between gap-2 items-center rounded-3xl bg-richblack-700 text-richblack-200">
+                    <div className="xl:w-1/2 lg:w-[60%] w-[70%] py-1 my-5  px-1 flex justify-between gap-2 items-center rounded-3xl bg-richblack-700 text-richblack-200">
                         <button onClick={() => setAccountType('Student')} className={`transition-all duration-100 ease-out  px-3 py-1 w-1/2 ${accountType === 'Student' && 'bg-richblack-900 rounded-3xl   '}`}>Student</button>
                         <button onClick={() => setAccountType('Instructor')} className={`transition-all duration-100 ease-out   px-3 py-1 w-1/2 ${accountType === 'Instructor' && 'bg-richblack-900 rounded-3xl px-2  py-1'}`}>Instructor</button>
                     </div>

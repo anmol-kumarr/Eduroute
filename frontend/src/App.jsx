@@ -41,8 +41,8 @@ function App() {
   // console.log(location.split('/').includes('course'))
 
   useEffect(() => {
-      // dispatch(setShowPage(width))
-  }, [width])
+      
+  }, [])
 
   return (
     <div className="overflow-x-hidden relative max-h-full bg-richblack-900">

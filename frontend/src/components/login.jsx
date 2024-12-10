@@ -57,7 +57,7 @@ const Login = () => {
     }
 
     return (
-        <div className="w-[36%]  mx-auto my-20 bg-richblack-800 p-5 rounded-md flex flex-col items-center justify-center">
+        <div className="lg:w-[36%] sm:w-1/2 min-[400px]:w-9/12 w-11/12  mx-auto my-20 bg-richblack-800 p-5 rounded-md flex flex-col items-center justify-center">
 
 
             <div className="text-center">
@@ -66,7 +66,7 @@ const Login = () => {
                 </h1>
                 <p className="text-normal text-sm my-3 text-richblack-25">Build skills for today, tomorrow, and beyond. <HighlightedText content={'Education to future-proof your career.'}></HighlightedText></p>
             </div>
-            <div className="w-1/2 py-1 my-5  px-1 flex justify-between gap-2 items-center rounded-3xl bg-richblack-700 text-richblack-200">
+            <div className="xl:w-1/2 md:w-[60%] w-[70%] py-1 my-5  px-1 flex justify-between gap-2 items-center rounded-3xl bg-richblack-700 text-richblack-200">
                 <button onClick={() => setAccountType('Student')} className={`transition-all duration-100 ease-out  px-3 py-1 w-1/2 ${accountType === 'Student' && 'bg-richblack-900 rounded-3xl   '}`}>Student</button>
                 <button onClick={() => setAccountType('Instructor')} className={`transition-all duration-100 ease-out   px-3 py-1 w-1/2 ${accountType === 'Instructor' && 'bg-richblack-900 rounded-3xl px-2  py-1'}`}>Instructor</button>
             </div>
@@ -102,7 +102,7 @@ const Login = () => {
                     <div className={`border  ${warning.password ? 'border-pink-400' : "border-transparent"} flex rounded-md shadow-richblack-400 shadow-sm my-1 bg-richblack-700`}>
 
 
-                        <input onChange={(e) => setLoginValue({ ...loginValue, password: e.target.value })} id="password" value={loginValue.password} className={`text-richblack-200 bg-transparent  outline-none border-none  w-[90%] py-2 px-2`} type={showPassword === true ? "text" : "password"} placeholder="Enter Your Password" />
+                        <input autoComplete="off" onChange={(e) => setLoginValue({ ...loginValue, password: e.target.value })} id="password" value={loginValue.password} className={`text-richblack-200 bg-transparent  outline-none border-none  w-[90%] py-2 px-2`} type={showPassword === true ? "text" : "password"} placeholder="Enter Your Password" />
                         <div className=" text-richblack-200 my-auto text-lg text-richblack" onClick={() => setShowPasssword(!showPassword)}>
                             {
                                 showPassword === true ? <FaRegEyeSlash /> : <FaRegEye />

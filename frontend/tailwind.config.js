@@ -10,7 +10,7 @@ module.exports = {
     backgroundImage: {
       'gradient-text': 'linear-gradient(to right, #1FA2FF, #12D8FA,#A6FFCB)',
       'gradient-text-two': 'linear-gradient(to right, #FF512F, #F09819)',
-    
+
     },
     colors: {
       white: "#fff",
@@ -134,14 +134,18 @@ module.exports = {
         maxContent: "1260px",
         maxContentTab: "650px"
       },
+
       screens: {
-        '850px': '850px',
-        '520px':'520px' // Add your custom breakpoint
+        '850px': '850px',       // Minimum width of 850px
+        '520px': '520px',       // Minimum width of 520px
+        'max-850': {            // Custom max-width breakpoint for 850px
+          'max': '850px',       // Max-width of 850px
+        },
       },
     },
   },
   plugins: [
-    function({ addUtilities }) {
+    function ({ addUtilities }) {
       addUtilities({
         '.bg-clip-text': {
           backgroundClip: 'text',
