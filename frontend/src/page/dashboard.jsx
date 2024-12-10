@@ -4,6 +4,7 @@ import SideBar from '../components/dashboard/sidebar'
 import { Outlet } from 'react-router-dom'
 import Header from '../components/header'
 import Footer from '../components/footer'
+import MobileNav from '../components/mobileNav'
 const Dashboard = () => {
     const { loading: profileLoading } = useSelector(state => state.user)
     const { loading: authLoading } = useSelector(state => state.auth)
@@ -23,8 +24,8 @@ const Dashboard = () => {
             <div className='flex'>
 
                 <SideBar></SideBar>
-                <div className=''>
-                    <div className='w-[calc(100vw-13rem)] h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar'>
+                <div className='w-full'>
+                    <div className='1200px:w-[calc(100vw-13rem)] w-full h-[calc(100vh-3rem)] overflow-y-scroll hide-scrollbar'>
                         <Outlet />
                     </div>
                 </div>
@@ -32,6 +33,8 @@ const Dashboard = () => {
             <div className='bg-richblack-800 border-t-[1px] shadow-[0px_-1px_4px_#fff] border-richblack-700'>
                 <Footer></Footer>
             </div>
+
+            <MobileNav></MobileNav>
         </div>
     )
 }

@@ -125,9 +125,11 @@ const CourseDescription = () => {
                 <Header></Header>
             </div>
 
-            <div className="bg-richblack-800 h-72 overflow-visible flex justify-between">
-                <div className="w-[60%]  ml-20 py-5 ">
-                    <div className="w-full border-r-[1px] border-richblack-500">
+            <div className="bg-richblack-800 lg:h-72 h-[600px] mb-80 lg:mb-10 overflow-visible flex flex-col lg:flex-row lg:justify-between">
+
+
+                <div className="w-[60%]  lg:ml-20 ml-5 py-5 ">
+                    <div className="w-full lg:border-r-[1px] border-richblack-500">
 
 
                         <p className="text-richblack-400 text-sm my-4">
@@ -166,13 +168,15 @@ const CourseDescription = () => {
                         <p className="text-richblack-100">({courseDescription?.studentEnrolled?.length}) Students enrolled</p>
                     </div>
                 </div>
-                <div className="w-[40%]  z-10 flex justify-center" >
-                    <div className="w-80 -mb-80 mt-10 bg-richblack-700 rounded-md overflow-hidden my-5">
+
+
+                <div className="lg:w-[40%] sm:w-8/12 w-11/12 mx-auto my-10 lg:z-10 lg:flex justify-center" >
+                    <div className="lg:w-80 w-full lg:-mb-[400px] pb-5  lg:mt-10 bg-richblack-700 rounded-md overflow-hidden my-5">
                         <div className="w-full h-60">
 
                             <img className="w-full h-full" src={courseDescription?.thumbnail} alt="" />
                         </div>
-                        <div className="px-3 py-2 flex flex-col max-h- gap-3">
+                        <div className="px-3 py-2 flex flex-col h-[320px]  max-h-[320px] gap-3">
 
                             <h2 className="text-richblack-50 font-semibold p-1 text-2xl">Rs: {courseDescription?.price}/-</h2>
 
@@ -194,7 +198,7 @@ const CourseDescription = () => {
                                 }
                             </div>
                             <p className="text-center text-richblack-200">30 Days money back gurantee</p>
-                            <div className="text-caribbeangreen-200 font-semibold">This Course Include
+                            <div className="text-caribbeangreen-200 font-semibold ">This Course Include
                                 <ul className="font-normal px-2">
                                     <li className="flex items-center gap-1">
                                         <IoMdTime></IoMdTime>
@@ -217,9 +221,14 @@ const CourseDescription = () => {
                         </div>
                     </div>
                 </div>
+
+
+
             </div >
 
-            <div className="text-richblack-100 w-3/5 mx-10 my-10 ">
+
+
+            <div className="text-richblack-100 lg:w-3/5 sm:w-10/12 w-11/12 mx-auto lg:mx-10 my-10 ">
                 <h2 className="text-xl font-inter text-richblack-100 my-2">What will you learn</h2>
                 <div className="border-[1px] text-richblack-200 p-5 border-richblack-400">
                     {
@@ -227,22 +236,22 @@ const CourseDescription = () => {
                     }
                 </div>
             </div>
-            <div className="w-3/5 mx-10">
+            <div className="lg:w-3/5  mx-auto sm:w-10/12 w-11/12 lg:mx-10">
                 <CourseContent course={courseDescription}></CourseContent>
             </div>
 
-            <div className="mx-10 text-richblack-50 my-5 p-3">
-                <h2 className="font-inter text-xl my-3">
+            <div className="lg:mx-10 mx-auto text-richblack-50 my-5 p-3">
+                <h2 className="font-inter lg:text-start text-center text-xl my-3">
                     Author
                 </h2>
-                <div className="flex gap-2 items-center text-lg text-richblack-50 ">
+                <div className="flex gap-2 justify-center lg:justify-start items-center text-lg text-richblack-50 ">
 
                     <div className="w-12 h-12 rounded-full overflow-hidden">
                         <img className="w-full h-full" src={courseDescription?.intructor?.image} alt="" />
                     </div>
                     <p className="text-richblack-100">{courseDescription?.intructor?.firstName} {courseDescription?.intructor?.lastName}</p>
                 </div>
-                <p className="w-3/5 my-2 text-richblack-300">{courseDescription?.intructor?.addtionalDetails?.about}</p>
+                <p className="lg:w-3/5 w-10/12 mx-auto lg:mx-2 my-2 text-richblack-300">{courseDescription?.intructor?.addtionalDetails?.about}</p>
             </div>
             {
                 modal && (<Modal

@@ -42,7 +42,7 @@ const Home = () => {
 
                 {/* section one */}
                 <div className=" my-20 gap-5 flex flex-col justify-center items-center">
-                    <Link to='/instrutor'>
+                    <Link to='/auth/signup'>
 
 
                         <button className="flex justify-center items-center gap-1 bg-richblack-800 text-richblack-200 px-3 py-2 rounded-2xl font-inter font-normal text-sm shadow-[1px_1px_1px_#585D69]  transition hover:scale-105">
@@ -62,8 +62,8 @@ const Home = () => {
                     </p>
 
                     <div className="flex gap-4">
-                        <HomeBtn active={true} content={'Learn More'} render={'/learnMore'}></HomeBtn>
-                        <HomeBtn active={false} content={'Book a demo'} render={'/demo'}></HomeBtn>
+                        <HomeBtn active={true} content={'Learn More'} render={'/auth/signup'}></HomeBtn>
+                        <HomeBtn active={false} content={'Book a demo'} render={'/auth/signup'}></HomeBtn>
                     </div>
 
 
@@ -79,8 +79,8 @@ const Home = () => {
                 {/* section two */}
 
                 <div className="min-[1050px]:w-4/5 w-11/12 mx-auto mb-28">
-                    <CodeBlock bg={'yellow'} position={''} btnOne={{ content: <>Try it Yourself <IoArrowForward /></>, active: true, render: '/course' }}
-                        btnTwo={{ content: <>learn more</>, active: false, render: '/learnmore' }}
+                    <CodeBlock bg={'yellow'} position={''} btnOne={{ content: <>Try it Yourself <IoArrowForward /></>, active: true, render: '/auth/signup' }}
+                        btnTwo={{ content: <>learn more</>, active: false, render: '/auth/signup' }}
 
                         heading={<>Unlock your {<HighlightedText
                             content={'coding potential '}></HighlightedText>}
@@ -90,8 +90,8 @@ const Home = () => {
                         subHeading={'Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you.'}></CodeBlock>
 
 
-                    <CodeBlock bg={'blue'} position={'flex-row-reverse'} btnOne={{ content: <>continue lesson <IoArrowForward /></>, active: true, render: '/lessons' }}
-                        btnTwo={{ content: <>Learn More</>, active: false, render: '/learnmore' }}
+                    <CodeBlock bg={'blue'} position={'flex-row-reverse'} btnOne={{ content: <>continue lesson <IoArrowForward /></>, active: true, render: '/auth/signup' }}
+                        btnTwo={{ content: <>Learn More</>, active: false, render: '/auth/signup' }}
                         heading={<>Start <HighlightedText content={'coding in seconds'}></HighlightedText></>}
 
                         subHeading={`Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson.`} ></CodeBlock>
@@ -111,8 +111,8 @@ const Home = () => {
 
                 <div className="home_bg h-72 w-full pt-20 bg-white">
                     <div className="w-11/12 h-full mx-auto flex gap-7  items-center justify-center">
-                        <HomeBtn active={true} render={'/signup'} content={<>Explore Full Catalog <IoArrowForward /> </>}></HomeBtn>
-                        <HomeBtn active={false} render={'/learnmore'} content={'learn more'}></HomeBtn>
+                        <HomeBtn active={true} render={'/auth/signup'} content={<>Explore Full Catalog <IoArrowForward /> </>}></HomeBtn>
+                        <HomeBtn active={false} render={'/auth/signup'} content={'learn more'}></HomeBtn>
 
                     </div>
 
@@ -126,9 +126,9 @@ const Home = () => {
                             Get the skills you need for a <HighlightedText content={'job that is in demand.'}></HighlightedText>
                         </div>
                         <div className="sm:w-2/5  w-full sm:text-left text-center text-[#2C333F] font-inter flex sm:items-start items-center flex-col gap-5">
-                            The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                            The modern  is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
 
-                            <HomeBtn active={true} content={"Learn more"} render={'/learnmore'}></HomeBtn>
+                            <HomeBtn active={true} content={"Learn more"} render={'/auth/signup'}></HomeBtn>
                         </div>
 
                     </div>
