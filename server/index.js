@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-    origin:'https://eduroute.netlify.app',
+    origin:'https://eduroute.vercel.app',
     credentials:true
 }))
 
