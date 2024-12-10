@@ -12,7 +12,7 @@ const AddCourse = () => {
     const step = useSelector(state => state.course.step)
     return (
         <div className="w-11/12 mx-auto my-5 flex gap-5">
-            <div className="w-[60%] mx-auto">
+            <div className="lg:w-[60%] sm:w-9/12 450px:w-11/12 w-[99%] mx-auto">
 
                 <button onClick={() => navigate(-1)} className="flex  items-center gap-1 text-richblack-500">
                     <IoIosArrowBack />
@@ -25,7 +25,7 @@ const AddCourse = () => {
 
                 </div>
             </div>
-            <div className="w-[40%] bg-richblack-800 max-h-max p-5 rounded-md border border-richblack-600">
+            <div className="lg:block hidden w-[40%] 900px:block  bg-richblack-800 max-h-max p-5 rounded-md border border-richblack-600">
                 <h2 className="text-xl font-semibold text-richblack-200 my-2">⚡ Course Upload Tips</h2>
                 <ul className="list-disc text-richblack-25 px-5 ">
                     <li>

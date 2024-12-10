@@ -9,7 +9,7 @@ const Setting = () => {
 
 
     return (
-        <div className="p-5">
+        <div className="400px:p-5 p-3 xl:w-11/12 mx-auto">
             <button onClick={() => navigate(-1)} className="flex  items-center gap-1 text-richblack-500">
                 <IoIosArrowBack />
                 Back
@@ -17,7 +17,7 @@ const Setting = () => {
             <h1 className="my-5 text-2xl mx-2">
                 Edit profile
             </h1>
-            <div className="w-[75%] mx-auto">
+            <div className="1200px:w-[75%] sm:w-11/12 w-[99%] mx-auto">
                 {/* <div className="bg-richblack-800 p-5 flex justify-between items-center rounded-md mt-5  border border-richblack-700"> */}
 
                 <ProfilePicture></ProfilePicture>

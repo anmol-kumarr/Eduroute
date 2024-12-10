@@ -7,7 +7,7 @@ const MyProfile = () => {
     // console.log(user)
     const navigate = useNavigate()
     return (
-        <div className="flex flex-col w-3/4 mx-auto my-5 ">
+        <div className="flex flex-col 850px:w-3/4 sm:w-10/12 w-[95%]  mx-auto my-5 ">
             <h2 className="text-xl font-inter text-richblack-100">My Profile</h2>
             <div>
                 <div className="bg-richblack-800 p-5 flex justify-between items-center rounded-md mt-5  border border-richblack-700">
@@ -17,7 +17,7 @@ const MyProfile = () => {
                         </div>
                         <div>
                             <p className="">{user.firstName} {user.lastName}</p>
-                            <p className="text-sm text-richblack-300">{user.email}</p>
+                            <p className="sm:text-sm text-xs  text-richblack-300">{user.email}</p>
                         </div>
                     </div>
                     <div>

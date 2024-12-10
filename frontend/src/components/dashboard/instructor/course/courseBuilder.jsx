@@ -70,7 +70,7 @@ const CourseBuilder = () => {
 
 
     return (
-        <div className="text-richblack-50 bg-richblack-800 px-3 py-3 rounded-md">
+        <div className="text-richblack-50 w-full bg-richblack-800 px-3 py-3 rounded-md">
             <h2 className="text-xl font-semibold ">Course Builder</h2>
             <form onSubmit={handleSubmit(submit)}>
 

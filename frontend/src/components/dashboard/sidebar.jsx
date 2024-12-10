@@ -17,7 +17,7 @@ const SideBar = () => {
     //     // console.log(modal)
     // },[modal])
     return (
-        <div className="text-richblack-100 h-[calc(100vh-3rem)] w-52  bg-richblack-800">
+        <div className="hidden 850px:block text-richblack-100 h-[calc(100vh-3rem)] w-52  bg-richblack-800">
             <div className="flex flex-col py-10">
                 {
                     sidebarLinks.map((data, index) => {

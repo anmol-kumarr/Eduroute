@@ -70,6 +70,7 @@ const CourseContent = ({ editSectionHandler }) => {
         // console.log(subSectionValue.title)
 
         setViewSubSection({
+           
             type: 'View',
             view: true,
             setSubSectionModal,
@@ -94,6 +95,8 @@ const CourseContent = ({ editSectionHandler }) => {
         // console.log(subSection)
         setSubSectionModal(true)
         setEditSubSection({
+            sectionId,
+            subSectionId,
             type: 'Edit',
             edit: true,
             setSubSectionModal,
@@ -145,7 +148,7 @@ const CourseContent = ({ editSectionHandler }) => {
 
     return (
         <>
-            {course?.courseContent.length > 0 &&
+            {course?.courseContent?.length > 0 &&
                 <div className="bg-richblack-700 p-2 mt-4 rounded-md">{
                     course?.courseContent?.map((section, index) => (
 
@@ -204,7 +207,7 @@ const CourseContent = ({ editSectionHandler }) => {
                             <div className="px-3">
                                 {
                                     section?.subSection && section?.subSection?.map((subSection) => (
-                                        <div onClick={() => viewSubSectionHandler(section._id, subSection._id)}
+                                        <div  onClick={() => viewSubSectionHandler(section._id, subSection._id)}
                                             key={subSection._id} className="mb-5 border-b border-richblack-600 p-2 flex justify-between">
 
 
