@@ -1,10 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+const getTokenFromLocalStorage = () => {
+    const authData = localStorage.getItem('authToken');
+    if (authData) {
+        const parsedData = JSON.parse(authData);
+        if (parsedData.expiresIn > Date.now()) {
+            return parsedData.token;
+        } else {
+            localStorage.removeItem('authToken'); 
+        }
+    }
+    return null;
+};
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        token: localStorage.getItem('authToken') ? JSON.parse(localStorage.getItem('authToken')) : null,
+        token: getTokenFromLocalStorage(),
         loading: false,
         signUpData: {},
         // token:true

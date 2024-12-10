@@ -14,7 +14,7 @@ exports.ImageUpload = async (file, folder, height, quality) => {
 
         return await cloudinary.uploader.upload(file.tempFilePath, option)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
     }
 
 }
