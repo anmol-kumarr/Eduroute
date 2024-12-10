@@ -6,16 +6,16 @@ const Password=()=>{
     const [showPassword, setShowPasssword] = useState(false)
     const [showConfirmPassword, setShowConfirmPasssword] = useState(false)
     return (
-        <div class='bg-richblack-800 border border-richblack-700 p-5 rounded-md  my-2'>
+        <div class='bg-richblack-800 border border-richblack-700 sm:p-5 p-2 rounded-md  my-2'>
 
-        <div className=" flex gap-4  ">
-            <div className="w-1/2">
+        <div className=" sm:flex sm:gap-4  ">
+            <div className="sm:w-1/2 w-[95%] mx-auto">
 
                 <label htmlFor="password">Password<span className="text-pink-300">*</span></label><br />
                 <div className=" flex rounded-md shadow-richblack-400 shadow-sm my-1 bg-richblack-700">
 
 
-                    <input id="password" className="w-5/6 text-richblack-200 bg-transparent  outline-none border-none   py-2 px-2" type={showPassword === true ? "text" : "password"} placeholder="Enter Password" />
+                    <input id="password" className=" w-11/12 text-richblack-200 bg-transparent  outline-none border-none   py-2 px-2" type={showPassword === true ? "text" : "password"} placeholder="Enter Password" />
                     <div className="mx-2 text-richblack-200 my-auto text-lg text-richblack" onClick={() => setShowPasssword(!showPassword)}>
                         {
                             showPassword === true ? <FaRegEyeSlash /> : <FaRegEye />
@@ -25,13 +25,13 @@ const Password=()=>{
             </div>
 
 
-            <div className="w-1/2 ">
+            <div className="sm:w-1/2 w-[95%] mx-auto">
 
                 <label htmlFor="confirmPassword">Confirm Password<span className="text-pink-300">*</span></label><br />
                 <div className=" flex rounded-md shadow-richblack-400 shadow-sm my-1 bg-richblack-700">
 
 
-                    <input id="confirmPassword" className="text-richblack-200 bg-transparent  outline-none border-none w-5/6  py-2 px-2" type={showConfirmPassword === true ? "text" : "password"} placeholder="Enter confirm Password" />
+                    <input id="confirmPassword" className="text-richblack-200 bg-transparent  outline-none border-none  w-11/12  py-2 px-2" type={showConfirmPassword === true ? "text" : "password"} placeholder="Enter confirm Password" />
                     <div className="mx-2 text-richblack-200 my-auto text-lg text-richblack" onClick={() => setShowConfirmPasssword(!showConfirmPassword)}>
                         {
                             showConfirmPassword === true ? <FaRegEyeSlash /> : <FaRegEye />

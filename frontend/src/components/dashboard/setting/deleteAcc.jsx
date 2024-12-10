@@ -7,6 +7,7 @@ const DeleteAccount = () => {
                 <FaTrashAlt></FaTrashAlt>
             </div>
             <div>
+
                 <h3 className="text-lg font-semibold">Delete Account</h3>
                 <p className="text-sm">
                     Would you like to delete account?
@@ -19,7 +20,7 @@ const DeleteAccount = () => {
                     <p className="text-sm  text-[#ff0000] font-semibold">
                         I want to delete my account.
                     </p>
-                    <button className="px-3 font-semibold py-1 rounded-md text-[#ff0000] bg-[#ff0000] bg-opacity-20">
+                    <button className="sm:px-3 font-semibold py-1 rounded-md text-[#ff0000] bg-[#ff0000] bg-opacity-20">
                         Delete Account
                     </button>
                 </div>

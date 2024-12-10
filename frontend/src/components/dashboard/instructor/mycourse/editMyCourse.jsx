@@ -41,7 +41,7 @@ const EditMyCourse = () => {
                 loading === true ? (
                     <Spinner></Spinner>
                 ) : (
-                    <div className="w-8/12 mx-auto my-5 ">
+                    <div className="sm:w-8/12 w-11/12 mx-auto my-5 ">
                         <RenderSteps></RenderSteps>
                     </div>
                 )

@@ -31,7 +31,7 @@ const LearningLanguageSection = () => {
             <div className="flex justify-center pb-14 ">
 
 
-                <HomeBtn active={true} content={'learn more'} render={'/learnmore'}></HomeBtn>
+                <HomeBtn active={true} content={'learn more'} render={'/auth/signup'}></HomeBtn>
             </div>
         </div>
     )
