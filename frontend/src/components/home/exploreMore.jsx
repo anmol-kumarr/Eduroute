@@ -16,8 +16,8 @@ const ExploreMore = () => {
     return (
         <div className="w-full flex flex-col justify-center items-center gap-5">
             <div className="flex flex-col items-center">
-                <h2 className="font-inter font-bold text-3xl text-richblack-5">Unlock the <HighlightedText content={' Power of Code'}></HighlightedText></h2>
-                <p className="fonnt-inter text-richblack-200">Learn to Build Anything You Can Imagine</p>
+                <h2 className="font-inter text-center font-bold text-3xl text-richblack-5">Unlock the <HighlightedText content={' Power of Code'}></HighlightedText></h2>
+                <p className="font-inter text-richblack-200">Learn to Build Anything You Can Imagine</p>
             </div>
 
             <div className="my-5 max-[450px]:w-[100%] xl:w-1/2 lg:w-[60%] sm:max-w-maxContent      flex md:justify-between transition-all duration-700  p-1 rounded-3xl bg-richblack-700">

@@ -9,7 +9,7 @@ const CodeBlock = ({
 
     return (
         <div className={`flex w-full flex-wrap ${position} justify-center my-10 items-center lg:justify-between`}>
-            <div className="lg:w-2/5  my-5 w-full  lg:min-w-[300px] flex flex-col gap-4 mx-4">
+            <div className="lg:w-2/5  my-5 w-full  lg:min-w-[300px] flex flex-col gap-4 sm:mx-4 mx-0" >
             {/* min-[865px]: */}
                 <h2 className="text-richblack-5 lg:text-left text-center font-bold text-2xl">{heading}</h2>
                 <p className="text-richblack-300 lg:text-left text-center">{subHeading}</p>

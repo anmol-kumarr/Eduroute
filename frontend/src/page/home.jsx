@@ -145,21 +145,21 @@ const Home = () => {
 
                             <img className="w-full" src={GirlImage} alt="girl" />
                             <div className="px-3 py-4 absolute top-[90%] left-[10%] right-[50%] bg-caribbeangreen-700 w-4/5 flex justify-between">
-                                <div className="uppercase flex items-center gap-3 ">
-                                    <p className="text-white font-inter text-3xl">10</p>
+                                <div className="uppercase flex items-center sm:gap-3 gap-2 ">
+                                    <p className="text-white font-inter sm:text-xl lg:text-3xl text-lg">10</p>
                                     <p className="text-xs text-caribbeangreen-300 font-inter flex flex-col">
-                                        <span className="">YEARS</span>
-                                        <span>EXPERIENCES</span>
+                                        <span >YEARS</span>
+                                        <span >EXPERIENCES</span>
 
                                     </p>
                                 </div>
 
                                 <div className="bg-caribbeangreen-400 w-[1px]"></div>
-                                <div className="uppercase flex items-center gap-3 ">
-                                    <p className="text-white font-inter text-3xl">250</p>
+                                <div className="uppercase flex items-center gap-2 sm:gap-3 ">
+                                    <p className="text-white font-inter sm:text-xl lg:text-3xl text-lg">250</p>
                                     <p className=" text-xs text-caribbeangreen-300 font-inter flex flex-col">
-                                        <span>types</span>
-                                        <span>of courses</span>
+                                        <span  >types</span>
+                                        <span  >of courses</span>
 
                                     </p>
                                 </div>

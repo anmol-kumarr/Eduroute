@@ -48,7 +48,7 @@ const TimeLine = () => {
                     </div>
 
                     <div className="font-inter min-w-[250px]  text-[#161D29] ">
-                        <p className="text-lg font-semibold">{item.heading}</p>
+                        <p className="text-lg  font-semibold">{item.heading}</p>
                         <p className="text-sm">{item.text}</p>
                     </div>
                 </div>
