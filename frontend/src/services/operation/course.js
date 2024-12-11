@@ -12,12 +12,14 @@ export const fetchCourseCategories = () => {
     // const dispatch=useDispatch()
     return async (dispatch) => {
         try {
-        
+        toast.loading('loading')
             const response = await apiConnector('GET', categoriesApi.getAllCategories)
             dispatch(setCourseCategories(response.data.data))
-            // toast.dismiss()
+            toast.dismiss()
 
         } catch (err) {
+            toast.dismiss()
+            toast.error('Server is not responding')
             // console.log(err)
         }
 

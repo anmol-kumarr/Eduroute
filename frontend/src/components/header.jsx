@@ -29,10 +29,10 @@ const Header = ({ bg }) => {
 
 
     useEffect(() => {
-        toast.loading('Please wait')
+        // toast.loading('Please wait')
         dispatch(fetchCourseCategories())
         // setCatelogData(response)
-        toast.dismiss()
+        // toast.dismiss()
     }, [])
 
     const location = useLocation()
