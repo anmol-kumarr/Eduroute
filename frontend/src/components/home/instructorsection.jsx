@@ -5,8 +5,8 @@ import { IoArrowForward } from "react-icons/io5";
 const InstructorSection = () => {
     return (
         <div className="my-16 flex items-center flex-wrap justify-evenly ">
-            <div className='w-2/5 min-w-[300px]'>
-                <img className='shadow-[-15px_-15px_0px_#ffff] w-11/12' src={Instructor} alt="" />
+            <div className='sm:w-2/5 w-8/12 flex justify-center min-w-[300px]'>
+                <img className='shadow-[-15px_-15px_0px_#ffff] w-11/12' src={Instructor} alt="instructor" />
             </div>
             <div className='w-2/5 text-center sm:text-left min-w-[300px] my-5'>
                 <h2 className=' font-semibold text-pure-greys-50 text-3xl'>Become an

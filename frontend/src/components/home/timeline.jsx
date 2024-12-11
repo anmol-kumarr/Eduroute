@@ -40,7 +40,7 @@ const TimeLine = () => {
                 <div  key={index} className="flex gap-2 justify-center">
                     <div className=" flex flex-col justify-center items-center  ">
                         <div className="bg-white p-2 flex justify-center items-center h-11 w-11 rounded-full">
-                            <img src={item.image} alt="" />
+                            <img src={item.image} alt="user" />
                         </div>
                         {
                             index!==data.length-1 && <TfiLineDotted className="rotate-90 my-2" />

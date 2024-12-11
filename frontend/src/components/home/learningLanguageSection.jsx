@@ -19,13 +19,13 @@ const LearningLanguageSection = () => {
 
             <div className="flex justify-center flex-wrap items-center my-10 w-full">
                 <div className="min-w-[280px] sm:-mr-20 -16 w-[30%]">
-                    <img className="w-full" src={LearningOne} alt="" />
+                    <img className="w-full" src={LearningOne} alt="learningOne" />
                 </div>
                 <div className="min-w-[280px] -ml-24 sm:-ml-0 w-[30%]">
-                    <img className="w-full" src={CompareWithOthers} alt="" />
+                    <img className="w-full" src={CompareWithOthers} alt="compareWithOthers" />
                 </div>
                 <div className="min-w-[280px] w-[30%] sm:-ml-24">
-                    <img className="w-full" src={PlanYourLessons} alt="" />
+                    <img className="w-full" src={PlanYourLessons} alt="playYourLesson" />
                 </div>
             </div>
             <div className="flex justify-center pb-14 ">

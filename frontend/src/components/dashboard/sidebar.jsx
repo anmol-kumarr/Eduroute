@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { sidebarLinks } from '../../data/dashboard'
 import SideBarLinks from "./sidebarlinks"
 import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { logout } from "../../services/operation/loginuser"
 import { LuLogOut } from "react-icons/lu";
 import Modal from "../modal"
@@ -17,7 +17,7 @@ const SideBar = () => {
     //     // console.log(modal)
     // },[modal])
     return (
-        <div className="hidden 850px:block text-richblack-100 h-[calc(100vh-3rem)] w-52  bg-richblack-800">
+        <div className="hidden 850px:block text-richblack-100 h-[calc(100vh-3rem)] lg:w-52 w-56  bg-richblack-800">
             <div className="flex flex-col py-10">
                 {
                     sidebarLinks.map((data, index) => {

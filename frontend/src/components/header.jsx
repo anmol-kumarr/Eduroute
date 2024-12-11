@@ -1,16 +1,15 @@
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { IoSearchOutline } from "react-icons/io5";
-import { IoCartOutline } from "react-icons/io5";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { apiConnector } from '../services/apiconnector';
-import { categoriesApi } from '../services/api';
+
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import { logout } from '../services/operation/loginuser';
 import { fetchCourseCategories } from '../services/operation/course';
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { setSideBar } from '../redux/slice/responsive';
+import toast from 'react-hot-toast';
 
 const Header = ({ bg }) => {
     const user = useSelector(state => state.auth.token)
@@ -30,8 +29,10 @@ const Header = ({ bg }) => {
 
 
     useEffect(() => {
+        toast.loading('Please wait')
         dispatch(fetchCourseCategories())
         // setCatelogData(response)
+        toast.dismiss()
     }, [])
 
     const location = useLocation()
@@ -98,7 +99,7 @@ const Header = ({ bg }) => {
                             <div className='hidden 850px:flex group relative cursor-pointer '>
                                 <div onClick={() => navigate('/dashboard/my-profile')} className='h-7 w-7 rounded-full overflow-hidden'>
 
-                                    <img className="w-full h-full" src={image} alt="" />
+                                    <img className="w-full h-full" src={image} alt="img" />
                                 </div>
                                 <div className={`group-hover:block z-20 !important text-base absolute top-8 rounded -right-7 hidden bg-richblack-700 `}>
 

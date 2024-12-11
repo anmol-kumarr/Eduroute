@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setSideBar } from "../redux/slice/responsive";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { FaXmark } from "react-icons/fa6";
@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 
 
 const SideBar = () => {
-    const location = useLocation()
+    // const location = useLocation()
 
     const sidebar = useSelector(state => state.responsive.sidebar);
     const courseCategories = useSelector(state => state.course.courseCategories)
@@ -30,6 +30,7 @@ const SideBar = () => {
         dispatch(setToken(null))
         toast.success('Logged out')
         navigate('/')
+        dispatch(setSideBar())
     }
 
 
@@ -48,26 +49,26 @@ const SideBar = () => {
             document.body.style.overflow = "auto";
         };
     }, [sidebar]);
-    useEffect(() => {
-        if (sidebar === true) {
+    // useEffect(() => {
+    //     if (sidebar === true) {
 
-            removeSidebar()
-        }
-    }, [location])
+    //         removeSidebar()
+    //     }
+    // }, [location])
 
     const removeSidebar = () => {
         dispatch(setSideBar())
     }
 
-    const handleSidebar = (e) => {
-        if (divRef.current && divRef.current.contains(e.target)) {
-            removeSidebar()
-        }
-    }
-    useEffect(() => {
-        document.addEventListener('click', handleSidebar)
-        return () => document.removeEventListener('click', handleSidebar)
-    }, [])
+    // const handleSidebar = (e) => {
+    // if (divRef.current && divRef.current.contains(e.target)) {
+    //     removeSidebar()
+    // }
+    // }
+    // useEffect(() => {
+    //     document.addEventListener('click', handleSidebar)
+    //     return () => document.removeEventListener('click', handleSidebar)
+    // }, [])
 
     return (
         <div className={`flex justify-end fixed 850px:hidden bg-richblack-700 bg-opacity-70 text-richblack-50 h-screen right-0 w-full top-0 duration-200 z-50  ${sidebar ? 'translate-x-0' : 'translate-x-full'
@@ -76,7 +77,15 @@ const SideBar = () => {
             <div className="w-2/3 bg-richblack-900 font-inter pt-5 px-10 text-lg">
                 <div ref={divRef} className="flex mt-5 mb-2  w-full flex-col gap-2">
                     <Link onClick={removeSidebar} ref={divRef} to='/'>Home</Link>
-                    <Link onClick={removeSidebar} to='/dashboard/my-profile'>My account</Link>
+                    {
+                        user ? (
+                            <Link onClick={removeSidebar} to='/dashboard/my-profile'>My account</Link>) : (
+                            <p className="flex gap-4">
+                                <Link onClick={removeSidebar} to='/auth/signup'>Signup</Link>
+                                <Link onClick={removeSidebar} to='/auth/login'>Login</Link>
+                            </p>
+                        )
+                    }
                     <details open onClick={() => setOpenCatelog(!openCatelog)} >
 
                         <summary><p className="flex gap-1 items-center">
@@ -88,10 +97,10 @@ const SideBar = () => {
 
                         </p></summary>
                         <div className="px-5">
-                            <ul onClick={removeSidebar}>
+                            <ul>
                                 {
                                     Array.isArray(courseCategories) && courseCategories.map((category) => (
-                                        <Link to={`/catelog/${category.name}/${category._id}`} key={category._id}>
+                                        <Link onClick={removeSidebar} to={`/catelog/${category.name}/${category._id}`} key={category._id}>
                                             <li className="my-1">{category?.name}</li>
                                         </Link>
                                     ))

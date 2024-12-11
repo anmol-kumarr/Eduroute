@@ -22,8 +22,8 @@ const CourseDescription = () => {
     const [loading, setLoading] = useState(false)
     const [courseDescription, setCourseDescription] = useState({})
     const [date, setDate] = useState('')
-    const cartData = useSelector(state => state.cart.cart)
-    const token = useSelector(state => state.auth.token)
+    // const cartData = useSelector(state => state.cart.cart)
+    // const token = useSelector(state => state.auth.token)
     const user = useSelector(state => state.user.user)
     const [modal, setModal] = useState(null)
     const navigate = useNavigate()
@@ -120,15 +120,15 @@ const CourseDescription = () => {
     // useEffect(() => {
     // }, [cartData])
     return (
-        <div className="">
+        <div className="relative w-full h-full overflow-auto">
             <div className="bg-richblack-800">
                 <Header></Header>
             </div>
 
-            <div className="bg-richblack-800 lg:h-72 h-[600px] mb-80 lg:mb-10 overflow-visible flex flex-col lg:flex-row lg:justify-between">
+            <div className="bg-richblack-800 lg:h-72  sm:h-[550px] h-[600px] mb-80  lg:mb-10 overflow-visible flex flex-col lg:flex-row lg:justify-between">
 
 
-                <div className="w-[60%]  lg:ml-20 ml-5 py-5 ">
+                <div className="lg:w-[60%] md:w-[80%] sm:w-11/12  lg:ml-20 ml-5 py-5 ">
                     <div className="w-full lg:border-r-[1px] border-richblack-500">
 
 
@@ -170,11 +170,11 @@ const CourseDescription = () => {
                 </div>
 
 
-                <div className="lg:w-[40%] sm:w-8/12 w-11/12 mx-auto my-10 lg:z-10 lg:flex justify-center" >
+                <div className="lg:w-[40%] sm:w-8/12 w-11/12 mx-auto sm:mb-10  lg:z-10 lg:flex justify-center" >
                     <div className="lg:w-80 w-full lg:-mb-[400px] pb-5  lg:mt-10 bg-richblack-700 rounded-md overflow-hidden my-5">
                         <div className="w-full h-60">
 
-                            <img className="w-full h-full" src={courseDescription?.thumbnail} alt="" />
+                            <img className="w-full h-full" src={courseDescription?.thumbnail} alt="thumbnail" />
                         </div>
                         <div className="px-3 py-2 flex flex-col h-[320px]  max-h-[320px] gap-3">
 
@@ -228,9 +228,9 @@ const CourseDescription = () => {
 
 
 
-            <div className="text-richblack-100 lg:w-3/5 sm:w-10/12 w-11/12 mx-auto lg:mx-10 my-10 ">
+            <div className="text-richblack-100 lg:w-3/5 sm:w-10/12 w-11/12 mx-auto lg:mx-10 my-10  ">
                 <h2 className="text-xl font-inter text-richblack-100 my-2">What will you learn</h2>
-                <div className="border-[1px] text-richblack-200 p-5 border-richblack-400">
+                <div className="border-[1px]  text-richblack-200 p-5 border-richblack-400">
                     {
                         courseDescription?.whatYouWillLearn
                     }
@@ -247,7 +247,7 @@ const CourseDescription = () => {
                 <div className="flex gap-2 justify-center lg:justify-start items-center text-lg text-richblack-50 ">
 
                     <div className="w-12 h-12 rounded-full overflow-hidden">
-                        <img className="w-full h-full" src={courseDescription?.intructor?.image} alt="" />
+                        <img className="w-full h-full" src={courseDescription?.intructor?.image} alt="thumbnail" />
                     </div>
                     <p className="text-richblack-100">{courseDescription?.intructor?.firstName} {courseDescription?.intructor?.lastName}</p>
                 </div>

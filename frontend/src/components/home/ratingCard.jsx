@@ -1,5 +1,5 @@
 import { GoStar, GoStarFill } from "react-icons/go"
-import { BsStarHalf } from "react-icons/bs";
+// import { BsStarHalf } from "react-icons/bs";
 const RatingCard = ({ rating }) => {
     const words = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur molestiae iste labore reiciendis praesentium error sunt sequi cum sit, hic corporis quos tenetur! Id est labore nobis sed, debitis harum.'
     return (
@@ -7,7 +7,7 @@ const RatingCard = ({ rating }) => {
             <div className="flex gap-2 items-center">
                 <div className="w-10 h-10 overflow-hidden rounded-full">
 
-                    <img className="w-full h-full" src={rating?.user?.image} alt="" />
+                    <img className="w-full h-full" src={rating?.user?.image} alt="user" />
                 </div>
                 <div className="">
 

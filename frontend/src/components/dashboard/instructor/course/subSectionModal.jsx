@@ -1,4 +1,4 @@
-import { get, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import UploadVideo from "./uploadVideo";
@@ -98,7 +98,7 @@ const SubSectionModal = ({
     }, [])
 
 
-    const lectureTitleValue = watch('lectureTitle');
+    // const lectureTitleValue = watch('lectureTitle');
     // console.log('title:',lectureTitleValue)
 
 

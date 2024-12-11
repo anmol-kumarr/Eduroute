@@ -36,7 +36,7 @@ const ProfilePicture = () => {
     return (
         <div className=" gap-3  bg-richblack-800 p-5 flex items-center rounded-md mt-5  border border-richblack-700">
             <div className="w-16 h-16 rounded-full overflow-hidden">
-                <img className="w-full h-full" src={user.image} alt="" />
+                <img className="w-full h-full" src={user.image} alt="user" />
             </div>
             <div>
                 <p className="">Change profile picture</p>

@@ -8,12 +8,14 @@ import { setMyCourse } from "../../redux/slice/instructorSlice"
 
 
 export const fetchCourseCategories = () => {
+    
     // const dispatch=useDispatch()
     return async (dispatch) => {
-
         try {
+        
             const response = await apiConnector('GET', categoriesApi.getAllCategories)
             dispatch(setCourseCategories(response.data.data))
+            // toast.dismiss()
 
         } catch (err) {
             // console.log(err)

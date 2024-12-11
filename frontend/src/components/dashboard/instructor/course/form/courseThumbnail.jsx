@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { IoMdCloudUpload } from "react-icons/io";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue }) => {
-    const editCourse = useSelector(state => state.course.editCourse)
+    // const editCourse = useSelector(state => state.course.editCourse)
     const [file, setFile] = useState(null)
 
 
@@ -57,7 +57,7 @@ const CourseThumbnail = ({ register, errors, handleSubmit, setValue, getValue })
                     <div className="w-full flex flex-col p-3 rounded-md bg-richblack-700 ">
                         <div className="w-full rounded-md overflow-hidden">
 
-                            <img className="w-full  h-48  " src={preview} alt="" />
+                            <img className="w-full  h-48  " src={preview} alt="preview" />
                         </div>
 
                         <div onClick={clearImage} className="text-center my-2 cursor-pointer font-semibold text-richblack-500">

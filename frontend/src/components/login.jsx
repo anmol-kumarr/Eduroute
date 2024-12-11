@@ -1,15 +1,15 @@
-import {  useState } from "react"
+import { useState } from "react"
 import LargeBtn from "./largeBtn"
 import HighlightedText from "./home/highlighted"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
 import { PiWarningCircleLight } from "react-icons/pi";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../services/operation/loginuser";
 
 const Login = () => {
     const [accountType, setAccountType] = useState('Student')
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     // const [authType, setAuthType] = useState(authValue)
     const [showPassword, setShowPasssword] = useState(false)
     const [loginValue, setLoginValue] = useState({
@@ -47,7 +47,7 @@ const Login = () => {
         // console.log(response)
         // console.log(warning)
         if (response === true) {
-            dispatch(login(loginValue.email,loginValue.password))
+            dispatch(login(loginValue.email, loginValue.password))
             // console.log(response)
 
 
@@ -118,8 +118,15 @@ const Login = () => {
             </div>
 
 
-            <div className="w-1/2 my-5">
-                <LargeBtn behaviour={loginHandler} content={'Login'}></LargeBtn>
+            <div className="mt-3">
+                <span className="w-1/2">
+
+                    <LargeBtn behaviour={loginHandler} content={'Login'}></LargeBtn>
+                </span>
+                <p className="mt-2 text-richblack-100">
+
+                    <Link to={'/auth/signup'}>New user? Signup</Link>
+                </p>
             </div>
         </div>
 

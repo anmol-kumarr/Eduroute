@@ -37,11 +37,11 @@ function App() {
   const location = useLocation().pathname
   const [showPage, setShowPage] = useState()
   const width = useMediaQuery('(min-width: 850px)')
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   // console.log(location.split('/').includes('course'))
 
   useEffect(() => {
-      
+
   }, [])
 
   return (
@@ -65,6 +65,7 @@ function App() {
 
 
       <Routes>
+        <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
         <Route path="/" element={<Home></Home>} />
         <Route path='/aboutUs' element={<About></About>} />
         <Route path='/contact' element={<ContactPage></ContactPage>} />
@@ -77,9 +78,12 @@ function App() {
 
 
 
-        <Route element={<CloseRoute>
+        <Route element={
+          <CloseRoute>
           <Dashboard></Dashboard>
-        </CloseRoute>}>
+          </CloseRoute>
+        }
+        >
 
           <Route path='/dashboard/my-profile' element={<MyProfile></MyProfile>}></Route>
           <Route path='/dashboard/enrolled-courses' element={<EnrolledCourses></EnrolledCourses>}></Route>
@@ -149,7 +153,7 @@ function App() {
 
 
 
-        <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+
       </Routes>
       <DashBoardRoute>
 

@@ -43,13 +43,13 @@ const InstructorChart = ({data}) => {
     }
     return (
 
-        <div>
-            <p>Visualize</p>
-            <div>
-                <button onClick={()=>setCurrentChart('Student')}>Student</button>
-                <button onClick={()=>setCurrentChart('Income')}>Income</button>
+        <div className="flex flex-col 850px:w-3/4 sm:w-10/12 w-[95%]  mx-auto my-5 ">
+            <p className="my-2">Visualized Data for instructor</p>
+            <div className="flex gap-3">
+                <button className="bg-yellow-200 rounded-md px-2 py-1 text-sm" onClick={()=>setCurrentChart('Student')}>Student</button>
+                <button  className="bg-yellow-200 rounded-md px-2 py-1 text-sm"  onClick={()=>setCurrentChart('Income')}>Income</button>
             </div>
-            <div>
+            <div className="my-5">
                 <Pie data={currentChart === 'Student' ? chartDataForStudent : chartDataForIncome} options={options}></Pie>
             </div>
         </div>

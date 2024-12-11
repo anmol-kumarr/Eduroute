@@ -1,25 +1,25 @@
-import { useEffect,useState } from "react"
+import { useEffect, useState } from "react"
 import HighlightedText from "../components/home/highlighted"
 import LargeBtn from "../components/largeBtn"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { otpSender } from "../services/operation/createUser"
 import Spinner from "./spinner"
-import {setSignUp} from "../redux/slice/authSlice"
+import { setSignUp } from "../redux/slice/authSlice"
 
 
 
 const SignUp = () => {
-    
+
     const [accountType, setAccountType] = useState('Student')
     const dispatch = useDispatch()
-    
+
     const [showPassword, setShowPasssword] = useState(false)
     const [showConfirmPassword, setShowConfirmPasssword] = useState(false)
     const { loading } = useSelector(state => state.auth)
     const navigate = useNavigate()
-    
+
 
     const [signUpData, setSignUpData] = useState({
         firstName: '',
@@ -30,7 +30,7 @@ const SignUp = () => {
         confirmPassword: ''
     })
     const [warning, setWarning] = useState(null)
-    
+
 
 
     const formValidator = () => {
@@ -76,28 +76,28 @@ const SignUp = () => {
 
 
 
-    
+
     const [showWarning, setShowWarning] = useState(false)
 
     // navigate('/')
     // console.log('form')
 
     // const data = { ...signUpData, accountType }
-    
-    
+
+
     const signupHandler = () => {
         setShowWarning(true)
         if (warning === true) {
             // console.log('Dispatching signUpData:', {...signUpData, accountType});
 
-            dispatch(setSignUp({...signUpData,accountType}))
+            dispatch(setSignUp({ ...signUpData, accountType }))
 
-            dispatch(otpSender(signUpData.email,navigate))
+            dispatch(otpSender(signUpData.email, navigate))
 
 
             // console.log(data)
             // dispatch(otpSender(signUpData.email))
-            
+
         }
     }
 
@@ -212,8 +212,15 @@ const SignUp = () => {
                     </div>
 
                     <p className="text-pink-400 my-4">{showWarning && warning !== true && warning}</p>
-                    <div className="w-2/3 ">
-                        <LargeBtn behaviour={signupHandler}  content={'SignUp'}></LargeBtn>
+                    <div className="w-[95%] flex flex-col gap-3 items-center text-center  ">
+                        <span className="w-2/3">
+
+                            <LargeBtn behaviour={signupHandler} content={'SignUp'}></LargeBtn>
+                        </span>
+                        <p className="text-richblack-100">
+
+                            <Link to={'/auth/login'}>Already have an account? Login</Link>
+                        </p>
                     </div>
 
                 </div>

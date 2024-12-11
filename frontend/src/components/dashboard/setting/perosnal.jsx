@@ -79,7 +79,7 @@ const Personal = () => {
                     <div className="bg-richblack-700 my-1 py-2 px-3 rounded-md flex justify-between shadow-richblack-400 shadow-sm ">
                         <div>
 
-                            <input class="" checked={details.gender === 'male'} onChange={handleGenderChange} className="" type="radio" id="male" value='male' name="gender" />
+                            <input  checked={details.gender === 'male'} onChange={handleGenderChange} className="" type="radio" id="male" value='male' name="gender" />
 
                             <label htmlFor="male">Male</label>
                         </div>

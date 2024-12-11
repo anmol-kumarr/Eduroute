@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react"
+import {  useRef } from "react"
 import { useDispatch } from "react-redux";
-import { BigPlayButton, ForwardControl, Player } from 'video-react';
+// import { BigPlayButton, ForwardControl, Player } from 'video-react';
 import { setCompletedLecture } from "../../redux/slice/lecture";
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { enrolledCourse } from "../../services/api";
@@ -8,7 +8,7 @@ import { apiConnector } from '../../services/apiconnector'
 
 const Video = ({ setSection, setPlayVideo, setSubSection, subSection, section, courseData, playVideo }) => {
     const videoPlayerRef = useRef(null)
-    const [videoEnd, setVideoEnd] = useState(false)
+    // const [videoEnd, setVideoEnd] = useState(false)
 
     const dispatch = useDispatch()
 

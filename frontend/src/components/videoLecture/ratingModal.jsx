@@ -51,7 +51,7 @@ const RatingModal = ({ setModal }) => {
 
                     <div className="flex  gap-1 items-center my-3">
                         <div className="w-8 h-8 rounded-full overflow-hidden">
-                            <img className="w-full h-full" src={user.image} alt="" />
+                            <img className="w-full h-full" src={user.image} alt="user" />
                         </div>
                         <div className="">
                             <p >{user?.firstName} {user?.lastName}</p>

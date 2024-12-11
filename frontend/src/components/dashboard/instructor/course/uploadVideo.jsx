@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import toast from "react-hot-toast"
 import { IoMdCloudUpload } from "react-icons/io";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 const UploadVideo = ({
     register,
     errors,
@@ -15,7 +15,7 @@ const UploadVideo = ({
     editData
 
 }) => {
-    const editCourse = useSelector(state => state.course.editCourse)
+    // const editCourse = useSelector(state => state.course.editCourse)
     const [file, setFile] = useState(null)
 
     const videoRef = useRef(null);

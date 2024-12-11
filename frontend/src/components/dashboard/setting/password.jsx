@@ -6,7 +6,7 @@ const Password=()=>{
     const [showPassword, setShowPasssword] = useState(false)
     const [showConfirmPassword, setShowConfirmPasssword] = useState(false)
     return (
-        <div class='bg-richblack-800 border border-richblack-700 sm:p-5 p-2 rounded-md  my-2'>
+        <div className='bg-richblack-800 border border-richblack-700 sm:p-5 p-2 rounded-md  my-2'>
 
         <div className=" sm:flex sm:gap-4  ">
             <div className="sm:w-1/2 w-[95%] mx-auto">

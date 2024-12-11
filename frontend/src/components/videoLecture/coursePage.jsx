@@ -10,7 +10,7 @@ import { enrolledCourse } from "../../services/api"
 import { apiConnector } from "../../services/apiconnector"
 import { setCompletedLecture } from "../../redux/slice/lecture"
 import Spinner from "../spinner"
-import Sidebar from "./sidebar"
+// import Sidebar from "./sidebar"
 import CourseContent from "./courseContent"
 
 

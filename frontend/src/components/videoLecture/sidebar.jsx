@@ -14,7 +14,7 @@ const Sidebar = ({ sectionData, setSection, subSectionData, courseData, setPlayV
 
     const completedLecture = useSelector(state => state.lecture.completedLecture)
     const [lectureList, setLectureList] = useState([])
-    const [collapsibleOpen, setCollapsibleOpen] = useState(false)
+    // const [collapsibleOpen, setCollapsibleOpen] = useState(false)
 
 
     useEffect(() => {

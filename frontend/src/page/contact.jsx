@@ -2,7 +2,7 @@ const ContactPage = () => {
     return (
         <div className="flex flex-wrap sm:w-11/12 w-full mx-auto my-10 gap-10 text-richblack-100">
 
-            <div className="lg:w-[45%] sm:w-11/12 w-full mx-auto min-w-[920px]:text-start text-center min-w[920px]:w-2/6 min-w-[350px] p-8 rounded-lg">
+            <div className="lg:w-[45%] md:w-[30%] sm:w-11/12 w-full mx-auto  text-center min-w-[350px] p-8 rounded-lg">
                 <div className="mb-6">
                     <h3 className="text-xl font-semibold">Chat on us</h3>
                     <p>Our friendly team is here to help.</p>
@@ -23,7 +23,7 @@ const ContactPage = () => {
 
 
 
-            <div className="min-[920px]:w-[45%] sm:w-11/12 w-[98%]  mx-auto sm:min-w-[450px] border-richblack-200 border-[1px] sm:p-5 py-8 px-3 rounded-lg">
+            <div className="sm:w-8/12 md:w-6/12 lg:w-[45%] w-11/12  mx-auto  border-richblack-200 border-[1px] sm:p-5 py-8 px-3 rounded-lg">
                 <h2 className="text-3xl font-bold mb-4 text-white">Got a Idea? We've got the skills. Let's team up</h2>
                 <p className="text-gray-400 mb-6">
                     Tell us more about yourself and what you’ve got in mind.

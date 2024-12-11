@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux'
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
@@ -7,7 +7,7 @@ import { changeState, setCourse, setEditCourse } from "../../../../../redux/slic
 import FormBtn from "../formBtn";
 import { IoIosArrowForward } from "react-icons/io";
 import CourseThumbnail from "./courseThumbnail";
-import { json, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import Tags from "./tags";
 import { createCourse, updateCourse } from "../../../../../services/operation/course";
 import toast from "react-hot-toast";
@@ -23,7 +23,7 @@ const CourseIntroForm = () => {
 
     const onSubmit = (data) => {
 
-        const currentValues = getValues()
+        // const currentValues = getValues()
 
         const formData = new FormData()
         if (editCourse) {

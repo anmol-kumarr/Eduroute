@@ -37,13 +37,13 @@ const About = () => {
 
                         <div className="sm:w-5/6 w-[98%] flex mt-5 sm:-mb-24 -mb-14 justify-center items-center gap-5">
                             <div className="w-1/3">
-                                <img src={headingOne} alt="" />
+                                <img src={headingOne} alt="headingOne" />
                             </div>
                             <div className="w-1/3">
-                                <img src={headingTwo} alt="" />
+                                <img src={headingTwo} alt="headingTwo" />
                             </div>
                             <div className="w-1/3">
-                                <img src={headingThree} alt="" />
+                                <img src={headingThree} alt="headingThree" />
                             </div>
 
                         </div>

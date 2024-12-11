@@ -137,6 +137,7 @@ module.exports = {
 
       screens: {
         '850px': '850px',       // Minimum width of 850px
+        '470px': '470px',       
         '520px': '520px',       // Minimum width of 520px
         'max-850': {            // Custom max-width breakpoint for 850px
           'max': '850px',       // Max-width of 850px

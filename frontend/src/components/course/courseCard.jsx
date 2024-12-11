@@ -6,7 +6,7 @@ const CourseCard=({course,width,height,catelogName})=>{
     return (
         <div onClick={()=>navigate(`/course/${course._id}`)} className={`bg-richblack-800 rounded-md w-96 ${width?width:'min-w-80'}`}>
             <div className={`w-full  rounded-t-md overflow-hidden ${height?height:'h-40'}`}>
-                <img className="w-full h-full" src={course?.thumbnail} alt="" />
+                <img className="w-full h-full" src={course?.thumbnail} alt="thumbnail" />
             </div>
             <div className="flex flex-col py-2 px-3  rounded-md">
                 <p>{course.courseName}</p>

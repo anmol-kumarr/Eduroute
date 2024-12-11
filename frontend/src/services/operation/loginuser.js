@@ -7,6 +7,7 @@ import { setUser } from "../../redux/slice/profileSlice"
 export const login = (email, password) => {
     return async (dispatch, navigate) => {
         dispatch(setLoading(true))
+        toast.loading('Please wait')
         try {
             const response = await apiConnector('POST', authApi.login, { email, password })
             if (!response.data.success) {
@@ -15,6 +16,7 @@ export const login = (email, password) => {
             }
 
             // console.log(response)
+            toast.dismiss()
             toast.success('logged in successfully')
             dispatch(setToken(response.data.token))
             dispatch(setUser(response.data.user))
@@ -29,6 +31,7 @@ export const login = (email, password) => {
         }
         catch (err) {
             // console.log('error while logged in', err)
+            toast.dismiss()
             toast.error('cannot logged in')
         }
         dispatch(setLoading(false))

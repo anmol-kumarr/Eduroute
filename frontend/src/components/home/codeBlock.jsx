@@ -18,13 +18,13 @@ const CodeBlock = ({
                     <HomeBtn content={btnTwo.content} active={btnTwo.active} render={btnTwo.render}></HomeBtn>
                 </div>
             </div>
-            <div className="min-w-[390px] relative p-2 w-2/5 text-richblack-100 bg-transparent">
+            <div className="sm:min-w-[390px] min-w-[360px] relative p-2 w-2/5 text-richblack-100 bg-transparent">
 
 
 
                 <div className="z-0 absolute -top-10 left-0">
                     {
-                        bg === 'yellow' ? (<img src={Blur} alt="" />):(<img src={BlurTwo} alt=""></img>)
+                        bg === 'yellow' ? (<img src={Blur} alt="blur" />):(<img src={BlurTwo} alt="blur"></img>)
                 }
 
                 </div>
@@ -47,6 +47,7 @@ const CodeBlock = ({
                         <p>13</p>
                         <p>14</p>
                         <p>15</p>
+                        <p className="sm:hidden block">16</p>
                         
                     </div>
                     <div className="text-sm bg-transparent ">

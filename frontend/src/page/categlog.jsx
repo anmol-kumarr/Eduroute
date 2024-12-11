@@ -9,7 +9,7 @@ import CourseCard from "../components/course/courseCard"
 
 const Catelog = () => {
     const { catelogId, catelogName } = useParams()
-    const [categoryCourse, setCategoryCourse] = useState([])
+    // const [categoryCourse, setCategoryCourse] = useState([])
     const [loading, setLoading] = useState(false)
     const categories = useSelector(state => state.course.courseCategories)
     const [description, setDescription] = useState('')

@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import Collapsible from "react-collapsible"
-import { MdArrowLeft, MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
+import {  MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { PiMonitorPlayLight } from "react-icons/pi";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 const CourseContent = ({ sectionData, setSection, subSectionData, courseData, setPlayVideo, setSubSection, setModal }) => {
 
 
     // console.log(courseData)
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const completedLecture = useSelector(state => state.lecture.completedLecture)
     const [lectureList, setLectureList] = useState([])
-    const [collapsibleOpen, setCollapsibleOpen] = useState(false)
+    // const [collapsibleOpen, setCollapsibleOpen] = useState(false)
 
 
     useEffect(() => {

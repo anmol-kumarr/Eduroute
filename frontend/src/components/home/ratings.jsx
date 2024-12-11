@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Navigation, Pagination } from 'swiper/modules';
+import { FreeMode, Pagination } from 'swiper/modules';
 // import Swiper and modules styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -30,7 +30,7 @@ const Rating = ({ ratings }) => {
                     >
                         {
                             ratings?.map((rating) => (
-                                <SwiperSlide>
+                                <SwiperSlide key={rating._id}>
                                     <RatingCard rating={rating}></RatingCard>
                                 </SwiperSlide>
                             ))

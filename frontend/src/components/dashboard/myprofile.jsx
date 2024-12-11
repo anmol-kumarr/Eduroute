@@ -13,7 +13,7 @@ const MyProfile = () => {
                 <div className="bg-richblack-800 p-5 flex justify-between items-center rounded-md mt-5  border border-richblack-700">
                     <div className="flex gap-3">
                         <div className="w-11 h-11 rounded-full overflow-hidden">
-                            <img className="w-full h-full" src={user.image} alt="" />
+                            <img className="w-full h-full" src={user.image} alt="user" />
                         </div>
                         <div>
                             <p className="">{user.firstName} {user.lastName}</p>

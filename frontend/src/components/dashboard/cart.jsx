@@ -98,7 +98,7 @@ const Cart = () => {
                                                     <div className="sm:border-none border-[1px] border-richblack-500 flex flex-col sm:flex-row lg:gap-7 gap-3 lg:h-36 my-4 rounded-md overflow-hidden lg:w-10/12 w-[99%]">
                                                         {/* Thumbnail */}
                                                         <div className="sm:w-48 w-full h-52 sm:h-auto overflow-hidden">
-                                                            <img className="w-full h-full object-cover" src={item.thumbnail} alt="" />
+                                                            <img className="w-full h-full object-cover" src={item.thumbnail} alt="thumbnail" />
                                                         </div>
 
                                                         {/* Content Section */}

@@ -3,11 +3,11 @@ import { studentEnrolledCourseApi } from "../../services/api"
 import { toast } from 'react-hot-toast'
 import { apiConnector } from "../../services/apiconnector"
 import Spinner from "../spinner"
-import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table"
+
 import { Line } from 'rc-progress';
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { setCompletedLecture } from "../../redux/slice/lecture"
+
 import { useMediaQuery } from "usehooks-ts"
 
 const EnrolledCourses = () => {
@@ -106,7 +106,7 @@ const EnrolledCourses = () => {
                                                                 <div className="p-2 sm:flex sm:w-[40%] gap-3 items-center">
 
                                                                     <div className="sm:max-w-40 overflow-hidden rounded-md max-h-[200px] sm:max-h-20">
-                                                                        <img className="w-full h-full" src={course.thumbnail} alt="" />
+                                                                        <img className="w-full h-full" src={course.thumbnail} alt="thumbnail" />
                                                                     </div>
                                                                     <p className="font-inter sm:text-start text-center sm:text-lg text-2xl font-medium">{course?.courseName}</p>
 

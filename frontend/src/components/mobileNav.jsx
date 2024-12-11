@@ -1,10 +1,10 @@
 import React from 'react'
 import { sidebarLinks } from '../data/dashboard'
 import { useSelector } from 'react-redux'
-import SideBarLinks from './dashboard/sidebarlinks'
+
 import * as Icons from 'react-icons/vsc'
 import { Link, useNavigate } from 'react-router-dom'
-import { IoSettings, IoSettingsSharp } from 'react-icons/io5'
+import {  IoSettingsSharp } from 'react-icons/io5'
 
 
 function MobileNav() {

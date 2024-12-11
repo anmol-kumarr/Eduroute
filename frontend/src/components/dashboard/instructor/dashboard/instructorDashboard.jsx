@@ -37,7 +37,7 @@ const InstructorDashboard = () => {
 
 
     return (
-        <div className="w-full">
+        <div className="flex flex-col 850px:w-3/4 sm:w-10/12 w-[95%]  mx-auto my-5 ">
             {
                 loading ? (
                     <div className="w-full h-[calc(100vh-5rem)] flex justify-center items-center">
@@ -46,24 +46,23 @@ const InstructorDashboard = () => {
                     </div>
                 ) : (
                     <div className="w-full">
-                        <h2>Hii {user.firstName}</h2>
+                        <h2 className="text-xl font-semibold">Hii {user.firstName}</h2>
                         <p>Let's start something new</p>
                         {
                             dashboardData.length > 0 ? (
                                 <div>
                                     <InstructorChart data={dashboardData}></InstructorChart>
-                                    <div>
-                                        <p>Statistics</p>
+                                    <div className="mt-4">
+                                        <p className="text-2xl my-4">Statistics</p>
                                         <div>
                                             <p>
-                                                Total Courses
+                                                Total Courses: <span className="text-yellow-100">{totalStudent}</span>
                                             </p>
-                                            <p>{totalStudent}</p>
+                                            
                                         </div>
                                         <div>
-                                            <p>Total income</p>
-                                            <p>{totalIncome}</p>
-
+                                            <p>Total income: <span className="text-yellow-100">{totalIncome}/-</span></p>
+                                            
                                         </div>
                                     </div>
                                 </div>

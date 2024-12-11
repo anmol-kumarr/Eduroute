@@ -78,7 +78,7 @@ const Home = () => {
 
                 {/* section two */}
 
-                <div className="min-[1050px]:w-4/5 w-11/12 mx-auto mb-28">
+                <div className="min-[1050px]:w-4/5 sm:w-11/12 w-[95%] mx-auto mb-28">
                     <CodeBlock bg={'yellow'} position={''} btnOne={{ content: <>Try it Yourself <IoArrowForward /></>, active: true, render: '/auth/signup' }}
                         btnTwo={{ content: <>learn more</>, active: false, render: '/auth/signup' }}
 
@@ -119,10 +119,10 @@ const Home = () => {
 
                 </div>
 
-                <div className="w-11/12 mx-auto">
+                <div className="sm:w-11/12 w-[95%] mx-auto">
 
-                    <div className="font-inter flex flex-wrap  justify-around my-16">
-                        <div className="sm:w-2/5 min-w-[350px] w-full sm:text-left text-center text-3xl font-semibold ">
+                    <div className="font-inter flex flex-wrap   justify-around my-16">
+                        <div className="sm:w-2/5 mb-3 sm:mb-0 sm:min-w-[350px] w-full sm:text-left text-center text-3xl font-semibold ">
                             Get the skills you need for a <HighlightedText content={'job that is in demand.'}></HighlightedText>
                         </div>
                         <div className="sm:w-2/5  w-full sm:text-left text-center text-[#2C333F] font-inter flex sm:items-start items-center flex-col gap-5">
@@ -141,9 +141,9 @@ const Home = () => {
 
                         </div>
 
-                        <div className="w-2/5 my-4 min-w-[380px] relative">
+                        <div className="w-2/5 my-4 min-w-[340px] sm:min-w-[380px]  relative">
 
-                            <img className="w-full" src={GirlImage} alt="" />
+                            <img className="w-full" src={GirlImage} alt="girl" />
                             <div className="px-3 py-4 absolute top-[90%] left-[10%] right-[50%] bg-caribbeangreen-700 w-4/5 flex justify-between">
                                 <div className="uppercase flex items-center gap-3 ">
                                     <p className="text-white font-inter text-3xl">10</p>

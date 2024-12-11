@@ -1,4 +1,4 @@
-import { Outlet, useParams } from "react-router-dom"
+import {  useParams } from "react-router-dom"
 import Header from "../components/header"
 import { useEffect, useState } from "react"
 import { apiConnector } from "../services/apiconnector"
